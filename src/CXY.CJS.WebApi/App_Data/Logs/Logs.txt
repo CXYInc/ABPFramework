@@ -1,0 +1,1130 @@
+DEBUG 2018-11-29 12:00:29,315 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:00:29,443 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:00:29,454 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,457 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,458 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,458 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,459 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,459 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,460 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,460 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,460 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,461 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,461 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,465 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:00:29,797 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:00:29,932 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:00:30,092 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:00:30,197 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:00:30,257 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:00:30,524 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:00:30,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+DEBUG 2018-11-29 12:03:49,728 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:03:49,788 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:03:49,795 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,798 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,798 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,798 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,799 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,799 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,799 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,799 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,800 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,800 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,800 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:49,804 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:03:50,018 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:03:50,147 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:03:50,237 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:03:50,299 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:03:50,331 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:03:50,565 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:03:50,614 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:03:52,106 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:03:52,447 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Values"}. Executing action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)
+ERROR 2018-11-29 12:03:52,470 [12   ] Mvc.ExceptionHandling.AbpExceptionFilter - No component for supporting the service CXY.CJS.WebApi.Controllers.ValuesController was found
+Castle.MicroKernel.ComponentNotFoundException: No component for supporting the service CXY.CJS.WebApi.Controllers.ValuesController was found
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:03:52,570 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:03:52,600 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) in 148.5949ms
+INFO  2018-11-29 12:03:52,608 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 509.275ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:03:52,941 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico  
+INFO  2018-11-29 12:03:52,969 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 26.8993ms 404 
+INFO  2018-11-29 12:04:10,752 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger  
+INFO  2018-11-29 12:04:10,763 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 10.4165ms 301 
+INFO  2018-11-29 12:04:10,775 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+ERROR 2018-11-29 12:04:10,809 [6    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILLULVCM7V", Request id "0HLILLULVCM7V:00000004": An unhandled exception was thrown by the application.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: stream
+   at System.IO.StreamReader..ctor(Stream stream, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean leaveOpen)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.RespondWithIndexHtml(HttpResponse response)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Abp.AspNetCore.Security.AbpSecurityHeadersMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Security\AbpSecurityHeadersMiddleware.cs:line 26
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2018-11-29 12:04:10,813 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 38.2079ms 500 
+DEBUG 2018-11-29 12:04:25,116 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:04:25,118 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:04:25,119 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:04:25,119 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:09:26,361 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:09:26,423 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:09:26,430 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,433 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,433 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,433 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,435 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,435 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,438 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:09:26,662 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:09:26,759 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:09:26,852 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:09:26,914 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:09:26,944 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:09:27,182 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:09:27,234 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:09:28,709 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:09:29,062 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Values"}. Executing action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)
+ERROR 2018-11-29 12:09:29,089 [7    ] Mvc.ExceptionHandling.AbpExceptionFilter - No component for supporting the service CXY.CJS.WebApi.Controllers.ValuesController was found
+Castle.MicroKernel.ComponentNotFoundException: No component for supporting the service CXY.CJS.WebApi.Controllers.ValuesController was found
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:09:29,176 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:09:29,201 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) in 134.4406ms
+INFO  2018-11-29 12:09:29,214 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 520.1996ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:09:38,153 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:09:38,156 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Values"}. Executing action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)
+ERROR 2018-11-29 12:09:38,157 [11   ] Mvc.ExceptionHandling.AbpExceptionFilter - No component for supporting the service CXY.CJS.WebApi.Controllers.ValuesController was found
+Castle.MicroKernel.ComponentNotFoundException: No component for supporting the service CXY.CJS.WebApi.Controllers.ValuesController was found
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:09:38,160 [11   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:09:38,166 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) in 5.1196ms
+INFO  2018-11-29 12:09:38,168 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 14.8523ms 500 application/json; charset=utf-8
+DEBUG 2018-11-29 12:11:38,579 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:11:38,646 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:11:38,653 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,657 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,657 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,658 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,658 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,658 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,659 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,659 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,659 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,659 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,659 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,662 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:11:38,882 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:11:38,970 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:11:39,063 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:11:39,124 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:11:39,178 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:11:39,412 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:11:39,460 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:11:40,662 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:11:40,899 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 240.8686ms 404 
+INFO  2018-11-29 12:13:01,522 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/values/get  
+INFO  2018-11-29 12:13:01,585 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Values"}. Executing action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)
+INFO  2018-11-29 12:13:01,740 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) - Validation state: Valid
+INFO  2018-11-29 12:13:01,744 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.472ms.
+INFO  2018-11-29 12:13:01,763 [12   ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.WebApi.Controllers.ValuesController.Get is executed by an anonymous user in 110 ms from ::1 IP address with succeed.
+INFO  2018-11-29 12:13:01,776 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:13:01,794 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) in 205.2684ms
+INFO  2018-11-29 12:13:01,804 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 277.7531ms 200 application/json; charset=utf-8
+INFO  2018-11-29 12:13:23,961 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+ERROR 2018-11-29 12:13:24,039 [16   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILM31L9VDN", Request id "0HLILM31L9VDN:00000003": An unhandled exception was thrown by the application.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: stream
+   at System.IO.StreamReader..ctor(Stream stream, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean leaveOpen)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.RespondWithIndexHtml(HttpResponse response)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Abp.AspNetCore.Security.AbpSecurityHeadersMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Security\AbpSecurityHeadersMiddleware.cs:line 26
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2018-11-29 12:13:24,044 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 82.8412ms 500 
+DEBUG 2018-11-29 12:16:29,947 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:16:29,949 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:16:29,950 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:16:29,950 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:17:15,867 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:17:15,944 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:17:15,954 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,958 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,959 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,959 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,960 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,960 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,960 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,960 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,961 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,961 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,961 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:15,965 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:17:16,194 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:17:16,285 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:17:16,402 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:17:16,464 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:17:16,495 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:17:16,733 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:17:16,801 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:17:18,303 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:17:18,518 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 218.4425ms 404 
+INFO  2018-11-29 12:17:27,855 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:17:27,899 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 44.0568ms 200 text/html
+INFO  2018-11-29 12:17:27,951 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-standalone-preset.js  
+INFO  2018-11-29 12:17:27,956 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-bundle.js  
+INFO  2018-11-29 12:17:27,958 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui.css  
+INFO  2018-11-29 12:17:28,020 [13   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2018-11-29 12:17:28,031 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2018-11-29 12:17:28,081 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2018-11-29 12:17:28,100 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 138.0637ms 200 application/javascript
+INFO  2018-11-29 12:17:28,101 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 138.411ms 200 application/javascript
+INFO  2018-11-29 12:17:28,103 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 127.397ms 200 text/css
+INFO  2018-11-29 12:17:28,489 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/favicon-32x32.png  
+INFO  2018-11-29 12:17:28,499 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+INFO  2018-11-29 12:17:28,516 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 19.2754ms 200 image/png
+INFO  2018-11-29 12:17:28,523 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/favicon-16x16.png  
+INFO  2018-11-29 12:17:28,553 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+INFO  2018-11-29 12:17:28,565 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 36.8525ms 200 image/png
+INFO  2018-11-29 12:18:00,882 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:18:00,900 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 12.6431ms 200 text/html
+INFO  2018-11-29 12:18:01,351 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/favicon-32x32.png  
+INFO  2018-11-29 12:18:01,368 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+INFO  2018-11-29 12:18:01,384 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 31.3994ms 200 image/png
+DEBUG 2018-11-29 12:18:19,656 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:18:19,722 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:18:19,730 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,733 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,733 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,734 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,734 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,734 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,735 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,735 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,735 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,735 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,736 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:19,739 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:18:19,955 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:18:20,042 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:18:20,147 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:18:20,218 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:18:20,260 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:18:20,502 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:18:20,550 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:18:22,185 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:18:22,527 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 346.7443ms 404 
+INFO  2018-11-29 12:18:27,342 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:18:27,384 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 42.6943ms 200 text/html
+INFO  2018-11-29 12:18:27,878 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:18:28,111 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 233.4616ms 200 application/json;charset=utf-8
+DEBUG 2018-11-29 12:19:11,394 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:19:11,396 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:19:11,397 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:19:11,397 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:20:29,857 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:20:29,938 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:20:29,946 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,949 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,950 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,950 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,951 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,951 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,951 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,951 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,951 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,952 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,952 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:29,957 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:20:30,187 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:20:30,283 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:20:30,383 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:20:30,460 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:20:30,497 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:20:30,723 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:20:30,772 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:20:32,183 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:20:32,452 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 257.9823ms 404 
+INFO  2018-11-29 12:20:38,595 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:20:38,664 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 90.9376ms 200 text/html
+INFO  2018-11-29 12:20:38,988 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:20:39,126 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 108.2776ms 200 application/json;charset=utf-8
+DEBUG 2018-11-29 12:20:49,732 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:20:49,734 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:20:49,735 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:20:49,735 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:22:01,247 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:22:01,307 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:22:01,315 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,318 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,319 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,319 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,320 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,320 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,320 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,320 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,320 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,321 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,321 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,324 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:22:01,545 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:22:01,679 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:22:01,784 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:22:01,864 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:22:01,901 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:22:02,145 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:22:02,197 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:22:03,436 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+ERROR 2018-11-29 12:22:03,712 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILM8R8BIK7", Request id "0HLILM8R8BIK7:00000001": An unhandled exception was thrown by the application.
+Microsoft.AspNetCore.Routing.RouteCreationException: The following errors occurred with attribute routing information:
+
+For action: 'CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)'
+Error: The attribute route 'api/{Controller}/{Action}' cannot contain a parameter named '{action}'. Use '[action]' in the route template to insert the value 'Get'.
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetRouteInfos(IReadOnlyList`1 actions)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.AddEntries(TreeRouteBuilder builder, ActionDescriptorCollection actions)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Abp.AspNetCore.Security.AbpSecurityHeadersMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Security\AbpSecurityHeadersMiddleware.cs:line 26
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2018-11-29 12:22:03,726 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 291.0639ms 500 
+INFO  2018-11-29 12:22:11,120 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+ERROR 2018-11-29 12:22:11,135 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILM8R8BIK7", Request id "0HLILM8R8BIK7:00000002": An unhandled exception was thrown by the application.
+Microsoft.AspNetCore.Routing.RouteCreationException: The following errors occurred with attribute routing information:
+
+For action: 'CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)'
+Error: The attribute route 'api/{Controller}/{Action}' cannot contain a parameter named '{action}'. Use '[action]' in the route template to insert the value 'Get'.
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetRouteInfos(IReadOnlyList`1 actions)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.AddEntries(TreeRouteBuilder builder, ActionDescriptorCollection actions)
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Abp.AspNetCore.Security.AbpSecurityHeadersMiddleware.Invoke(HttpContext httpContext) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\Security\AbpSecurityHeadersMiddleware.cs:line 26
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2018-11-29 12:22:11,138 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 17.2527ms 500 
+DEBUG 2018-11-29 12:22:20,138 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:22:20,140 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:22:20,141 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:22:20,141 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:23:09,467 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:23:09,530 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:23:09,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,542 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,542 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,542 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,543 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,543 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,543 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,543 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,543 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,544 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,547 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:23:09,826 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:23:09,913 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:23:10,006 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:23:10,067 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:23:10,108 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:23:10,379 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:23:10,429 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:23:11,674 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:23:11,904 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 233.3285ms 404 
+INFO  2018-11-29 12:23:17,556 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:23:17,607 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 52.6944ms 200 text/html
+INFO  2018-11-29 12:23:17,895 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:23:18,087 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 191.1015ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:23:29,032 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/Values/Get  
+INFO  2018-11-29 12:23:29,064 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Values"}. Executing action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)
+INFO  2018-11-29 12:23:29,222 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) - Validation state: Valid
+INFO  2018-11-29 12:23:29,225 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.4768ms.
+INFO  2018-11-29 12:23:29,251 [7    ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.WebApi.Controllers.ValuesController.Get is executed by an anonymous user in 121 ms from ::1 IP address with succeed.
+INFO  2018-11-29 12:23:29,263 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:23:29,278 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) in 208.4838ms
+INFO  2018-11-29 12:23:29,283 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 281.9329ms 200 application/json; charset=utf-8
+DEBUG 2018-11-29 12:23:43,491 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:23:43,493 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:23:43,494 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:23:43,494 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:24:03,852 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:24:03,920 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:24:03,929 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,932 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,932 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,932 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,933 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,933 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,933 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,933 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,933 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,934 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,934 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:03,938 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:24:04,158 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:24:04,259 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:24:04,355 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:24:04,422 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:24:04,452 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:24:04,678 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:24:04,727 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:24:06,035 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:24:06,295 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 268.0895ms 404 
+INFO  2018-11-29 12:25:19,406 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:25:19,446 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 39.7115ms 200 text/html
+INFO  2018-11-29 12:25:20,003 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:25:20,248 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 248.7015ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:25:28,276 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/Values/Get  
+INFO  2018-11-29 12:25:28,316 [16   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Values"}. Executing action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)
+INFO  2018-11-29 12:25:28,475 [16   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) - Validation state: Valid
+INFO  2018-11-29 12:25:28,479 [16   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.3843ms.
+INFO  2018-11-29 12:25:28,519 [16   ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.WebApi.Controllers.ValuesController.Get is executed by an anonymous user in 128 ms from ::1 IP address with succeed.
+INFO  2018-11-29 12:25:28,552 [16   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:25:28,570 [16   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) in 247.7687ms
+INFO  2018-11-29 12:25:28,573 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 298.2213ms 200 application/json; charset=utf-8
+DEBUG 2018-11-29 12:25:53,938 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:25:53,940 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:25:53,941 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:25:53,941 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:35:40,957 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:35:41,015 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:35:41,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,033 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,033 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,033 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,034 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,034 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,035 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,035 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,035 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,035 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,036 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,041 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:35:41,262 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:35:41,338 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:35:41,437 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:35:41,504 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:35:41,535 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:35:41,782 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:35:41,850 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:35:43,083 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:35:43,338 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 258.7092ms 404 
+INFO  2018-11-29 12:35:47,799 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:35:47,846 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 48.9702ms 200 text/html
+INFO  2018-11-29 12:35:48,328 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:35:48,504 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 204.6438ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:36:18,079 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json-patch+json 20
+INFO  2018-11-29 12:36:18,110 [11   ] pNetCore.Cors.Infrastructure.CorsService - Policy execution failed.
+INFO  2018-11-29 12:36:18,111 [11   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:5000 does not have permission to access the resource.
+INFO  2018-11-29 12:36:18,174 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:36:18,200 [11   ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:36:18,265 [11   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:36:18,280 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 101.8587ms
+INFO  2018-11-29 12:36:18,286 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 204.7007ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:36:18,313 [11   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILMGFGF0ST", Request id "0HLILMGFGF0ST:00000004": the application completed without reading the entire request body.
+DEBUG 2018-11-29 12:37:25,753 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:37:25,802 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:37:25,811 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,814 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,814 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,814 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,815 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,816 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,816 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,816 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:25,819 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:37:26,079 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:37:26,165 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:37:26,251 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:37:26,316 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:37:26,357 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:37:26,613 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:37:26,667 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:37:27,986 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:37:28,226 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 239.8861ms 404 
+INFO  2018-11-29 12:37:32,605 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:37:32,654 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 49.0721ms 200 text/html
+INFO  2018-11-29 12:37:32,955 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:37:33,162 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 207.2698ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:37:37,883 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json-patch+json 20
+INFO  2018-11-29 12:37:37,901 [7    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution failed.
+INFO  2018-11-29 12:37:37,904 [7    ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:5000 does not have permission to access the resource.
+INFO  2018-11-29 12:37:37,951 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:37:37,977 [7    ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:37:38,040 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:37:38,054 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 99.6609ms
+INFO  2018-11-29 12:37:38,059 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 177.0231ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:37:38,104 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILMHEPCLKR", Request id "0HLILMHEPCLKR:00000004": the application completed without reading the entire request body.
+INFO  2018-11-29 12:37:42,652 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json-patch+json 20
+INFO  2018-11-29 12:37:42,658 [7    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution failed.
+INFO  2018-11-29 12:37:42,661 [7    ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:5000 does not have permission to access the resource.
+INFO  2018-11-29 12:37:42,666 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:37:42,668 [7    ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:37:42,674 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:37:42,681 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 8.943ms
+INFO  2018-11-29 12:37:42,683 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 30.3648ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:37:42,692 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILMHEPCLKR", Request id "0HLILMHEPCLKR:00000005": the application completed without reading the entire request body.
+INFO  2018-11-29 12:38:00,406 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json-patch+json 20
+INFO  2018-11-29 12:38:00,409 [7    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution failed.
+INFO  2018-11-29 12:38:00,412 [7    ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:5000 does not have permission to access the resource.
+INFO  2018-11-29 12:38:00,416 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:38:00,418 [7    ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:38:00,424 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:38:00,428 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 8.5783ms
+INFO  2018-11-29 12:38:00,431 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 23.4089ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:38:00,434 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILMHEPCLKR", Request id "0HLILMHEPCLKR:00000006": the application completed without reading the entire request body.
+DEBUG 2018-11-29 12:38:57,968 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:38:58,016 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:38:58,023 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,026 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,026 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,026 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,027 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,028 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,028 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,033 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:38:58,287 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:38:58,397 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:38:58,491 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:38:58,561 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:38:58,594 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:38:58,845 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:38:58,895 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:39:00,425 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:39:00,665 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 243.2378ms 404 
+INFO  2018-11-29 12:39:02,889 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:39:02,938 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 50.2834ms 200 text/html
+INFO  2018-11-29 12:39:04,670 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:39:04,892 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 226.4749ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:39:21,099 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json 20
+INFO  2018-11-29 12:39:21,103 [10   ] pNetCore.Cors.Infrastructure.CorsService - Policy execution failed.
+INFO  2018-11-29 12:39:21,107 [10   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:5000 does not have permission to access the resource.
+INFO  2018-11-29 12:39:21,163 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:39:21,187 [10   ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:39:21,251 [10   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:39:21,265 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 98.1016ms
+INFO  2018-11-29 12:39:21,268 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 169.1918ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:39:21,291 [10   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILMIAABBEE", Request id "0HLILMIAABBEE:00000004": the application completed without reading the entire request body.
+DEBUG 2018-11-29 12:41:39,614 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:41:39,661 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:41:39,669 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,671 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,672 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,673 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,674 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,674 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,674 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,674 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,674 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,675 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,675 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,678 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:41:39,898 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:41:39,969 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:41:40,077 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:41:40,146 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:41:40,177 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:41:40,463 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:41:40,530 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:41:41,795 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:41:42,056 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 264.8872ms 404 
+INFO  2018-11-29 12:41:45,832 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:41:45,880 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 48.1501ms 200 text/html
+INFO  2018-11-29 12:41:46,298 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:41:46,509 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 212.5794ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:41:49,068 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-bundle.js.map  
+INFO  2018-11-29 12:41:49,071 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui-standalone-preset.js.map  
+INFO  2018-11-29 12:41:49,172 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/swagger-ui.css.map  
+INFO  2018-11-29 12:41:49,181 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css.map'. Physical path: 'N/A'
+INFO  2018-11-29 12:41:49,187 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 79.8435ms 200 text/plain
+INFO  2018-11-29 12:41:49,397 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js.map'. Physical path: 'N/A'
+INFO  2018-11-29 12:41:49,454 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 382.3066ms 200 text/plain
+INFO  2018-11-29 12:41:49,463 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js.map'. Physical path: 'N/A'
+INFO  2018-11-29 12:41:49,465 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 399.0303ms 200 text/plain
+INFO  2018-11-29 12:42:02,514 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json 20
+INFO  2018-11-29 12:42:02,520 [11   ] pNetCore.Cors.Infrastructure.CorsService - Policy execution failed.
+INFO  2018-11-29 12:42:02,529 [11   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:5000 does not have permission to access the resource.
+INFO  2018-11-29 12:42:02,594 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:42:02,627 [11   ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:42:02,697 [11   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:42:02,715 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 116.805ms
+INFO  2018-11-29 12:42:02,725 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 205.6248ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:42:02,748 [11   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLILMJQEGODD", Request id "0HLILMJQEGODD:00000005": the application completed without reading the entire request body.
+DEBUG 2018-11-29 12:44:39,060 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:44:39,120 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:44:39,130 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,133 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,134 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,134 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,134 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,135 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,135 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,135 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,136 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,136 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,136 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,139 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:44:39,476 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:44:39,584 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:44:39,729 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:44:39,851 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:44:39,908 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:44:40,280 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:44:40,343 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:44:42,150 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:44:42,549 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 405.2529ms 404 
+INFO  2018-11-29 12:44:48,884 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:44:48,937 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 53.438ms 200 text/html
+INFO  2018-11-29 12:44:49,332 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:44:49,586 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 254.7961ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:44:58,855 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add  0
+INFO  2018-11-29 12:44:58,858 [7    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution failed.
+INFO  2018-11-29 12:44:58,860 [7    ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:5000 does not have permission to access the resource.
+INFO  2018-11-29 12:44:58,903 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:44:58,937 [7    ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:44:59,021 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:44:59,041 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 133.0555ms
+INFO  2018-11-29 12:44:59,044 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 219.3919ms 500 application/json; charset=utf-8
+DEBUG 2018-11-29 12:45:56,840 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 12:45:56,842 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:45:56,843 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:45:56,843 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 12:46:38,562 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 12:46:38,609 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 12:46:38,617 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,621 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,621 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,621 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,622 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,622 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,622 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,624 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,625 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,626 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,626 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,631 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 12:46:38,881 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 12:46:38,967 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 12:46:39,057 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 12:46:39,144 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 12:46:39,178 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 12:46:39,410 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 12:46:39,457 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 12:46:40,623 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 12:46:40,835 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 215.4017ms 404 
+INFO  2018-11-29 12:46:45,071 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 12:46:45,138 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 63.7182ms 200 text/html
+INFO  2018-11-29 12:46:46,367 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 12:46:46,545 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 185.3387ms 200 application/json;charset=utf-8
+INFO  2018-11-29 12:46:51,940 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add  0
+INFO  2018-11-29 12:46:51,965 [10   ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 12:46:52,009 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:46:52,041 [10   ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:46:52,113 [10   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:46:52,131 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 118.8752ms
+INFO  2018-11-29 12:46:52,135 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 193.2123ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:49:32,101 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add  0
+INFO  2018-11-29 12:49:32,104 [6    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 12:49:32,110 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:49:32,113 [6    ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:49:32,118 [6    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:49:32,133 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 9.5083ms
+INFO  2018-11-29 12:49:32,137 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 34.2937ms 500 application/json; charset=utf-8
+INFO  2018-11-29 12:49:33,177 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add  0
+INFO  2018-11-29 12:49:33,179 [13   ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 12:49:33,184 [13   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 12:49:33,188 [13   ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 12:49:33,191 [13   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 12:49:33,195 [13   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 6.8693ms
+INFO  2018-11-29 12:49:33,206 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 20.4756ms 500 application/json; charset=utf-8
+DEBUG 2018-11-29 13:06:10,094 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 13:06:10,142 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 13:06:10,150 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,153 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,153 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,154 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,154 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,154 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,155 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,155 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,155 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,155 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,155 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,160 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 13:06:10,449 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:06:10,536 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 13:06:10,623 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 13:06:10,695 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 13:06:10,726 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 13:06:10,977 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:06:11,026 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 13:06:12,463 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 13:06:12,809 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 352.4763ms 404 
+INFO  2018-11-29 13:06:18,340 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 13:06:18,398 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 53.4008ms 200 text/html
+INFO  2018-11-29 13:06:18,742 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 13:06:18,989 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 244.2416ms 200 application/json;charset=utf-8
+INFO  2018-11-29 13:06:22,638 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/Values/Get  
+INFO  2018-11-29 13:06:22,678 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Get", controller = "Values", area = ""}. Executing action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi)
+INFO  2018-11-29 13:06:22,846 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) - Validation state: Valid
+INFO  2018-11-29 13:06:22,850 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 0.3401ms.
+INFO  2018-11-29 13:06:22,870 [7    ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.WebApi.Controllers.ValuesController.Get is executed by an anonymous user in 127 ms from ::1 IP address with succeed.
+INFO  2018-11-29 13:06:22,882 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 13:06:22,898 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.WebApi.Controllers.ValuesController.Get (CXY.CJS.WebApi) in 216.0449ms
+INFO  2018-11-29 13:06:22,900 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 262.9067ms 200 application/json; charset=utf-8
+INFO  2018-11-29 13:06:29,099 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add  0
+INFO  2018-11-29 13:06:29,104 [7    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 13:06:29,110 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+ERROR 2018-11-29 13:06:29,118 [7    ] Mvc.ExceptionHandling.AbpExceptionFilter - ComponentActivator: could not proxy CXY.CJS.Service.TestService
+Castle.MicroKernel.ComponentActivator.ComponentActivatorException: ComponentActivator: could not proxy CXY.CJS.Service.TestService ---> Castle.DynamicProxy.Generators.GeneratorException: Can not create proxy for type CXY.CJS.Service.ITestService because it is not accessible. Make it public, or internal and mark your assembly with [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] attribute, because assembly CXY.CJS.Application is not strong-named.
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypeForTarget(Type type, Type target)
+   at Castle.DynamicProxy.DefaultProxyBuilder.AssertValidTypes(IEnumerable`1 targetTypes)
+   at Castle.DynamicProxy.DefaultProxyBuilder.CreateClassProxyType(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options)
+   at Castle.DynamicProxy.ProxyGenerator.CreateClassProxy(Type classToProxy, Type[] additionalInterfacesToProxy, ProxyGenerationOptions options, Object[] constructorArguments, IInterceptor[] interceptors)
+   at Castle.Windsor.Proxy.DefaultProxyFactory.Create(IKernel kernel, Object target, ComponentModel model, CreationContext context, Object[] constructorArguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   --- End of inner exception stack trace ---
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.CreateInstance(CreationContext context, ConstructorCandidate constructor, Object[] arguments)
+   at Castle.MicroKernel.ComponentActivator.DefaultComponentActivator.InternalCreate(CreationContext context)
+   at Castle.MicroKernel.ComponentActivator.AbstractComponentActivator.Create(CreationContext context, Burden burden)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.CreateInstance(CreationContext context, Boolean trackedExternally)
+   at Castle.MicroKernel.Lifestyle.AbstractLifestyleManager.Resolve(CreationContext context, IReleasePolicy releasePolicy)
+   at Castle.MicroKernel.Handlers.DefaultHandler.ResolveCore(CreationContext context, Boolean requiresDecommission, Boolean instanceRequired, Burden& burden)
+   at Castle.MicroKernel.Handlers.DefaultHandler.Resolve(CreationContext context, Boolean instanceRequired)
+   at Castle.MicroKernel.DefaultKernel.ResolveComponent(IHandler handler, Type service, IDictionary additionalArguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Castle.MicroKernel.IKernelInternal.Resolve(Type service, IDictionary arguments, IReleasePolicy policy, Boolean ignoreParentContext)
+   at Castle.MicroKernel.DefaultKernel.Resolve(Type service, IDictionary arguments)
+   at Castle.Windsor.MsDependencyInjection.ScopedWindsorServiceProvider.GetServiceInternal(Type serviceType, Boolean isOptional) in D:\Github\castle-windsor-ms-adapter\src\Castle.Windsor.MsDependencyInjection\ScopedWindsorServiceProvider.cs:line 55
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.Controllers.ServiceBasedControllerActivator.Create(ControllerContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2018-11-29 13:06:29,193 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 13:06:29,197 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 85.1827ms
+INFO  2018-11-29 13:06:29,199 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 99.4093ms 500 application/json; charset=utf-8
+DEBUG 2018-11-29 13:10:38,460 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 13:10:38,508 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 13:10:38,516 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,519 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,519 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,520 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,520 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,520 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,521 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,521 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,521 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,521 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,521 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,524 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 13:10:38,791 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:10:38,913 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 13:10:39,059 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 13:10:39,149 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 13:10:39,189 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 13:10:39,586 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:10:39,720 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 13:10:41,547 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 13:10:41,806 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 264.5391ms 404 
+INFO  2018-11-29 13:10:44,115 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 13:10:44,176 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 60.9335ms 200 text/html
+INFO  2018-11-29 13:10:45,568 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 13:10:45,811 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 309.8645ms 200 application/json;charset=utf-8
+INFO  2018-11-29 13:10:49,870 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add  0
+INFO  2018-11-29 13:10:49,876 [6    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 13:10:49,912 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+INFO  2018-11-29 13:10:50,106 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application) - Validation state: Valid
+INFO  2018-11-29 13:10:53,527 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 3416.5035ms.
+INFO  2018-11-29 13:10:53,552 [6    ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.Service.TestService.Add is executed by an anonymous user in 3540 ms from ::1 IP address with succeed.
+INFO  2018-11-29 13:10:53,564 [6    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 13:10:53,578 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 3661.7182ms
+INFO  2018-11-29 13:10:53,580 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3709.4835ms 200 application/json; charset=utf-8
+DEBUG 2018-11-29 13:10:59,025 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 13:10:59,027 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:10:59,028 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:10:59,028 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 13:13:38,292 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 13:13:38,348 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 13:13:38,359 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,362 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,363 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,364 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,365 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,365 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,368 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 13:13:38,635 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:13:38,718 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 13:13:38,817 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 13:13:38,892 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 13:13:38,950 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 13:13:39,187 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:13:39,239 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 13:13:40,422 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 13:13:40,724 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 302.7167ms 404 
+INFO  2018-11-29 13:13:47,067 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 13:13:47,115 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 50.247ms 200 text/html
+INFO  2018-11-29 13:13:48,823 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 13:13:49,072 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 250.0324ms 200 application/json;charset=utf-8
+INFO  2018-11-29 13:13:54,394 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json-patch+json 20
+INFO  2018-11-29 13:13:54,406 [6    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 13:13:54,454 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+INFO  2018-11-29 13:13:54,686 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application) with arguments (CXY.CJS.Models.Test) - Validation state: Valid
+INFO  2018-11-29 13:13:57,496 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2801.3539ms.
+INFO  2018-11-29 13:13:57,517 [6    ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.Service.TestService.Add is executed by an anonymous user in 2929 ms from ::1 IP address with succeed.
+INFO  2018-11-29 13:13:57,529 [6    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 13:13:57,540 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 3082.6156ms
+INFO  2018-11-29 13:13:57,545 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3154.2727ms 200 application/json; charset=utf-8
+INFO  2018-11-29 13:14:01,464 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json-patch+json 20
+INFO  2018-11-29 13:14:01,466 [7    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 13:14:01,472 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+INFO  2018-11-29 13:14:01,512 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application) with arguments (CXY.CJS.Models.Test) - Validation state: Valid
+INFO  2018-11-29 13:14:09,103 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 7587.1527ms.
+INFO  2018-11-29 13:14:09,104 [7    ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.Service.TestService.Add is executed by an anonymous user in 7620 ms from ::1 IP address with succeed.
+INFO  2018-11-29 13:14:09,106 [7    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 13:14:09,114 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 7638.2338ms
+INFO  2018-11-29 13:14:09,118 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7651.9942ms 200 application/json; charset=utf-8
+DEBUG 2018-11-29 13:14:11,882 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 13:14:11,884 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:14:11,885 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:14:11,885 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-11-29 13:16:16,637 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-11-29 13:16:16,700 [1    ] Abp.Modules.AbpModuleManager             - Found 11 ABP modules in total.
+DEBUG 2018-11-29 13:16:16,709 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,714 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,714 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:16,717 [1    ] Abp.Modules.AbpModuleManager             - 11 modules loaded.
+DEBUG 2018-11-29 13:16:16,956 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-11-29 13:16:17,070 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-11-29 13:16:17,173 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-11-29 13:16:17,257 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-11-29 13:16:17,316 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-11-29 13:16:17,691 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:16:17,760 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-11-29 13:16:19,303 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/api/values  
+INFO  2018-11-29 13:16:19,739 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 445.8416ms 404 
+INFO  2018-11-29 13:16:38,854 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+INFO  2018-11-29 13:16:38,921 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 78.8495ms 200 text/html
+INFO  2018-11-29 13:16:41,065 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+INFO  2018-11-29 13:16:41,314 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 253.9716ms 200 application/json;charset=utf-8
+INFO  2018-11-29 13:16:45,335 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/App/TestService/Add application/json-patch+json 20
+INFO  2018-11-29 13:16:45,342 [6    ] pNetCore.Cors.Infrastructure.CorsService - Policy execution successful.
+INFO  2018-11-29 13:16:45,407 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "App", action = "Add", controller = "TestService"}. Executing action CXY.CJS.Service.TestService.Add (CXY.CJS.Application)
+INFO  2018-11-29 13:16:45,640 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application) with arguments (CXY.CJS.Models.Test) - Validation state: Valid
+INFO  2018-11-29 13:16:53,265 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.Service.TestService.Add (CXY.CJS.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 7617.8739ms.
+INFO  2018-11-29 13:16:53,317 [6    ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.Service.TestService.Add is executed by an anonymous user in 7774 ms from ::1 IP address with succeed.
+INFO  2018-11-29 13:16:53,340 [6    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2018-11-29 13:16:53,363 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Service.TestService.Add (CXY.CJS.Application) in 7950.7223ms
+INFO  2018-11-29 13:16:53,364 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 8030.1167ms 200 application/json; charset=utf-8
+DEBUG 2018-11-29 13:19:52,488 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-11-29 13:19:52,491 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:19:52,492 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-11-29 13:19:52,492 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.

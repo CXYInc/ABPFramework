@@ -7,12 +7,12 @@ namespace CXY.CJS.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<CJSDbContext> builder, string connectionString)
         {
-            builder.UseMySql(connectionString);
+            builder.UseSqlServer(connectionString);
         }
 
         public static void Configure(DbContextOptionsBuilder<CJSDbContext> builder, DbConnection connection)
         {
-            builder.UseMySql(connection);
+            builder.UseSqlServer(connection);
         }
     }
 }

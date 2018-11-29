@@ -7,30 +7,30 @@ using CXY.CJS.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace CXY.CJS.Web.Startup
+namespace CXY.CJS.Web.Core
 {
     [DependsOn(typeof(CJSApplicationModule), typeof(CJSEntityFrameworkCoreModule), typeof(AbpAspNetCoreModule))]
-    public class CJSWebModule : AbpModule
+    public class CJSWebCoreModule : AbpModule
     {
+        private readonly IHostingEnvironment _env;
         private readonly IConfigurationRoot _appConfiguration;
 
-        public CJSWebModule(IHostingEnvironment env)
+        public CJSWebCoreModule(IHostingEnvironment env)
         {
-            _appConfiguration = AppConfigurations.Get(env.ContentRootPath, env.EnvironmentName);
+            _env = env;
+            _appConfiguration = env.GetAppConfiguration();
         }
 
         public override void PreInitialize()
         {
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(CJSConsts.ConnectionStringName);
 
-            Configuration.Navigation.Providers.Add<CJSNavigationProvider>();
-
-            Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(CJSApplicationModule).GetAssembly());
+            Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(CJSApplicationModule).GetAssembly(), "App");
         }
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(CJSWebModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(CJSWebCoreModule).GetAssembly());
         }
     }
 }
