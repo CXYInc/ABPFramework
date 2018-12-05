@@ -32,7 +32,7 @@ namespace CXY.CJS.Tests
             var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
 
             var builder = new DbContextOptionsBuilder<CJSDbContext>();
-            builder.UseInMemoryDatabase().UseInternalServiceProvider(serviceProvider);
+            builder.UseInMemoryDatabase("MemoryDatabase").UseInternalServiceProvider(serviceProvider);
 
             IocManager.IocContainer.Register(
                 Component
