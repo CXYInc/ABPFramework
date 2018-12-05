@@ -32,6 +32,7 @@ namespace CXY.CJS.WebApi
         private readonly string _audience = "CXY.CJS";
         private readonly string _issuer = "CXY.CJS";
         private readonly string _jwt_secret = "";
+        private readonly int _validMinutes = 30;
 
         public Startup(IHostingEnvironment env)
         {
@@ -39,6 +40,7 @@ namespace CXY.CJS.WebApi
             _jwt_secret = _appConfiguration.GetValue<string>("Authentication:JwtBearer:PrivateKeys");
             _audience = _appConfiguration.GetValue<string>("Authentication:JwtBearer:Audience");
             _issuer = _appConfiguration.GetValue<string>("Authentication:JwtBearer:Issuer");
+            _validMinutes = _appConfiguration.GetValue<int>("Authentication:JwtBearer:ValidMinutes");
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -61,8 +63,8 @@ namespace CXY.CJS.WebApi
                 option.ValidateIssuer = true;
                 option.SecurityAlgorithms = SecurityAlgorithms.HmacSha256;
                 option.SigningKey = _jwt_secret;
-                option.ValidMinutes = 30;
-                option.OnMessageReceived = context => JwtOptionsCallBack.OnMessageReceived(context);
+                option.ValidMinutes = _validMinutes;
+                option.OnChallenge = context => JwtOptionsCallBack.OnChallenge(context);
                 option.OnAuthenticationFailed = context => JwtOptionsCallBack.OnAuthenticationFailed(context);
                 option.OnTokenValidated = context => JwtOptionsCallBack.OnTokenValidated(context);
                 option.SecurityTokenValidator = new JwtCustomValidator();

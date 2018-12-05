@@ -32,7 +32,8 @@ namespace CXY.CJS.WebApi
             {
                 token = "";
             }
-            context.Token = token;
+            if (!string.IsNullOrEmpty(token))
+                context.Token = token;
             return Task.CompletedTask;
         }
 
@@ -83,7 +84,7 @@ namespace CXY.CJS.WebApi
         {
             context.Response.OnStarting(() =>
             {
-                if (context.Response.StatusCode == (int)HttpStatusCode.Forbidden)
+                if (context.Response.StatusCode != (int)HttpStatusCode.OK)
                 {
                     context.Response.ContentType = "application/json";
                     context.Response.WriteAsync(JsonConvert.SerializeObject(new { Code = context.Response.StatusCode, Data = false, Message = "无法访问的资源" }));

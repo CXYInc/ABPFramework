@@ -1,10 +1,12 @@
 ﻿using Abp.Application.Services;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Application
 {
+    [Authorize]
     public class TestService : ApplicationService, ITestService
     {
         private readonly ITestRepository _testRepository;
