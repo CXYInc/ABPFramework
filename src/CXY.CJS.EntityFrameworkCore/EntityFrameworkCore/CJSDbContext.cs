@@ -11,6 +11,7 @@ namespace CXY.CJS.EntityFrameworkCore
         //Add DbSet properties for your entities...
 
         public DbSet<Test> CjsTest { get; set; }
+        public DbSet<WebSite> CjsWebSite { get; set; }
 
         public CJSDbContext(DbContextOptions<CJSDbContext> options)
             : base(options)
