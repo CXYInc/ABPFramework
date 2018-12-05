@@ -1,4 +1,5 @@
-﻿using Abp.Modules;
+﻿using Abp.AspNetCore.Configuration;
+using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CXY.CJS.Configuration;
 using CXY.CJS.Web.Core;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace CXY.CJS.WebApi
 {
-    [DependsOn(typeof(CJSWebCoreModule))]
+    [DependsOn(typeof(CJSApplicationModule), typeof(CJSWebCoreModule))]
     public class CJSWebApiModule : AbpModule
     {
         private readonly IHostingEnvironment _env;
@@ -17,6 +18,11 @@ namespace CXY.CJS.WebApi
         {
             _env = env;
             _appConfiguration = env.GetAppConfiguration();
+        }
+
+        public override void PreInitialize()
+        {
+            Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(CJSApplicationModule).GetAssembly());
         }
 
         public override void Initialize()

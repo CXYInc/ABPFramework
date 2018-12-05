@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services;
-using CXY.CJS.Models;
+using CXY.CJS.Model;
 
-namespace CXY.CJS.Service
+namespace CXY.CJS.Application
 {
     public interface ITestService : IApplicationService
     {

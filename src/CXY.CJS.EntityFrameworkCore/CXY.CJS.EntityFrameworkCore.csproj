@@ -18,10 +18,6 @@
     <Compile Remove="Migrations\20180927070638_Upgrade_ABP_3.8.3.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CXY.CJS.Application\CXY.CJS.Application.csproj" />
-    <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore" Version="4.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
@@ -34,5 +30,9 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
+    <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
   </ItemGroup>
 </Project>

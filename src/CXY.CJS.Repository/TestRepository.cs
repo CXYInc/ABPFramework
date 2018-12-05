@@ -1,10 +1,10 @@
 ﻿using Abp.EntityFrameworkCore;
 using CXY.CJS.EntityFrameworkCore;
-using CXY.CJS.Models;
+using CXY.CJS.Model;
 
 namespace CXY.CJS.Repository
 {
-    public class TestRepository : CjsRepositoryBase<Test, string>, ITestRepository
+    public class TestRepository : CJSRepositoryBase<Test, string>, ITestRepository
     {
         private readonly IDbContextProvider<CJSDbContext> _dbContextProvider;
         public TestRepository(IDbContextProvider<CJSDbContext> dbContextProvider) : base(dbContextProvider)

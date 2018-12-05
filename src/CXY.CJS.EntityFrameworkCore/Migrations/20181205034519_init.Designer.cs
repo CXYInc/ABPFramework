@@ -9,17 +9,26 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CXY.CJS.Migrations
 {
     [DbContext(typeof(CJSDbContext))]
-    [Migration("20181015085310_Upgraded_To_ABP_v3_9_0")]
-    partial class Upgraded_To_ABP_v3_9_0
+    [Migration("20181205034519_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ChangeDetector.SkipDetectChanges", "true")
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CXY.CJS.Model.Test", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CjsTest");
+                });
 #pragma warning restore 612, 618
         }
     }

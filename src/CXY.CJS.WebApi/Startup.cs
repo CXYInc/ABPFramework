@@ -5,8 +5,11 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Abp.AspNetCore;
 using Abp.Castle.Logging.Log4Net;
+using Abp.Dependency;
 using Abp.Extensions;
 using Castle.Facilities.Logging;
+using Castle.MicroKernel.ModelBuilder.Inspectors;
+using Castle.MicroKernel.SubSystems.Conversion;
 using CXY.CJS.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,7 +65,16 @@ namespace CXY.CJS.WebApi
             // Configure Abp and Dependency Injection
             return services.AddAbp<CJSWebApiModule>(
                 // Configure Log4Net logging
-                options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.UseAbpLog4Net().WithConfig("log4net.config"))
+                options =>
+                {
+                    options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.UseAbpLog4Net().WithConfig("log4net.config"));
+
+                    //解决属性依赖注入报错
+                    var propInjector = options.IocManager.IocContainer.Kernel.ComponentModelBuilder
+                    .Contributors.OfType<PropertiesDependenciesModelInspector>().Single();
+                    options.IocManager.IocContainer.Kernel.ComponentModelBuilder.RemoveContributor(propInjector);
+                    options.IocManager.IocContainer.Kernel.ComponentModelBuilder.AddContributor(new AbpPropertiesDependenciesModelInspector(new DefaultConversionManager()));
+                }
             );
         }
 

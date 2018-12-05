@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CXY.CJS.Web.Core\CXY.CJS.Web.Core.csproj" />
+    <ProjectReference Include="..\CXY.CJS.Web.Core\CXY.CJS.Web.Core.csproj" />
   </ItemGroup>
 
 </Project>

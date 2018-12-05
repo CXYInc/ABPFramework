@@ -1,5 +1,4 @@
-﻿using CXY.CJS.Configuration;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
 namespace CXY.CJS.Configuration

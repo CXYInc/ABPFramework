@@ -1,11 +1,11 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore;
-using CXY.CJS.Models;
-using CXY.CJS.Repository;
+using CXY.CJS.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace CXY.CJS.EntityFrameworkCore
 {
+    //[AutoRepositoryTypes(typeof(IRepository<>), typeof(IRepository<,>), typeof(ICJSRepositoryBase<>), typeof(ICJSRepositoryBase<,>))]
     public class CJSDbContext : AbpDbContext
     {
         //Add DbSet properties for your entities...

@@ -2,6 +2,7 @@
 using CXY.CJS.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CXY.CJS.Migrations
@@ -14,9 +15,10 @@ namespace CXY.CJS.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CXY.CJS.Models.Test", b =>
+            modelBuilder.Entity("CXY.CJS.Model.Test", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();

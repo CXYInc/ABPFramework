@@ -29,7 +29,7 @@ namespace CXY.CJS.Web
                 directoryInfo = directoryInfo.Parent;
             }
 
-            return Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}CXY.CJS.Web");
+            return Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}CXY.CJS.WebApi");
         }
 
         private static bool DirectoryContains(string directory, string fileName)

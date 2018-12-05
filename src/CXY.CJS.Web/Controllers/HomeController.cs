@@ -1,7 +1,5 @@
-using Abp.Domain.Repositories;
-using CXY.CJS.Models;
-using CXY.CJS.Repository;
-using CXY.CJS.Service;
+using CXY.CJS.Application;
+using CXY.CJS.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

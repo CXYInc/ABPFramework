@@ -3,13 +3,12 @@ using Abp.AspNetCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CXY.CJS.Configuration;
-using CXY.CJS.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
 namespace CXY.CJS.Web.Core
 {
-    [DependsOn(typeof(CJSApplicationModule), typeof(CJSEntityFrameworkCoreModule), typeof(AbpAspNetCoreModule))]
+    [DependsOn(typeof(CJSApplicationModule), typeof(AbpAspNetCoreModule))]
     public class CJSWebCoreModule : AbpModule
     {
         private readonly IHostingEnvironment _env;
@@ -25,7 +24,8 @@ namespace CXY.CJS.Web.Core
         {
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(CJSConsts.ConnectionStringName);
 
-            Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(CJSApplicationModule).GetAssembly(), "App");
+            Configuration.Modules.AbpAspNetCore().DefaultWrapResultAttribute.WrapOnError = false;
+            Configuration.Modules.AbpAspNetCore().DefaultWrapResultAttribute.WrapOnSuccess = false;
         }
 
         public override void Initialize()

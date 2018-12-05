@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using CXY.CJS.Models;
+using CXY.CJS.Model;
 using CXY.CJS.Repository;
 
-namespace CXY.CJS.Service
+namespace CXY.CJS.Application
 {
     public class TestService : ApplicationService, ITestService
     {

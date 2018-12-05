@@ -10,8 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\CXY.CJS.Application\CXY.CJS.Application.csproj" />
-    <ProjectReference Include="..\src\CXY.CJS.EntityFrameworkCore\CXY.CJS.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\CXY.CJS.Application\CXY.CJS.Application.csproj" />
   </ItemGroup>
 
 </Project>
