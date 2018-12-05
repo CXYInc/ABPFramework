@@ -6,9 +6,12 @@ namespace CXY.CJS.Model
     {
         public string Id { get; set; }
 
+
+        public string Name { get; set; }
+
         public bool IsTransient()
         {
-            return true;
+            return false;
         }
     }
 }

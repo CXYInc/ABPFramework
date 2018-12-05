@@ -10,11 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CXY.CJS.Tests
 {
-    [DependsOn(
-        typeof(CJSApplicationModule),
-        typeof(CJSEntityFrameworkCoreModule),
-        typeof(AbpTestBaseModule)
-        )]
+    [DependsOn(typeof(CJSApplicationModule), typeof(CJSEntityFrameworkCoreModule), typeof(AbpTestBaseModule))]
     public class CJSTestModule : AbpModule
     {
         public override void PreInitialize()
@@ -33,10 +29,7 @@ namespace CXY.CJS.Tests
             var services = new ServiceCollection()
                 .AddEntityFrameworkInMemoryDatabase();
 
-            var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(
-                IocManager.IocContainer,
-                services
-            );
+            var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
 
             var builder = new DbContextOptionsBuilder<CJSDbContext>();
             builder.UseInMemoryDatabase().UseInternalServiceProvider(serviceProvider);

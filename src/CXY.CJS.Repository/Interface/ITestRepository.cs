@@ -6,6 +6,8 @@ namespace CXY.CJS.Repository
 {
     public interface ITestRepository : ICJSRepositoryBase<Test, string>
     {
-        bool Add(Test entity);
+        Test Add(Test entity);
+
+        Test GetTest(string id);
     }
 }

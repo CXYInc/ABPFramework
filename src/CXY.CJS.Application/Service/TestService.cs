@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Application
 {
@@ -17,9 +18,15 @@ namespace CXY.CJS.Application
             _testRepository = testRepository;
         }
 
-        public bool Add(Test entity)
+        public Test Add(Test entity)
         {
             return _testRepository.Add(entity);
+        }
+
+        [HttpPost("/api/services/app/TestService/GetTest/{id}")]
+        public Test GetTest(string id)
+        {
+            return _testRepository.GetTest(id);
         }
     }
 }

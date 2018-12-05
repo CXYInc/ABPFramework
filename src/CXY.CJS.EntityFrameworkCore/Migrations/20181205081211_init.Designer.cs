@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CXY.CJS.Migrations
 {
     [DbContext(typeof(CJSDbContext))]
-    [Migration("20181205034519_init")]
+    [Migration("20181205081211_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

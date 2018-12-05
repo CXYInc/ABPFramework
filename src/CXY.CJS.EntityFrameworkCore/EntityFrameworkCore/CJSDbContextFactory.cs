@@ -14,10 +14,7 @@ namespace CXY.CJS.EntityFrameworkCore
             var builder = new DbContextOptionsBuilder<CJSDbContext>();
             var configuration = AppConfigurations.Get(WebContentDirectoryFinder.CalculateContentRootFolder());
 
-            DbContextOptionsConfigurer.Configure(
-                builder,
-                configuration.GetConnectionString(CJSConsts.ConnectionStringName)
-            );
+            DbContextOptionsConfigurer.Configure(builder, configuration.GetConnectionString(CJSConsts.ConnectionStringName));
 
             return new CJSDbContext(builder.Options);
         }

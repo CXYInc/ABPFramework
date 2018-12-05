@@ -1,7 +1,10 @@
-﻿using Abp.EntityFrameworkCore;
+﻿using Abp.Dependency;
+using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using Abp.Configuration.Startup;
+using Abp.EntityFrameworkCore.Uow;
 
 namespace CXY.CJS.EntityFrameworkCore
 {
@@ -27,6 +30,8 @@ namespace CXY.CJS.EntityFrameworkCore
                     }
                 });
             }
+
+            //Configuration.ReplaceService<IEfCoreTransactionStrategy, DbContextEfCoreTransactionStrategy>(DependencyLifeStyle.Transient);
         }
 
         public override void Initialize()

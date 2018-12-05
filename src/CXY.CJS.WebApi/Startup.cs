@@ -11,6 +11,7 @@ using Castle.Facilities.Logging;
 using Castle.MicroKernel.ModelBuilder.Inspectors;
 using Castle.MicroKernel.SubSystems.Conversion;
 using CXY.CJS.Configuration;
+using CXY.CJS.JwtAuthentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace CXY.CJS.WebApi
@@ -26,12 +28,17 @@ namespace CXY.CJS.WebApi
     public class Startup
     {
         private const string _defaultCorsPolicyName = "localhost";
-
         private readonly IConfigurationRoot _appConfiguration;
+        private readonly string _audience = "CXY.CJS";
+        private readonly string _issuer = "CXY.CJS";
+        private readonly string _jwt_secret = "";
 
         public Startup(IHostingEnvironment env)
         {
             _appConfiguration = env.GetAppConfiguration();
+            _jwt_secret = _appConfiguration.GetValue<string>("Authentication:JwtBearer:PrivateKeys");
+            _audience = _appConfiguration.GetValue<string>("Authentication:JwtBearer:Audience");
+            _issuer = _appConfiguration.GetValue<string>("Authentication:JwtBearer:Issuer");
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -45,6 +52,21 @@ namespace CXY.CJS.WebApi
                      .AllowAnyHeader()
                      .AllowAnyMethod()
                      .AllowCredentials()));
+
+            services.AddJwtAuthentication(option =>
+            {
+                option.Audience = _audience;
+                option.ValidateAudience = true;
+                option.Issuer = _issuer;
+                option.ValidateIssuer = true;
+                option.SecurityAlgorithms = SecurityAlgorithms.HmacSha256;
+                option.SigningKey = _jwt_secret;
+                option.ValidMinutes = 30;
+                option.OnMessageReceived = context => JwtOptionsCallBack.OnMessageReceived(context);
+                option.OnAuthenticationFailed = context => JwtOptionsCallBack.OnAuthenticationFailed(context);
+                option.OnTokenValidated = context => JwtOptionsCallBack.OnTokenValidated(context);
+                option.SecurityTokenValidator = new JwtCustomValidator();
+            });
 
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
             services.AddSwaggerGen(options =>
@@ -81,6 +103,8 @@ namespace CXY.CJS.WebApi
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
+
+            app.UseJwtAuthentication();
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 

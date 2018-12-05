@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Web.Views.Shared.Components.LanguageSelection
 {
-    public class LanguageSelectionViewComponent: ViewComponent
+    public class LanguageSelectionViewComponent : ViewComponent
     {
         private readonly ILanguageManager _languageManager;
 
@@ -21,7 +21,7 @@ namespace CXY.CJS.Web.Views.Shared.Components.LanguageSelection
                 Languages = _languageManager.GetLanguages(),
                 CurrentUrl = Request.Path
             };
-
+            await Task.Yield();
             return View(model);
         }
     }

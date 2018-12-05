@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Auth\CXY.CJS.Authentication\CXY.CJS.JwtAuthentication.csproj" />
     <ProjectReference Include="..\CXY.CJS.Web.Core\CXY.CJS.Web.Core.csproj" />
   </ItemGroup>
 
