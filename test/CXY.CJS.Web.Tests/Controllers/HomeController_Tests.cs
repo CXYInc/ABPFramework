@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using CXY.CJS.Web.Controllers;
-using Shouldly;
+﻿using Shouldly;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace CXY.CJS.Web.Tests.Controllers
@@ -10,13 +9,6 @@ namespace CXY.CJS.Web.Tests.Controllers
         [Fact]
         public async Task Index_Test()
         {
-            //Act
-            var response = await GetResponseAsStringAsync(
-                GetUrl<HomeController>(nameof(HomeController.Index))
-            );
-
-            //Assert
-            response.ShouldNotBeNullOrEmpty();
         }
     }
 }

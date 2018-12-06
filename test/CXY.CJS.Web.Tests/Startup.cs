@@ -1,16 +1,14 @@
-﻿using System;
-using Abp.AspNetCore;
+﻿using Abp.AspNetCore;
 using Abp.AspNetCore.TestBase;
 using Abp.Dependency;
-using CXY.CJS.EntityFrameworkCore;
-using CXY.CJS.Web.Controllers;
 using Castle.MicroKernel.Registration;
+using CXY.CJS.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace CXY.CJS.Web.Tests
 {
@@ -34,8 +32,6 @@ namespace CXY.CJS.Web.Tests
             UseInMemoryDb(app.ApplicationServices);
 
             app.UseAbp(); //Initializes ABP framework.
-
-            app.UseExceptionHandler("/Error");
 
             app.UseStaticFiles();
 

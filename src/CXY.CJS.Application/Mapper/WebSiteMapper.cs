@@ -1,14 +1,13 @@
 
 using AutoMapper;
-using CXY.CJS.Model;
-using CXY.CJS.Model.Dtos;
+using CXY.CJS.Application.Dtos;
 
 namespace CXY.CJS.Model.Mapper
 {
-	/// <summary>
+    /// <summary>
     /// 配置WebSite的AutoMapper
     /// </summary>
-	internal static class WebSiteMapper
+    internal static class WebSiteMapper
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {

@@ -1,6 +1,6 @@
 
 
-namespace CXY.CJS.Dtos
+namespace CXY.CJS.Application.Dtos
 {
     public class PagedSortedAndFilteredInputDto : PagedAndSortedInputDto
     {
