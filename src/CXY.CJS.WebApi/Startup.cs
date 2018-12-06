@@ -17,6 +17,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace CXY.CJS.WebApi
 {
@@ -41,6 +42,11 @@ namespace CXY.CJS.WebApi
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            //使程序支持GBK,gb2312
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            services.AddHttpClient();
+
             services.AddMvc();
 
             var corsOrigins = _appConfiguration["App:CorsOrigins"]
