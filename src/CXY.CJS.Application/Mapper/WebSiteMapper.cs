@@ -5,7 +5,6 @@ using CXY.CJS.Model.Dtos;
 
 namespace CXY.CJS.Model.Mapper
 {
-
 	/// <summary>
     /// 配置WebSite的AutoMapper
     /// </summary>

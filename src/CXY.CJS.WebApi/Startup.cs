@@ -115,7 +115,7 @@ namespace CXY.CJS.WebApi
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
-            app.UseCors(_defaultCorsPolicyName); // Enable CORS!
+            app.UseCors(_allowAnyOriginCorsPolicyName); // Enable CORS!
 
             app.UseStaticFiles();
 
