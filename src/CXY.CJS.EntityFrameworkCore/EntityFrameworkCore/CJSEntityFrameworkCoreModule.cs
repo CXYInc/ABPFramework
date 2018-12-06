@@ -1,10 +1,7 @@
-﻿using Abp.Dependency;
-using Abp.EntityFrameworkCore;
+﻿using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-using Abp.Configuration.Startup;
-using Abp.EntityFrameworkCore.Uow;
 
 namespace CXY.CJS.EntityFrameworkCore
 {

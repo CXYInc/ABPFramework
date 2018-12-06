@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CXY.CJS.Application
 {
     [Authorize]
+    [Route("/api/services/app/[controller]")]
     public class TestService : ApplicationService, ITestService
     {
         private readonly ITestRepository _testRepository;
@@ -20,12 +21,13 @@ namespace CXY.CJS.Application
             _testRepository = testRepository;
         }
 
+        [HttpPost("Create")]
         public Test Add(Test entity)
         {
             return _testRepository.Add(entity);
         }
 
-        [HttpPost("/api/services/app/TestService/GetTest/{id}")]
+        [HttpPost("Get/{id}")]
         public Test GetTest(string id)
         {
             return _testRepository.GetTest(id);

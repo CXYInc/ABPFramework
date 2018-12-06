@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CXY.CJS.Constant;
+using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,7 +23,7 @@ namespace CXY.CJS.WebApi
 
         bool ISecurityTokenValidator.CanReadToken(string securityToken)
         {
-            return true;
+            return _tokenHandler.CanReadToken(securityToken);
         }
 
         //验证token
@@ -31,9 +32,11 @@ namespace CXY.CJS.WebApi
             try
             {
                 //解析token
-                var tokenS = _tokenHandler.ReadToken(securityToken) as JwtSecurityToken;
-                //获取token里的值
-                var jti = tokenS.Claims.FirstOrDefault(claim => claim.Type == "jti")?.Value;
+                var tokenS = _tokenHandler.ReadJwtToken(securityToken);
+                //获取token里的jti值
+                var jti = tokenS.Claims.FirstOrDefault(claim => claim.Type == JwtRegisteredClaimNames.Jti)?.Value;
+                //获取token里的jti值
+                var userId = tokenS.Claims.FirstOrDefault(claim => claim.Type == ClaimConst.UserId)?.Value;
 
                 //自定义验证
 
