@@ -10,7 +10,7 @@ namespace CXY.CJS.EntityFrameworkCore
     {
         //Add DbSet properties for your entities...
 
-        public DbSet<Test> CjsTest { get; set; }
+        //public DbSet<Test> CjsTest { get; set; }
         public DbSet<WebSite> CjsWebSite { get; set; }
 
         public CJSDbContext(DbContextOptions<CJSDbContext> options)
@@ -21,7 +21,8 @@ namespace CXY.CJS.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Test>().HasKey(c => new { c.Id });
+            //modelBuilder.Entity<Test>().HasKey(c => new { c.Id });
+           
             base.OnModelCreating(modelBuilder);
         }
     }
