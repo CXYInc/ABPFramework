@@ -1,5 +1,4 @@
-﻿using Abp.Dependency;
-using Abp.Extensions;
+﻿using Abp.Extensions;
 using Abp.Json;
 using System;
 using System.Net.Http;
@@ -17,7 +16,7 @@ namespace CXY.CJS.HttpClient
             _httpClientFactory = httpClientFactory;
         }
 
-        #region 异步Get请求
+        #region Get异步请求
         public async Task<HttpClientResponse<string>> GetStringAsync(HttpClientRequest httpClientRequest)
         {
             HttpClientResponse<string> httpClientResponse;
