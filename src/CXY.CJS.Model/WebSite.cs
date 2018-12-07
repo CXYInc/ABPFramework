@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CXY.CJS.Model
 {
-    public class WebSite : Entity<int>
+    public class WebSite : Entity<string>
     {
-        public string WebSiteId { get; set; }
+        //public string WebSiteId { get; set; }
 
         public string WebSiteName { get; set; }
 
