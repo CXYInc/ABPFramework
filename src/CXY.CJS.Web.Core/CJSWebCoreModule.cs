@@ -26,13 +26,6 @@ namespace CXY.CJS.Web.Core
 
             Configuration.Modules.AbpAspNetCore().DefaultWrapResultAttribute.WrapOnError = false;
             Configuration.Modules.AbpAspNetCore().DefaultWrapResultAttribute.WrapOnSuccess = false;
-
-            //GlobalConfiguration.Configuration.Formatters.Clear();
-            //var formatter = new JsonMediaTypeFormatter();
-            //formatter.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            //formatter.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-            //GlobalConfiguration.Configuration.Formatters.Add(formatter);
-            //GlobalConfiguration.Configuration.Formatters.Add(new PlainTextFormatter());
         }
 
         public override void Initialize()

@@ -1,5 +1,4 @@
-﻿using Abp.Domain.Repositories;
-using CXY.CJS.EntityFrameworkCore;
+﻿using CXY.CJS.EntityFrameworkCore;
 using CXY.CJS.Model;
 
 namespace CXY.CJS.Repository

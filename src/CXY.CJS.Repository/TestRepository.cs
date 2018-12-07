@@ -13,7 +13,7 @@ namespace CXY.CJS.Repository
         private readonly IDbContextProvider<CJSDbContext> _dbContextProvider;
         private readonly IRepository<Test, string> _repository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
-        public TestRepository(IDbContextProvider<CJSDbContext> dbContextProvider, IUnitOfWorkManager unitOfWorkManager, IRepository<Test, string> repository) : base(dbContextProvider)
+        public TestRepository(IDbContextProvider<CJSDbContext> dbContextProvider, IUnitOfWorkManager unitOfWorkManager, IRepository<Test, string>  repository) : base(dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;
             _repository = repository;
@@ -22,13 +22,13 @@ namespace CXY.CJS.Repository
 
         public Test Add(Test entity)
         {
-            var t = _repository.FirstOrDefault("7");
+            var t = base.FirstOrDefault("7");
 
             //_repository.Insert(entity);
 
             //Insert(entity);
 
-            var list = _repository.GetAll().Where(x => x.Id == "").AsNoTracking().ToListAsync().Result;
+            var list = base.GetAll().Where(x => x.Id == "").AsNoTracking().ToListAsync().Result;
 
             list.ForEach(x => x.Name = x.Id);
 
