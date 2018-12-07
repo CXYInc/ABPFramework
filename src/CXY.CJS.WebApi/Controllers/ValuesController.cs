@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using System.Security.Claims;
 
 namespace CXY.CJS.WebApi.Controllers
@@ -15,7 +16,7 @@ namespace CXY.CJS.WebApi.Controllers
     {
         private readonly JwtTokenProvider _jwtTokenProvider;
 
-        public ValuesController(JwtTokenProvider jwtTokenProvider)
+        public ValuesController(JwtTokenProvider jwtTokenProvider, IHttpClientFactory httpClientFactory)
         {
             _jwtTokenProvider = jwtTokenProvider;
         }

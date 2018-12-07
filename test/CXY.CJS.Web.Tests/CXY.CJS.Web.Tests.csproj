@@ -15,7 +15,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\CXY.CJS.Tests\CXY.CJS.Tests.csproj" />
-    <ProjectReference Include="..\..\src\CXY.CJS.Web\CXY.CJS.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="4.3.1" />
