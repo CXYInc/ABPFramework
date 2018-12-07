@@ -1,5 +1,7 @@
-﻿using CXY.CJS.Constant;
+﻿using Abp.Domain.Repositories;
+using CXY.CJS.Constant;
 using CXY.CJS.JwtAuthentication;
+using CXY.CJS.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace CXY.CJS.WebApi.Controllers
 {
@@ -15,10 +18,12 @@ namespace CXY.CJS.WebApi.Controllers
     public class ValuesController : CJSBaseController
     {
         private readonly JwtTokenProvider _jwtTokenProvider;
+        private readonly IRepository<User, string> _repository;
 
-        public ValuesController(JwtTokenProvider jwtTokenProvider, IHttpClientFactory httpClientFactory)
+        public ValuesController(JwtTokenProvider jwtTokenProvider, IHttpClientFactory httpClientFactory, IRepository<User, string> repository)
         {
             _jwtTokenProvider = jwtTokenProvider;
+            _repository = repository;
         }
 
         [HttpGet]
@@ -30,14 +35,16 @@ namespace CXY.CJS.WebApi.Controllers
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public string GetToken(int id)
+        public async Task<string> GetToken(string id)
         {
+            var user = await _repository.GetAsync(id);
+
             var claims = new List<Claim>
             {
-                new Claim(ClaimConst.WebSiteId,"009020"),
-                new Claim(ClaimConst.UserId,"009020123456"),
-                new Claim(ClaimConst.UserName,"chelutong"),
-                new Claim(JwtRegisteredClaimNames.Sub, "hausthy"),
+                new Claim(ClaimConst.WebSiteId,user.WebSiteId),
+                new Claim(ClaimConst.UserId,user.Id),
+                new Claim(ClaimConst.UserName,user.UserName),
+                new Claim(JwtRegisteredClaimNames.Sub, "CXY.CJS"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
                 new Claim(ClaimTypes.Role,"Admin")
             };

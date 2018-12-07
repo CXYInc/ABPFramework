@@ -30,7 +30,7 @@ namespace CXY.CJS.Application
         }
 
         [HttpPost("Create")]
-        [AllowAnonymous]
+        [AllowAnonymous]        
         public Test Add(TestDtoInput entity)
         {
             var test = _objectMapper.Map<Test>(entity);
@@ -39,6 +39,7 @@ namespace CXY.CJS.Application
 
         [HttpPost("Get/{id}")]
         [AllowAnonymous]
+        [RemoteService(false)]
         public ApiResult<Test> GetTest(string id)
         {
             var result = new ApiResult<Test>

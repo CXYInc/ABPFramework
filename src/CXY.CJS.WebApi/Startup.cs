@@ -13,10 +13,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace CXY.CJS.WebApi
@@ -98,6 +100,9 @@ namespace CXY.CJS.WebApi
                     Type = "apiKey"
                 });
                 options.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> { { "Bearer", Enumerable.Empty<string>() } });
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "CXY.CJS.Application.xml");
+                options.IncludeXmlComments(xmlPath);
             });
 
             // Configure Abp and Dependency Injection

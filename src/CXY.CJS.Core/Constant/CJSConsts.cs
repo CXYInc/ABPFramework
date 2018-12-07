@@ -1,4 +1,4 @@
-﻿namespace CXY.CJS
+﻿namespace CXY.CJS.Constant
 {
     public class CJSConsts
     {

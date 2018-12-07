@@ -1,13 +1,12 @@
-
-
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
+using CXY.CJS.Constant;
 
 namespace  CXY.CJS.Application.Dtos
 {
     public class PagedAndFilteredInputDto : IPagedResultRequest
     {
-        [Range(1, AppLtmConsts.MaxPageSize)]
+        [Range(1, PageLtmConsts.MaxPageSize)]
         public int MaxResultCount { get; set; }
 
         [Range(0, int.MaxValue)]
@@ -23,7 +22,7 @@ namespace  CXY.CJS.Application.Dtos
 
         public PagedAndFilteredInputDto()
         {
-            MaxResultCount = AppLtmConsts.DefaultPageSize;
+            MaxResultCount = PageLtmConsts.DefaultPageSize;
         }
     }
 }

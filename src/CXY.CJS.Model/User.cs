@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CXY.CJS.Model
 {
-    public class User : Entity<long>, IFullAudited, ISoftDelete
+    public class User : Entity<string>, IFullAudited, ISoftDelete
     {
         public string UserName { get; set; }
         public string Password { get; set; }

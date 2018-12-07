@@ -1,7 +1,8 @@
 using AutoMapper;
 using CXY.CJS.Application.Dtos;
+using CXY.CJS.Model;
 
-namespace CXY.CJS.Model.Mapper
+namespace CXY.CJS.Application.Mapper
 {
     /// <summary>
     /// 配置WebSite的AutoMapper

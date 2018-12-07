@@ -4,6 +4,7 @@ using Abp.Localization;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Json;
 using Abp.Reflection.Extensions;
+using CXY.CJS.Constant;
 
 namespace CXY.CJS.Localization
 {

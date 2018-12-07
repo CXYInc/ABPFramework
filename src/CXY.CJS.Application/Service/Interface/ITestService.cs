@@ -8,7 +8,6 @@ namespace CXY.CJS.Application
 {
     public interface ITestService : IApplicationService
     {
-        [HttpPost]
         Test Add(TestDtoInput entity);
 
         ApiResult<Test> GetTest(string id);

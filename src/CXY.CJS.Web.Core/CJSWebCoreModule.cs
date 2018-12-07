@@ -3,6 +3,7 @@ using Abp.AspNetCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CXY.CJS.Configuration;
+using CXY.CJS.Constant;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
@@ -30,7 +31,7 @@ namespace CXY.CJS.Web.Core
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(CJSWebCoreModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(CJSWebCoreModule).GetAssembly());            
         }
     }
 }

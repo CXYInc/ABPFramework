@@ -1,6 +1,5 @@
-
-
 using Abp.Application.Services.Dto;
+using CXY.CJS.Constant;
 
 namespace CXY.CJS.Application.Dtos
 {
@@ -8,14 +7,9 @@ namespace CXY.CJS.Application.Dtos
     {
         public string Sorting { get; set; }
 
-
-		 
-		 
-         
-
         public PagedAndSortedInputDto()
         {
-            MaxResultCount = AppLtmConsts.DefaultPageSize;
+            MaxResultCount = PageLtmConsts.DefaultPageSize;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CXY.CJS.Configuration;
+using CXY.CJS.Constant;
 using CXY.CJS.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;

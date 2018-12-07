@@ -10,6 +10,11 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>CXY.CJS</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>D:\github\CXY.CJS\src\CXY.CJS.Application\CXY.CJS.Application.xml</DocumentationFile>
+    <OutputPath>D:\github\CXY.CJS\src\CXY.CJS.WebApi\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
     <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
