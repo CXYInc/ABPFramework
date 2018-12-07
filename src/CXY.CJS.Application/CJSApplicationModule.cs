@@ -15,7 +15,13 @@ namespace CXY.CJS
             IocManager.RegisterAssemblyByConvention(thisAssembly);
 
             //AutoMapper注入
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(cfg => cfg.AddProfiles(thisAssembly));
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(cfg =>
+            {
+                cfg.AddProfiles(thisAssembly);
+
+                //空值不进行Mapper
+                cfg.ForAllMaps((obj, cnfg) => cnfg.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)));
+            });
         }
     }
 }
