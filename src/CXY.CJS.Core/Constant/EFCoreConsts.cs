@@ -20,6 +20,7 @@ namespace CXY.CJS.Constant
         /// </summary>
         public static class EntityLengthNames
         {
+            public const int Length6 = 6;
             public const int Length8 = 8;
             public const int Length16 = 16;
             public const int Length32 = 32;

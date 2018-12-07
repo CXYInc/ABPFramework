@@ -6,8 +6,6 @@ namespace CXY.CJS.Model
 {
     public class WebSite : Entity<string>
     {
-        //public string WebSiteId { get; set; }
-
         public string WebSiteName { get; set; }
 
         public string ConnectionString { get; set; }

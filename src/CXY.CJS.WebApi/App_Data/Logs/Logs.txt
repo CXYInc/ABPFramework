@@ -9641,3 +9641,41 @@ DEBUG 2018-12-07 19:02:48,981 [2    ] Abp.Modules.AbpModuleManager             -
 DEBUG 2018-12-07 19:02:48,982 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
 DEBUG 2018-12-07 19:02:48,983 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
 DEBUG 2018-12-07 19:02:48,983 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-12-07 19:19:43,198 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-12-07 19:19:43,262 [1    ] Abp.Modules.AbpModuleManager             - Found 12 ABP modules in total.
+DEBUG 2018-12-07 19:19:43,270 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,273 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,274 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,274 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Repository.CJSRepositoryModule, CXY.CJS.Repository, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,274 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,275 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,275 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,275 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,275 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,275 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,276 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,276 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,279 [1    ] Abp.Modules.AbpModuleManager             - 12 modules loaded.
+DEBUG 2018-12-07 19:19:43,518 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-07 19:19:43,633 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-12-07 19:19:43,727 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-12-07 19:19:43,781 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-12-07 19:19:43,822 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-12-07 19:19:44,055 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-12-07 19:19:44,104 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 0 classes define auto mapping attributes
+INFO  2018-12-07 19:19:45,933 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/apidoc/index.html  
+INFO  2018-12-07 19:19:46,268 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 337.9056ms 200 text/html
+INFO  2018-12-07 19:19:46,682 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/apidoc/swagger/WebApi/swagger.json  
+INFO  2018-12-07 19:19:46,943 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 260.4672ms 200 application/json;charset=utf-8
+INFO  2018-12-07 19:19:52,248 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:5000/api/services/app/TestService/Get/1  0
+INFO  2018-12-07 19:19:52,330 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "GetTest", controller = "TestService"}. Executing action CXY.CJS.Application.TestService.GetTest (CXY.CJS.Application)
+INFO  2018-12-07 19:19:52,974 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method CXY.CJS.Application.TestService.GetTest (CXY.CJS.Application) with arguments (1) - Validation state: Valid
+INFO  2018-12-07 19:19:53,601 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method CXY.CJS.Application.TestService.GetTest (CXY.CJS.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 624.7302ms.
+INFO  2018-12-07 19:19:53,642 [12   ] Abp.Auditing.SimpleLogAuditingStore      - AUDIT LOG: CXY.CJS.Application.TestService.GetTest is executed by an anonymous user in 784 ms from ::1 IP address with succeed.
+INFO  2018-12-07 19:19:53,651 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'CXY.CJS.WebApi.ApiResult`1[[CXY.CJS.Model.Test, CXY.CJS.Model, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+INFO  2018-12-07 19:19:53,659 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action CXY.CJS.Application.TestService.GetTest (CXY.CJS.Application) in 1326.4662ms
+INFO  2018-12-07 19:19:53,659 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1410.6696ms 200 application/json; charset=utf-8
+DEBUG 2018-12-07 19:20:07,011 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-12-07 19:20:07,013 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-12-07 19:20:07,014 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-12-07 19:20:07,014 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.

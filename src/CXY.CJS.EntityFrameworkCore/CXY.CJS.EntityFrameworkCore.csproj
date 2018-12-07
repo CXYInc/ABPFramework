@@ -34,4 +34,7 @@
     <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
     <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 </Project>

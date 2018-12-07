@@ -14,7 +14,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\CXY.CJS.Application\CXY.CJS.Application.csproj" />
-    <ProjectReference Include="..\..\src\CXY.CJS.EntityFrameworkCore\CXY.CJS.EntityFrameworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Castle.Core" Version="4.3.1" />
