@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
-using Abp.Json;
+using Abp.ObjectMapping;
+using CXY.CJS.Application.Dtos;
 using CXY.CJS.HttpClient;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
@@ -14,27 +15,32 @@ namespace CXY.CJS.Application
     {
         private readonly ITestRepository _testRepository;
         private readonly HttpClientHelper _httpClientHelper;
+        private readonly IObjectMapper _objectMapper;
+       
         /// <summary>
         /// 构造函数自动注入
         /// </summary>
         /// <param name="testRepository"></param>
-        public TestService(ITestRepository testRepository, HttpClientHelper httpClientHelper)
+        public TestService(ITestRepository testRepository, HttpClientHelper httpClientHelper, IObjectMapper objectMapper)
         {
             _testRepository = testRepository;
             _httpClientHelper = httpClientHelper;
+            _objectMapper = objectMapper;
         }
 
         [HttpPost("Create")]
-        public Test Add(Test entity)
+        [AllowAnonymous]
+        public Test Add(TestDtoInput entity)
         {
-            return _testRepository.Add(entity);
+            var test = _objectMapper.Map<Test>(entity);
+            return _testRepository.Add(test);
         }
 
         [HttpPost("Get/{id}")]
         [AllowAnonymous]
         public Test GetTest(string id)
         {
-           var t= _httpClientHelper.GetAsync<string>(null).Result;
+            var t = _httpClientHelper.GetAsync<string>(null).Result;
             return _testRepository.GetTest(id);
         }
     }
