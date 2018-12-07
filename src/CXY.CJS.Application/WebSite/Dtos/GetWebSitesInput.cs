@@ -1,9 +1,7 @@
 
 using Abp.Runtime.Validation;
-using CXY.CJS.Dtos;
-using CXY.CJS.Model;
 
-namespace CXY.CJS.Model.Dtos
+namespace CXY.CJS.Application.Dtos
 {
     public class GetWebSitesInput : PagedSortedAndFilteredInputDto, IShouldNormalize
     {

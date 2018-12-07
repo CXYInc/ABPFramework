@@ -1,14 +1,11 @@
 
-
-using System;
 using Abp.Application.Services.Dto;
-using Abp.Domain.Entities.Auditing;
+using System;
 using System.ComponentModel.DataAnnotations;
-using CXY.CJS.Model;
 
-namespace CXY.CJS.Model.Dtos
+namespace CXY.CJS.Application.Dtos
 {
-    public class WebSiteListDto : EntityDto<string>
+    public class WebSiteListDto : EntityDto<int>
     {
 
 
@@ -26,7 +23,7 @@ namespace CXY.CJS.Model.Dtos
         /// WebSiteName
         /// </summary>
         [MaxLength(50, ErrorMessage = "WebSiteName超出最大长度")]
-        [MinLength(4, ErrorMessage = "WebSiteName小于最小长度")]
+        [MinLength(1, ErrorMessage = "WebSiteName小于最小长度")]
         [Required(ErrorMessage = "WebSiteName不能为空")]
         public string WebSiteName { get; set; }
 

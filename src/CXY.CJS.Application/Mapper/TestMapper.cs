@@ -1,18 +1,16 @@
-
 using AutoMapper;
-using CXY.CJS.Model;
-using CXY.CJS.Model.Dtos;
+using CXY.CJS.Application.Dtos;
 
 namespace CXY.CJS.Model.Mapper
 {
-
-	/// <summary>
+    /// <summary>
     /// 配置Test的AutoMapper
     /// </summary>
-	internal static class TestMapper
+    internal class TestMapperProfile : Profile
     {
-        public static void CreateMappings(IMapperConfigurationExpression configuration)
+        public TestMapperProfile()
         {
+            CreateMap<TestDtoInput, Test>().ForMember(x => x.Id, map => map.MapFrom(x => x.UserId));
         }
-	}
+    }
 }

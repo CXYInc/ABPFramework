@@ -1,28 +1,14 @@
-
-using System;
-using System.Data;
-using System.Linq;
-using System.Linq.Dynamic;
-using System.Linq.Dynamic.Core;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-
-using Abp.UI;
-using Abp.AutoMapper;
-using Abp.Extensions;
-using Abp.Authorization;
-using Abp.Domain.Repositories;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
+using Abp.AutoMapper;
+using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
-
-
-using CXY.CJS.Model;
-using CXY.CJS.Model.Dtos;
-
-
-
+using CXY.CJS.Application.Dtos;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Threading.Tasks;
 
 namespace CXY.CJS.Model
 {
@@ -39,9 +25,13 @@ namespace CXY.CJS.Model
         /// <summary>
         /// 构造函数 
         ///</summary>
-        public WebSiteAppService(IRepository<WebSite, int> entityRepository)
+        public WebSiteAppService(
+        IRepository<WebSite, int> entityRepository
+
+        )
         {
             _entityRepository = entityRepository;
+
         }
 
 
@@ -56,6 +46,7 @@ namespace CXY.CJS.Model
 
             var query = _entityRepository.GetAll();
             // TODO:根据传入的参数添加过滤条件
+
 
             var count = await query.CountAsync();
 

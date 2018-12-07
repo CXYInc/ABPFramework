@@ -2,7 +2,7 @@
 
 using Abp.Application.Services.Dto;
 
-namespace CXY.CJS.Dtos
+namespace CXY.CJS.Application.Dtos
 {
     public class PagedAndSortedInputDto : PagedInputDto, ISortedResultRequest
     {

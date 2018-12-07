@@ -1,23 +1,17 @@
-
 using AutoMapper;
-using CXY.CJS.Model;
-using CXY.CJS.Model.Dtos;
+using CXY.CJS.Application.Dtos;
 
 namespace CXY.CJS.Model.Mapper
 {
-	/// <summary>
+    /// <summary>
     /// 配置WebSite的AutoMapper
     /// </summary>
-	internal static class WebSiteMapper
+    internal class WebSiteProfile : Profile
     {
-        public static void CreateMappings(IMapperConfigurationExpression configuration)
+        public WebSiteProfile()
         {
-            configuration.CreateMap <WebSite,WebSiteListDto>();
-            configuration.CreateMap <WebSiteListDto,WebSite>();
-
-            configuration.CreateMap <WebSiteEditDto,WebSite>();
-            configuration.CreateMap <WebSite,WebSiteEditDto>();
-
+            CreateMap<WebSiteListDto, WebSite>();
+            CreateMap<WebSiteEditDto, WebSite>();
         }
-	}
+    }
 }

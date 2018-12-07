@@ -3,7 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 
-namespace  CXY.CJS.Dtos
+namespace  CXY.CJS.Application.Dtos
 {
     public class PagedAndFilteredInputDto : IPagedResultRequest
     {

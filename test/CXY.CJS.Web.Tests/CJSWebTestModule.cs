@@ -1,11 +1,9 @@
 using Abp.AspNetCore.TestBase;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-using CXY.CJS.Web.Startup;
 namespace CXY.CJS.Web.Tests
 {
     [DependsOn(
-        typeof(CJSWebModule),
         typeof(AbpAspNetCoreTestBaseModule)
         )]
     public class CJSWebTestModule : AbpModule

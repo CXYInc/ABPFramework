@@ -1,5 +1,7 @@
-﻿using Abp.Modules;
+﻿using Abp.Dependency;
+using Abp.Modules;
 using Abp.Reflection.Extensions;
+using CXY.CJS.HttpClient;
 using CXY.CJS.Localization;
 
 namespace CXY.CJS
@@ -16,6 +18,7 @@ namespace CXY.CJS
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(typeof(CJSCoreModule).GetAssembly());
+            IocManager.Register<HttpClientHelper>(DependencyLifeStyle.Singleton);
         }
     }
 }
