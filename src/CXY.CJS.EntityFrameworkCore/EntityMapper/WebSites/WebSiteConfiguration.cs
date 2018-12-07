@@ -10,8 +10,7 @@ namespace CXY.CJS.EntityFrameworkCore
         public void Configure(EntityTypeBuilder<WebSite> builder)
         {
             builder.ToTable("WebSites", EFCoreConsts.SchemaNames.CXY);
-            
-			builder.Property(a => a.WebSiteId).HasMaxLength(EFCoreConsts.EntityLengthNames.Length64);
+           
 			builder.Property(a => a.WebSiteName).HasMaxLength(EFCoreConsts.EntityLengthNames.Length64);
 			builder.Property(a => a.ConnectionString).HasMaxLength(EFCoreConsts.EntityLengthNames.Length64);
 			builder.Property(a => a.CreationTime).HasMaxLength(EFCoreConsts.EntityLengthNames.Length64);

@@ -1,10 +1,8 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
-using Abp.Domain.Entities.Auditing;
-using CXY.CJS.Model;
 
-namespace  CXY.CJS.Model.Dtos
+namespace CXY.CJS.Application.Dtos
 {
     public class WebSiteEditDto
     {

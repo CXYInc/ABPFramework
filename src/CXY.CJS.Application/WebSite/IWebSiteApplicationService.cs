@@ -4,7 +4,7 @@ using CXY.CJS.Application.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CXY.CJS.Model
+namespace CXY.CJS.Application
 {
     /// <summary>
     /// WebSite应用层服务的接口方法
@@ -22,7 +22,7 @@ namespace CXY.CJS.Model
 		/// <summary>
 		/// 通过指定id获取WebSiteListDto信息
 		/// </summary>
-		Task<WebSiteListDto> GetById(EntityDto<int> input);
+		Task<WebSiteListDto> GetById(EntityDto<string> input);
 
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace CXY.CJS.Model
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<GetWebSiteForEditOutput> GetForEdit(NullableIdDto<int> input);
+        Task<GetWebSiteForEditOutput> GetForEdit(EntityDto<string> input);
 
 
         /// <summary>
@@ -46,13 +46,13 @@ namespace CXY.CJS.Model
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task Delete(EntityDto<int> input);
+        Task Delete(EntityDto<string> input);
 
 
         /// <summary>
         /// 批量删除WebSite
         /// </summary>
-        Task BatchDelete(List<int> input);
+        Task BatchDelete(List<string> input);
 
 
 		/// <summary>

@@ -1,8 +1,10 @@
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Extensions;
 using Abp.Linq.Extensions;
 using CXY.CJS.Application.Dtos;
+using CXY.CJS.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
-namespace CXY.CJS.Model
+namespace CXY.CJS.Application
 {
     /// <summary>
     /// WebSite应用层服务的接口实现方法  
@@ -18,20 +20,14 @@ namespace CXY.CJS.Model
     [Authorize]
     public class WebSiteAppService : CJSAppServiceBase, IWebSiteAppService
     {
-        private readonly IRepository<WebSite, int> _entityRepository;
-
-
+        private readonly IRepository<WebSite, string> _entityRepository;
 
         /// <summary>
         /// 构造函数 
         ///</summary>
-        public WebSiteAppService(
-        IRepository<WebSite, int> entityRepository
-
-        )
+        public WebSiteAppService(IRepository<WebSite, string> entityRepository)
         {
             _entityRepository = entityRepository;
-
         }
 
 
@@ -66,7 +62,7 @@ namespace CXY.CJS.Model
         /// 通过指定id获取WebSiteListDto信息
         /// </summary>
 
-        public async Task<WebSiteListDto> GetById(EntityDto<int> input)
+        public async Task<WebSiteListDto> GetById(EntityDto<string> input)
         {
             var entity = await _entityRepository.GetAsync(input.Id);
 
@@ -79,14 +75,14 @@ namespace CXY.CJS.Model
         /// <param name="input"></param>
         /// <returns></returns>
 
-        public async Task<GetWebSiteForEditOutput> GetForEdit(NullableIdDto<int> input)
+        public async Task<GetWebSiteForEditOutput> GetForEdit(EntityDto<string> input)
         {
             var output = new GetWebSiteForEditOutput();
             WebSiteEditDto editDto;
 
-            if (input.Id.HasValue)
+            if (!input.Id.IsNullOrEmpty())
             {
-                var entity = await _entityRepository.GetAsync(input.Id.Value);
+                var entity = await _entityRepository.GetAsync(input.Id);
 
                 editDto = entity.MapTo<WebSiteEditDto>();
 
@@ -111,7 +107,7 @@ namespace CXY.CJS.Model
         public async Task CreateOrUpdate(CreateOrUpdateWebSiteInput input)
         {
 
-            if (input.WebSite.Id.HasValue)
+            if (!input.WebSite.Id.IsNullOrEmpty())
             {
                 await Update(input.WebSite);
             }
@@ -146,7 +142,7 @@ namespace CXY.CJS.Model
         {
             //TODO:更新前的逻辑判断，是否允许更新
 
-            var entity = await _entityRepository.GetAsync(input.Id.Value);
+            var entity = await _entityRepository.GetAsync(input.Id);
             input.MapTo(entity);
 
             // ObjectMapper.Map(input, entity);
@@ -161,7 +157,7 @@ namespace CXY.CJS.Model
         /// <param name="input"></param>
         /// <returns></returns>
 
-        public async Task Delete(EntityDto<int> input)
+        public async Task Delete(EntityDto<string> input)
         {
             //TODO:删除前的逻辑判断，是否允许删除
             await _entityRepository.DeleteAsync(input.Id);
@@ -173,7 +169,7 @@ namespace CXY.CJS.Model
         /// 批量删除WebSite的方法
         /// </summary>
 
-        public async Task BatchDelete(List<int> input)
+        public async Task BatchDelete(List<string> input)
         {
             // TODO:批量删除前的逻辑判断，是否允许删除
             await _entityRepository.DeleteAsync(s => input.Contains(s.Id));

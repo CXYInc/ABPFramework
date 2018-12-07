@@ -1,8 +1,6 @@
 ﻿using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace CXY.CJS.Model
 {
