@@ -1,5 +1,4 @@
-﻿using Abp.Domain.Repositories;
-using Abp.EntityFrameworkCore;
+﻿using Abp.EntityFrameworkCore;
 using CXY.CJS.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,10 +18,12 @@ namespace CXY.CJS.EntityFrameworkCore
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            modelBuilder.Entity<Test>().HasKey(c => new { c.Id });
-            base.OnModelCreating(modelBuilder);
+            builder.ApplyConfiguration(new TestConfiguration());
+            builder.ApplyConfiguration(new WebSiteConfiguration());
+
+            base.OnModelCreating(builder);
         }
     }
 }

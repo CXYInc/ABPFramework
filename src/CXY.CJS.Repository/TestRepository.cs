@@ -47,6 +47,5 @@ namespace CXY.CJS.Repository
         {
             return Get(id);
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Model;
+using CXY.CJS.WebApi;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Application
@@ -10,7 +11,6 @@ namespace CXY.CJS.Application
         [HttpPost]
         Test Add(TestDtoInput entity);
 
-      
-        Test GetTest(string id);
+        ApiResult<Test> GetTest(string id);
     }
 }

@@ -1,8 +1,6 @@
-
-
-namespace CXY.CJS
+namespace CXY.CJS.Constant
 {
-    public class YoYoAbpefCoreConsts
+    public class EFCoreConsts
     {
         public static class SchemaNames
         {
@@ -11,6 +9,10 @@ namespace CXY.CJS
             public const string ABP = "ABP";
 
             public const string CMS = "CMS";
+
+            public const string CXY = "CXY";
+
+            public const string CJS = "CJS";
         }
 
         /// <summary>

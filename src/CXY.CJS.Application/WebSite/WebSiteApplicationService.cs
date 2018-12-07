@@ -1,9 +1,9 @@
 using Abp.Application.Services.Dto;
-using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using CXY.CJS.Application.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace CXY.CJS.Model
     /// <summary>
     /// WebSite应用层服务的接口实现方法  
     ///</summary>
-    [AbpAuthorize]
+    [Authorize]
     public class WebSiteAppService : CJSAppServiceBase, IWebSiteAppService
     {
         private readonly IRepository<WebSite, int> _entityRepository;

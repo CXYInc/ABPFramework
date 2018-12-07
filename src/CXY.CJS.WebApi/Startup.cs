@@ -7,6 +7,7 @@ using Castle.MicroKernel.ModelBuilder.Inspectors;
 using Castle.MicroKernel.SubSystems.Conversion;
 using CXY.CJS.Configuration;
 using CXY.CJS.JwtAuthentication;
+using CXY.CJS.Web.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +18,6 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CXY.CJS.WebApi
 {
@@ -30,9 +30,11 @@ namespace CXY.CJS.WebApi
         private readonly string _issuer = "CXY.CJS";
         private readonly string _jwt_secret = "";
         private readonly int _validMinutes = 30;
+        private readonly IHostingEnvironment _env;
 
         public Startup(IHostingEnvironment env)
         {
+            _env = env;
             _appConfiguration = env.GetAppConfiguration();
             _jwt_secret = _appConfiguration.GetValue<string>("Authentication:JwtBearer:PrivateKeys");
             _audience = _appConfiguration.GetValue<string>("Authentication:JwtBearer:Audience");
@@ -42,12 +44,7 @@ namespace CXY.CJS.WebApi
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //使程序支持GBK,gb2312
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
-            services.AddHttpClient();
-
-            services.AddMvc();
+            services.AddWebApiServices(_env);
 
             var corsOrigins = _appConfiguration["App:CorsOrigins"]
                 .Split(",", StringSplitOptions.RemoveEmptyEntries)
