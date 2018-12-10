@@ -13,6 +13,18 @@ namespace CXY.CJS.Extensions
     public static class QueryPageExtension
     {
 
+        /// <summary>
+        /// 单表带条件排序的分页查询,<url>https://github.com/StefH/System.Linq.Dynamic.Core</url>
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TPrimaryKey"></typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="pagination">分页条件</param>
+        /// <param name="where">where条件，如" name=@1 and websiteid=@2 "，未测试</param>
+        /// <param name="whereParams"> where的条件参数，需要注意顺序（@1,@2），未测试</param>
+        /// <param name="sorts">排序条件</param>
+        /// <param name="resultField">返回结果字段</param>
+        /// <returns></returns>
         public static async Task<PaginationResult<TEntity>> WhereSortPageAsync<TEntity, TPrimaryKey>(this CJSRepositoryBase<TEntity, TPrimaryKey> repository,
             Pagination pagination, string where, IEnumerable<object> whereParams, IEnumerable<IHasSort> sorts, IEnumerable<string> resultField = null) where TEntity : class, IEntity<TPrimaryKey>
         {
