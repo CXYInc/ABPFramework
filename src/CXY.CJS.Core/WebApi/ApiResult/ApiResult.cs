@@ -6,10 +6,19 @@
     /// <typeparam name="T"></typeparam>
     public class ApiResultBase<T> where T : class
     {
+        /// <summary>
+        /// Api响应码
+        /// </summary>
         public int Code { get; set; }
 
+        /// <summary>
+        /// Api响应数据
+        /// </summary>
         public T Data { get; set; }
 
+        /// <summary>
+        /// Api响应消息
+        /// </summary>
         public string Message { get; set; }
     }
 

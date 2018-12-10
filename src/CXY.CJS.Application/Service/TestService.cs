@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Application
 {
+    /// <summary>
+    /// 测试服务
+    /// </summary>
     [Authorize]
     [Route("/api/services/app/[controller]")]
     public class TestService : CJSAppServiceBase, ITestService
@@ -22,6 +25,8 @@ namespace CXY.CJS.Application
         /// 构造函数自动注入
         /// </summary>
         /// <param name="testRepository"></param>
+        /// <param name="httpClientHelper"></param>
+        /// <param name="objectMapper"></param>
         public TestService(ITestRepository testRepository, HttpClientHelper httpClientHelper, IObjectMapper objectMapper)
         {
             _testRepository = testRepository;
@@ -29,6 +34,11 @@ namespace CXY.CJS.Application
             _objectMapper = objectMapper;
         }
 
+        /// <summary>
+        /// 创建
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         [HttpPost("Create")]
         [AllowAnonymous]        
         public Test Add(TestDtoInput entity)
@@ -37,6 +47,11 @@ namespace CXY.CJS.Application
             return _testRepository.Add(test);
         }
 
+        /// <summary>
+        /// 获取
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("Get/{id}")]
         [AllowAnonymous]
         [RemoteService(false)]
