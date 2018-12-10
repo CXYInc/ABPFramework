@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities;
 using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Repositories;
+using CXY.CJS.Repository;
 
 namespace CXY.CJS.EntityFrameworkCore
 {

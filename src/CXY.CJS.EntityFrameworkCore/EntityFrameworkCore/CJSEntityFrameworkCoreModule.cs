@@ -2,10 +2,11 @@
 using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using CXY.CJS.Repository;
 
 namespace CXY.CJS.EntityFrameworkCore
 {
-    [DependsOn(typeof(CJSCoreModule), typeof(AbpEntityFrameworkCoreModule))]
+    [DependsOn(typeof(CJSCoreModule), typeof(AbpEntityFrameworkCoreModule),typeof(CJSRepositoryModule))]
     public class CJSEntityFrameworkCoreModule : AbpModule
     {
         /* Used it tests to skip dbcontext registration, in order to use in-memory database of EF Core */

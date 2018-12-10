@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CXY.CJS.EntityFrameworkCore\CXY.CJS.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
+    <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
   </ItemGroup>
 
 </Project>

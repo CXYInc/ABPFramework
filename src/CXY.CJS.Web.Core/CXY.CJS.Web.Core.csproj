@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CXY.CJS.Application\CXY.CJS.Application.csproj" />
+    <ProjectReference Include="..\CXY.CJS.EntityFrameworkCore\CXY.CJS.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

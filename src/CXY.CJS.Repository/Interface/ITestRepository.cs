@@ -1,5 +1,4 @@
-﻿using CXY.CJS.EntityFrameworkCore;
-using CXY.CJS.Model;
+﻿using CXY.CJS.Model;
 
 namespace CXY.CJS.Repository
 {

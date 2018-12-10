@@ -5,6 +5,7 @@ using CXY.CJS.EntityFrameworkCore;
 using CXY.CJS.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using CXY.CJS.Repository;
 
 namespace CXY.CJS.Repository
 {

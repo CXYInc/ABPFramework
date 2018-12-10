@@ -33,5 +33,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
     <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
+    <ProjectReference Include="..\CXY.CJS.Repository\CXY.CJS.Repository.csproj" />
   </ItemGroup>
 </Project>

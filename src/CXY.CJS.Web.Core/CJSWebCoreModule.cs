@@ -4,12 +4,13 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CXY.CJS.Configuration;
 using CXY.CJS.Constant;
+using CXY.CJS.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
 namespace CXY.CJS.Web.Core
 {
-    [DependsOn(typeof(CJSApplicationModule), typeof(AbpAspNetCoreModule))]
+    [DependsOn(typeof(CJSApplicationModule), typeof(CJSEntityFrameworkCoreModule), typeof(AbpAspNetCoreModule))]
     public class CJSWebCoreModule : AbpModule
     {
         private readonly IHostingEnvironment _env;
