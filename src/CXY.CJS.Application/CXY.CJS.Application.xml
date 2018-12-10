@@ -4,6 +4,16 @@
         <name>CXY.CJS.Application</name>
     </assembly>
     <members>
+        <member name="T:CXY.CJS.CJSApplicationModule">
+            <summary>
+            CJSApplicationModule
+            </summary>
+        </member>
+        <member name="M:CXY.CJS.CJSApplicationModule.Initialize">
+            <summary>
+            Initialize
+            </summary>
+        </member>
         <member name="T:CXY.CJS.CJSAppServiceBase">
             <summary>
             Derive your application services from this class.
@@ -250,11 +260,32 @@
             IsDeleted
             </summary>
         </member>
+        <member name="T:CXY.CJS.Application.TestService">
+            <summary>
+            测试服务
+            </summary>
+        </member>
         <member name="M:CXY.CJS.Application.TestService.#ctor(CXY.CJS.Repository.ITestRepository,CXY.CJS.HttpClient.HttpClientHelper,Abp.ObjectMapping.IObjectMapper)">
             <summary>
             构造函数自动注入
             </summary>
             <param name="testRepository"></param>
+            <param name="httpClientHelper"></param>
+            <param name="objectMapper"></param>
+        </member>
+        <member name="M:CXY.CJS.Application.TestService.Add(CXY.CJS.Application.Dtos.TestDtoInput)">
+            <summary>
+            创建
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.TestService.GetTest(System.String)">
+            <summary>
+            获取
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
         </member>
         <member name="T:CXY.CJS.Application.IUserServices">
             <summary>

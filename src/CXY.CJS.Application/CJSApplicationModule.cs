@@ -5,9 +5,15 @@ using CXY.CJS.Repository;
 
 namespace CXY.CJS
 {
+    /// <summary>
+    /// CJSApplicationModule
+    /// </summary>
     [DependsOn(typeof(CJSCoreModule), typeof(CJSRepositoryModule), typeof(AbpAutoMapperModule))]
     public class CJSApplicationModule : AbpModule
     {
+        /// <summary>
+        /// Initialize
+        /// </summary>
         public override void Initialize()
         {
             var thisAssembly = typeof(CJSApplicationModule).GetAssembly();

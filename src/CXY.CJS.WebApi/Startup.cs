@@ -103,6 +103,9 @@ namespace CXY.CJS.WebApi
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "CXY.CJS.Application.xml");
                 options.IncludeXmlComments(xmlPath);
+                xmlPath = Path.Combine(basePath, "CXY.CJS.Core.xml");
+                options.IncludeXmlComments(xmlPath);
+
             });
 
             // Configure Abp and Dependency Injection

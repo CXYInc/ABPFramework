@@ -1,13 +1,12 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.EntityFrameworkCore;
-using CXY.CJS.EntityFrameworkCore;
 using CXY.CJS.Model;
+using CXY.CJS.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using CXY.CJS.Repository;
 
-namespace CXY.CJS.Repository
+namespace CXY.CJS.EntityFrameworkCore
 {
     public class TestRepository : CJSRepositoryBase<Test, string>, ITestRepository
     {
