@@ -7,9 +7,14 @@ namespace CXY.CJS.WebApi
 {
     public interface IHasSort
     {
+        /// <summary>
+        /// 被排序的字段
+        /// </summary>
         string SortField { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
+        /// <summary>
+        /// 倒序还是正序
+        /// </summary>
         SortEnum SortOrder { get; set; }
     }
 }

@@ -15,9 +15,14 @@ namespace CXY.CJS.Role
             _roleRepository = roleRepository;
         }
 
-        public async Task<PaginationResult<Model.Role>> ListRole(ListRoleInput input)
+        /// <summary>
+        /// 列出用户角色
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<PaginationResult<ListRoleInput>> ListRole(ListRoleInput input)
         {
-            return await _roleRepository.QueryByWhereAsync(input, null, null, new IHasSort[]{ input }, null);
+            return await _roleRepository.QueryByWhereAsync<ListRoleInput>(input,  new IHasSort[]{ input });
         }
     }
 }

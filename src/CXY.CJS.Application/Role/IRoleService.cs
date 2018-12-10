@@ -8,10 +8,10 @@ namespace CXY.CJS.Role
     public interface IRoleService: IApplicationService
     {
         /// <summary>
-        /// 角色列表
+        /// 列出用户角色
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<PaginationResult<Model.Role>> ListRole(ListRoleInput input);
+        Task<PaginationResult<ListRoleInput>> ListRole(ListRoleInput input);
     }
 }

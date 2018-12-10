@@ -14,10 +14,9 @@ namespace CXY.CJS.Repository
         {
         }
 
-        public async Task<PaginationResult<Role>> QueryByWhereAsync(Pagination pagination, string @where, IEnumerable<object> whereParams, IEnumerable<IHasSort> sorts,
-            IEnumerable<string> resultField = null)
+        public Task<PaginationResult<TResult>> QueryByWhereAsync<TResult>(Pagination pagination, IEnumerable<IHasSort> sorts, string @where = "", params object[] whereParams)
         {
-            return await this.WhereSortPageAsync(pagination, @where, whereParams,sorts, resultField);
+            return this.GetAll().WhereSortPageAsync<Role,TResult>(pagination, sorts, @where, whereParams);
         }
     }
 }
