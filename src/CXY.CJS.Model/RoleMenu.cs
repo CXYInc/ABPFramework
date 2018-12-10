@@ -5,10 +5,10 @@ using System;
 
 namespace CXY.CJS.Model
 {
-    public class RoleMenu : Entity<int>, IHasCreationTime
+    public class RoleMenu : Entity<string>, IHasCreationTime
     {
-        public long RoleId { get; set; }
-        public int MenuId { get; set; }
+        public string RoleId { get; set; }
+        public string MenuId { get; set; }
         public DateTime CreationTime { get; set; }
         public RoleMenu()
         {

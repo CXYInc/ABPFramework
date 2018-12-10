@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CXY.CJS.Model
 {
-    public class Role : Entity<int>, IFullAudited, ISoftDelete
+    public class Role : Entity<string>, IFullAudited, ISoftDelete
     {
         public string WebSiteId { get; set; }
         public string Name { get; set; }

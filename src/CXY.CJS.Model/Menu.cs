@@ -5,9 +5,9 @@ using System;
 
 namespace CXY.CJS.Model
 {
-    public class Menu : Entity<int>, IHasCreationTime, IHasDeletionTime, ISoftDelete
+    public class Menu : Entity<string>, IHasCreationTime, IHasDeletionTime, ISoftDelete
     {
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
         public string MenuName { get; set; }
 
         public int MenuLeval { get; set; }

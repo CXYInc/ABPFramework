@@ -5,7 +5,7 @@ using System;
 
 namespace CXY.CJS.Model
 {
-    public class UserRole : Entity<int>, IHasCreationTime
+    public class UserRole : Entity<string>, IHasCreationTime
     {
         public string WebSiteId { get; set; }
         public string RoleId { get; set; }

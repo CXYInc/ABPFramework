@@ -15,9 +15,6 @@
     <RootNamespace>CXY.CJS</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Migrations\20180927070638_Upgrade_ABP_3.8.3.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore" Version="4.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
@@ -26,6 +23,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.9" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
