@@ -1,4 +1,7 @@
+using System;
 using System.Reflection;
+using Abp.Dependency;
+using Abp.EntityFrameworkCore;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.TestBase;
@@ -13,9 +16,16 @@ namespace CXY.CJS.Tests
     [DependsOn(typeof(CJSApplicationModule), typeof(CJSEntityFrameworkCoreModule), typeof(AbpTestBaseModule))]
     public class CJSTestModule : AbpModule
     {
+      
+
+        public CJSTestModule(CJSEntityFrameworkCoreModule abpProjectNameEntityFrameworkModule)
+        {
+            abpProjectNameEntityFrameworkModule.SkipDbContextRegistration = true;
+        }
+
         public override void PreInitialize()
         {
-            Configuration.UnitOfWork.IsTransactional = false; //EF Core InMemory DB does not support transactions.
+            //Configuration.UnitOfWork.IsTransactional = false; //EF Core InMemory DB does not support transactions.
             SetupInMemoryDb();
         }
 
@@ -24,16 +34,23 @@ namespace CXY.CJS.Tests
             IocManager.RegisterAssemblyByConvention(typeof(CJSTestModule).GetAssembly());
         }
 
+      
+
         private void SetupInMemoryDb()
         {
             var services = new ServiceCollection()
-                .AddEntityFrameworkInMemoryDatabase();
-
+                .AddEntityFrameworkSqlServer();
+          
             var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
 
             var builder = new DbContextOptionsBuilder<CJSDbContext>();
-            builder.UseInMemoryDatabase("MemoryDatabase").UseInternalServiceProvider(serviceProvider);
 
+
+            builder.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database=monsters_{Guid.NewGuid().ToString()};Trusted_Connection=True;MultipleActiveResultSets=true")
+                .UseInternalServiceProvider(serviceProvider);
+
+
+          
             IocManager.IocContainer.Register(
                 Component
                     .For<DbContextOptions<CJSDbContext>>()

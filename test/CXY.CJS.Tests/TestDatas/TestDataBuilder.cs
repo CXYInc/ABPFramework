@@ -1,4 +1,5 @@
 using CXY.CJS.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace CXY.CJS.Tests.TestDatas
 {
@@ -13,7 +14,8 @@ namespace CXY.CJS.Tests.TestDatas
 
         public void Build()
         {
-            //create test data here...
+            _context.Database.Migrate();
+
         }
     }
 }

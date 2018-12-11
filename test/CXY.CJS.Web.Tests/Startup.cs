@@ -16,7 +16,7 @@ namespace CXY.CJS.Web.Tests
     {
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkInMemoryDatabase();
+           //services.AddEntityFrameworkInMemoryDatabase();
 
             services.AddMvc();
 
@@ -47,17 +47,17 @@ namespace CXY.CJS.Web.Tests
         private void UseInMemoryDb(IServiceProvider serviceProvider)
         {
             var builder = new DbContextOptionsBuilder<CJSDbContext>();
-            builder.UseInMemoryDatabase(Guid.NewGuid().ToString()).UseInternalServiceProvider(serviceProvider);
-            var options = builder.Options;
+            //builder.UseInMemoryDatabase(Guid.NewGuid().ToString()).UseInternalServiceProvider(serviceProvider);
+            //var options = builder.Options;
 
-            var iocManager = serviceProvider.GetRequiredService<IIocManager>();
+            //var iocManager = serviceProvider.GetRequiredService<IIocManager>();
 
-            iocManager.IocContainer
-                .Register(
-                    Component.For<DbContextOptions<CJSDbContext>>()
-                    .Instance(options)
-                    .LifestyleSingleton()
-                );
+            //iocManager.IocContainer
+            //    .Register(
+            //        Component.For<DbContextOptions<CJSDbContext>>()
+            //        .Instance(options)
+            //        .LifestyleSingleton()
+            //    );
         }
     }
 }

@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Abp.Dependency;
+using Abp.Events.Bus;
+using Abp.Events.Bus.Entities;
 using Abp.TestBase;
 using CXY.CJS.EntityFrameworkCore;
 using CXY.CJS.Tests.TestDatas;
 
 namespace CXY.CJS.Tests
 {
-    public class CJSTestBase : AbpIntegratedTestBase<CJSTestModule>
+    public  class CJSTestBase : AbpIntegratedTestBase<CJSTestModule>
     {
+         public IIocManager Ioc => LocalIocManager;
         public CJSTestBase()
         {
             UsingDbContext(context => new TestDataBuilder(context).Build());
@@ -55,6 +59,11 @@ namespace CXY.CJS.Tests
             }
 
             return result;
+        }
+
+        public override void Dispose()
+        {
+          LocalIocManager.Resolve<CJSDbContext>().Database.EnsureDeleted();
         }
     }
 }
