@@ -4,6 +4,7 @@ using Abp.EntityFrameworkCore;
 using CXY.CJS.EntityFrameworkCore;
 using CXY.CJS.Extensions;
 using CXY.CJS.Model;
+using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.WebApi;
 
 namespace CXY.CJS.Repository

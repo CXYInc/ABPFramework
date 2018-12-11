@@ -5,6 +5,7 @@ using CXY.CJS.Enum;
 using CXY.CJS.WebApi;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CXY.CJS.Repository.SeedWork;
 
 namespace CXY.CJS.Repository
 {

@@ -12,11 +12,18 @@ namespace CXY.CJS.EntityFrameworkCore
         public DbSet<Test> CjsTest { get; set; }
 
         #region DbSet
+
         public DbSet<WebSite> WebSites { get; set; }
+
+        public DbSet<WebSiteConfig> WebSiteConfigs { get; set; }
+
+        public DbSet<WebSitePayConfig> WebSitePayConfigs { get; set; }
+
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleMenu> RoleMenus { get; set; }
+
         #endregion
 
         public CJSDbContext(DbContextOptions<CJSDbContext> options)

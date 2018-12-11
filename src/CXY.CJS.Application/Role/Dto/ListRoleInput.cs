@@ -1,4 +1,5 @@
 ﻿using CXY.CJS.Enum;
+using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.WebApi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

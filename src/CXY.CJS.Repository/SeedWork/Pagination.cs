@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CXY.CJS.WebApi
+namespace CXY.CJS.Repository.SeedWork
 {
     public class Pagination
     {

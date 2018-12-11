@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
+using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Role.Dto;
 using CXY.CJS.WebApi;
 

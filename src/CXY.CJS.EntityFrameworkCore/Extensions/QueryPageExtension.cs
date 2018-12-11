@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
+using CXY.CJS.Repository.SeedWork;
 
 namespace CXY.CJS.Extensions
 {
