@@ -20,7 +20,7 @@ namespace CXY.CJS.Model
 
         public string WebSiteMater { get; set; }
 
-        public string EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         public string ConnectionString { get; set; }
         public DateTime CreationTime { get; set; }

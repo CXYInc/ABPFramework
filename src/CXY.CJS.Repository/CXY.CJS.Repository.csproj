@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
-    <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.9" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
+    <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
+    <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
   </ItemGroup>
 
 </Project>

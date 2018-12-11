@@ -24,9 +24,9 @@ namespace CXY.CJS.Model
         /// <summary>
         /// 是否开通余额支付
         /// </summary>
-        public bool IsBalancePayment { get; set; }
+        public int IsBalancePayment { get; set; }
 
-        public bool IsWeChatPayment { get; set; }
+        public int IsWeChatPayment { get; set; }
 
         public string WxappId { get; set; }
 
@@ -70,7 +70,7 @@ namespace CXY.CJS.Model
         /// </summary>
         public string WftKey { get; set; }
 
-        public bool IsAlipayPayment { get; set; }
+        public int IsAlipayPayment { get; set; }
 
         public int AlipayGiro { get; set; }
 
@@ -82,6 +82,6 @@ namespace CXY.CJS.Model
 
         public string AlipayCodeUrl { get; set; }
 
-        public bool IsUseSysAlipay { get; set; }
+        public int IsUseSysAlipay { get; set; }
     }
 }

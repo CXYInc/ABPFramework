@@ -1,3 +1,4 @@
+using System;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
@@ -11,23 +12,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
+using AutoMapper;
+using CXY.CJS.Extensions;
+using CXY.CJS.Repository.Extensions;
+using CXY.CJS.Repository.SeedWork;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CXY.CJS.Application
 {
     /// <summary>
     /// WebSite应用层服务的接口实现方法  
     ///</summary>
-    [Authorize]
+    [AllowAnonymous]
     public class WebSiteAppService : CJSAppServiceBase, IWebSiteAppService
     {
-        private readonly IRepository<WebSite, string> _entityRepository;
-
+        private readonly IRepository<WebSite, string> _websiteRepository;
+        private readonly IRepository<WebSiteConfig, string> _siteConfigRepository;
+        private readonly IRepository<WebSitePayConfig, string> _sitePayRepository;
         /// <summary>
         /// 构造函数 
         ///</summary>
-        public WebSiteAppService(IRepository<WebSite, string> entityRepository)
+        public WebSiteAppService(IRepository<WebSite, string> websiteRepository,
+            IRepository<WebSiteConfig, string> siteConfigRepository,
+            IRepository<WebSitePayConfig, string> sitePayRepository)
         {
-            _entityRepository = entityRepository;
+            _websiteRepository = websiteRepository;
+            _siteConfigRepository = siteConfigRepository;
+            _sitePayRepository = sitePayRepository;
         }
 
 
@@ -40,7 +52,7 @@ namespace CXY.CJS.Application
         public async Task<PagedResultDto<WebSiteListDto>> GetPaged(GetWebSitesInput input)
         {
 
-            var query = _entityRepository.GetAll();
+            var query = _websiteRepository.GetAll();
             // TODO:根据传入的参数添加过滤条件
 
 
@@ -64,7 +76,7 @@ namespace CXY.CJS.Application
 
         public async Task<WebSiteListDto> GetById(EntityDto<string> input)
         {
-            var entity = await _entityRepository.GetAsync(input.Id);
+            var entity = await _websiteRepository.GetAsync(input.Id);
 
             return entity.MapTo<WebSiteListDto>();
         }
@@ -82,7 +94,7 @@ namespace CXY.CJS.Application
 
             if (!input.Id.IsNullOrEmpty())
             {
-                var entity = await _entityRepository.GetAsync(input.Id);
+                var entity = await _websiteRepository.GetAsync(input.Id);
 
                 editDto = entity.MapTo<WebSiteEditDto>();
 
@@ -130,7 +142,7 @@ namespace CXY.CJS.Application
             var entity = input.MapTo<WebSite>();
 
 
-            entity = await _entityRepository.InsertAsync(entity);
+            entity = await _websiteRepository.InsertAsync(entity);
             return entity.MapTo<WebSiteEditDto>();
         }
 
@@ -142,11 +154,11 @@ namespace CXY.CJS.Application
         {
             //TODO:更新前的逻辑判断，是否允许更新
 
-            var entity = await _entityRepository.GetAsync(input.Id);
+            var entity = await _websiteRepository.GetAsync(input.Id);
             input.MapTo(entity);
 
             // ObjectMapper.Map(input, entity);
-            await _entityRepository.UpdateAsync(entity);
+            await _websiteRepository.UpdateAsync(entity);
         }
 
 
@@ -160,7 +172,7 @@ namespace CXY.CJS.Application
         public async Task Delete(EntityDto<string> input)
         {
             //TODO:删除前的逻辑判断，是否允许删除
-            await _entityRepository.DeleteAsync(input.Id);
+            await _websiteRepository.DeleteAsync(input.Id);
         }
 
 
@@ -172,14 +184,14 @@ namespace CXY.CJS.Application
         public async Task BatchDelete(List<string> input)
         {
             // TODO:批量删除前的逻辑判断，是否允许删除
-            await _entityRepository.DeleteAsync(s => input.Contains(s.Id));
+            await _websiteRepository.DeleteAsync(s => input.Contains(s.Id));
         }
 
 
-        /// <summary>
-        /// 导出WebSite为excel表,等待开发。
-        /// </summary>
-        /// <returns></returns>
+        ///// <summary>
+        ///// 导出WebSite为excel表,等待开发。
+        ///// </summary>
+        ///// <returns></returns>
         //public async Task<FileDto> GetToExcel()
         //{
         //	var users = await UserManager.Users.ToListAsync();
@@ -188,6 +200,60 @@ namespace CXY.CJS.Application
         //	return _userListExcelExporter.ExportToFile(userListDtos);
         //}
 
+
+        /// <summary>
+        /// 列出站点
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+
+        public async Task<PaginationResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input)
+        {
+            var result = new PaginationResult<ListWebSiteOutputItem>(input);
+
+            var query = from website in _websiteRepository.GetAll()
+                        join siteConfig in _siteConfigRepository.GetAll() on website.Id
+                            equals siteConfig.WebSiteId into siteConfigTemp
+                        join sitePay in _sitePayRepository.GetAll() on website.Id
+                            equals sitePay.WebSiteId into sitePayTemp
+                        from config in siteConfigTemp.DefaultIfEmpty()
+                        from pay in sitePayTemp.DefaultIfEmpty()
+                        select new
+                        {
+                            website,
+                            config,
+                            pay
+                        };
+
+            if (input.IsHide)
+            {
+                query = query.Where(i => i.website.EndTime > DateTime.Now);
+            }
+
+            if (!string.IsNullOrWhiteSpace(input.Key))
+            {
+                query = query.Where(i => i.website.WebSiteName.Contains(input.Key));
+            }
+
+            var countTask = query.CountAsync();
+            var datasTask = query.BuildPage(input).ToListAsync();
+            var (datas, count) = await (datasTask, countTask);
+            //var datasTuple = datas.Select(i => Tuple.Create(i.website, i.config, i.pay));
+            var list= datas.Select(i =>
+            {
+                var temp = JObject.FromObject(i.website);
+                if (i.config!=null)
+                {
+                    temp.Merge(JObject.FromObject(i.config));
+                }
+                if (i.pay != null)
+                {
+                    temp.Merge(JObject.FromObject(i.pay));
+                }
+                return temp.ToObject<ListWebSiteOutputItem>();
+            });
+            return result.SetReuslt(count, list);
+        }
     }
 }
 

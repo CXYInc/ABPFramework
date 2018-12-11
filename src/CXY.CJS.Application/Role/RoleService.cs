@@ -21,10 +21,10 @@ namespace CXY.CJS.Role
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<PaginationResult<ListRoleOutput>> ListRole(ListRoleInput input)
+        public async Task<PaginationResult<ListRoleOutputItem>> ListRole(ListRoleInput input)
         {
-            // return await _roleRepository.QueryByWhereAsync<ListRoleOutput>(input,  new IHasSort[]{ input },"Name!=@0 and Name!=@1","haha","haha1");
-            return await _roleRepository.QueryByWhereAsync<ListRoleOutput>(input, new IHasSort[] { input });
+            // return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input,  new IHasSort[]{ input },"Name!=@0 and Name!=@1","haha","haha1");
+            return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input, new IHasSort[] { input });
         }
     }
 }

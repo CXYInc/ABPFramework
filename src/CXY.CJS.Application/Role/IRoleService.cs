@@ -13,6 +13,6 @@ namespace CXY.CJS.Role
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<PaginationResult<ListRoleOutput>> ListRole(ListRoleInput input);
+        Task<PaginationResult<ListRoleOutputItem>> ListRole(ListRoleInput input);
     }
 }
