@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Abp.EntityFrameworkCore;
 using CXY.CJS.EntityFrameworkCore;
@@ -18,6 +20,11 @@ namespace CXY.CJS.Repository
         public Task<PaginationResult<TResult>> QueryByWhereAsync<TResult>(Pagination pagination, IEnumerable<IHasSort> sorts, string @where = "", params object[] whereParams)
         {
             return this.GetAll().WhereSortPageAsync<Role,TResult>(pagination, sorts, @where, whereParams);
+        }
+
+        public Task<PaginationResult<TResult>> QueryByWhereAsync<TResult>(Pagination pagination, IEnumerable<IHasSort> sorts, Expression<Func<Role, bool>> @where)
+        {
+            return this.GetAll().WhereSortPageAsync<Role, TResult>(pagination, sorts, @where);
         }
     }
 }

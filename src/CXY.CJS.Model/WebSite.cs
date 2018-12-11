@@ -31,8 +31,6 @@ namespace CXY.CJS.Model
         public DateTime? DeletionTime { get; set; }
         public bool IsDeleted { get; set; }
 
-
-        public string WebSiteId { get; set; }
         /// <summary>
         /// 域名集合,号分割多个域名
         /// </summary>	

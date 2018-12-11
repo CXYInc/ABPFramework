@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CXY.CJS.Repository.MixModel;
+using Newtonsoft.Json.Linq;
 
 namespace CXY.CJS.Application.Dtos
 {
@@ -115,6 +119,9 @@ namespace CXY.CJS.Application.Dtos
         public string AskPriceMailAddress { get; set; }
         public int IsInvoice { get; set; }
         public decimal TaxRate { get; set; }
+
+
+      
 
     }
 }

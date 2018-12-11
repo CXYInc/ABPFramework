@@ -11,13 +11,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AutoMapper;
-using CXY.CJS.Extensions;
+using CXY.CJS.Repository;
 using CXY.CJS.Repository.Extensions;
+using CXY.CJS.Repository.MixModel;
 using CXY.CJS.Repository.SeedWork;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Abp.Specifications;
+using CXY.CJS.Extensions;
 
 namespace CXY.CJS.Application
 {
@@ -28,164 +29,170 @@ namespace CXY.CJS.Application
     public class WebSiteAppService : CJSAppServiceBase, IWebSiteAppService
     {
         private readonly IRepository<WebSite, string> _websiteRepository;
-        private readonly IRepository<WebSiteConfig, string> _siteConfigRepository;
-        private readonly IRepository<WebSitePayConfig, string> _sitePayRepository;
+
+        private readonly IRepository<UserJf, string> _userJfRepository;
+
+        private readonly IRepository<UserAtt, string> _userAttRepository;
+
+        private readonly IRepository<User, string> _userRepository;
+
+        private readonly IWebSiteFullRepository _siteFullRepository;
         /// <summary>
         /// 构造函数 
         ///</summary>
-        public WebSiteAppService(IRepository<WebSite, string> websiteRepository,
-            IRepository<WebSiteConfig, string> siteConfigRepository,
-            IRepository<WebSitePayConfig, string> sitePayRepository)
+        public WebSiteAppService(IRepository<WebSite, string> websiteRepository, IWebSiteFullRepository siteFullRepository, IRepository<UserJf, string> userJfRepository, IRepository<UserAtt, string> userAttRepository, IRepository<User, string> userRepository)
         {
             _websiteRepository = websiteRepository;
-            _siteConfigRepository = siteConfigRepository;
-            _sitePayRepository = sitePayRepository;
+            _siteFullRepository = siteFullRepository;
+            _userJfRepository = userJfRepository;
+            _userAttRepository = userAttRepository;
+            _userRepository = userRepository;
         }
 
 
-        /// <summary>
-        /// 获取WebSite的分页列表信息
-        ///</summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        ///// <summary>
+        ///// 获取WebSite的分页列表信息
+        /////</summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
 
-        public async Task<PagedResultDto<WebSiteListDto>> GetPaged(GetWebSitesInput input)
-        {
+        //public async Task<PagedResultDto<WebSiteListDto>> GetPaged(GetWebSitesInput input)
+        //{
 
-            var query = _websiteRepository.GetAll();
-            // TODO:根据传入的参数添加过滤条件
-
-
-            var count = await query.CountAsync();
-
-            var entityList = await query
-                    .OrderBy(input.Sorting).AsNoTracking()
-                    .PageBy(input)
-                    .ToListAsync();
-
-            // var entityListDtos = ObjectMapper.Map<List<WebSiteListDto>>(entityList);
-            var entityListDtos = entityList.MapTo<List<WebSiteListDto>>();
-
-            return new PagedResultDto<WebSiteListDto>(count, entityListDtos);
-        }
+        //    var query = _websiteRepository.GetAll();
+        //    // TODO:根据传入的参数添加过滤条件
 
 
-        /// <summary>
-        /// 通过指定id获取WebSiteListDto信息
-        /// </summary>
+        //    var count = await query.CountAsync();
 
-        public async Task<WebSiteListDto> GetById(EntityDto<string> input)
-        {
-            var entity = await _websiteRepository.GetAsync(input.Id);
+        //    var entityList = await query
+        //            .OrderBy(input.Sorting).AsNoTracking()
+        //            .PageBy(input)
+        //            .ToListAsync();
 
-            return entity.MapTo<WebSiteListDto>();
-        }
+        //    // var entityListDtos = ObjectMapper.Map<List<WebSiteListDto>>(entityList);
+        //    var entityListDtos = entityList.MapTo<List<WebSiteListDto>>();
 
-        /// <summary>
-        /// 获取编辑 WebSite
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-
-        public async Task<GetWebSiteForEditOutput> GetForEdit(EntityDto<string> input)
-        {
-            var output = new GetWebSiteForEditOutput();
-            WebSiteEditDto editDto;
-
-            if (!input.Id.IsNullOrEmpty())
-            {
-                var entity = await _websiteRepository.GetAsync(input.Id);
-
-                editDto = entity.MapTo<WebSiteEditDto>();
-
-                //webSiteEditDto = ObjectMapper.Map<List<webSiteEditDto>>(entity);
-            }
-            else
-            {
-                editDto = new WebSiteEditDto();
-            }
-
-            output.WebSite = editDto;
-            return output;
-        }
+        //    return new PagedResultDto<WebSiteListDto>(count, entityListDtos);
+        //}
 
 
-        /// <summary>
-        /// 添加或者修改WebSite的公共方法
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        ///// <summary>
+        ///// 通过指定id获取WebSiteListDto信息
+        ///// </summary>
 
-        public async Task CreateOrUpdate(CreateOrUpdateWebSiteInput input)
-        {
+        //public async Task<WebSiteListDto> GetById(EntityDto<string> input)
+        //{
+        //    var entity = await _websiteRepository.GetAsync(input.Id);
 
-            if (!input.WebSite.Id.IsNullOrEmpty())
-            {
-                await Update(input.WebSite);
-            }
-            else
-            {
-                await Create(input.WebSite);
-            }
-        }
+        //    return entity.MapTo<WebSiteListDto>();
+        //}
 
+        ///// <summary>
+        ///// 获取编辑 WebSite
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
 
-        /// <summary>
-        /// 新增WebSite
-        /// </summary>
+        //public async Task<GetWebSiteForEditOutput> GetForEdit(EntityDto<string> input)
+        //{
+        //    var output = new GetWebSiteForEditOutput();
+        //    WebSiteEditDto editDto;
 
-        protected virtual async Task<WebSiteEditDto> Create(WebSiteEditDto input)
-        {
-            //TODO:新增前的逻辑判断，是否允许新增
+        //    if (!input.Id.IsNullOrEmpty())
+        //    {
+        //        var entity = await _websiteRepository.GetAsync(input.Id);
 
-            // var entity = ObjectMapper.Map <WebSite>(input);
-            var entity = input.MapTo<WebSite>();
+        //        editDto = entity.MapTo<WebSiteEditDto>();
 
+        //        //webSiteEditDto = ObjectMapper.Map<List<webSiteEditDto>>(entity);
+        //    }
+        //    else
+        //    {
+        //        editDto = new WebSiteEditDto();
+        //    }
 
-            entity = await _websiteRepository.InsertAsync(entity);
-            return entity.MapTo<WebSiteEditDto>();
-        }
-
-        /// <summary>
-        /// 编辑WebSite
-        /// </summary>
-
-        protected virtual async Task Update(WebSiteEditDto input)
-        {
-            //TODO:更新前的逻辑判断，是否允许更新
-
-            var entity = await _websiteRepository.GetAsync(input.Id);
-            input.MapTo(entity);
-
-            // ObjectMapper.Map(input, entity);
-            await _websiteRepository.UpdateAsync(entity);
-        }
+        //    output.WebSite = editDto;
+        //    return output;
+        //}
 
 
+        ///// <summary>
+        ///// 添加或者修改WebSite的公共方法
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
 
-        /// <summary>
-        /// 删除WebSite信息的方法
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        //public async Task CreateOrUpdate(CreateOrUpdateWebSiteInput input)
+        //{
 
-        public async Task Delete(EntityDto<string> input)
-        {
-            //TODO:删除前的逻辑判断，是否允许删除
-            await _websiteRepository.DeleteAsync(input.Id);
-        }
+        //    if (!input.WebSite.Id.IsNullOrEmpty())
+        //    {
+        //        await Update(input.WebSite);
+        //    }
+        //    else
+        //    {
+        //        await Create(input.WebSite);
+        //    }
+        //}
+
+
+        ///// <summary>
+        ///// 新增WebSite
+        ///// </summary>
+
+        //protected virtual async Task<WebSiteEditDto> Create(WebSiteEditDto input)
+        //{
+        //    //TODO:新增前的逻辑判断，是否允许新增
+
+        //    // var entity = ObjectMapper.Map <WebSite>(input);
+        //    var entity = input.MapTo<WebSite>();
+
+
+        //    entity = await _websiteRepository.InsertAsync(entity);
+        //    return entity.MapTo<WebSiteEditDto>();
+        //}
+
+        ///// <summary>
+        ///// 编辑WebSite
+        ///// </summary>
+
+        //protected virtual async Task Update(WebSiteEditDto input)
+        //{
+        //    //TODO:更新前的逻辑判断，是否允许更新
+
+        //    var entity = await _websiteRepository.GetAsync(input.Id);
+        //    input.MapTo(entity);
+
+        //    // ObjectMapper.Map(input, entity);
+        //    await _websiteRepository.UpdateAsync(entity);
+        //}
 
 
 
-        /// <summary>
-        /// 批量删除WebSite的方法
-        /// </summary>
+        ///// <summary>
+        ///// 删除WebSite信息的方法
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
 
-        public async Task BatchDelete(List<string> input)
-        {
-            // TODO:批量删除前的逻辑判断，是否允许删除
-            await _websiteRepository.DeleteAsync(s => input.Contains(s.Id));
-        }
+        //public async Task Delete(EntityDto<string> input)
+        //{
+        //    //TODO:删除前的逻辑判断，是否允许删除
+        //    await _websiteRepository.DeleteAsync(input.Id);
+        //}
+
+
+
+        ///// <summary>
+        ///// 批量删除WebSite的方法
+        ///// </summary>
+
+        //public async Task BatchDelete(List<string> input)
+        //{
+        //    // TODO:批量删除前的逻辑判断，是否允许删除
+        //    await _websiteRepository.DeleteAsync(s => input.Contains(s.Id));
+        //}
 
 
         ///// <summary>
@@ -209,50 +216,75 @@ namespace CXY.CJS.Application
 
         public async Task<PaginationResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input)
         {
-            var result = new PaginationResult<ListWebSiteOutputItem>(input);
-
-            var query = from website in _websiteRepository.GetAll()
-                        join siteConfig in _siteConfigRepository.GetAll() on website.Id
-                            equals siteConfig.WebSiteId into siteConfigTemp
-                        join sitePay in _sitePayRepository.GetAll() on website.Id
-                            equals sitePay.WebSiteId into sitePayTemp
-                        from config in siteConfigTemp.DefaultIfEmpty()
-                        from pay in sitePayTemp.DefaultIfEmpty()
-                        select new
-                        {
-                            website,
-                            config,
-                            pay
-                        };
+            Expression<Func<WebSiteFull, bool>> where = null;
 
             if (input.IsHide)
             {
-                query = query.Where(i => i.website.EndTime > DateTime.Now);
+                where =i => i.WebSite.EndTime > DateTime.Now;
             }
-
             if (!string.IsNullOrWhiteSpace(input.Key))
             {
-                query = query.Where(i => i.website.WebSiteName.Contains(input.Key));
+                if (where!=null)
+                {
+                    where = where.And(i => i.WebSite.WebSiteName.Contains(input.Key));
+                }
+                else
+                {
+                    where = i => i.WebSite.WebSiteName.Contains(input.Key);
+                }
+            }
+            var resultTemp = await _siteFullRepository.QueryByWhereAsync<WebSiteFull>(input, null, where);
+        
+            return new PaginationResult<ListWebSiteOutputItem>(input)
+                    .SetReuslt(resultTemp.TotalCount, WebSiteFull.MapToList<ListWebSiteOutputItem>(resultTemp.Datas));
+        }
+
+        /// <summary>
+        /// 获取站点详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<GetWebsitOutput> Get(string id)
+        {
+            GetWebsitOutput result = null;
+            var webSite = await _siteFullRepository.Get(id);
+            if (webSite!=null)
+            {
+                result = WebSiteFull.MapTo<GetWebsitOutput>(webSite);
+                if (!string.IsNullOrEmpty(webSite.WebSite.WebSiteMater))
+                {
+                    var defaultJFPriceAndDefaultNotePriceTask = _userJfRepository.GetAll()
+                        .Where(i => i.Userid == result.WebSiteMater)
+                        .Select(i => new
+                        {
+                            i.JfPrice,
+                            i.NotePrice
+                        }).FirstOrDefaultAsync();
+
+                    var provinceidTask = _userAttRepository.GetAll().Where(i => i.UserId == result.WebSiteMater)
+                        .Select(i => new
+                        {
+                            i.Provinceid
+                        }).FirstOrDefaultAsync();
+                    var emailAndloginnameTask= _userRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
+                        .Select(i => new
+                        {
+                            i.EmailAddress,
+                            i.LoginName
+                        }).FirstOrDefaultAsync();
+
+                    var (price, province, info) = await (defaultJFPriceAndDefaultNotePriceTask, provinceidTask,
+                        emailAndloginnameTask);
+
+                    result.DefaultJFPrice = price?.JfPrice;
+                    result.DefaultNotePrice = price?.NotePrice;
+                    result.Provinceid =province?.Provinceid?? "0";
+                    result.Email = info?.EmailAddress;
+                    result.loginname = info?.LoginName;
+                }
             }
 
-            var countTask = query.CountAsync();
-            var datasTask = query.BuildPage(input).ToListAsync();
-            var (datas, count) = await (datasTask, countTask);
-            //var datasTuple = datas.Select(i => Tuple.Create(i.website, i.config, i.pay));
-            var list= datas.Select(i =>
-            {
-                var temp = JObject.FromObject(i.website);
-                if (i.config!=null)
-                {
-                    temp.Merge(JObject.FromObject(i.config));
-                }
-                if (i.pay != null)
-                {
-                    temp.Merge(JObject.FromObject(i.pay));
-                }
-                return temp.ToObject<ListWebSiteOutputItem>();
-            });
-            return result.SetReuslt(count, list);
+            return result;
         }
     }
 }

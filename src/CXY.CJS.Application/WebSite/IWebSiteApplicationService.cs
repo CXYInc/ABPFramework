@@ -15,7 +15,7 @@ namespace CXY.CJS.Application
 
         Task<PaginationResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input);
 
-
+        Task<GetWebsitOutput> Get(string id);
         //      /// <summary>
         ///// 获取WebSite的分页列表信息
         /////</summary>
