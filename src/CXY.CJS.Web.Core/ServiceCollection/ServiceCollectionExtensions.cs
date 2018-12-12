@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Text;
+using CXY.CJS.Web.Core.Extensions;
 
 namespace CXY.CJS.Web.Core
 {
@@ -13,6 +14,8 @@ namespace CXY.CJS.Web.Core
         {
             // 使程序支持GBK,gb2312
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            //services.AddConfigModel();
 
             services.AddHttpClient();
 

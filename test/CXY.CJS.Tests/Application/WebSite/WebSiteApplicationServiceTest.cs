@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Abp.AutoMapper;
 using Abp.UI;
 using CXY.CJS.Application;
 using CXY.CJS.Application.Dtos;
@@ -13,11 +14,7 @@ namespace CXY.CJS.Tests.Application.WebSite
     {
         private readonly IWebSiteAppService _service;
 
-        private static SaveWebSiteInput NewSaveWebSiteInput = new SaveWebSiteInput
-        {
-            WebSiteId = Guid.NewGuid().ToString("N").Substring(0, 6),
-            WebSiteKey = Guid.NewGuid().ToString("N").Substring(0, 6),
-        };
+       
 
         public WebSiteApplicationServiceTest(CJSTestBase testBase)
         {
@@ -32,12 +29,7 @@ namespace CXY.CJS.Tests.Application.WebSite
             Assert.Null(result);
         }
 
-        [Fact]
-        public async Task SaveWebSite_When_CheckInput()
-        {
-            var full = WebSiteFull.MapFrom(NewSaveWebSiteInput);
-            Assert.NotNull(full.WebSite);
-        }
+        
 
         [Fact]
         public async Task SaveWebSite_When_Existed_WebSiteId_Or_WebSiteKey()
@@ -45,19 +37,16 @@ namespace CXY.CJS.Tests.Application.WebSite
             // Existed WebSiteId
             await Assert.ThrowsAsync<UserFriendlyException>(async () =>
             {
-                await _service.SaveWebSite(new SaveWebSiteInput
-                {
-                    WebSiteId = WebSiteDatas.SuperWebSite.Id
-                });
+                var input = InputSample.GetRandomSaveWebSiteInput();
+                input.WebSiteId = WebSiteDatas.SuperWebSite.Id;
+                await _service.SaveWebSite(input);
             });
             // Existed WebSiteKey
             await Assert.ThrowsAsync<UserFriendlyException>(async () =>
             {
-                await _service.SaveWebSite(new SaveWebSiteInput
-                {
-                    WebSiteId = Guid.NewGuid().ToString(),
-                    WebSiteKey = WebSiteDatas.SuperWebSite.WebSiteKey
-                });
+                var input = InputSample.GetRandomSaveWebSiteInput();
+                input.WebSiteKey = WebSiteDatas.SuperWebSite.WebSiteKey;
+                await _service.SaveWebSite(input);
             });
         }
 
@@ -70,14 +59,20 @@ namespace CXY.CJS.Tests.Application.WebSite
         [Fact]
         public async Task SaveWebSite_When_Success()
         {
-            var output = await _service.SaveWebSite(NewSaveWebSiteInput);
+            var output = await _service.SaveWebSite(InputSample.NewSaveWebSiteInput);
             Assert.NotEmpty(output.Safepassword);
         }
 
         [Fact]
         public async Task UpdateWebSite_When_Success()
         {
-
+            var newInput = InputSample.NewSaveWebSiteInput;
+            await _service.SaveWebSite(newInput);
+            var website = await _service.GetWebSite(newInput.WebSiteId);
+            var updateInput= website.MapTo<UpdateWebSiteInput>();
+            updateInput.WebSiteChName = Guid.NewGuid().ToString();
+            var result = await _service.UpdateWebSite(updateInput);
+            Assert.True(result);
         }
     }
 }

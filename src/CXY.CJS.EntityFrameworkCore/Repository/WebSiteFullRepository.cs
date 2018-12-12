@@ -55,6 +55,11 @@ namespace CXY.CJS.Repository
                    };
         }
 
+        public IQueryable<WebSiteFull> GetAllNoTracking()
+        {
+            return GetAll().AsNoTracking();
+        }
+
         public Task<WebSiteFull> GetAsync(string id)
         {
             return GetAll().FirstOrDefaultAsync(i => i.WebSite.Id == id);
@@ -71,6 +76,17 @@ namespace CXY.CJS.Repository
             //await _websiteRepository.InsertAsync(i.WebSite);
             //await _siteConfigRepository.InsertAsync(i.WebSiteConfig);
             //await _sitePayRepository.InsertAsync(i.WebSitePayConfig);
+        }
+
+        public async Task<WebSiteFull> SaveAsync(WebSiteFull i)
+        {
+            i.WebSiteConfig.Id = i.WebSite.Id;
+            i.WebSitePayConfig.Id = i.WebSite.Id;
+            await Task.WhenAll(
+                _websiteRepository.UpdateAsync(i.WebSite),
+                _siteConfigRepository.UpdateAsync(i.WebSiteConfig),
+                _sitePayRepository.UpdateAsync(i.WebSitePayConfig));
+            return i;
         }
     }
 }

@@ -19,6 +19,7 @@ using CXY.CJS.Repository.MixModel;
 using CXY.CJS.Repository.SeedWork;
 using Abp.Specifications;
 using Abp.UI;
+using CXY.CJS.Config;
 using CXY.CJS.Extensions;
 using CXY.CJS.Utils;
 
@@ -40,16 +41,22 @@ namespace CXY.CJS.Application
 
         private readonly IWebSiteFullRepository _siteFullRepository;
 
+        private readonly SysAlipayConfig _sysAlipayConfig;
+
+        private readonly SysWeiXinPayConfig _sysWeiXinPayConfig;
+
         /// <summary>
         /// 构造函数 
         ///</summary>
-        public WebSiteAppService(IRepository<WebSite, string> websiteRepository, IWebSiteFullRepository siteFullRepository, IRepository<UserJf, string> userJfRepository, IRepository<UserAtt, string> userAttRepository, IRepository<User, string> userRepository)
+        public WebSiteAppService(IRepository<WebSite, string> websiteRepository, IWebSiteFullRepository siteFullRepository, IRepository<UserJf, string> userJfRepository, IRepository<UserAtt, string> userAttRepository, IRepository<User, string> userRepository, SysAlipayConfig sysAlipayConfig, SysWeiXinPayConfig sysWeiXinPayConfig)
         {
             _websiteRepository = websiteRepository;
             _siteFullRepository = siteFullRepository;
             _userJfRepository = userJfRepository;
             _userAttRepository = userAttRepository;
             _userRepository = userRepository;
+            _sysAlipayConfig = sysAlipayConfig;
+            _sysWeiXinPayConfig = sysWeiXinPayConfig;
         }
 
 
@@ -300,7 +307,11 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         public async Task<SaveWebSiteOutput> SaveWebSite(SaveWebSiteInput input)
         {
-            //todo:LogInfoMsg(string.Format("页面【管理站点】新增站点,参数websiteid【{0}】,操作者【{1}】,操作站点【{2}】", SessionHelper.WebSite.WebSiteId, user.Userid, WebSiteId));
+            // 是否使用系统的配置
+            WhenUseSysAlipayPayment(input);
+            WhenUseSysWeiXinPay(input);
+
+            //todo:记日志
 
             // 检查数据库中是否存在数据
             var existedDatas = await _websiteRepository.GetAll()
@@ -309,20 +320,10 @@ namespace CXY.CJS.Application
 
             if (existedDatas.Any(i => i.Id == input.WebSiteId))
             {
-                //todo:LogInfoMsg(string.Format("页面【管理站点】新增站点,参数websiteid【{0}】,操作者【{1}】,操作站点【{2}】,结果【{3}】",
-                // SessionHelper.WebSite.WebSiteId,
-                // user.Userid,
-                // WebSiteId,
-                // message))
                 throw new UserFriendlyException("站点Id已存在！");
             }
             if (existedDatas.Any(i => i.WebSiteKey == input.WebSiteKey))
             {
-                //todo:LogInfoMsg(string.Format("页面【管理站点】新增站点,参数websiteid【{0}】,操作者【{1}】,操作站点【{2}】,结果【{3}】",
-                // SessionHelper.WebSite.WebSiteId,
-                // user.Userid,
-                // WebSiteId,
-                // message))
                 throw new UserFriendlyException("订单Id前缀已存在！");
             }
             // 创建站点管理员账号
@@ -330,7 +331,17 @@ namespace CXY.CJS.Application
             DateTime time = DateTime.Now;
             string userId = input.WebSiteId + time.ToString("yyyyMMddHHmmss") + RNG.Next(10).ToString().PadLeft(10, '0');
             string safePassword = Guid.NewGuid().ToString("N").Substring(0, 6);
-            await _userRepository.InsertAsync(new User
+
+            // 创建站点
+            var siteFull = WebSiteFull.MapFrom(input);
+            siteFull.WebSite.Id = input.WebSiteId;
+            siteFull.WebSite.WebSiteMater = userId;
+
+            var insertWebSiteTask = _siteFullRepository.InsertAsync(siteFull);
+
+            // 创建站点管理员账号信息
+
+            var insertUserTask = _userRepository.InsertAsync(new User
             {
                 Id = userId,
                 WebSiteId = input.WebSiteId,
@@ -341,20 +352,126 @@ namespace CXY.CJS.Application
                 Safepassword = safePassword,
                 IsActive = true,
             });
-            var siteFull = WebSiteFull.MapFrom(input);
-            siteFull.WebSite.Id = input.WebSiteId;
-            await _siteFullRepository.InsertAsync(siteFull);
+
+            // 创建站点管理员附属信息(商务经理、省)
+
+            var insertUserAttTask = _userAttRepository.InsertAsync(new UserAtt
+            {
+                Id = userId,
+                UserId = userId,
+                Swfzr = input.WorkerName,
+                Provinceid = input.PROVINCEID,
+                WebSiteId = input.WebSiteId
+            });
+
+            // 创建站点管理员的每月积分
+            var insertUserJfTask = _userJfRepository.InsertAsync(new UserJf
+            {
+                Userid = userId,
+                Id = userId,
+                GivePointsPerMonth = input.GivePointsPerMonth
+            });
+
+            await (insertWebSiteTask, insertUserTask, insertUserAttTask, insertUserJfTask);
 
             return new SaveWebSiteOutput
             {
-                Safepassword=safePassword,
+                Safepassword = safePassword,
                 LoginName = input.Loginname
             };
         }
 
-        public Task<bool> UpdateWebSite(UpdateWebSiteInput input)
+        public async Task<bool> UpdateWebSite(UpdateWebSiteInput input)
         {
-            throw new NotImplementedException();
+            // 是否使用系统的配置
+            WhenUseSysAlipayPayment(input);
+            WhenUseSysWeiXinPay(input);
+            //todo:记录日志
+            var websiteTemp = await _siteFullRepository.GetAllNoTracking()
+                        .Where(i => i.WebSite.Id == input.WebSiteId)
+                .Select(i => new
+                {
+                    i.WebSite.WebSiteMater,
+                    i.WebSite.WorkerName,
+                    i.WebSiteConfig.GivePointsPerMonth,
+                    i.WebSiteConfig.DefaultNotePrice,
+                    i.WebSiteConfig.DefaultJfPrice
+                }).FirstOrDefaultAsync();
+
+            if (websiteTemp == null)
+            {
+                throw new UserFriendlyException("该站点不存在,无法编辑！");
+            }
+
+            // 更新站点
+            var insertWebsite = WebSiteFull.MapFrom(input);
+            var finalWebsite = await _siteFullRepository.SaveAsync(insertWebsite);
+
+            var websiteMater = finalWebsite.WebSite.WebSiteMater;
+
+            if (websiteMater != null)
+            {
+                // 更新该站点管理员的WorkerName和PROVINCEID
+                var userAtt = await _userAttRepository
+                    .FirstOrDefaultAsync(i => i.Id == input.WebSiteMater && i.WebSiteId == input.WebSiteId);
+                if (userAtt == null)
+                {
+                    throw new UserFriendlyException("注意，总站信息不对!");
+                }
+                else
+                {
+                    if (userAtt.Provinceid!=input.PROVINCEID
+                        || userAtt.Swfzr != input.WorkerName)
+                    {
+                        userAtt.Provinceid = input.PROVINCEID;
+                        userAtt.Swfzr = input.WorkerName;
+                        await _userAttRepository.UpdateAsync(userAtt);
+                    }
+                }
+                //变更每月赠送次数时
+                if (websiteTemp.GivePointsPerMonth != input.GivePointsPerMonth)
+                {
+
+                    var userJf = await _userJfRepository.FirstOrDefaultAsync(i => i.Id == websiteMater);
+                    if (userJf != null)
+                    {
+                        userJf.GivePointsPerMonth = input.GivePointsPerMonth;
+                        await _userJfRepository.UpdateAsync(userJf);
+                    }
+                }
+            }
+            //站点短信与积分单价变化时，更新所有站点用户的短信与积分单价,暂时不做这个操作
+            //if (website.DefaultJfPrice!=input.DefaultJfPrice
+            //    ||website.DefaultNotePrice!=input.DefaultNotePrice)
+            //{
+            //}
+            return true;
+        }
+
+        private void WhenUseSysAlipayPayment(UpdateOrSaveWebSiteInputBase input)
+        {
+            if (input.IsAlipayPayment == 1 && input.IsUseSysAlipay == 1)
+            {
+                input.AlipayKey = _sysAlipayConfig?.AlipayKey;
+                input.AlipayPartner = _sysAlipayConfig?.AlipayPartner;
+                input.AlipaySellerEmail = _sysAlipayConfig?.AlipaySellerEmail;
+                input.AlipayAppID = _sysAlipayConfig?.AlipayAppID;
+                input.AlipayPrivateKey = _sysAlipayConfig?.AlipayPrivateKey;
+                input.AlipayPublicKey = _sysAlipayConfig?.AlipayPublicKey;
+            }
+        }
+
+        private void WhenUseSysWeiXinPay(UpdateOrSaveWebSiteInputBase input)
+        {
+            if (input.IsWeChatPayment == 1 && input.IsUseSysWeiXinPay == 1)
+            {
+                input.WxappID = _sysWeiXinPayConfig?.WxAppId;
+                input.WxmchId = _sysWeiXinPayConfig?.WxMchId;
+                input.Wxkey = _sysWeiXinPayConfig?.WxKey;
+                input.WxsubAppId = _sysWeiXinPayConfig?.WxSubAppId;
+                input.WxSubMchId = _sysWeiXinPayConfig?.WxSubMchId;
+                input.WxsubKey = _sysWeiXinPayConfig?.WxSubKey;
+            }
         }
     }
 }

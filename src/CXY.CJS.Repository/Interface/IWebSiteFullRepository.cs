@@ -8,8 +8,12 @@ namespace CXY.CJS.Repository
     {
         IQueryable<WebSiteFull> GetAll();
 
+        IQueryable<WebSiteFull> GetAllNoTracking();
+
         Task<WebSiteFull> GetAsync(string id);
 
         Task InsertAsync(WebSiteFull i);
+
+        Task<WebSiteFull> SaveAsync(WebSiteFull i);
     }
 }

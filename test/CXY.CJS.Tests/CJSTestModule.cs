@@ -8,6 +8,8 @@ using Abp.TestBase;
 using CXY.CJS.EntityFrameworkCore;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
+using CXY.CJS.Config;
+using CXY.CJS.Tests.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,8 +27,12 @@ namespace CXY.CJS.Tests
 
         public override void PreInitialize()
         {
-            //Configuration.UnitOfWork.IsTransactional = false; //EF Core InMemory DB does not support transactions.
-            SetupInMemoryDb();
+            var services = new ServiceCollection()
+                //.AddConfigModel()
+                .AddEntityFrameworkSqlServer();
+            //Configuration.UnitOfWork.IsTransactional = false;
+            var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
+            SetupDb(serviceProvider);
         }
 
         public override void Initialize()
@@ -36,21 +42,13 @@ namespace CXY.CJS.Tests
 
       
 
-        private void SetupInMemoryDb()
+        private void SetupDb(IServiceProvider serviceProvider)
         {
-            var services = new ServiceCollection()
-                .AddEntityFrameworkSqlServer();
-          
-            var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
-
             var builder = new DbContextOptionsBuilder<CJSDbContext>();
-
 
             builder.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database=monsters_{Guid.NewGuid().ToString()};Trusted_Connection=True;MultipleActiveResultSets=true")
                 .UseInternalServiceProvider(serviceProvider);
 
-
-          
             IocManager.IocContainer.Register(
                 Component
                     .For<DbContextOptions<CJSDbContext>>()
