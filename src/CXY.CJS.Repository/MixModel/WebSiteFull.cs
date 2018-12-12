@@ -11,7 +11,16 @@ namespace CXY.CJS.Repository.MixModel
         public WebSiteConfig WebSiteConfig { get; set; }
         public WebSitePayConfig WebSitePayConfig { get; set; }
 
-
+        public static WebSiteFull MapFrom<TSource>(TSource source)
+        {
+            var temp = JObject.FromObject(source);
+            return new WebSiteFull
+            {
+                WebSite= temp.ToObject<WebSite>(),
+                WebSiteConfig = temp.ToObject<WebSiteConfig>(),
+                WebSitePayConfig = temp.ToObject<WebSitePayConfig>(),
+            };
+        }
 
         public static IEnumerable<TResult> MapToList<TResult>(IEnumerable<WebSiteFull> datas)
         {

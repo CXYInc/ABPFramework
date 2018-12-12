@@ -18,7 +18,9 @@ using CXY.CJS.Repository.Extensions;
 using CXY.CJS.Repository.MixModel;
 using CXY.CJS.Repository.SeedWork;
 using Abp.Specifications;
+using Abp.UI;
 using CXY.CJS.Extensions;
+using CXY.CJS.Utils;
 
 namespace CXY.CJS.Application
 {
@@ -37,6 +39,7 @@ namespace CXY.CJS.Application
         private readonly IRepository<User, string> _userRepository;
 
         private readonly IWebSiteFullRepository _siteFullRepository;
+
         /// <summary>
         /// 构造函数 
         ///</summary>
@@ -220,11 +223,11 @@ namespace CXY.CJS.Application
 
             if (input.IsHide)
             {
-                where =i => i.WebSite.EndTime > DateTime.Now;
+                where = i => i.WebSite.EndTime > DateTime.Now;
             }
             if (!string.IsNullOrWhiteSpace(input.Key))
             {
-                if (where!=null)
+                if (where != null)
                 {
                     where = where.And(i => i.WebSite.WebSiteName.Contains(input.Key));
                 }
@@ -234,7 +237,7 @@ namespace CXY.CJS.Application
                 }
             }
             var resultTemp = await _siteFullRepository.QueryByWhereAsync<WebSiteFull>(input, null, where);
-        
+
             return new PaginationResult<ListWebSiteOutputItem>(input)
                     .SetReuslt(resultTemp.TotalCount, WebSiteFull.MapToList<ListWebSiteOutputItem>(resultTemp.Datas));
         }
@@ -244,15 +247,16 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<GetWebsitOutput> Get(string id)
+        public async Task<GetWebsitOutput> GetWebSite(string id)
         {
             GetWebsitOutput result = null;
-            var webSite = await _siteFullRepository.Get(id);
-            if (webSite!=null)
+            var webSite = await _siteFullRepository.GetAsync(id);
+            if (webSite != null)
             {
                 result = WebSiteFull.MapTo<GetWebsitOutput>(webSite);
                 if (!string.IsNullOrEmpty(webSite.WebSite.WebSiteMater))
                 {
+                    //获取关联的DefaultJFPrice和DefaultNotePrice
                     var defaultJFPriceAndDefaultNotePriceTask = _userJfRepository.GetAll()
                         .Where(i => i.Userid == result.WebSiteMater)
                         .Select(i => new
@@ -261,12 +265,15 @@ namespace CXY.CJS.Application
                             i.NotePrice
                         }).FirstOrDefaultAsync();
 
+                    //获取关联的provinceid
                     var provinceidTask = _userAttRepository.GetAll().Where(i => i.UserId == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.Provinceid
                         }).FirstOrDefaultAsync();
-                    var emailAndloginnameTask= _userRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
+
+                    //获取关联的Email和LoginName
+                    var emailAndloginnameTask = _userRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.EmailAddress,
@@ -278,13 +285,76 @@ namespace CXY.CJS.Application
 
                     result.DefaultJFPrice = price?.JfPrice;
                     result.DefaultNotePrice = price?.NotePrice;
-                    result.Provinceid =province?.Provinceid?? "0";
+                    result.Provinceid = province?.Provinceid ?? "0";
                     result.Email = info?.EmailAddress;
                     result.loginname = info?.LoginName;
                 }
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 新增站点
+        /// </summary>
+        /// <returns></returns>
+        public async Task<SaveWebSiteOutput> SaveWebSite(SaveWebSiteInput input)
+        {
+            //todo:LogInfoMsg(string.Format("页面【管理站点】新增站点,参数websiteid【{0}】,操作者【{1}】,操作站点【{2}】", SessionHelper.WebSite.WebSiteId, user.Userid, WebSiteId));
+
+            // 检查数据库中是否存在数据
+            var existedDatas = await _websiteRepository.GetAll()
+                .Where(i => i.WebSiteKey == input.WebSiteKey || i.Id == input.WebSiteId)
+                .Select(i => new { i.Id, i.WebSiteKey }).ToListAsync();
+
+            if (existedDatas.Any(i => i.Id == input.WebSiteId))
+            {
+                //todo:LogInfoMsg(string.Format("页面【管理站点】新增站点,参数websiteid【{0}】,操作者【{1}】,操作站点【{2}】,结果【{3}】",
+                // SessionHelper.WebSite.WebSiteId,
+                // user.Userid,
+                // WebSiteId,
+                // message))
+                throw new UserFriendlyException("站点Id已存在！");
+            }
+            if (existedDatas.Any(i => i.WebSiteKey == input.WebSiteKey))
+            {
+                //todo:LogInfoMsg(string.Format("页面【管理站点】新增站点,参数websiteid【{0}】,操作者【{1}】,操作站点【{2}】,结果【{3}】",
+                // SessionHelper.WebSite.WebSiteId,
+                // user.Userid,
+                // WebSiteId,
+                // message))
+                throw new UserFriendlyException("订单Id前缀已存在！");
+            }
+            // 创建站点管理员账号
+            // todo:管理员账号基础信息处理及角色分配
+            DateTime time = DateTime.Now;
+            string userId = input.WebSiteId + time.ToString("yyyyMMddHHmmss") + RNG.Next(10).ToString().PadLeft(10, '0');
+            string safePassword = Guid.NewGuid().ToString("N").Substring(0, 6);
+            await _userRepository.InsertAsync(new User
+            {
+                Id = userId,
+                WebSiteId = input.WebSiteId,
+                UserName = input.Loginname,
+                LoginName = input.Loginname,
+                EmailAddress = input.Email,
+                Password = Encryptor.MD5Entry(safePassword),
+                Safepassword = safePassword,
+                IsActive = true,
+            });
+            var siteFull = WebSiteFull.MapFrom(input);
+            siteFull.WebSite.Id = input.WebSiteId;
+            await _siteFullRepository.InsertAsync(siteFull);
+
+            return new SaveWebSiteOutput
+            {
+                Safepassword=safePassword,
+                LoginName = input.Loginname
+            };
+        }
+
+        public Task<bool> UpdateWebSite(UpdateWebSiteInput input)
+        {
+            throw new NotImplementedException();
         }
     }
 }

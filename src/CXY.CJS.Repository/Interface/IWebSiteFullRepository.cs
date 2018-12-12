@@ -8,6 +8,8 @@ namespace CXY.CJS.Repository
     {
         IQueryable<WebSiteFull> GetAll();
 
-        Task<WebSiteFull> Get(string id);
+        Task<WebSiteFull> GetAsync(string id);
+
+        Task InsertAsync(WebSiteFull i);
     }
 }

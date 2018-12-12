@@ -17,7 +17,7 @@ namespace CXY.CJS.Tests.Application.Role
 
 
         [Fact]
-        public async Task ListRole_Must_HasData()
+        public async Task ListRole_When_HasDatas()
         {
             var result = await _service.ListRole(new  ListRoleInput
             {

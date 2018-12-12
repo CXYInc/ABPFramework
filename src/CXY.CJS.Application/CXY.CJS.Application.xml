@@ -155,7 +155,7 @@
             是否删除
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.Dtos.GetWebSitesInput.Normalize">
+        <member name="M:CXY.CJS.Application.Dtos.GetWebSiteWebSitesInput.Normalize">
             <summary>
             正常化排序使用
             </summary>
@@ -280,7 +280,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.TestService.GetTest(System.String)">
+        <member name="M:CXY.CJS.Application.TestService.GetWebSiteTest(System.String)">
             <summary>
             获取
             </summary>
@@ -299,7 +299,7 @@
             <param name="userEditInput"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.IUserServices.Get(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.IUserServices.GetWebSite(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             获取用户信息
             </summary>
@@ -346,7 +346,7 @@
             <param name="userEditInput"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.UserServices.Get(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.UserServices.GetWebSite(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             获取用户信息
             </summary>
@@ -360,7 +360,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.UserServices.GetUser(System.String)">
+        <member name="M:CXY.CJS.Application.UserServices.GetWebSiteUser(System.String)">
             <summary>
             获取用户数据实体
             </summary>
@@ -372,26 +372,26 @@
              WebSite应用层服务的接口方法
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetPaged(CXY.CJS.Application.Dtos.GetWebSitesInput)">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetWebSitePaged(CXY.CJS.Application.Dtos.GetWebSiteWebSitesInput)">
              <summary>
              获取WebSite的分页列表信息
             </summary>
              <param name="input"></param>
              <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetById(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetWebSiteById(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             通过指定id获取WebSiteListDto信息
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetForEdit(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetWebSiteForEdit(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             返回实体的EditDto
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.CreateOrUpdate(CXY.CJS.Application.Dtos.CreateOrUpdateWebSiteInput)">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.CreateOrUpdate(CXY.CJS.Application.Dtos.CreateOrUpdateOrSaveWebSiteInputBase)">
             <summary>
             添加或者修改WebSite的公共方法
             </summary>
@@ -420,26 +420,26 @@
              构造函数 
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.GetPaged(CXY.CJS.Application.Dtos.GetWebSitesInput)">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.GetWebSitePaged(CXY.CJS.Application.Dtos.GetWebSiteWebSitesInput)">
              <summary>
              获取WebSite的分页列表信息
             </summary>
              <param name="input"></param>
              <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.GetById(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.GetWebSiteById(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             通过指定id获取WebSiteListDto信息
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.GetForEdit(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.GetWebSiteForEdit(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             获取编辑 WebSite
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.CreateOrUpdate(CXY.CJS.Application.Dtos.CreateOrUpdateWebSiteInput)">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.CreateOrUpdate(CXY.CJS.Application.Dtos.CreateOrUpdateOrSaveWebSiteInputBase)">
             <summary>
             添加或者修改WebSite的公共方法
             </summary>

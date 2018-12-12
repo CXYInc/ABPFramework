@@ -35,7 +35,7 @@ namespace CXY.CJS.Web.Tests
                 .UseContentRoot(ContentRootFolder.Value);
         }
 
-        #region Get response
+        #region GetWebSite response
 
         protected async Task<T> GetResponseAsObjectAsync<T>(string url,
             HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
