@@ -9,6 +9,7 @@ using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace CXY.CJS.Application
 {
@@ -106,7 +107,7 @@ namespace CXY.CJS.Application
         }
 
         /// <summary>
-        /// 获取用户信息
+        /// 获取用户详情信息
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -134,6 +135,21 @@ namespace CXY.CJS.Application
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ApiResult<List<UserOutDto>>> GetList()
+        {
+            var list = await _repository.GetAllListAsync();
+
+            var dtos = _objectMapper.Map<List<UserOutDto>>(list);
+
+            return new ApiResult<List<UserOutDto>>().Success(data: dtos);
+
         }
 
         /// <summary>
@@ -172,6 +188,7 @@ namespace CXY.CJS.Application
 
             return result;
         }
+
 
 
         #region 私有方法

@@ -26,7 +26,7 @@ namespace CXY.CJS
             {
                 cfg.AddProfiles(thisAssembly);
 
-                //空值不进行Mapper
+                //空值不进行Map
                 cfg.ForAllMaps((obj, cnfg) => cnfg.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)));
             });
         }

@@ -9,7 +9,7 @@ namespace CXY.CJS.EntityFrameworkCore
     {
         public void Configure(EntityTypeBuilder<Test> builder)
         {
-            builder.ToTable("Tests", EFCoreConsts.SchemaNames.CXY);
+            builder.ToTable("Tests");
             builder.HasKey(c => c.Id);
             builder.Property(a => a.Id).HasMaxLength(EFCoreConsts.EntityLengthNames.Length64);
 			builder.Property(a => a.Name).HasMaxLength(EFCoreConsts.EntityLengthNames.Length512);

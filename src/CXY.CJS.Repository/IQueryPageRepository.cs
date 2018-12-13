@@ -1,7 +1,7 @@
 ﻿using System;
 using Abp.Dependency;
 using Abp.Domain.Entities;
-using CXY.CJS.Core.Enum;
+using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.WebApi;
 using System.Collections.Generic;
 using System.Linq.Expressions;

@@ -7,6 +7,7 @@ using CXY.CJS.Repository;
 using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using CXY.CJS.Core.Enums;
 
 namespace CXY.CJS.Application
 {
@@ -59,7 +60,6 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         [HttpPost("Get/{id}")]
         [AllowAnonymous]
-        [RemoteService(false)]
         public ApiResult<Test> GetTest(string id)
         {
             var result = new ApiResult<Test>
@@ -68,6 +68,25 @@ namespace CXY.CJS.Application
             };
 
             result.Data = _testRepository.GetTest(id);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 获取枚举
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost("Get/Enum")]
+        [AllowAnonymous]
+        public ApiResult GetEnumTest(string id)
+        {
+            var result = new ApiResult
+            {
+                Code = 200,
+            };
+
+            result.Data = SortEnum.Desc;
 
             return result;
         }
