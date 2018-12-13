@@ -11,7 +11,7 @@ namespace CXY.CJS.Model
     /// <summary>
     /// 用户基础定义
     /// </summary>
-    public class User : Entity<string>, IFullAudited, ISoftDelete
+    public class User : Entity<string>
     {
         public string UserName { get; set; }
         /// <summary>
@@ -42,11 +42,11 @@ namespace CXY.CJS.Model
         public int UserType { get; set; }
         public bool IsActive { get; set; }
         public DateTime? LastLoginTime { get; set; }
-        public long? CreatorUserId { get; set; }
+        public string CreatorUserId { get; set; }
         public DateTime CreationTime { get; set; }
-        public long? LastModifierUserId { get; set; }
+        public string LastModifierUserId { get; set; }
         public DateTime? LastModificationTime { get; set; }
-        public long? DeleterUserId { get; set; }
+        public string DeleterUserId { get; set; }
         public DateTime? DeletionTime { get; set; }
         public bool IsDeleted { get; set; }
         /// <summary>
