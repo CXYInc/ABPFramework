@@ -19,6 +19,8 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public DbSet<WebSitePayConfig> WebSitePayConfigs { get; set; }
 
+        public DbSet<Menu> Menus { get; set; }
+
         public DbSet<User> Users { get; set; }
         public DbSet<UserJf> UserJfs { get; set; }
 

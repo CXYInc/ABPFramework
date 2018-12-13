@@ -78,7 +78,7 @@ namespace CXY.CJS.Repository
             //await _sitePayRepository.InsertAsync(i.WebSitePayConfig);
         }
 
-        public async Task<WebSiteFull> SaveAsync(WebSiteFull i)
+        public async Task<WebSiteFull> UpdateAsync(WebSiteFull i)
         {
             i.WebSiteConfig.Id = i.WebSite.Id;
             i.WebSitePayConfig.Id = i.WebSite.Id;

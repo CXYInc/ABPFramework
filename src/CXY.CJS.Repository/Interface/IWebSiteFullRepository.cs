@@ -14,6 +14,6 @@ namespace CXY.CJS.Repository
 
         Task InsertAsync(WebSiteFull i);
 
-        Task<WebSiteFull> SaveAsync(WebSiteFull i);
+        Task<WebSiteFull> UpdateAsync(WebSiteFull i);
     }
 }

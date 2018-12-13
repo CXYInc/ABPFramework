@@ -22,7 +22,7 @@ namespace CXY.CJS.Tests.TestDatas
             await _context.Database.MigrateAsync();
 
             InitWebSite();
-
+            InitMenu();
             InitUser();
 
             await Task.WhenAll(_actionTasks);
@@ -31,6 +31,12 @@ namespace CXY.CJS.Tests.TestDatas
         private void InitUser()
         {
             AddTask(_context.Users.AddAsync(UserDatas.SuperWebSiteMasterUser));
+        }
+
+        private void InitMenu()
+        {
+            AddTask(_context.Menus.AddAsync(MenuDatas.UserModule));
+            AddTask(_context.Menus.AddAsync(MenuDatas.DedeletedModule));
         }
 
         private void InitWebSite()

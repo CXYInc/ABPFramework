@@ -419,7 +419,7 @@ namespace CXY.CJS.Application
             // 更新站点
             var insertWebsite = WebSiteFull.MapFrom(input);
             insertWebsite.WebSite.Id = input.Id;
-            await _siteFullRepository.SaveAsync(insertWebsite);
+            await _siteFullRepository.UpdateAsync(insertWebsite);
 
             // 站点管理员的 WorkerName 和 PROVINCEID  变更时
             var userAtt = await _userAttRepository

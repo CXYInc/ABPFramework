@@ -2,7 +2,7 @@
 
 namespace CXY.CJS.Tests.TestDatas
 {
-    public class WebSiteDatas
+    public static class WebSiteDatas
     {
         public static readonly WebSite SuperWebSite = new WebSite
         {

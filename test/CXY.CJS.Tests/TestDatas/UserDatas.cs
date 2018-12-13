@@ -2,7 +2,7 @@
 
 namespace CXY.CJS.Tests.TestDatas
 {
-    public class UserDatas
+    public static class UserDatas
     {
         public static readonly User SuperWebSiteMasterUser=new User
         {
