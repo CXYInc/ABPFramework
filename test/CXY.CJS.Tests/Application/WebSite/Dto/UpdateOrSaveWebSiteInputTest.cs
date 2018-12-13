@@ -19,6 +19,7 @@ namespace CXY.CJS.Tests.Application.WebSite
         {
             var full = WebSiteFull.MapFrom(InputSample.NewSaveWebSiteInput);
             Assert.NotNull(full.WebSite);
+            await Task.CompletedTask;
         }
     }
 }

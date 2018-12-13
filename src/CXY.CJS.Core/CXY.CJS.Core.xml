@@ -9,6 +9,11 @@
             52abp定义的默认权限变量名称
             </summary>
         </member>
+        <member name="T:CXY.CJS.Config.ConfigModelAttribute">
+            <summary>
+            配置模型标志
+            </summary>
+        </member>
         <member name="F:CXY.CJS.Constant.ClaimConst.WebSiteId">
             <summary>
             站点ID
@@ -28,6 +33,93 @@
             <summary>
             实体长度单位
             </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.Equal">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.NotEqual">
+            <summary>
+            不等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.Greater">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.GreaterEqual">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.Less">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.LessEqual">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.Starts">
+            <summary>
+            头匹配
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.Ends">
+            <summary>
+            尾匹配
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.Contains">
+            <summary>
+            模糊匹配
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.In">
+            <summary>
+            In
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Enum.ComparableEnum.NotIn">
+            <summary>
+            Not In
+            </summary>
+        </member>
+        <member name="M:CXY.CJS.Utils.Encryptor.MD5Entry(System.String)">
+            <summary>
+            将明文加密成md5格式的密文
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Utils.Encryptor.MD5EntryCN(System.String)">
+            <summary>
+            将明文加密成md5格式的密文(带中文的)
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Utils.RNG.Next">
+            <summary> 
+            产生一个非负数的乱数 
+            </summary> 
+        </member>
+        <member name="M:CXY.CJS.Utils.RNG.Next(System.Int32)">
+            <summary> 
+            产生一个非负数且最大值在 max 以下的乱数 
+            </summary> 
+            <param name="max">最大值</param> 
+        </member>
+        <member name="M:CXY.CJS.Utils.RNG.Next(System.Int32,System.Int32)">
+            <summary> 
+            产生一个非负数且最小值在 min 以上最大值在 max 以下的乱数 
+            </summary> 
+            <param name="min">最小值</param> 
+            <param name="max">最大值</param> 
         </member>
         <member name="M:CXY.CJS.HttpClient.HttpClientHelper.PostStringAsync(CXY.CJS.HttpClient.HttpClientRequest)">
             <summary>
@@ -90,11 +182,46 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="P:CXY.CJS.WebApi.IHasSort.SortField">
+            <summary>
+            被排序的字段
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.WebApi.IHasSort.SortOrder">
+            <summary>
+            倒序还是正序
+            </summary>
+        </member>
         <member name="T:CXY.CJS.WebApi.ApiPageBaseResult`1">
             <summary>
             Api响应分页实体
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:CXY.CJS.WebApi.ApiPageBaseResult`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.WebApi.ApiPageBaseResult`1.PageSize">
+            <summary>
+            页面大小
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.WebApi.ApiPageBaseResult`1.PageTotal">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.WebApi.ApiPageBaseResult`1.PageData">
+            <summary>
+            当前页数据
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.WebApi.ApiPageBaseResult`1.Count">
+            <summary>
+            总记录数
+            </summary>
         </member>
         <member name="T:CXY.CJS.WebApi.ApiPageResult`1">
             <summary>

@@ -4,12 +4,14 @@ using System.Text;
 
 namespace CXY.CJS.Application.Dtos
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserOutDto
     {
         /// <summary>
         /// 用户ID
         /// </summary>
-        /// <summary>
         public string Id { get; set; }
 
         /// <summary>
