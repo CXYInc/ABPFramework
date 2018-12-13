@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CXY.CJS.Config;
+using CXY.CJS.Core.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

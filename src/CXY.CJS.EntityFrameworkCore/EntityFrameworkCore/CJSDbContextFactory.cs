@@ -1,6 +1,6 @@
-﻿using CXY.CJS.Configuration;
-using CXY.CJS.Constant;
-using CXY.CJS.Web;
+﻿using CXY.CJS.Core.Configuration;
+using CXY.CJS.Core.Constant;
+using CXY.CJS.Core.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;

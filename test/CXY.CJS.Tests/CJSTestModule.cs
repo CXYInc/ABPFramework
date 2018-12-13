@@ -9,7 +9,7 @@ using Abp.TestBase;
 using CXY.CJS.EntityFrameworkCore;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
-using CXY.CJS.Config;
+using CXY.CJS.Core.Config;
 using CXY.CJS.Tests.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

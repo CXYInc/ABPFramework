@@ -3,7 +3,7 @@ using Abp.AspNetCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CXY.CJS.Configuration;
-using CXY.CJS.Constant;
+using CXY.CJS.Core.Constant;
 using CXY.CJS.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

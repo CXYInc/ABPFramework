@@ -2,6 +2,7 @@
 using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using CXY.CJS.Core;
 using CXY.CJS.Repository;
 
 namespace CXY.CJS.EntityFrameworkCore

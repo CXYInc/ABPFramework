@@ -4,7 +4,7 @@ using CXY.CJS.Menu.Dto;
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Role.Dto;
 
-namespace CXY.CJS.Menu
+namespace CXY.CJS.Application
 {
     public interface IMenuService : IApplicationService
     {
@@ -25,16 +25,16 @@ namespace CXY.CJS.Menu
         /// <summary>
         /// 新增菜单
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        Task<bool> SaveMenu(SaveMenuInput id);
+        Task<bool> SaveMenu(SaveMenuInput input);
 
         /// <summary>
         /// 更新菜单
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        Task<bool> UpdateMenu(UpdateMenuInput id);
+        Task<bool> UpdateMenu(UpdateMenuInput input);
 
         /// <summary>
         /// 删除菜单

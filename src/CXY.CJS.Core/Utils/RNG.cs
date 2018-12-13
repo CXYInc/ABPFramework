@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace CXY.CJS.Utils
+namespace CXY.CJS.Core.Utils
 {
     public class RNG
     {

@@ -1,17 +1,15 @@
-﻿using System;
-using Abp.Domain.Entities;
-using CXY.CJS.EntityFrameworkCore;
-using CXY.CJS.Enum;
-using CXY.CJS.WebApi;
+﻿using AutoMapper.QueryableExtensions;
+using CXY.CJS.Core.WebApi;
+using CXY.CJS.Repository.Extensions;
+using CXY.CJS.Repository.SeedWork;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AutoMapper.QueryableExtensions;
-using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.Repository.Extensions;
+using CXY.CJS.Core.Extensions;
 
 namespace CXY.CJS.Extensions
 {

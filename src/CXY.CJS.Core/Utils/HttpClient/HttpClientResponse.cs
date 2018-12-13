@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace CXY.CJS.HttpClient
+namespace CXY.CJS.Core.HttpClient
 {
     public class HttpClientResponse<T> where T : class
     {

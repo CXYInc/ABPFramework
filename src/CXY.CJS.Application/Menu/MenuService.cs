@@ -3,11 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Abp.AutoMapper;
 using Abp.UI;
+using CXY.CJS.Application;
 using CXY.CJS.Menu.Dto;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.Extensions;
 using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 
 namespace CXY.CJS.Menu
 {
@@ -45,17 +46,32 @@ namespace CXY.CJS.Menu
         /// <summary>
         /// 新增菜单
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public Task<bool> SaveMenu(SaveMenuInput id)
+        public async Task<bool> SaveMenu(SaveMenuInput input)
         {
-            throw new System.NotImplementedException();
+            var saveMenuLeval = 0;
+            if (input.ParentId != null)
+            {
+                var parentMenu = await _menuRepository.FirstOrDefaultAsync(input.ParentId);
+                if (parentMenu == null)
+                {
+                    throw  new UserFriendlyException("父站点错误！");
+                }
+                saveMenuLeval = parentMenu.MenuLeval + 1;
+            }
+            
+            var saveMenu = input.MapTo<Model.Menu>();
+            saveMenu.Id = Guid.NewGuid().ToString();
+            saveMenu.MenuLeval = saveMenuLeval;
+            await _menuRepository.InsertAsync(saveMenu);
+            return true;
         }
 
         /// <summary>
         /// 更新菜单
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         public async Task<bool> UpdateMenu(UpdateMenuInput input)
         {

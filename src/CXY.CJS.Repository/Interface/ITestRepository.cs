@@ -7,5 +7,8 @@ namespace CXY.CJS.Repository
         Test Add(Test entity);
 
         Test GetTest(string id);
+
+        void Test();
+        
     }
 }

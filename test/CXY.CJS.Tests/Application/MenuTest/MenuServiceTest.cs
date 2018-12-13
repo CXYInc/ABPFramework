@@ -1,15 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using Abp.AutoMapper;
+﻿using Abp.AutoMapper;
 using Abp.UI;
 using CXY.CJS.Menu;
 using CXY.CJS.Menu.Dto;
-using CXY.CJS.Role;
 using CXY.CJS.Tests.TestDatas;
-using Newtonsoft.Json.Linq;
+using System;
+using System.Threading.Tasks;
+using CXY.CJS.Application;
 using Xunit;
 
-namespace CXY.CJS.Tests.Application.Menu
+namespace CXY.CJS.Tests.Application.MenuTest
 {
     public class MenuServiceTest : IClassFixture<CJSTestBase>
     {
@@ -59,6 +58,24 @@ namespace CXY.CJS.Tests.Application.Menu
                 PageSize = 10
             });
             Assert.NotEmpty(noFilterResult.Datas);
+        }
+
+        [Fact]
+        public async Task SaveMenu_When_Success()
+        {
+          
+        }
+
+
+        [Fact]
+        public async Task SaveMenu_When_Fail()
+        {
+            await Assert.ThrowsAsync<UserFriendlyException>(async () =>
+            {
+                var insertOutput = MenuDatas.UserModule.MapTo<SaveMenuInput>();
+                insertOutput.ParentId = Guid.NewGuid().ToString();
+                await _service.SaveMenu(insertOutput);
+            });
         }
 
         [Fact]

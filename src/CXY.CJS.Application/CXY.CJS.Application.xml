@@ -29,6 +29,88 @@
             配置WebSite的AutoMapper
             </summary>s
         </member>
+        <member name="M:CXY.CJS.Application.IMenuService.GetMenu(System.String)">
+            <summary>
+            获取菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.IMenuService.ListMenu(CXY.CJS.Menu.Dto.ListMenuInput)">
+            <summary>
+            菜单列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.IMenuService.SaveMenu(CXY.CJS.Menu.Dto.SaveMenuInput)">
+            <summary>
+            新增菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.IMenuService.UpdateMenu(CXY.CJS.Menu.Dto.UpdateMenuInput)">
+            <summary>
+            更新菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.IMenuService.RemoveMenu(System.String)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CXY.CJS.Application.MenuService">
+            <summary>
+            菜单服务
+            </summary>
+        </member>
+        <member name="M:CXY.CJS.Application.MenuService.#ctor(CXY.CJS.Repository.IMenuRepository,Abp.Domain.Repositories.IRepository{CXY.CJS.Model.Menu,System.String})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="menuRepository"></param>
+            <param name="repository"></param>
+        </member>
+        <member name="M:CXY.CJS.Application.MenuService.GetMenu(System.String)">
+            <summary>
+            获取菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.MenuService.ListMenu(CXY.CJS.Menu.Dto.ListMenuInput)">
+            <summary>
+            菜单列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.MenuService.SaveMenu(CXY.CJS.Menu.Dto.SaveMenuInput)">
+            <summary>
+            新增菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.MenuService.UpdateMenu(CXY.CJS.Menu.Dto.UpdateMenuInput)">
+            <summary>
+            更新菜单
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.MenuService.RemoveMenu(System.String)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:CXY.CJS.Application.Dtos.UserEditInputDto">
             <summary>
             用户业务编辑实体
@@ -354,7 +436,7 @@
             测试服务
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.TestService.#ctor(CXY.CJS.Repository.ITestRepository,CXY.CJS.HttpClient.HttpClientHelper,Abp.ObjectMapping.IObjectMapper)">
+        <member name="M:CXY.CJS.Application.TestService.#ctor(CXY.CJS.Repository.ITestRepository,Abp.ObjectMapping.IObjectMapper)">
             <summary>
             构造函数自动注入
             </summary>
@@ -499,7 +581,7 @@
              WebSite应用层服务的接口实现方法  
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.#ctor(Abp.Domain.Repositories.IRepository{CXY.CJS.Model.WebSite,System.String},CXY.CJS.Repository.IWebSiteFullRepository,Abp.Domain.Repositories.IRepository{CXY.CJS.Model.UserJf,System.String},Abp.Domain.Repositories.IRepository{CXY.CJS.Model.UserAtt,System.String},Abp.Domain.Repositories.IRepository{CXY.CJS.Model.User,System.String},CXY.CJS.Config.SysAlipayConfig,CXY.CJS.Config.SysWeiXinPayConfig)">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.#ctor(Abp.Domain.Repositories.IRepository{CXY.CJS.Model.WebSite,System.String},CXY.CJS.Repository.IWebSiteFullRepository,Abp.Domain.Repositories.IRepository{CXY.CJS.Model.UserJf,System.String},Abp.Domain.Repositories.IRepository{CXY.CJS.Model.UserAtt,System.String},Abp.Domain.Repositories.IRepository{CXY.CJS.Model.User,System.String},CXY.CJS.Core.Config.SysAlipayConfig,CXY.CJS.Core.Config.SysWeiXinPayConfig)">
              <summary>
              构造函数 
             </summary>
@@ -613,75 +695,20 @@
             权重
             </summary>
         </member>
-        <member name="M:CXY.CJS.Menu.IMenuService.GetMenu(System.String)">
+        <member name="T:CXY.CJS.Role.Dto.ListRoleInput">
             <summary>
-            获取菜单
+            
             </summary>
-            <param name="id"></param>
-            <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Menu.IMenuService.ListMenu(CXY.CJS.Menu.Dto.ListMenuInput)">
+        <member name="P:CXY.CJS.Role.Dto.ListRoleInput.SortField">
             <summary>
-            菜单列表
+            排序字段
             </summary>
-            <param name="input"></param>
-            <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Menu.IMenuService.SaveMenu(CXY.CJS.Menu.Dto.SaveMenuInput)">
+        <member name="P:CXY.CJS.Role.Dto.ListRoleInput.SortOrder">
             <summary>
-            新增菜单
+            排序方式
             </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Menu.IMenuService.UpdateMenu(CXY.CJS.Menu.Dto.UpdateMenuInput)">
-            <summary>
-            更新菜单
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Menu.IMenuService.RemoveMenu(System.String)">
-            <summary>
-            删除菜单
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Menu.MenuService.GetMenu(System.String)">
-            <summary>
-            获取菜单
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Menu.MenuService.ListMenu(CXY.CJS.Menu.Dto.ListMenuInput)">
-            <summary>
-            菜单列表
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Menu.MenuService.SaveMenu(CXY.CJS.Menu.Dto.SaveMenuInput)">
-            <summary>
-            新增菜单
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Menu.MenuService.UpdateMenu(CXY.CJS.Menu.Dto.UpdateMenuInput)">
-            <summary>
-            更新菜单
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Menu.MenuService.RemoveMenu(System.String)">
-            <summary>
-            删除菜单
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
         </member>
         <member name="M:CXY.CJS.Role.IRoleService.ListRole(CXY.CJS.Role.Dto.ListRoleInput)">
             <summary>

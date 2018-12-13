@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CXY.CJS.WebApi
+namespace CXY.CJS.Core.WebApi
 {
     /// <summary>
     /// Api响应分页实体

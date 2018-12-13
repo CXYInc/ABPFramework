@@ -1,4 +1,4 @@
-﻿namespace CXY.CJS.Config
+﻿namespace CXY.CJS.Core.Config
 {
     [ConfigModel]
     public class SysAlipayConfig

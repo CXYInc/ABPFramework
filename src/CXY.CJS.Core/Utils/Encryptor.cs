@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace CXY.CJS.Utils
+namespace CXY.CJS.Core.Utils
 {
     public class Encryptor
     {

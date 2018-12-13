@@ -1,9 +1,9 @@
-﻿using CXY.CJS.Enum;
+﻿using CXY.CJS.Core.Enum;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 
-namespace CXY.CJS.WebApi
+namespace CXY.CJS.Core.WebApi
 {
     public interface IHasSort
     {

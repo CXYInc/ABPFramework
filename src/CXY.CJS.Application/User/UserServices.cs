@@ -5,7 +5,7 @@ using Abp.Extensions;
 using Abp.ObjectMapping;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Model;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

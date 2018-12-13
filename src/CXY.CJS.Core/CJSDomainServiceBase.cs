@@ -1,9 +1,7 @@
-
-
 using Abp.Domain.Services;
-using CXY.CJS.Constant;
+using CXY.CJS.Core.Constant;
 
-namespace CXY.CJS
+namespace CXY.CJS.Core
 {
 	public abstract class CJSDomainServiceBase : DomainService
 	{

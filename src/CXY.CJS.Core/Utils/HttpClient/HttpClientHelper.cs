@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace CXY.CJS.HttpClient
+namespace CXY.CJS.Core.HttpClient
 {
     public class HttpClientHelper
     {
