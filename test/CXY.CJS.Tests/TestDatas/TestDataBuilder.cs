@@ -22,7 +22,8 @@ namespace CXY.CJS.Tests.TestDatas
             await _context.Database.MigrateAsync();
 
             AddTask(_context.WebSites.AddAsync(WebSiteDatas.SuperWebSite));
-
+            AddTask(_context.WebSites.AddAsync(WebSiteDatas.DedeletedWebSite));
+            
             await Task.WhenAll(_actionTasks);
         }
 

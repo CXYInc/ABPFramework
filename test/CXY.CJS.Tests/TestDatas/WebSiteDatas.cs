@@ -12,5 +12,14 @@ namespace CXY.CJS.Tests.TestDatas
             WebSiteMater = "999999201110290000000000000001"
         };
 
+        public static WebSite DedeletedWebSite => new WebSite
+        {
+            Id = "999991",
+            WebSiteKey = "CS9991",
+            WebSiteName = "废弃站点",
+            WebSiteMater = "999999201110290000000000000001",
+            IsDeleted=true,
+        };
+
     }
 }

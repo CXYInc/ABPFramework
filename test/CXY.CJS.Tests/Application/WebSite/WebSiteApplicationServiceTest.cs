@@ -26,11 +26,44 @@ namespace CXY.CJS.Tests.Application.WebSite
         [Fact]
         public async Task GetWebSite_When_NotFund()
         {
-            var result = await _service.GetWebSite(Guid.NewGuid().ToString() + "1234");
-            Assert.Null(result);
+            var noExistResult = await _service.GetWebSite(Guid.NewGuid().ToString() + "1234");
+            Assert.Null(noExistResult);
+
+            var deletedListResult = await _service.GetWebSite(WebSiteDatas.DedeletedWebSite.Id);
+            Assert.Null(deletedListResult);
         }
 
-        
+
+        [Fact]
+        public async Task GetWebSiteList_When_NotFund()
+        {
+            var thanCountResult = await _service.ListWebSite(new ListWebSiteInput
+            {
+                PageIndex = 100,
+                PageSize = 10
+            });
+            Assert.Empty(thanCountResult.Datas);
+
+            var deletedListResult = await _service.ListWebSite(new ListWebSiteInput
+            {
+                Key = WebSiteDatas.DedeletedWebSite.WebSiteName
+            });
+
+            Assert.Empty(deletedListResult.Datas);
+        }
+
+        [Fact]
+        public async Task GetWebSiteList_When_Found()
+        {
+            var noFilterResult = await _service.ListWebSite(new ListWebSiteInput
+            {
+                PageIndex = 1,
+                PageSize = 10
+            });
+            Assert.NotEmpty(noFilterResult.Datas);
+        }
+
+
 
         [Fact]
         public async Task SaveWebSite_When_Existed_WebSiteId_Or_WebSiteKey()

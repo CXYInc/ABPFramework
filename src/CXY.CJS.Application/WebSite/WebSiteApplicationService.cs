@@ -226,11 +226,11 @@ namespace CXY.CJS.Application
 
         public async Task<PaginationResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input)
         {
-            Expression<Func<WebSiteFull, bool>> where = null;
+            Expression<Func<WebSiteFull, bool>> where = i=>i.WebSite.IsDeleted==false;
 
             if (input.IsHide)
             {
-                where = i => i.WebSite.EndTime > DateTime.Now;
+                where = where.And(i=>i.WebSite.EndTime > DateTime.Now);
             }
             if (!string.IsNullOrWhiteSpace(input.Key))
             {
@@ -260,6 +260,10 @@ namespace CXY.CJS.Application
             var webSite = await _siteFullRepository.GetAsync(id);
             if (webSite != null)
             {
+                if (webSite.WebSite.IsDeleted)
+                {
+                    return null;
+                }
                 result = WebSiteFull.MapTo<GetWebsitOutput>(webSite);
                 if (!string.IsNullOrEmpty(webSite.WebSite.WebSiteMater))
                 {
