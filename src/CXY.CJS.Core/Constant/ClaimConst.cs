@@ -1,5 +1,8 @@
 ﻿namespace CXY.CJS.Constant
 {
+    /// <summary>
+    /// Claim
+    /// </summary>
     public class ClaimConst
     {
         /// <summary>
@@ -16,5 +19,10 @@
         /// 用户名称
         /// </summary>
         public const string UserName = "UserName";
+
+        /// <summary>
+        /// 请求来源平台
+        /// </summary>
+        public const string Platform = "Platform";
     }
 }

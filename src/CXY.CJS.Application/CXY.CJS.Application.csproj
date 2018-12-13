@@ -16,6 +16,9 @@
     <OutputPath></OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="CXY.CJS.Application.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
     <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
     <ProjectReference Include="..\CXY.CJS.Repository\CXY.CJS.Repository.csproj" />
