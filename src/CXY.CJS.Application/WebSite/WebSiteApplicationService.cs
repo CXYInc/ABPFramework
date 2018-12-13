@@ -19,9 +19,9 @@ using CXY.CJS.Repository.MixModel;
 using CXY.CJS.Repository.SeedWork;
 using Abp.Specifications;
 using Abp.UI;
-using CXY.CJS.Config;
-using CXY.CJS.Extensions;
-using CXY.CJS.Utils;
+using CXY.CJS.Core.Config;
+using CXY.CJS.Core.Extensions;
+using CXY.CJS.Core.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Application

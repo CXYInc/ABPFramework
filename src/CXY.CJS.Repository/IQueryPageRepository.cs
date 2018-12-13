@@ -1,8 +1,8 @@
 ﻿using System;
 using Abp.Dependency;
 using Abp.Domain.Entities;
-using CXY.CJS.Enum;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.Enum;
+using CXY.CJS.Core.WebApi;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -15,7 +15,7 @@ namespace CXY.CJS.Repository
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPrimaryKey"></typeparam>
-    public interface IQueryPageRepository<TEntity> :ITransientDependency
+    public interface IQueryPageRepository<TEntity> : ITransientDependency
     {
         /// <summary>
         /// 带条件排序的分页查询
@@ -38,7 +38,6 @@ namespace CXY.CJS.Repository
         /// <param name="sorts">排序条件</param>
         /// <param name="where">where表达式</param>
         /// <returns></returns>
-        Task<PaginationResult<TResult>> QueryByWhereAsync<TResult>(Pagination pagination, IEnumerable<IHasSort> sorts,
-            Expression<Func<TEntity,bool>> @where);
+        Task<PaginationResult<TResult>> QueryByWhereAsync<TResult>(Pagination pagination, IEnumerable<IHasSort> sorts, Expression<Func<TEntity, bool>> @where);
     }
 }

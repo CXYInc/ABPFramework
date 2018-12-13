@@ -1,5 +1,4 @@
-﻿using CXY.CJS.Constant;
-using Microsoft.AspNetCore.Http;
+﻿using CXY.CJS.Core.Constant;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;

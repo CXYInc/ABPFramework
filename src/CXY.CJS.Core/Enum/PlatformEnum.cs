@@ -1,4 +1,6 @@
-﻿namespace CXY.CJS.Enum
+﻿using System.ComponentModel;
+
+namespace CXY.CJS.Core.Enum
 {
     /// <summary>
     /// 平台枚举
@@ -8,11 +10,13 @@
         /// <summary>
         /// 移动端应用
         /// </summary>
-        APP=1,
+        [Description("APP")]
+        APP =1,
 
         /// <summary>
         /// PC应用
         /// </summary>
+        [Description("PC")]
         PC
     }
 }

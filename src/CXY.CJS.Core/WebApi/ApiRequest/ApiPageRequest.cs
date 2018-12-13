@@ -1,4 +1,4 @@
-﻿namespace CXY.CJS.WebApi
+﻿namespace CXY.CJS.Core.WebApi
 {
     /// <summary>
     /// Api分页请求实体

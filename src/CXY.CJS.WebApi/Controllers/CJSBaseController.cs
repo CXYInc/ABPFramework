@@ -1,5 +1,5 @@
 ﻿using Abp.AspNetCore.Mvc.Controllers;
-using CXY.CJS.Extensions;
+using CXY.CJS.Core.Extensions;
 
 namespace CXY.CJS.WebApi.Controllers
 {

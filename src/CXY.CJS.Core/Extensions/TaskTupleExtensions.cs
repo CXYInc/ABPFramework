@@ -5,7 +5,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CXY.CJS.Extensions
+namespace CXY.CJS.Core.Extensions
 {
     /// <summary>
     /// 异步任务组扩展

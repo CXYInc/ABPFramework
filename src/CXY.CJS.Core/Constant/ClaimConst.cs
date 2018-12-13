@@ -1,4 +1,4 @@
-﻿namespace CXY.CJS.Constant
+﻿namespace CXY.CJS.Core.Constant
 {
     /// <summary>
     /// Claim

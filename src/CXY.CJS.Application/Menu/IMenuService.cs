@@ -4,7 +4,7 @@ using CXY.CJS.Menu.Dto;
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Role.Dto;
 
-namespace CXY.CJS.Menu
+namespace CXY.CJS.Application
 {
     public interface IMenuService : IApplicationService
     {

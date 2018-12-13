@@ -2,7 +2,7 @@
 using Abp.Extensions;
 using Microsoft.Extensions.Configuration;
 
-namespace CXY.CJS.Configuration
+namespace CXY.CJS.Core.Configuration
 {
     public static class AppConfigurations
     {

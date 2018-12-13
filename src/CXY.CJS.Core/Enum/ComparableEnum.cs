@@ -1,4 +1,4 @@
-﻿namespace CXY.CJS.Enum
+﻿namespace CXY.CJS.Core.Enum
 {
     /// <summary>
     /// 比较方式枚举

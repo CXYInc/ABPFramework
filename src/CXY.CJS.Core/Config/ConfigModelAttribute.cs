@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CXY.CJS.Config
+namespace CXY.CJS.Core.Config
 {
     /// <summary>
     /// 配置模型标志

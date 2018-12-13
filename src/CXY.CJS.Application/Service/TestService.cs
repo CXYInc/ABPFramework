@@ -1,10 +1,10 @@
 ﻿using Abp.Application.Services;
 using Abp.ObjectMapping;
 using CXY.CJS.Application.Dtos;
-using CXY.CJS.HttpClient;
+using CXY.CJS.Core.HttpClient;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +18,6 @@ namespace CXY.CJS.Application
     public class TestService : CJSAppServiceBase, ITestService
     {
         private readonly ITestRepository _testRepository;
-        private readonly HttpClientHelper _httpClientHelper;
         private readonly IObjectMapper _objectMapper;
 
         /// <summary>
@@ -27,10 +26,9 @@ namespace CXY.CJS.Application
         /// <param name="testRepository"></param>
         /// <param name="httpClientHelper"></param>
         /// <param name="objectMapper"></param>
-        public TestService(ITestRepository testRepository, HttpClientHelper httpClientHelper, IObjectMapper objectMapper)
+        public TestService(ITestRepository testRepository, IObjectMapper objectMapper)
         {
             _testRepository = testRepository;
-            _httpClientHelper = httpClientHelper;
             _objectMapper = objectMapper;
         }
 
@@ -40,11 +38,18 @@ namespace CXY.CJS.Application
         /// <param name="entity"></param>
         /// <returns></returns>
         [HttpPost("Create")]
-        [AllowAnonymous]        
+        [AllowAnonymous]
         public Test Add(TestDtoInput entity)
         {
             var test = _objectMapper.Map<Test>(entity);
             return _testRepository.Add(test);
+        }
+
+        [HttpPost("Update")]
+        [AllowAnonymous]
+        public void Update()
+        {
+            _testRepository.Test();
         }
 
         /// <summary>

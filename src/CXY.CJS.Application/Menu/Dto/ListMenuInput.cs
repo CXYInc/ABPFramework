@@ -1,6 +1,6 @@
-﻿using CXY.CJS.Enum;
+﻿using CXY.CJS.Core.Enum;
 using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 
 namespace CXY.CJS.Menu.Dto
 {

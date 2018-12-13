@@ -2,6 +2,8 @@
 using Abp.EntityFrameworkCore;
 using Abp.EntityFrameworkCore.Repositories;
 using CXY.CJS.Repository;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CXY.CJS.EntityFrameworkCore
 {
@@ -9,6 +11,11 @@ namespace CXY.CJS.EntityFrameworkCore
     {
         public CJSRepositoryBase(IDbContextProvider<CJSDbContext> dbContextProvider) : base(dbContextProvider)
         {
+        }
+
+        public override IQueryable<TEntity> GetAll()
+        {
+            return base.GetAll().AsNoTracking();
         }
     }
 

@@ -1,11 +1,11 @@
 ﻿using Abp.Dependency;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-using CXY.CJS.Config;
-using CXY.CJS.HttpClient;
-using CXY.CJS.Localization;
+using CXY.CJS.Core.Config;
+using CXY.CJS.Core.HttpClient;
+using CXY.CJS.Core.Localization;
 
-namespace CXY.CJS
+namespace CXY.CJS.Core
 {
     public class CJSCoreModule : AbpModule
     {

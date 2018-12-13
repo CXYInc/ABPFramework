@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using CXY.CJS.Model;
-using CXY.CJS.Constant;
+using CXY.CJS.Core.Constant;
 
 namespace CXY.CJS.EntityFrameworkCore
 {

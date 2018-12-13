@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using CXY.CJS.Enum;
+using CXY.CJS.Core.Enum;
 using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 
 namespace CXY.CJS.Repository.Extensions
 {

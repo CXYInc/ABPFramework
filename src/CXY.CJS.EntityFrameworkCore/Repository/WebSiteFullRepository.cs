@@ -8,7 +8,7 @@ using CXY.CJS.Extensions;
 using CXY.CJS.Model;
 using CXY.CJS.Repository.MixModel;
 using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 using Microsoft.EntityFrameworkCore;
 
 namespace CXY.CJS.Repository

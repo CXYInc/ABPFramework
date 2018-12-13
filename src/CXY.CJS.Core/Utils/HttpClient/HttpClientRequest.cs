@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CXY.CJS.HttpClient
+namespace CXY.CJS.Core.HttpClient
 {
     public class HttpClientRequest
     {

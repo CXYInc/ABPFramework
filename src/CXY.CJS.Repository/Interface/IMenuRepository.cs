@@ -3,7 +3,7 @@ using CXY.CJS.Model;
 
 namespace CXY.CJS.Repository
 {
-    public interface IMenuRepository : IRepository<Menu, string>, ICJSRepositoryBase<Menu, string>, IQueryPageRepository<Menu>
+    public interface IMenuRepository : ICJSRepositoryBase<Menu, string>, IQueryPageRepository<Menu>
     {
     }
 }

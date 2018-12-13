@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CXY.CJS.Authorization
+namespace CXY.CJS.Core.Authorization
 {
 	/// <summary>
     /// 52abp定义的默认权限变量名称

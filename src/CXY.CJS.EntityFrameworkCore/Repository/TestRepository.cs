@@ -13,7 +13,7 @@ namespace CXY.CJS.EntityFrameworkCore
         private readonly IDbContextProvider<CJSDbContext> _dbContextProvider;
         private readonly IRepository<Test, string> _repository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
-        public TestRepository(IDbContextProvider<CJSDbContext> dbContextProvider, IUnitOfWorkManager unitOfWorkManager, IRepository<Test, string>  repository) : base(dbContextProvider)
+        public TestRepository(IDbContextProvider<CJSDbContext> dbContextProvider, IUnitOfWorkManager unitOfWorkManager, IRepository<Test, string> repository) : base(dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;
             _repository = repository;
@@ -22,15 +22,13 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public Test Add(Test entity)
         {
-            var t = base.FirstOrDefault("7");
-
             //_repository.Insert(entity);
 
-            //Insert(entity);
+            Insert(entity);
 
-            var list = base.GetAll().Where(x => x.Id == "").AsNoTracking().ToListAsync().Result;
+            //var list = base.GetAll().Where(x => x.Id == "").AsNoTracking().ToListAsync().Result;
 
-            list.ForEach(x => x.Name = x.Id);
+            //list.ForEach(x => x.Name = x.Id);
 
             //_unitOfWorkManager.Current.SaveChanges();
 
@@ -46,6 +44,14 @@ namespace CXY.CJS.EntityFrameworkCore
         public Test GetTest(string id)
         {
             return Get(id);
+        }
+
+
+        public void Test()
+        {
+            var ts = GetAll().ToList();
+
+            ts.ForEach(x => x.Name = "2");
         }
     }
 }

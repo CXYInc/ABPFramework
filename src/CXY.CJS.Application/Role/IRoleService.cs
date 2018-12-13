@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services;
 using CXY.CJS.Role.Dto;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 using System.Threading.Tasks;
 using CXY.CJS.Repository.SeedWork;
 
