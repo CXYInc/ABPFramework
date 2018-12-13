@@ -8,7 +8,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace>CXY.CJS</RootNamespace>
+    <RootNamespace>CXY.CJS.Core</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\github\CXY.CJS\src\CXY.CJS.Core\CXY.CJS.Core.xml</DocumentationFile>
