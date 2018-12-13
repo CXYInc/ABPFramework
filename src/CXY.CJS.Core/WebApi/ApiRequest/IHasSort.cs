@@ -15,6 +15,6 @@ namespace CXY.CJS.WebApi
         /// <summary>
         /// 倒序还是正序
         /// </summary>
-        SortEnum SortOrder { get; set; }
+        SortEnum SortOrder { get; set; } 
     }
 }

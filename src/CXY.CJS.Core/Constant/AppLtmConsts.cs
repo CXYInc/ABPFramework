@@ -1,11 +1,18 @@
-
-
 namespace CXY.CJS.Constant
 {
+    /// <summary>
+    /// 默认分页常量
+    /// </summary>
 	public class PageLtmConsts
 	{
-		// TODO: 52ABP代码生成器默认生成的一些常量类 ，不影响业务逻辑点
+		/// <summary>
+        /// 默认页面大小
+        /// </summary>
 		public const int DefaultPageSize = 10;
+
+        /// <summary>
+        /// 最大页面大小
+        /// </summary>
 		public const int MaxPageSize = 1000;
 	}
 }

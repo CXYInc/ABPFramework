@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace CXY.CJS.Enum
+﻿namespace CXY.CJS.Enum
 {
+    /// <summary>
+    /// 比较方式枚举
+    /// </summary>
     public enum ComparableEnum
     {
         /// <summary>

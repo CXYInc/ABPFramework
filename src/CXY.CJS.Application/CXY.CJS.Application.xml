@@ -54,7 +54,7 @@
             用户真实名称
             </summary>
         </member>
-        <member name="P:CXY.CJS.Application.Dtos.UserEditInputDto.Id">
+        <member name="P:CXY.CJS.Application.Dtos.UserEditInputDto.WebSiteId">
             <summary>
             站点ID
             </summary>
@@ -99,7 +99,7 @@
             用户真实名称
             </summary>
         </member>
-        <member name="P:CXY.CJS.Application.Dtos.UserOutDto.Id">
+        <member name="P:CXY.CJS.Application.Dtos.UserOutDto.WebSiteId">
             <summary>
             站点ID
             </summary>
@@ -299,7 +299,7 @@
             IsDeleted
             </summary>
         </member>
-        <member name="P:CXY.CJS.Application.Dtos.WebSiteListDto.Id">
+        <member name="P:CXY.CJS.Application.Dtos.WebSiteListDto.WebSiteId">
             <summary>
             Id
             </summary>
@@ -487,6 +487,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.ResetPassword(CXY.CJS.Application.Dtos.ResetPasswordInput)">
+            <summary>
+            重置密码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:CXY.CJS.Application.WebSiteAppService">
              <summary>
              WebSite应用层服务的接口实现方法  
@@ -515,6 +522,165 @@
             <summary>
             新增站点
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.WebSiteAppService.UpdateWebSite(CXY.CJS.Application.Dtos.UpdateWebSiteInput)">
+            <summary>
+            更新站点
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.WebSiteAppService.ResetPassword(CXY.CJS.Application.Dtos.ResetPasswordInput)">
+            <summary>
+            重设站点密码
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.MenuOutputItem.IsSys">
+            <summary>
+            是否系统菜单
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.MenuOutputItem.IsOut">
+            <summary>
+            是否为外部链接
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.MenuOutputItem.IsParent">
+            <summary>
+            是否拥有下级菜单
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.MenuOutputItem.TargetFrame">
+            <summary>
+            目标框架
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.MenuOutputItem.Weight">
+            <summary>
+            权重
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.SaveMenuInput.IsSys">
+            <summary>
+            是否系统菜单
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.SaveMenuInput.IsOut">
+            <summary>
+            是否为外部链接
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.SaveMenuInput.IsParent">
+            <summary>
+            是否拥有下级菜单
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.SaveMenuInput.TargetFrame">
+            <summary>
+            目标框架
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.SaveMenuInput.Weight">
+            <summary>
+            权重
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.UpdateMenuInput.IsSys">
+            <summary>
+            是否系统菜单
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.UpdateMenuInput.IsOut">
+            <summary>
+            是否为外部链接
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.UpdateMenuInput.IsParent">
+            <summary>
+            是否拥有下级菜单
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.UpdateMenuInput.TargetFrame">
+            <summary>
+            目标框架
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Menu.Dto.UpdateMenuInput.Weight">
+            <summary>
+            权重
+            </summary>
+        </member>
+        <member name="M:CXY.CJS.Menu.IMenuService.GetMenu(System.String)">
+            <summary>
+            获取菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.IMenuService.ListMenu(CXY.CJS.Menu.Dto.ListMenuInput)">
+            <summary>
+            菜单列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.IMenuService.SaveMenu(CXY.CJS.Menu.Dto.SaveMenuInput)">
+            <summary>
+            新增菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.IMenuService.UpdateMenu(CXY.CJS.Menu.Dto.UpdateMenuInput)">
+            <summary>
+            更新菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.IMenuService.RemoveMenu(System.String)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.MenuService.GetMenu(System.String)">
+            <summary>
+            获取菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.MenuService.ListMenu(CXY.CJS.Menu.Dto.ListMenuInput)">
+            <summary>
+            菜单列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.MenuService.SaveMenu(CXY.CJS.Menu.Dto.SaveMenuInput)">
+            <summary>
+            新增菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.MenuService.UpdateMenu(CXY.CJS.Menu.Dto.UpdateMenuInput)">
+            <summary>
+            更新菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Menu.MenuService.RemoveMenu(System.String)">
+            <summary>
+            删除菜单
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:CXY.CJS.Role.IRoleService.ListRole(CXY.CJS.Role.Dto.ListRoleInput)">

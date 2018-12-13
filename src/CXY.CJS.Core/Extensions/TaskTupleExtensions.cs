@@ -7,21 +7,48 @@ using System.Threading.Tasks;
 
 namespace CXY.CJS.Extensions
 {
+    /// <summary>
+    /// 异步任务组扩展
+    /// </summary>
     public static class TaskTupleExtensions
     {
         #region (Task<T1>)
-        public static TaskAwaiter<T1>
-            GetAwaiter<T1>(this ValueTuple<Task<T1>> tasks) => tasks.Item1.GetAwaiter();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <param name="tasks"></param>
+        /// <returns></returns>
+        public static TaskAwaiter<T1> GetAwaiter<T1>(this ValueTuple<Task<T1>> tasks)
+        {
+            return tasks.Item1.GetAwaiter();
+        }
 
-        public static ConfiguredTaskAwaitable<T1> ConfigureAwait<T1>(
-            this ValueTuple<Task<T1>> tasks, bool continueOnCapturedContext) =>
-            tasks.Item1.ConfigureAwait(continueOnCapturedContext);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <param name="tasks"></param>
+        /// <param name="continueOnCapturedContext"></param>
+        /// <returns></returns>
+        public static ConfiguredTaskAwaitable<T1> ConfigureAwait<T1>(this ValueTuple<Task<T1>> tasks, bool continueOnCapturedContext)
+        {
+            return tasks.Item1.ConfigureAwait(continueOnCapturedContext);
+        }
         #endregion
 
         #region (Task<T1>..Task<T2>)
-        public static TupleTaskAwaiter<T1, T2>
-            GetAwaiter<T1, T2>(this (Task<T1>, Task<T2>) tasks) =>
-            new TupleTaskAwaiter<T1, T2>(tasks);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="tasks"></param>
+        /// <returns></returns>
+        public static TupleTaskAwaiter<T1, T2> GetAwaiter<T1, T2>(this (Task<T1>, Task<T2>) tasks)
+        {
+            return new TupleTaskAwaiter<T1, T2>(tasks);
+        }
 
         public struct TupleTaskAwaiter<T1, T2> : ICriticalNotifyCompletion
         {

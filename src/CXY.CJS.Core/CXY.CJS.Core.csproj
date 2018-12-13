@@ -17,6 +17,9 @@
     <EmbeddedResource Include="Localization\SourceFiles\*.json" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="CXY.CJS.Core.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Abp" Version="4.0.2" />
     <PackageReference Include="Abp.AutoMapper" Version="4.0.2" />
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.3.1" />
