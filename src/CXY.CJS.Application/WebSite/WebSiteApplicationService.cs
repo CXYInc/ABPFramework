@@ -391,6 +391,7 @@ namespace CXY.CJS.Application
             // 是否使用系统的配置
             WhenUseSysAlipayPayment(input);
             WhenUseSysWeiXinPay(input);
+
             //todo:记录日志
             var websiteTemp = await _siteFullRepository.GetAllNoTracking()
                         .Where(i => i.WebSite.Id == input.Id)
@@ -413,25 +414,22 @@ namespace CXY.CJS.Application
             insertWebsite.WebSite.Id = input.Id;
             await _siteFullRepository.SaveAsync(insertWebsite);
 
-            // 更新该站点管理员的WorkerName和PROVINCEID
-            if (websiteTemp.WebSiteMater!=input.WebSiteMater)
+            // 站点管理员的 WorkerName 和 PROVINCEID  变更时
+            var userAtt = await _userAttRepository
+                .FirstOrDefaultAsync(i => i.Id == input.WebSiteMater && i.WebSiteId == input.Id);
+            if (userAtt == null)
             {
-                var userAtt = await _userAttRepository
-                    .FirstOrDefaultAsync(i => i.Id == input.WebSiteMater && i.WebSiteId == input.Id);
-                if (userAtt == null)
-                {
-                    throw new UserFriendlyException("注意，总站信息不对!");
-                }
-                if (userAtt.Provinceid != input.PROVINCEID
-                    || userAtt.Swfzr != input.WorkerName)
-                {
-                    userAtt.Provinceid = input.PROVINCEID;
-                    userAtt.Swfzr = input.WorkerName;
-                    await _userAttRepository.UpdateAsync(userAtt);
-                }
+                throw new UserFriendlyException("注意，总站信息不对!");
+            }
+            if (userAtt.Provinceid != input.PROVINCEID
+                || userAtt.Swfzr != input.WorkerName)
+            {
+                userAtt.Provinceid = input.PROVINCEID;
+                userAtt.Swfzr = input.WorkerName;
+                await _userAttRepository.UpdateAsync(userAtt);
             }
 
-            //变更每月赠送次数时
+            // 每月赠送次数 变更时
             if (websiteTemp.GivePointsPerMonth != input.GivePointsPerMonth)
             {
 
