@@ -38,6 +38,13 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         Task<bool> UpdateWebSite(UpdateWebSiteInput input);
 
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<bool> ResetPassword(ResetPasswordInput input);
+
 
         //      /// <summary>
         ///// 获取WebSite的分页列表信息

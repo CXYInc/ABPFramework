@@ -21,10 +21,22 @@ namespace CXY.CJS.Tests.TestDatas
         {
             await _context.Database.MigrateAsync();
 
+            InitWebSite();
+
+            InitUser();
+
+            await Task.WhenAll(_actionTasks);
+        }
+
+        private void InitUser()
+        {
+            AddTask(_context.Users.AddAsync(UserDatas.SuperWebSiteMasterUser));
+        }
+
+        private void InitWebSite()
+        {
             AddTask(_context.WebSites.AddAsync(WebSiteDatas.SuperWebSite));
             AddTask(_context.WebSites.AddAsync(WebSiteDatas.DedeletedWebSite));
-            
-            await Task.WhenAll(_actionTasks);
         }
 
         private void AddTask(Task task)

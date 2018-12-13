@@ -22,6 +22,7 @@ using Abp.UI;
 using CXY.CJS.Config;
 using CXY.CJS.Extensions;
 using CXY.CJS.Utils;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Application
 {
@@ -309,6 +310,7 @@ namespace CXY.CJS.Application
         /// 新增站点
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public async Task<SaveWebSiteOutput> SaveWebSite(SaveWebSiteInput input)
         {
             // 是否使用系统的配置
@@ -385,6 +387,12 @@ namespace CXY.CJS.Application
             };
         }
 
+        /// <summary>
+        /// 更新站点
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
         public async Task<bool> UpdateWebSite(UpdateWebSiteInput input)
         {
             // 是否使用系统的配置
@@ -445,6 +453,26 @@ namespace CXY.CJS.Application
             //    ||website.DefaultNotePrice!=input.DefaultNotePrice)
             //{
             //}
+            return true;
+        }
+
+        /// <summary>
+        /// 重设站点密码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<bool> ResetPassword(ResetPasswordInput input)
+        {
+            var user = await _userRepository.FirstOrDefaultAsync(input.UserId);
+            if (user==null)
+            {
+                throw new UserFriendlyException("找不到该用户！");
+            }
+            string srtPassword = "123456";
+            srtPassword = Encryptor.MD5Entry(srtPassword);
+            user.Password = srtPassword;
+            await _userRepository.UpdateAsync(user);
             return true;
         }
 

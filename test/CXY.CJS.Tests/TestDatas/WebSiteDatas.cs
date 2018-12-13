@@ -4,7 +4,7 @@ namespace CXY.CJS.Tests.TestDatas
 {
     public class WebSiteDatas
     {
-        public static WebSite SuperWebSite => new WebSite
+        public static readonly WebSite SuperWebSite = new WebSite
         {
             Id = "999999",
             WebSiteKey = "CS9999",
@@ -12,7 +12,7 @@ namespace CXY.CJS.Tests.TestDatas
             WebSiteMater = "999999201110290000000000000001"
         };
 
-        public static WebSite DedeletedWebSite => new WebSite
+        public static readonly WebSite DedeletedWebSite = new WebSite
         {
             Id = "999991",
             WebSiteKey = "CS9991",

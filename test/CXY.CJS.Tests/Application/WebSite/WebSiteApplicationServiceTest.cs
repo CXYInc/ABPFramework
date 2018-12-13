@@ -109,5 +109,16 @@ namespace CXY.CJS.Tests.Application.WebSite
             var result = await _service.UpdateWebSite(updateInput);
             Assert.True(result);
         }
+
+        [Fact]
+        public async Task ResetPassword_When_Success()
+        {
+            Assert.True(await _service.ResetPassword(new ResetPasswordInput
+            {
+                UserId = WebSiteDatas.SuperWebSite.WebSiteMater
+            }));
+        }
+
+        
     }
 }
