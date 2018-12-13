@@ -8,6 +8,7 @@ using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CXY.CJS.Core.Enums;
+using CXY.CJS.Core.Extension;
 
 namespace CXY.CJS.Application
 {
@@ -79,15 +80,15 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         [HttpPost("Get/Enum")]
         [AllowAnonymous]
-        public ApiResult GetEnumTest(string id)
+        public ApiResult GetEnumTest(int id)
         {
             var result = new ApiResult
             {
                 Code = 200,
             };
 
-            result.Data = SortEnum.Desc;
-
+            //result.Data = SortEnum.Desc.GetDescription();
+            result.Data = id.ToEnum<SortEnum>().Item1.GetDescription();
             return result;
         }
     }

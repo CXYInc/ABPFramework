@@ -68,16 +68,16 @@ namespace CXY.CJS.Core.Extension
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="str"></param>
-        /// <returns></returns>
-        public static T ToEnum<T>(this string str) where T : Enum
+        /// <returns>元组数据 item1 Enum,item2 bool</returns>
+        public static Tuple<T, bool> ToEnum<T>(this string str) where T : Enum
         {
             var result = default(T);
             bool success = Enum.IsDefined(typeof(T), str);
             if (success)
             {
-                result = (T)Enum.Parse(typeof(T), str); ;
+                result = (T)Enum.ToObject(typeof(T), str); ;
             }
-            return result;
+            return new Tuple<T, bool>(result, success);
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace CXY.CJS.Core.Extension
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
-        /// <returns></returns>
-        public static T ToEnum<T>(this int value) where T : Enum
+        /// <returns>元组数据 item1 Enum,item2 bool</returns>
+        public static Tuple<T, bool> ToEnum<T>(this int value) where T : Enum
         {
             var result = default(T);
             bool success = Enum.IsDefined(typeof(T), value);
@@ -94,7 +94,7 @@ namespace CXY.CJS.Core.Extension
             {
                 result = (T)Enum.ToObject(typeof(T), value);
             }
-            return result;
+            return new Tuple<T, bool>(result, success);
         }
     }
 }
