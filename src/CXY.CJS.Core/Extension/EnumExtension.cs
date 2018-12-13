@@ -50,7 +50,7 @@ namespace CXY.CJS.Core.Extension
         }
 
         /// <summary>
-        /// 直接获取特性（更轻量、更容易使用，不用封装“获取每一个自定义特性”的扩展方法）
+        /// 直接获取特性
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumValue"></param>
@@ -61,6 +61,40 @@ namespace CXY.CJS.Core.Extension
             MemberInfo[] memInfo = type.GetMember(enumValue.ToString());
             object[] attributes = memInfo[0].GetCustomAttributes(typeof(T), false);
             return (attributes.Length > 0) ? (T)attributes[0] : null;
+        }
+
+        /// <summary>
+        /// string to Enum
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static T ToEnum<T>(this string str) where T : Enum
+        {
+            var result = default(T);
+            bool success = Enum.IsDefined(typeof(T), str);
+            if (success)
+            {
+                result = (T)Enum.Parse(typeof(T), str); ;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// int to Enum
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static T ToEnum<T>(this int value) where T : Enum
+        {
+            var result = default(T);
+            bool success = Enum.IsDefined(typeof(T), value);
+            if (success)
+            {
+                result = (T)Enum.ToObject(typeof(T), value);
+            }
+            return result;
         }
     }
 }
