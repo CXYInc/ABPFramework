@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace CXY.CJS.Core.Enum
+namespace CXY.CJS.Core.Enums
 {
     /// <summary>
     /// 平台枚举

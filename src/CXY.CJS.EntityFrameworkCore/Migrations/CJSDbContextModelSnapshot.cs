@@ -114,7 +114,7 @@ namespace CXY.CJS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tests","CXY");
+                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("CXY.CJS.Model.User", b =>

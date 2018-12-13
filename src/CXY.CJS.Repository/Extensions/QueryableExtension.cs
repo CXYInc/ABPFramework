@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using CXY.CJS.Core.Enum;
+using CXY.CJS.Core.Enums;
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Core.WebApi;
 

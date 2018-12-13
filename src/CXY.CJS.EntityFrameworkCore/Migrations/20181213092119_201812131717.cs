@@ -3,12 +3,33 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CXY.CJS.Migrations
 {
-    public partial class init : Migration
+    public partial class _201812131717 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "CXY");
+            migrationBuilder.CreateTable(
+                name: "Menus",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ParentId = table.Column<string>(nullable: true),
+                    MenuName = table.Column<string>(nullable: true),
+                    MenuLeval = table.Column<int>(nullable: false),
+                    MenuUrl = table.Column<string>(nullable: true),
+                    MenuLayer = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    IsSys = table.Column<bool>(nullable: false),
+                    IsOut = table.Column<bool>(nullable: false),
+                    IsParent = table.Column<bool>(nullable: false),
+                    TargetFrame = table.Column<string>(nullable: true),
+                    Weight = table.Column<int>(nullable: false),
+                    LastModificationTime = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Menus", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "RoleMenus",
@@ -47,12 +68,23 @@ namespace CXY.CJS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserSysSettings",
+                name: "Tests",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 65, nullable: false),
+                    Name = table.Column<string>(maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tests", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserAtts",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     WebSiteId = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true),
                     RoleId = table.Column<int>(nullable: true),
                     ParentId = table.Column<string>(nullable: true),
                     CzfwSl = table.Column<int>(nullable: true),
@@ -138,16 +170,15 @@ namespace CXY.CJS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserSysSettings", x => x.Id);
+                    table.PrimaryKey("PK_UserAtts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserScores",
+                name: "UserJfs",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     WebSiteId = table.Column<string>(nullable: true),
-                    Userid = table.Column<string>(nullable: true),
                     Drzsjf = table.Column<int>(nullable: true),
                     Drzsrq = table.Column<DateTime>(nullable: false),
                     DrzssyJf = table.Column<int>(nullable: true),
@@ -162,7 +193,7 @@ namespace CXY.CJS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserScores", x => x.Id);
+                    table.PrimaryKey("PK_UserJfs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -227,7 +258,6 @@ namespace CXY.CJS.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    WebSiteId = table.Column<string>(nullable: true),
                     WebSiteMemo = table.Column<string>(nullable: true),
                     QuickAmount = table.Column<decimal>(nullable: false),
                     VisibleCalculationExpression = table.Column<int>(nullable: false),
@@ -255,7 +285,6 @@ namespace CXY.CJS.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    WebSiteId = table.Column<string>(nullable: true),
                     PayForAnother = table.Column<bool>(nullable: false),
                     OrderGiveNum = table.Column<int>(nullable: false),
                     AutoOrderShunt = table.Column<int>(nullable: false),
@@ -307,7 +336,6 @@ namespace CXY.CJS.Migrations
                     DeleterUserId = table.Column<string>(maxLength: 65, nullable: true),
                     DeletionTime = table.Column<DateTime>(maxLength: 65, nullable: true),
                     IsDeleted = table.Column<bool>(maxLength: 65, nullable: false),
-                    WebSiteId = table.Column<string>(nullable: true),
                     WebSiteDomains = table.Column<string>(nullable: true),
                     WorkerName = table.Column<string>(nullable: true),
                     CustQq = table.Column<string>(nullable: true),
@@ -328,23 +356,13 @@ namespace CXY.CJS.Migrations
                 {
                     table.PrimaryKey("PK_WebSites", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Tests",
-                schema: "CXY",
-                columns: table => new
-                {
-                    Id = table.Column<string>(maxLength: 65, nullable: false),
-                    Name = table.Column<string>(maxLength: 512, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tests", x => x.Id);
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Menus");
+
             migrationBuilder.DropTable(
                 name: "RoleMenus");
 
@@ -352,10 +370,13 @@ namespace CXY.CJS.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "UserSysSettings");
+                name: "Tests");
 
             migrationBuilder.DropTable(
-                name: "UserScores");
+                name: "UserAtts");
+
+            migrationBuilder.DropTable(
+                name: "UserJfs");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
@@ -371,10 +392,6 @@ namespace CXY.CJS.Migrations
 
             migrationBuilder.DropTable(
                 name: "WebSites");
-
-            migrationBuilder.DropTable(
-                name: "Tests",
-                schema: "CXY");
         }
     }
 }

@@ -79,7 +79,7 @@ namespace CXY.CJS.Web.Core.Extensions
             {
                 if (type == null) type = enumOption.GetType();
 
-                var attributeName = System.Enum.GetName(type, enumOption);
+                var attributeName = Enum.GetName(type, enumOption);
 
                 var memInfo = type.GetMember(enumOption.ToString());
                 var attributes = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);

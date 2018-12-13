@@ -10,6 +10,7 @@ namespace CXY.CJS.Repository
     public interface ICJSRepositoryBase<TEntity, TPrimaryKey>: ITransientDependency where TEntity : class, IEntity<TPrimaryKey>
     {
         IQueryable<TEntity> GetAll();
+
         Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id);
 
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);

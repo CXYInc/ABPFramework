@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CXY.CJS.Migrations
 {
     [DbContext(typeof(CJSDbContext))]
-    [Migration("20181213040101_ChangeMenu")]
-    partial class ChangeMenu
+    [Migration("20181213092119_201812131717")]
+    partial class _201812131717
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,7 +116,7 @@ namespace CXY.CJS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tests","CXY");
+                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("CXY.CJS.Model.User", b =>

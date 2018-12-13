@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace CXY.CJS.Core.Enum
+namespace CXY.CJS.Core.Enums
 {
     /// <summary>
     /// 排序方式枚举

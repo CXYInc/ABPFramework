@@ -32,7 +32,7 @@ namespace CXY.CJS.Web.Core
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(CJSWebCoreModule).GetAssembly());            
+            IocManager.RegisterAssemblyByConvention(typeof(CJSWebCoreModule).GetAssembly());
         }
     }
 }
