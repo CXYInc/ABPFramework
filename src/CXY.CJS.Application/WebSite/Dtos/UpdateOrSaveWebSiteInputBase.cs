@@ -15,7 +15,7 @@ namespace CXY.CJS.Application.Dtos
         public string WebSiteChName { get; set; }
 
         [Required]
-        public string WebSiteId { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 订单前缀
@@ -106,7 +106,7 @@ namespace CXY.CJS.Application.Dtos
 
         public void AddValidationErrors(CustomValidationContext context)
         {
-            if (WebSiteId.Length!=6)
+            if (Id.Length!=6)
             {
                 context.Results.Add(new ValidationResult("站点Id必须为6位"));
             }

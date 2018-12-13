@@ -10,7 +10,7 @@ namespace CXY.CJS.Application.Dtos
 
 
         /// <summary>
-        /// WebSiteId
+        /// Id
         /// </summary>
         [MaxLength(6, ErrorMessage = "WebSiteId超出最大长度")]
         [MinLength(6, ErrorMessage = "WebSiteId小于最小长度")]

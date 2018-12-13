@@ -8,9 +8,6 @@ namespace CXY.CJS.Model
     /// </summary>
     public class WebSiteConfig : Entity<string>
     {
-
-        public string WebSiteId { get; set; }
-
         /// <summary>
         /// 站点备注
         /// </summary>		

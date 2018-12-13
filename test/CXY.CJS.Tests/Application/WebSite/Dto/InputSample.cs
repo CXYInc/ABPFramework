@@ -13,7 +13,7 @@ namespace CXY.CJS.Tests.Application.WebSite
             {
                 WebSiteChName = Guid.NewGuid().ToString("N").Substring(0, 6),
                 OrderGiveNum = 1,
-                WebSiteId = Guid.NewGuid().ToString("N").Substring(0, 6),
+                Id = Guid.NewGuid().ToString("N").Substring(0, 6),
                 Loginname = Guid.NewGuid().ToString("N").Substring(0, 6),
                 DefaultJfPrice = 1,
                 DefaultNotePrice = 1,

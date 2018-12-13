@@ -5,6 +5,7 @@ namespace CXY.CJS.Application.Dtos
 {
     public class GetWebsitOutput
     {
+        public string Id { get; set; }
         public int IsBalancePayment { get; set; }
         public string AlipayCodeUrl { get; set; }
         public string loginname { get; set; }

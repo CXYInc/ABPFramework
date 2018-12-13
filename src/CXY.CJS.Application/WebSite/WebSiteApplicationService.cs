@@ -265,7 +265,7 @@ namespace CXY.CJS.Application
                 {
                     //获取关联的DefaultJFPrice和DefaultNotePrice
                     var defaultJFPriceAndDefaultNotePriceTask = _userJfRepository.GetAll()
-                        .Where(i => i.Userid == result.WebSiteMater)
+                        .Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.JfPrice,
@@ -273,7 +273,7 @@ namespace CXY.CJS.Application
                         }).FirstOrDefaultAsync();
 
                     //获取关联的provinceid
-                    var provinceidTask = _userAttRepository.GetAll().Where(i => i.UserId == result.WebSiteMater)
+                    var provinceidTask = _userAttRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.Provinceid
@@ -315,10 +315,10 @@ namespace CXY.CJS.Application
 
             // 检查数据库中是否存在数据
             var existedDatas = await _websiteRepository.GetAll()
-                .Where(i => i.WebSiteKey == input.WebSiteKey || i.Id == input.WebSiteId)
+                .Where(i => i.WebSiteKey == input.WebSiteKey || i.Id == input.Id)
                 .Select(i => new { i.Id, i.WebSiteKey }).ToListAsync();
 
-            if (existedDatas.Any(i => i.Id == input.WebSiteId))
+            if (existedDatas.Any(i => i.Id == input.Id))
             {
                 throw new UserFriendlyException("站点Id已存在！");
             }
@@ -329,12 +329,12 @@ namespace CXY.CJS.Application
             // 创建站点管理员账号
             // todo:管理员账号基础信息处理及角色分配
             DateTime time = DateTime.Now;
-            string userId = input.WebSiteId + time.ToString("yyyyMMddHHmmss") + RNG.Next(10).ToString().PadLeft(10, '0');
+            string userId = input.Id + time.ToString("yyyyMMddHHmmss") + RNG.Next(10).ToString().PadLeft(10, '0');
             string safePassword = Guid.NewGuid().ToString("N").Substring(0, 6);
 
             // 创建站点
             var siteFull = WebSiteFull.MapFrom(input);
-            siteFull.WebSite.Id = input.WebSiteId;
+            siteFull.WebSite.Id = input.Id;
             siteFull.WebSite.WebSiteMater = userId;
 
             var insertWebSiteTask = _siteFullRepository.InsertAsync(siteFull);
@@ -344,7 +344,7 @@ namespace CXY.CJS.Application
             var insertUserTask = _userRepository.InsertAsync(new User
             {
                 Id = userId,
-                WebSiteId = input.WebSiteId,
+                WebSiteId = input.Id,
                 UserName = input.Loginname,
                 LoginName = input.Loginname,
                 EmailAddress = input.Email,
@@ -358,18 +358,18 @@ namespace CXY.CJS.Application
             var insertUserAttTask = _userAttRepository.InsertAsync(new UserAtt
             {
                 Id = userId,
-                UserId = userId,
                 Swfzr = input.WorkerName,
                 Provinceid = input.PROVINCEID,
-                WebSiteId = input.WebSiteId
+                WebSiteId = input.Id
             });
 
             // 创建站点管理员的每月积分
             var insertUserJfTask = _userJfRepository.InsertAsync(new UserJf
             {
-                Userid = userId,
                 Id = userId,
-                GivePointsPerMonth = input.GivePointsPerMonth
+                GivePointsPerMonth = input.GivePointsPerMonth,
+                NotePrice = input.DefaultJfPrice,
+                JfPrice = input.DefaultJfPrice
             });
 
             await (insertWebSiteTask, insertUserTask, insertUserAttTask, insertUserJfTask);
@@ -383,12 +383,17 @@ namespace CXY.CJS.Application
 
         public async Task<bool> UpdateWebSite(UpdateWebSiteInput input)
         {
+            if (String.IsNullOrWhiteSpace(input.WebSiteMater))
+            {
+                throw new UserFriendlyException("站点管理员不能为null");
+            }
+
             // 是否使用系统的配置
             WhenUseSysAlipayPayment(input);
             WhenUseSysWeiXinPay(input);
             //todo:记录日志
             var websiteTemp = await _siteFullRepository.GetAllNoTracking()
-                        .Where(i => i.WebSite.Id == input.WebSiteId)
+                        .Where(i => i.WebSite.Id == input.Id)
                 .Select(i => new
                 {
                     i.WebSite.WebSiteMater,
@@ -405,39 +410,36 @@ namespace CXY.CJS.Application
 
             // 更新站点
             var insertWebsite = WebSiteFull.MapFrom(input);
-            var finalWebsite = await _siteFullRepository.SaveAsync(insertWebsite);
+            insertWebsite.WebSite.Id = input.Id;
+            await _siteFullRepository.SaveAsync(insertWebsite);
 
-            var websiteMater = finalWebsite.WebSite.WebSiteMater;
-
-            if (websiteMater != null)
+            // 更新该站点管理员的WorkerName和PROVINCEID
+            if (websiteTemp.WebSiteMater!=input.WebSiteMater)
             {
-                // 更新该站点管理员的WorkerName和PROVINCEID
                 var userAtt = await _userAttRepository
-                    .FirstOrDefaultAsync(i => i.Id == input.WebSiteMater && i.WebSiteId == input.WebSiteId);
+                    .FirstOrDefaultAsync(i => i.Id == input.WebSiteMater && i.WebSiteId == input.Id);
                 if (userAtt == null)
                 {
                     throw new UserFriendlyException("注意，总站信息不对!");
                 }
-                else
+                if (userAtt.Provinceid != input.PROVINCEID
+                    || userAtt.Swfzr != input.WorkerName)
                 {
-                    if (userAtt.Provinceid!=input.PROVINCEID
-                        || userAtt.Swfzr != input.WorkerName)
-                    {
-                        userAtt.Provinceid = input.PROVINCEID;
-                        userAtt.Swfzr = input.WorkerName;
-                        await _userAttRepository.UpdateAsync(userAtt);
-                    }
+                    userAtt.Provinceid = input.PROVINCEID;
+                    userAtt.Swfzr = input.WorkerName;
+                    await _userAttRepository.UpdateAsync(userAtt);
                 }
-                //变更每月赠送次数时
-                if (websiteTemp.GivePointsPerMonth != input.GivePointsPerMonth)
-                {
+            }
 
-                    var userJf = await _userJfRepository.FirstOrDefaultAsync(i => i.Id == websiteMater);
-                    if (userJf != null)
-                    {
-                        userJf.GivePointsPerMonth = input.GivePointsPerMonth;
-                        await _userJfRepository.UpdateAsync(userJf);
-                    }
+            //变更每月赠送次数时
+            if (websiteTemp.GivePointsPerMonth != input.GivePointsPerMonth)
+            {
+
+                var userJf = await _userJfRepository.FirstOrDefaultAsync(i => i.Id == input.WebSiteMater);
+                if (userJf != null)
+                {
+                    userJf.GivePointsPerMonth = input.GivePointsPerMonth;
+                    await _userJfRepository.UpdateAsync(userJf);
                 }
             }
             //站点短信与积分单价变化时，更新所有站点用户的短信与积分单价,暂时不做这个操作

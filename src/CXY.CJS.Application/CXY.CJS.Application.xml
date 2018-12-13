@@ -54,7 +54,7 @@
             用户真实名称
             </summary>
         </member>
-        <member name="P:CXY.CJS.Application.Dtos.UserEditInputDto.WebSiteId">
+        <member name="P:CXY.CJS.Application.Dtos.UserEditInputDto.Id">
             <summary>
             站点ID
             </summary>
@@ -90,7 +90,7 @@
             用户真实名称
             </summary>
         </member>
-        <member name="P:CXY.CJS.Application.Dtos.UserOutDto.WebSiteId">
+        <member name="P:CXY.CJS.Application.Dtos.UserOutDto.Id">
             <summary>
             站点ID
             </summary>
@@ -210,9 +210,9 @@
             IsDeleted
             </summary>
         </member>
-        <member name="P:CXY.CJS.Application.Dtos.WebSiteListDto.WebSiteId">
+        <member name="P:CXY.CJS.Application.Dtos.WebSiteListDto.Id">
             <summary>
-            WebSiteId
+            Id
             </summary>
         </member>
         <member name="P:CXY.CJS.Application.Dtos.WebSiteListDto.WebSiteName">

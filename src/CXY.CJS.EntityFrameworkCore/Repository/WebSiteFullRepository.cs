@@ -42,9 +42,9 @@ namespace CXY.CJS.Repository
         {
             return from website in _websiteRepository.GetAll()
                    join siteConfig in _siteConfigRepository.GetAll() on website.Id
-                       equals siteConfig.WebSiteId into siteConfigTemp
+                       equals siteConfig.Id into siteConfigTemp
                    join sitePay in _sitePayRepository.GetAll() on website.Id
-                       equals sitePay.WebSiteId into sitePayTemp
+                       equals sitePay.Id into sitePayTemp
                    from config in siteConfigTemp.DefaultIfEmpty()
                    from pay in sitePayTemp.DefaultIfEmpty()
                    select new WebSiteFull

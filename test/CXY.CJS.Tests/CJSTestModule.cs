@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Abp.AutoMapper;
 using Abp.Dependency;
 using Abp.EntityFrameworkCore;
 using Abp.Modules;
@@ -27,11 +28,22 @@ namespace CXY.CJS.Tests
 
         public override void PreInitialize()
         {
+            var thisAssembly = typeof(CJSTestModule).GetAssembly();
+
             var services = new ServiceCollection()
                 //.AddConfigModel()
                 .AddEntityFrameworkSqlServer();
             //Configuration.UnitOfWork.IsTransactional = false;
             var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
+
+            //AutoMapper注入
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(cfg =>
+            {
+                cfg.AddProfiles(thisAssembly);
+                //空值不进行Mapper
+                cfg.ForAllMaps((obj, cnfg) => cnfg.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)));
+            });
+
             SetupDb(serviceProvider);
         }
 

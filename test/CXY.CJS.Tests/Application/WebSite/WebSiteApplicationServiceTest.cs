@@ -6,6 +6,7 @@ using CXY.CJS.Application;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Repository.MixModel;
 using CXY.CJS.Tests.TestDatas;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace CXY.CJS.Tests.Application.WebSite
@@ -34,11 +35,11 @@ namespace CXY.CJS.Tests.Application.WebSite
         [Fact]
         public async Task SaveWebSite_When_Existed_WebSiteId_Or_WebSiteKey()
         {
-            // Existed WebSiteId
+            // Existed Id
             await Assert.ThrowsAsync<UserFriendlyException>(async () =>
             {
                 var input = InputSample.GetRandomSaveWebSiteInput();
-                input.WebSiteId = WebSiteDatas.SuperWebSite.Id;
+                input.Id = WebSiteDatas.SuperWebSite.Id;
                 await _service.SaveWebSite(input);
             });
             // Existed WebSiteKey
@@ -66,10 +67,11 @@ namespace CXY.CJS.Tests.Application.WebSite
         [Fact]
         public async Task UpdateWebSite_When_Success()
         {
-            var newInput = InputSample.NewSaveWebSiteInput;
+            var newInput = InputSample.GetRandomSaveWebSiteInput();
             await _service.SaveWebSite(newInput);
-            var website = await _service.GetWebSite(newInput.WebSiteId);
-            var updateInput= website.MapTo<UpdateWebSiteInput>();
+            var website = await _service.GetWebSite(newInput.Id);
+            //var updateInput = JObject.FromObject(website).ToObject<UpdateWebSiteInput>();
+            var updateInput = website.MapTo<UpdateWebSiteInput>();
             updateInput.WebSiteChName = Guid.NewGuid().ToString();
             var result = await _service.UpdateWebSite(updateInput);
             Assert.True(result);

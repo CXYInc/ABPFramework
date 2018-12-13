@@ -9,7 +9,6 @@ namespace CXY.CJS.Model
     public class UserJf : Entity<string>
     {
         public string WebSiteId { get; set; }
-        public string Userid { get; set; }
         /// <summary>
         /// 当日赠送积分
         /// </summary>
