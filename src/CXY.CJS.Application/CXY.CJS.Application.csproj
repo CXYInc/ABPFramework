@@ -24,7 +24,6 @@
     <ProjectReference Include="..\CXY.CJS.Repository\CXY.CJS.Repository.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.EntityFrameworkCore" Version="4.0.2" />
     <PackageReference Include="Abp.AutoMapper" Version="4.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.1" />

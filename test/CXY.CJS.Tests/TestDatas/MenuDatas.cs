@@ -22,11 +22,11 @@ namespace CXY.CJS.Tests.TestDatas
             LastModificationTime = DateTime.Now
         };
 
-        public static readonly Model.Menu DedeletedModule = new Model.Menu
+        public static readonly Model.Menu DedeletedModuleMenu = new Model.Menu
         {
             Id = Guid.NewGuid().ToString().Substring(0, 4),
             ParentId = "0",
-            MenuName = "被删除的菜单",
+            MenuName = "已被删除的菜单",
             MenuLeval = 1,
             MenuLayer = 1000000000,
             TargetFrame = "#",
@@ -34,6 +34,23 @@ namespace CXY.CJS.Tests.TestDatas
             IsOut = false,
             Weight = 0,
             IsDeleted = true,
+            IsParent = true,
+            IsSys = true,
+            LastModificationTime = DateTime.Now
+        };
+
+        public static readonly Model.Menu WillBeDedeletedMenu= new Model.Menu
+        {
+            Id = Guid.NewGuid().ToString().Substring(0, 6),
+            ParentId = "0",
+            MenuName = "将被被删除的菜单",
+            MenuLeval = 1,
+            MenuLayer = 1000000000,
+            TargetFrame = "#",
+            MenuUrl = "#",
+            IsOut = false,
+            Weight = 0,
+            IsDeleted = false,
             IsParent = true,
             IsSys = true,
             LastModificationTime = DateTime.Now

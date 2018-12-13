@@ -7,7 +7,6 @@ using Abp.Linq.Extensions;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -269,31 +268,31 @@ namespace CXY.CJS.Application
                 if (!string.IsNullOrEmpty(webSite.WebSite.WebSiteMater))
                 {
                     //获取关联的DefaultJFPrice和DefaultNotePrice
-                    var defaultJFPriceAndDefaultNotePriceTask = _userJfRepository.GetAll()
+                    var price = _userJfRepository.GetAll()
                         .Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.JfPrice,
                             i.NotePrice
-                        }).FirstOrDefaultAsync();
+                        }).FirstOrDefault();
 
                     //获取关联的provinceid
-                    var provinceidTask = _userAttRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
+                    var province = _userAttRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.Provinceid
-                        }).FirstOrDefaultAsync();
+                        }).FirstOrDefault();
 
                     //获取关联的Email和LoginName
-                    var emailAndloginnameTask = _userRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
+                    var info = _userRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.EmailAddress,
                             i.LoginName
-                        }).FirstOrDefaultAsync();
+                        }).FirstOrDefault();
 
-                    var (price, province, info) = await (defaultJFPriceAndDefaultNotePriceTask, provinceidTask,
-                        emailAndloginnameTask);
+                    //var (price, province, info) = await (defaultJFPriceAndDefaultNotePriceTask, provinceidTask,
+                    //    emailAndloginnameTask);
 
                     result.DefaultJFPrice = price?.JfPrice;
                     result.DefaultNotePrice = price?.NotePrice;
@@ -322,7 +321,7 @@ namespace CXY.CJS.Application
             // 检查数据库中是否存在数据
             var existedDatas = await _websiteRepository.GetAll()
                 .Where(i => i.WebSiteKey == input.WebSiteKey || i.Id == input.Id)
-                .Select(i => new { i.Id, i.WebSiteKey }).ToListAsync();
+                .Select(i => new { i.Id, i.WebSiteKey }).ToDynamicListAsync();
 
             if (existedDatas.Any(i => i.Id == input.Id))
             {
@@ -400,7 +399,7 @@ namespace CXY.CJS.Application
             WhenUseSysWeiXinPay(input);
 
             //todo:记录日志
-            var websiteTemp = await _siteFullRepository.GetAllNoTracking()
+            var websiteTemp =  _siteFullRepository.GetAllNoTracking()
                         .Where(i => i.WebSite.Id == input.Id)
                 .Select(i => new
                 {
@@ -409,7 +408,7 @@ namespace CXY.CJS.Application
                     i.WebSiteConfig.GivePointsPerMonth,
                     i.WebSiteConfig.DefaultNotePrice,
                     i.WebSiteConfig.DefaultJfPrice
-                }).FirstOrDefaultAsync();
+                }).FirstOrDefault();
 
             if (websiteTemp == null)
             {

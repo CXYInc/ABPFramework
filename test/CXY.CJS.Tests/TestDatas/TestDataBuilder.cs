@@ -36,7 +36,9 @@ namespace CXY.CJS.Tests.TestDatas
         private void InitMenu()
         {
             AddTask(_context.Menus.AddAsync(MenuDatas.UserModule));
-            AddTask(_context.Menus.AddAsync(MenuDatas.DedeletedModule));
+            AddTask(_context.Menus.AddAsync(MenuDatas.DedeletedModuleMenu));
+            AddTask(_context.Menus.AddAsync(MenuDatas.WillBeDedeletedMenu));
+            
         }
 
         private void InitWebSite()
