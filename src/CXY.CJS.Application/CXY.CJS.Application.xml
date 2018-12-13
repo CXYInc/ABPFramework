@@ -27,7 +27,7 @@
         <member name="T:CXY.CJS.Application.Mapper.WebSiteProfile">
             <summary>
             配置WebSite的AutoMapper
-            </summary>
+            </summary>s
         </member>
         <member name="T:CXY.CJS.Application.Dtos.UserEditInputDto">
             <summary>
@@ -79,7 +79,16 @@
             是否可用
             </summary>
         </member>
-        <!-- 对于成员“P:CXY.CJS.Application.Dtos.UserOutDto.Id”忽略有格式错误的 XML 注释 -->
+        <member name="T:CXY.CJS.Application.Dtos.UserOutDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UserOutDto.Id">
+            <summary>
+            用户ID
+            </summary>
+        </member>
         <member name="P:CXY.CJS.Application.Dtos.UserOutDto.UserName">
             <summary>
             用户名称
@@ -155,9 +164,89 @@
             是否删除
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.Dtos.GetWebSiteWebSitesInput.Normalize">
+        <member name="M:CXY.CJS.Application.Dtos.GetWebSitesInput.Normalize">
             <summary>
             正常化排序使用
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteInput.IsHide">
+            <summary>
+            是否隐藏过期站点
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.WorkerName">
+            <summary>
+            添加人
+            </summary>		
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.WebSiteMemo">
+            <summary>
+            站点备注
+            </summary>		
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.QuickAmount">
+            <summary>
+            订单快速办理费用
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.CustSerPhone">
+            <summary>
+            服务电话
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.DefaultCarNumberForShort">
+            <summary>
+            默认车牌简称
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.OrderGiveNum">
+            <summary>
+            订单赠送积分
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.AutoOrderShunt">
+            <summary>
+            扣分单自动分单？
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.ListWebSiteOutputItem.IsBalancePayment">
+            <summary>
+            是否开通余额支付
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UpdateOrSaveWebSiteInputBase.WebSiteChName">
+            <summary>
+            站点名称
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UpdateOrSaveWebSiteInputBase.WebSiteKey">
+            <summary>
+            订单前缀
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UpdateOrSaveWebSiteInputBase.OrderGiveNum">
+            <summary>
+            订单积分赠送
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UpdateOrSaveWebSiteInputBase.Loginname">
+            <summary>
+            总站登录账号名字
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UpdateOrSaveWebSiteInputBase.DefaultJfPrice">
+            <summary>
+            总站代理兑换积分单价
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UpdateOrSaveWebSiteInputBase.DefaultNotePrice">
+            <summary>
+            该总站代理兑换短信单价
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Application.Dtos.UpdateOrSaveWebSiteInputBase.WorkerName">
+            <summary>
+            客户经理
             </summary>
         </member>
         <member name="P:CXY.CJS.Application.Dtos.WebSiteEditDto.Id">
@@ -280,7 +369,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.TestService.GetWebSiteTest(System.String)">
+        <member name="M:CXY.CJS.Application.TestService.GetTest(System.String)">
             <summary>
             获取
             </summary>
@@ -299,7 +388,7 @@
             <param name="userEditInput"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.IUserServices.GetWebSite(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.IUserServices.Get(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             获取用户信息
             </summary>
@@ -346,7 +435,7 @@
             <param name="userEditInput"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.UserServices.GetWebSite(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.UserServices.Get(Abp.Application.Services.Dto.EntityDto{System.String})">
             <summary>
             获取用户信息
             </summary>
@@ -360,7 +449,7 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.UserServices.GetWebSiteUser(System.String)">
+        <member name="M:CXY.CJS.Application.UserServices.GetUser(System.String)">
             <summary>
             获取用户数据实体
             </summary>
@@ -372,101 +461,75 @@
              WebSite应用层服务的接口方法
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetWebSitePaged(CXY.CJS.Application.Dtos.GetWebSiteWebSitesInput)">
-             <summary>
-             获取WebSite的分页列表信息
-            </summary>
-             <param name="input"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetWebSiteById(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.ListWebSite(CXY.CJS.Application.Dtos.ListWebSiteInput)">
             <summary>
-            通过指定id获取WebSiteListDto信息
-            </summary>
-        </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetWebSiteForEdit(Abp.Application.Services.Dto.EntityDto{System.String})">
-            <summary>
-            返回实体的EditDto
+            列出站点
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.CreateOrUpdate(CXY.CJS.Application.Dtos.CreateOrUpdateOrSaveWebSiteInputBase)">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.GetWebSite(System.String)">
             <summary>
-            添加或者修改WebSite的公共方法
+            获取站点详情
             </summary>
-            <param name="input"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.Delete(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.SaveWebSite(CXY.CJS.Application.Dtos.SaveWebSiteInput)">
             <summary>
-            删除WebSite信息的方法
+            新增站点
             </summary>
-            <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.IWebSiteAppService.BatchDelete(System.Collections.Generic.List{System.String})">
+        <member name="M:CXY.CJS.Application.IWebSiteAppService.UpdateWebSite(CXY.CJS.Application.Dtos.UpdateWebSiteInput)">
             <summary>
-            批量删除WebSite
+            更新站点
             </summary>
+            <returns></returns>
         </member>
         <member name="T:CXY.CJS.Application.WebSiteAppService">
              <summary>
              WebSite应用层服务的接口实现方法  
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.#ctor(Abp.Domain.Repositories.IRepository{CXY.CJS.Model.WebSite,System.String})">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.#ctor(Abp.Domain.Repositories.IRepository{CXY.CJS.Model.WebSite,System.String},CXY.CJS.Repository.IWebSiteFullRepository,Abp.Domain.Repositories.IRepository{CXY.CJS.Model.UserJf,System.String},Abp.Domain.Repositories.IRepository{CXY.CJS.Model.UserAtt,System.String},Abp.Domain.Repositories.IRepository{CXY.CJS.Model.User,System.String},CXY.CJS.Config.SysAlipayConfig,CXY.CJS.Config.SysWeiXinPayConfig)">
              <summary>
              构造函数 
             </summary>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.GetWebSitePaged(CXY.CJS.Application.Dtos.GetWebSiteWebSitesInput)">
-             <summary>
-             获取WebSite的分页列表信息
-            </summary>
-             <param name="input"></param>
-             <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.GetWebSiteById(Abp.Application.Services.Dto.EntityDto{System.String})">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.ListWebSite(CXY.CJS.Application.Dtos.ListWebSiteInput)">
             <summary>
-            通过指定id获取WebSiteListDto信息
-            </summary>
-        </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.GetWebSiteForEdit(Abp.Application.Services.Dto.EntityDto{System.String})">
-            <summary>
-            获取编辑 WebSite
+            列出站点
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.CreateOrUpdate(CXY.CJS.Application.Dtos.CreateOrUpdateOrSaveWebSiteInputBase)">
+        <member name="M:CXY.CJS.Application.WebSiteAppService.GetWebSite(System.String)">
             <summary>
-            添加或者修改WebSite的公共方法
+            获取站点详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Application.WebSiteAppService.SaveWebSite(CXY.CJS.Application.Dtos.SaveWebSiteInput)">
+            <summary>
+            新增站点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Role.IRoleService.ListRole(CXY.CJS.Role.Dto.ListRoleInput)">
+            <summary>
+            列出用户角色
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.Create(CXY.CJS.Application.Dtos.WebSiteEditDto)">
+        <member name="M:CXY.CJS.Role.RoleService.ListRole(CXY.CJS.Role.Dto.ListRoleInput)">
             <summary>
-            新增WebSite
-            </summary>
-        </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.Update(CXY.CJS.Application.Dtos.WebSiteEditDto)">
-            <summary>
-            编辑WebSite
-            </summary>
-        </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.Delete(Abp.Application.Services.Dto.EntityDto{System.String})">
-            <summary>
-            删除WebSite信息的方法
+            列出用户角色
             </summary>
             <param name="input"></param>
             <returns></returns>
-        </member>
-        <member name="M:CXY.CJS.Application.WebSiteAppService.BatchDelete(System.Collections.Generic.List{System.String})">
-            <summary>
-            批量删除WebSite的方法
-            </summary>
         </member>
     </members>
 </doc>
