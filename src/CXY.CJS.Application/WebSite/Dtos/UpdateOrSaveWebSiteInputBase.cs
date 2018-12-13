@@ -104,7 +104,7 @@ namespace CXY.CJS.Application.Dtos
         public string Copyright { get; set; }
         public string SiteLoginImage { get; set; }
 
-        public void AddValidationErrors(CustomValidationContext context)
+        public virtual void AddValidationErrors(CustomValidationContext context)
         {
             if (Id.Length!=6)
             {
@@ -144,7 +144,17 @@ namespace CXY.CJS.Application.Dtos
 
     public class UpdateWebSiteInput : UpdateOrSaveWebSiteInputBase
     {
+        [Required]
         public string WebSiteMater { get; set; }
+
+        public override void AddValidationErrors(CustomValidationContext context)
+        {
+            base.AddValidationErrors(context);
+            if (String.IsNullOrWhiteSpace(WebSiteMater))
+            {
+                context.Results.Add(new ValidationResult("站点管理员不能为null"));
+            }
+        }
     }
     public class SaveWebSiteInput : UpdateOrSaveWebSiteInputBase
     {

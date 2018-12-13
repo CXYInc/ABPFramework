@@ -383,11 +383,6 @@ namespace CXY.CJS.Application
 
         public async Task<bool> UpdateWebSite(UpdateWebSiteInput input)
         {
-            if (String.IsNullOrWhiteSpace(input.WebSiteMater))
-            {
-                throw new UserFriendlyException("站点管理员不能为null");
-            }
-
             // 是否使用系统的配置
             WhenUseSysAlipayPayment(input);
             WhenUseSysWeiXinPay(input);
@@ -430,16 +425,17 @@ namespace CXY.CJS.Application
             }
 
             // 每月赠送次数 变更时
-            if (websiteTemp.GivePointsPerMonth != input.GivePointsPerMonth)
-            {
 
-                var userJf = await _userJfRepository.FirstOrDefaultAsync(i => i.Id == input.WebSiteMater);
-                if (userJf != null)
+            var userJf = await _userJfRepository.FirstOrDefaultAsync(i => i.Id == input.WebSiteMater);
+            if (userJf != null)
+            {
+                if (userJf.GivePointsPerMonth!= input.GivePointsPerMonth)
                 {
                     userJf.GivePointsPerMonth = input.GivePointsPerMonth;
                     await _userJfRepository.UpdateAsync(userJf);
                 }
             }
+
             //站点短信与积分单价变化时，更新所有站点用户的短信与积分单价,暂时不做这个操作
             //if (website.DefaultJfPrice!=input.DefaultJfPrice
             //    ||website.DefaultNotePrice!=input.DefaultNotePrice)
