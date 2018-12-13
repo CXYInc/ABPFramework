@@ -47,7 +47,7 @@ namespace CXY.CJS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAtts",
+                name: "UserSysSettings",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -138,11 +138,11 @@ namespace CXY.CJS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAtts", x => x.Id);
+                    table.PrimaryKey("PK_UserSysSettings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserJfs",
+                name: "UserScores",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -162,7 +162,7 @@ namespace CXY.CJS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserJfs", x => x.Id);
+                    table.PrimaryKey("PK_UserScores", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -352,10 +352,10 @@ namespace CXY.CJS.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "UserAtts");
+                name: "UserSysSettings");
 
             migrationBuilder.DropTable(
-                name: "UserJfs");
+                name: "UserScores");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

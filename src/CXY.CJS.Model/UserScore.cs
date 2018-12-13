@@ -6,7 +6,7 @@ namespace CXY.CJS.Model
     /// <summary>
     /// 用户积分
     /// </summary>
-    public class UserJf : Entity<string>
+    public class UserScore : Entity<string>
     {
         public string WebSiteId { get; set; }
         /// <summary>

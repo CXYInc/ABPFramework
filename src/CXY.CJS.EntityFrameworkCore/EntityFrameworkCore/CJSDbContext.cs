@@ -22,9 +22,9 @@ namespace CXY.CJS.EntityFrameworkCore
         public DbSet<Menu> Menus { get; set; }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<UserJf> UserJfs { get; set; }
+        public DbSet<UserScore> UserScores { get; set; }
 
-        public DbSet<UserAtt> UserAtts { get; set; }
+        public DbSet<UserSysSetting> UserSysSettings { get; set; }
 
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }

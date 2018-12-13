@@ -20,11 +20,11 @@ namespace CXY.CJS.Migrations
 
             migrationBuilder.DropColumn(
                 name: "Userid",
-                table: "UserJfs");
+                table: "UserScores");
 
             migrationBuilder.DropColumn(
                 name: "UserId",
-                table: "UserAtts");
+                table: "UserSysSettings");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -46,12 +46,12 @@ namespace CXY.CJS.Migrations
 
             migrationBuilder.AddColumn<string>(
                 name: "Userid",
-                table: "UserJfs",
+                table: "UserScores",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "UserId",
-                table: "UserAtts",
+                table: "UserSysSettings",
                 nullable: true);
         }
     }

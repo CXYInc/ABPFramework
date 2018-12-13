@@ -4,6 +4,7 @@ using CXY.CJS.Menu;
 using CXY.CJS.Menu.Dto;
 using CXY.CJS.Tests.TestDatas;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using CXY.CJS.Application;
 using Xunit;
@@ -63,7 +64,14 @@ namespace CXY.CJS.Tests.Application.MenuTest
         [Fact]
         public async Task SaveMenu_When_Success()
         {
-          
+            var insertOutput = MenuDatas.UserModule.MapTo<SaveMenuInput>();
+            insertOutput.MenuName = "子菜单";
+            insertOutput.ParentId = MenuDatas.UserModule.Id;
+            await _service.SaveMenu(insertOutput);
+            var afterMenu =
+                (await _service.ListMenu(new ListMenuInput()))
+                .Datas.FirstOrDefault(i => i.MenuName == "子菜单");
+            Assert.Equal(afterMenu.MenuLeval, MenuDatas.UserModule.MenuLeval+1);
         }
 
 

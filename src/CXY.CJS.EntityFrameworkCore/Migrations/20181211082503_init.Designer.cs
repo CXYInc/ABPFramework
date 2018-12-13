@@ -153,7 +153,7 @@ namespace CXY.CJS.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CXY.CJS.Model.UserAtt", b =>
+            modelBuilder.Entity("CXY.CJS.Model.UserSysSetting", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -328,10 +328,10 @@ namespace CXY.CJS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserAtts");
+                    b.ToTable("UserSysSettings");
                 });
 
-            modelBuilder.Entity("CXY.CJS.Model.UserJf", b =>
+            modelBuilder.Entity("CXY.CJS.Model.UserScore", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -364,7 +364,7 @@ namespace CXY.CJS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserJfs");
+                    b.ToTable("UserScores");
                 });
 
             modelBuilder.Entity("CXY.CJS.Model.UserRole", b =>
