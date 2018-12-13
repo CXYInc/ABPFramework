@@ -11,7 +11,7 @@
     <RootNamespace>CXY.CJS.Core</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\github\CXY.CJS\src\CXY.CJS.Core\CXY.CJS.Core.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\CXY.CJS.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\SourceFiles\*.json" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
