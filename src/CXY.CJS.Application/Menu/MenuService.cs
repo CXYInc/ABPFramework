@@ -1,12 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.AutoMapper;
 using Abp.UI;
 using CXY.CJS.Menu.Dto;
 using CXY.CJS.Repository;
+using CXY.CJS.Repository.Extensions;
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.WebApi;
-using Microsoft.EntityFrameworkCore;
 
 namespace CXY.CJS.Menu
 {
@@ -38,7 +39,7 @@ namespace CXY.CJS.Menu
         public Task<PaginationResult<MenuOutputItem>> ListMenu(ListMenuInput input)
         {
             return _menuRepository.QueryByWhereAsync<MenuOutputItem>
-                (input,null, i => i.IsDeleted == false);
+                (input, null, i => i.IsDeleted == false);
         }
 
         /// <summary>
@@ -59,29 +60,47 @@ namespace CXY.CJS.Menu
         public async Task<bool> UpdateMenu(UpdateMenuInput input)
         {
             var menu = await GetByIdAsync(input.Id);
-            if (menu==null)
+            if (menu == null)
             {
-                throw new UserFriendlyException("不存在该站点！");
+                throw new UserFriendlyException("不存在该菜单！");
             }
             // 更新菜单时不允许更新父节点
-            var updateMenu = input.MapTo<Model.Menu>();
-            updateMenu.ParentId = menu.ParentId;
-            await _menuRepository.UpdateAsync(updateMenu);
+            menu.MenuName = input.MenuName;
+            menu.MenuLeval = input.MenuLeval;
+            menu.MenuUrl = input.MenuUrl;
+            menu.MenuLayer = input.MenuLayer;
+            menu.IsSys = input.IsSys;
+            menu.IsOut = input.IsOut;
+            menu.IsParent = input.IsParent;
+            menu.TargetFrame = input.TargetFrame;
+            menu.Weight = input.Weight;
+            menu.LastModificationTime=DateTime.Now;
+            await _menuRepository.UpdateAsync(menu);
             return true;
         }
+
 
         /// <summary>
         /// 删除菜单
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<bool> RemoveMenu(string id)
+        public async Task<bool> RemoveMenu(string id)
         {
-            throw new System.NotImplementedException();
+            var menu = await GetByIdAsync(id);
+            if (menu == null)
+            {
+                throw new UserFriendlyException("不存在该菜单！");
+            }
+            menu.IsDeleted = true;
+            await _menuRepository.UpdateAsync(menu);
+            return true;
         }
 
         private async Task<Model.Menu> GetByIdAsync(string id)
-            => await ExcludeDeletedQueryable().FirstOrDefaultAsync(i => i.Id == id);
+        {
+            return await _menuRepository.FirstOrDefaultAsync(i => i.Id == id);
+        }
 
 
         private IQueryable<Model.Menu> ExcludeDeletedQueryable()
