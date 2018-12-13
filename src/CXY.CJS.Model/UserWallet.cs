@@ -11,7 +11,13 @@ namespace CXY.CJS.Model
     {
         public string WebSiteId { get; set; }
         public string Userid { get; set; }
+        /// <summary>
+        /// 当前余额
+        /// </summary>
         public decimal? Wdye { get; set; }
+        /// <summary>
+        /// 透支额度
+        /// </summary>
         public decimal? Overdrftamount { get; set; }
 
 

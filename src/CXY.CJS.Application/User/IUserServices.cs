@@ -39,5 +39,6 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         Task<ApiResult<string>> Delete(EntityDto<string> input);
+
     }
 }

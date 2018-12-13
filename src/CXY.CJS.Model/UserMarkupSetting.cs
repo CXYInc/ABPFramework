@@ -11,7 +11,13 @@ namespace CXY.CJS.Model
     {
         public string WebSiteId { get; set; }
         public string Userid { get; set; }
+        /// <summary>
+        /// 扣分单利润INT版
+        /// </summary>
         public decimal? Gdlr { get; set; }
+        /// <summary>
+        /// 扣分单利润JSON版
+        /// </summary>
         public string ProfitJson { get; set; }
 
         public DateTime CreationTime { get; set; }
