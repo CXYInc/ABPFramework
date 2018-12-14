@@ -1,8 +1,6 @@
-﻿using System.Threading.Tasks;
-using CXY.CJS.Role;
+﻿using CXY.CJS.Application;
 using CXY.CJS.Role.Dto;
-using Microsoft.EntityFrameworkCore;
-using Shouldly;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace CXY.CJS.Tests.Application.Role
@@ -14,7 +12,6 @@ namespace CXY.CJS.Tests.Application.Role
         {
             _service = testBase.Ioc.Resolve<IRoleService>();
         }
-
 
         [Fact]
         public async Task ListRole_When_NotFound()
