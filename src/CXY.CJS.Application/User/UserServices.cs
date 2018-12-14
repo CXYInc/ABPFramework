@@ -136,6 +136,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPost]
         public async Task<ApiResult> Delete(string input)
         {
             var result = new ApiResult().Success();
@@ -210,43 +211,6 @@ namespace CXY.CJS.Application
         //    return new ApiResult<List<UserOutDto>>().Success(data: dtos);
 
         //}
-
-        /// <summary>
-        /// 删除用户
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        [HttpDelete]
-        public async Task<ApiResult<string>> Delete(EntityDto<string> input)
-        {
-            var result = new ApiResult<string>().Success("删除成功");
-
-            if (input == null || input.Id.IsNullOrEmpty())
-            {
-                return result.Error("参数有误");
-            }
-
-            try
-            {
-                var user = await _repository.GetAsync(input.Id);
-
-                if (user != null)
-                    await _repository.DeleteAsync(user);
-
-                result.Data = user.Id;
-            }
-            catch (EntityNotFoundException)
-            {
-                result.Code = 0;
-                result.Message = "未找到数据";
-            }
-            catch (Exception ex)
-            {
-                result.Error(ex.Message);
-            }
-
-            return result;
-        }
 
         public async Task<ApiResult<PaginationResult<LowerAgentOutputItem>>> ListLowerAgent(ListLowerAgentInput input)
         {
