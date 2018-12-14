@@ -41,5 +41,24 @@ namespace CXY.CJS.Tests.TestDatas
             IsDeleted = false,
             IsPaymentPwd = 0
         };
+
+
+        public static readonly User WillBeDelUser = new User
+        {
+            Id = Guid.NewGuid().ToString(),
+            WebSiteId = WebSiteDatas.SuperWebSite.Id,
+            UserName = "lowerAgent",
+            LoginName = "lowerAgent",
+            Password = "e10adc3949ba59abbe56e057f20f883e",
+            RealName = "下级代理",
+            PhoneNumber = "pALjSAftFS1wWos2Y6ZLeg==",
+            Shortname = "下级代理",
+            FullName = "下级代理",
+            Ispanuse = 0,
+            RecommendUserid = "0",
+            CardNo = "450821198508281479",
+            IsDeleted = false,
+            IsPaymentPwd = 0
+        };
     }
 }

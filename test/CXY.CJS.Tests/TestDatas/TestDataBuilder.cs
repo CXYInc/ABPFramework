@@ -35,6 +35,7 @@ namespace CXY.CJS.Tests.TestDatas
         {
             AddTask(_context.Users.AddAsync(UserDatas.SuperWebSiteMasterUser));
             AddTask(_context.Users.AddAsync(UserDatas.SuperWebSiteLowerAgent));
+            AddTask(_context.Users.AddAsync(UserDatas.WillBeDelUser));
         }
 
         private void InitUserSysSettingDatas()

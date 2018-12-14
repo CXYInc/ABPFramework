@@ -13,35 +13,35 @@ namespace CXY.CJS.Application
     /// </summary>
     public interface IUserServices : IApplicationService
     {
-        ///// <summary>
-        ///// 创建用户
-        ///// </summary>
-        ///// <param name="userEditInput"></param>
-        ///// <returns></returns>
-        //Task<ApiResult<string>> Create(UserEditInputDto userEditInput);
+        /// <summary>
+        /// 创建用户
+        /// </summary>
+        /// <param name="userEditInput"></param>
+        /// <returns></returns>
+        Task<ApiResult<string>> Create(CreateUserInput userEditInput);
 
-        ///// <summary>
-        ///// 获取用户信息
-        ///// </summary>
-        ///// <param name="input"></param>
-        ///// <returns></returns>
-        //Task<ApiResult<UserOutDto>> Get(EntityDto<string> input);
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ApiResult<UserOutDto>> Get(string id);
 
-        ///// <summary>
-        ///// 更新用户
-        ///// </summary>
-        ///// <param name="userEditInput"></param>
-        ///// <returns></returns>
-        //Task<ApiResult<string>> Update(UserEditInputDto userEditInput);
+        /// <summary>
+        /// 更新用户
+        /// </summary>
+        /// <param name="userEditInput"></param>
+        /// <returns></returns>
+        Task<ApiResult> Update(UserEditInputDto userEditInput);
 
-        ///// <summary>
-        ///// 删除用户
-        ///// </summary>
-        ///// <param name="input"></param>
-        ///// <returns></returns>
-        //Task<ApiResult<string>> Delete(EntityDto<string> input);
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ApiResult> Delete(string input);
 
-         //用户绑定角色
+        //用户绑定角色
 
         /// <summary>
         /// 列出下游代理商
