@@ -12,7 +12,7 @@
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <RootNamespace>CXY.CJS</RootNamespace>
+    <RootNamespace>CXY.CJS.EntityFrameworkCore</RootNamespace>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>

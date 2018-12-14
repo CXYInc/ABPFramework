@@ -51,7 +51,7 @@ namespace CXY.CJS.EntityFrameworkCore
         {
             var ts = GetAll().ToList();
 
-            ts.ForEach(x => x.Name = "2");
+            ts.ForEach(x => x.Name = "0");
         }
     }
 }

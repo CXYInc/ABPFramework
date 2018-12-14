@@ -64,35 +64,18 @@ namespace CXY.CJS.Core.Extension
         }
 
         /// <summary>
-        /// string to Enum
+        /// object to Enum
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="str"></param>
+        /// <param name="obj"></param>
         /// <returns>元组数据 item1 Enum,item2 bool</returns>
-        public static Tuple<T, bool> ToEnum<T>(this string str) where T : Enum
+        public static Tuple<T, bool> ToEnum<T>(this object obj) where T : Enum
         {
             var result = default(T);
-            bool success = Enum.IsDefined(typeof(T), str);
+            bool success = Enum.IsDefined(typeof(T), obj);
             if (success)
             {
-                result = (T)Enum.ToObject(typeof(T), str); ;
-            }
-            return new Tuple<T, bool>(result, success);
-        }
-
-        /// <summary>
-        /// int to Enum
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
-        /// <returns>元组数据 item1 Enum,item2 bool</returns>
-        public static Tuple<T, bool> ToEnum<T>(this int value) where T : Enum
-        {
-            var result = default(T);
-            bool success = Enum.IsDefined(typeof(T), value);
-            if (success)
-            {
-                result = (T)Enum.ToObject(typeof(T), value);
+                result = (T)Enum.ToObject(typeof(T), obj);
             }
             return new Tuple<T, bool>(result, success);
         }

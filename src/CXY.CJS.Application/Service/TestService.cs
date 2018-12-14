@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.Extension;
+using System.Collections.Generic;
 
 namespace CXY.CJS.Application
 {
@@ -90,6 +91,19 @@ namespace CXY.CJS.Application
             //result.Data = SortEnum.Desc.GetDescription();
             result.Data = id.ToEnum<SortEnum>().Item1.GetDescription();
             return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("Get/TestEnum")]
+        [AllowAnonymous]
+        public List<TestOutDto> EnumMapperTest()
+        {
+          var list=  _testRepository.GetAll();
+
+            return _objectMapper.Map<List<TestOutDto>>(list);
         }
     }
 }
