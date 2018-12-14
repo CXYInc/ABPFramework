@@ -22,10 +22,15 @@ namespace CXY.CJS.Tests.Application.Test
         }
 
         [Fact]
-        public void Test1()
+        public void TestGetAllUpdate()
         {
             _testService.Update();
         }
 
+        [Fact]
+        public void TestEnumMapper()
+        {
+            _testService.EnumMapperTest();
+        }
     }
 }
