@@ -16,6 +16,5 @@ namespace CXY.CJS.Model
         {
             CreationTime = Clock.Now;
         }
-
     }
 }

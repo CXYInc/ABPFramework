@@ -24,6 +24,7 @@ namespace CXY.CJS.Tests.TestDatas
             InitWebSite();
             InitMenu();
             InitUser();
+            InitUserRoles();
             InitUserSysSettingDatas();
             InitUserWalletDatas();
 
@@ -37,7 +38,10 @@ namespace CXY.CJS.Tests.TestDatas
             AddTask(_context.Users.AddAsync(UserDatas.SuperWebSiteLowerAgent));
             AddTask(_context.Users.AddAsync(UserDatas.WillBeDelUser));
         }
-
+        private void InitUserRoles()
+        {
+            AddTask(_context.UserRoles.AddAsync(UserRoles.LowerAgentTestRole));
+        }
         private void InitUserSysSettingDatas()
         {
             AddTask(_context.UserSysSettings.AddAsync(UserSysSettingDatas.SuperWebSiteLowerAgentSysSetting));
