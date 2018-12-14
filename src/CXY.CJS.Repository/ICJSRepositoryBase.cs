@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CXY.CJS.Repository
 {
-    public interface ICJSRepositoryBase<TEntity, TPrimaryKey>: ITransientDependency where TEntity : class, IEntity<TPrimaryKey>
+    public interface ICJSRepositoryBase<TEntity, TPrimaryKey> : ITransientDependency where TEntity : class, IEntity<TPrimaryKey>
     {
         IQueryable<TEntity> GetAll();
 
@@ -18,6 +18,7 @@ namespace CXY.CJS.Repository
         Task<TEntity> InsertAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
     }
 
     public interface ICJSRepositoryBase<TEntity> : ITransientDependency where TEntity : class, IEntity<int>
@@ -30,5 +31,6 @@ namespace CXY.CJS.Repository
         Task<TEntity> InsertAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
     }
 }
