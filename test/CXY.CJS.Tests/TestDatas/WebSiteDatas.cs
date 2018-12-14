@@ -9,7 +9,8 @@ namespace CXY.CJS.Tests.TestDatas
             Id = "999999",
             WebSiteKey = "CS9999",
             WebSiteName = "超级总站",
-            WebSiteMater = "999999201110290000000000000001"
+            WebSiteMater = "999999201110290000000000000001",
+            WorkerName = "商务负责人",
         };
 
         public static readonly WebSite DedeletedWebSite = new WebSite

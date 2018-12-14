@@ -31,13 +31,13 @@ namespace CXY.CJS.Application
     [AllowAnonymous]
     public class WebSiteAppService : CJSAppServiceBase, IWebSiteAppService
     {
-        private readonly IRepository<WebSite, string> _websiteRepository;
+        private readonly IWebsiteRepository _websiteRepository;
 
-        private readonly IRepository<UserScore, string> _UserScoreRepository;
+        private readonly IUserScoreRepository _userScoreRepository;
 
-        private readonly IRepository<UserSysSetting, string> _UserSysSettingRepository;
+        private readonly IUserSysSettingRepository _userSysSettingRepository;
 
-        private readonly IRepository<User, string> _userRepository;
+        private readonly IUserRepository _userRepository;
 
         private readonly IWebSiteFullRepository _siteFullRepository;
 
@@ -48,15 +48,15 @@ namespace CXY.CJS.Application
         /// <summary>
         /// 构造函数 
         ///</summary>
-        public WebSiteAppService(IRepository<WebSite, string> websiteRepository, IWebSiteFullRepository siteFullRepository, IRepository<UserScore, string> UserScoreRepository, IRepository<UserSysSetting, string> UserSysSettingRepository, IRepository<User, string> userRepository, SysAlipayConfig sysAlipayConfig, SysWeiXinPayConfig sysWeiXinPayConfig)
+        public WebSiteAppService(IWebsiteRepository websiteRepository, IWebSiteFullRepository siteFullRepository, SysAlipayConfig sysAlipayConfig, SysWeiXinPayConfig sysWeiXinPayConfig, IUserScoreRepository userScoreRepository, IUserSysSettingRepository userSysSettingRepository, IUserRepository userRepository)
         {
             _websiteRepository = websiteRepository;
             _siteFullRepository = siteFullRepository;
-            _UserScoreRepository = UserScoreRepository;
-            _UserSysSettingRepository = UserSysSettingRepository;
-            _userRepository = userRepository;
             _sysAlipayConfig = sysAlipayConfig;
             _sysWeiXinPayConfig = sysWeiXinPayConfig;
+            _userScoreRepository = userScoreRepository;
+            _userSysSettingRepository = userSysSettingRepository;
+            _userRepository = userRepository;
         }
 
 
@@ -234,14 +234,7 @@ namespace CXY.CJS.Application
             }
             if (!string.IsNullOrWhiteSpace(input.Key))
             {
-                if (where != null)
-                {
-                    where = where.And(i => i.WebSite.WebSiteName.Contains(input.Key));
-                }
-                else
-                {
-                    where = i => i.WebSite.WebSiteName.Contains(input.Key);
-                }
+                where = where.And(i => i.WebSite.WebSiteName.Contains(input.Key));
             }
             var resultTemp = await _siteFullRepository.QueryByWhereAsync<WebSiteFull>(input, null, where);
 
@@ -268,7 +261,7 @@ namespace CXY.CJS.Application
                 if (!string.IsNullOrEmpty(webSite.WebSite.WebSiteMater))
                 {
                     //获取关联的DefaultJFPrice和DefaultNotePrice
-                    var price = _UserScoreRepository.GetAll()
+                    var price = _userScoreRepository.GetAll()
                         .Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
@@ -277,7 +270,7 @@ namespace CXY.CJS.Application
                         }).FirstOrDefault();
 
                     //获取关联的provinceid
-                    var province = _UserSysSettingRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
+                    var province = _userSysSettingRepository.GetAll().Where(i => i.Id == result.WebSiteMater)
                         .Select(i => new
                         {
                             i.Provinceid
@@ -360,7 +353,7 @@ namespace CXY.CJS.Application
 
             // 创建站点管理员附属信息(商务经理、省)
 
-            var insertUserSysSettingTask = _UserSysSettingRepository.InsertAsync(new UserSysSetting
+            var insertUserSysSettingTask = _userSysSettingRepository.InsertAsync(new UserSysSetting
             {
                 Id = userId,
                 Swfzr = input.WorkerName,
@@ -369,7 +362,7 @@ namespace CXY.CJS.Application
             });
 
             // 创建站点管理员的每月积分
-            var insertUserScoreTask = _UserScoreRepository.InsertAsync(new UserScore
+            var insertUserScoreTask = _userScoreRepository.InsertAsync(new UserScore
             {
                 Id = userId,
                 GivePointsPerMonth = input.GivePointsPerMonth,
@@ -421,7 +414,7 @@ namespace CXY.CJS.Application
             await _siteFullRepository.UpdateAsync(insertWebsite);
 
             // 站点管理员的 WorkerName 和 PROVINCEID  变更时
-            var UserSysSetting = await _UserSysSettingRepository
+            var UserSysSetting = await _userSysSettingRepository
                 .FirstOrDefaultAsync(i => i.Id == input.WebSiteMater && i.WebSiteId == input.Id);
             if (UserSysSetting == null)
             {
@@ -432,18 +425,18 @@ namespace CXY.CJS.Application
             {
                 UserSysSetting.Provinceid = input.PROVINCEID;
                 UserSysSetting.Swfzr = input.WorkerName;
-                await _UserSysSettingRepository.UpdateAsync(UserSysSetting);
+                await _userSysSettingRepository.UpdateAsync(UserSysSetting);
             }
 
             // 每月赠送次数 变更时
 
-            var UserScore = await _UserScoreRepository.FirstOrDefaultAsync(i => i.Id == input.WebSiteMater);
+            var UserScore = await _userScoreRepository.FirstOrDefaultAsync(i => i.Id == input.WebSiteMater);
             if (UserScore != null)
             {
                 if (UserScore.GivePointsPerMonth!= input.GivePointsPerMonth)
                 {
                     UserScore.GivePointsPerMonth = input.GivePointsPerMonth;
-                    await _UserScoreRepository.UpdateAsync(UserScore);
+                    await _userScoreRepository.UpdateAsync(UserScore);
                 }
             }
 

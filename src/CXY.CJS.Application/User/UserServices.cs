@@ -10,6 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using Abp.Runtime.Session;
+using Abp.Specifications;
+using CXY.CJS.Repository;
+using CXY.CJS.Repository.MixModel;
+using CXY.CJS.Repository.SeedWork;
 
 namespace CXY.CJS.Application
 {
@@ -20,187 +26,257 @@ namespace CXY.CJS.Application
     {
         private readonly IRepository<User, string> _repository;
         private readonly IObjectMapper _objectMapper;
-
+        private ILowerAgentRepository _lowerAgentRepository;
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="objectMapper"></param>
-        public UserServices(IRepository<User, string> repository, IObjectMapper objectMapper)
+        public UserServices(IRepository<User, string> repository, IObjectMapper objectMapper, ILowerAgentRepository lowerAgentRepository)
         {
             _repository = repository;
             _objectMapper = objectMapper;
+            _lowerAgentRepository = lowerAgentRepository;
         }
 
-        /// <summary>
-        /// 创建用户
-        /// </summary>
-        /// <param name="userEditInput"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ApiResult<string>> Create(UserEditInputDto userEditInput)
+        ///// <summary>
+        ///// 创建用户
+        ///// </summary>
+        ///// <param name="userEditInput"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public async Task<ApiResult<string>> Create(UserEditInputDto userEditInput)
+        //{
+        //    var result = new ApiResult<string>().Success();
+
+        //    if (userEditInput == null)
+        //    {
+        //        return result.Error("参数有误");
+        //    }
+
+        //    try
+        //    {
+        //        var user = _objectMapper.Map<User>(userEditInput);
+
+        //        user.Id = Guid.NewGuid().ToString("N");
+        //        user.EmailAddress = "hausthy@163.com";
+
+        //        await _repository.InsertAsync(user);
+
+        //        result.Data = user.Id;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Error(ex.Message);
+        //    }
+
+        //    return result;
+        //}
+
+        ///// <summary>
+        ///// 更新用户
+        ///// </summary>
+        ///// <param name="userEditInput"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public async Task<ApiResult<string>> Update(UserEditInputDto userEditInput)
+        //{
+        //    var result = new ApiResult<string>().Success();
+
+        //    if (userEditInput == null || userEditInput.Id.IsNullOrEmpty())
+        //    {
+        //        return result.Error("参数有误");
+        //    }
+
+        //    try
+        //    {
+        //        var user = await _repository.GetAsync(userEditInput.Id);
+
+        //        _objectMapper.Map(userEditInput, user);
+
+        //        user.EmailAddress = "hausthy@163.com";
+
+        //        var dto = await _repository.UpdateAsync(user);
+
+        //        result.Data = dto.Id;
+        //    }
+        //    catch (EntityNotFoundException)
+        //    {
+        //        result.Code = 0;
+        //        result.Message = "未找到数据";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Error(ex.Message);
+        //    }
+
+        //    return result;
+        //}
+
+        ///// <summary>
+        ///// 获取用户详情信息
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public async Task<ApiResult<UserOutDto>> Get(EntityDto<string> input)
+        //{
+        //    var result = new ApiResult<UserOutDto> { Code = 1 };
+        //    try
+        //    {
+        //        var user = await _repository.GetAsync(input.Id);
+
+        //        var dto = _objectMapper.Map<UserOutDto>(user);
+
+        //        result.Data = dto;
+        //    }
+        //    catch (EntityNotFoundException)
+        //    {
+        //        result.Code = 1;
+        //        result.Message = "";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Code = 0;
+        //        result.Message = ex.Message;
+        //    }
+
+        //    return result;
+        //}
+
+        ///// <summary>
+        ///// 获取用户列表
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public async Task<ApiResult<List<UserOutDto>>> GetList()
+        //{
+        //    var list = await _repository.GetAllListAsync();
+
+        //    var dtos = _objectMapper.Map<List<UserOutDto>>(list);
+
+        //    return new ApiResult<List<UserOutDto>>().Success(data: dtos);
+
+        //}
+
+        ///// <summary>
+        ///// 删除用户
+        ///// </summary>
+        ///// <param name="input"></param>
+        ///// <returns></returns>
+        //[HttpDelete]
+        //public async Task<ApiResult<string>> Delete(EntityDto<string> input)
+        //{
+        //    var result = new ApiResult<string>().Success("删除成功");
+
+        //    if (input == null || input.Id.IsNullOrEmpty())
+        //    {
+        //        return result.Error("参数有误");
+        //    }
+
+        //    try
+        //    {
+        //        var user = await _repository.GetAsync(input.Id);
+
+        //        if (user != null)
+        //            await _repository.DeleteAsync(user);
+
+        //        result.Data = user.Id;
+        //    }
+        //    catch (EntityNotFoundException)
+        //    {
+        //        result.Code = 0;
+        //        result.Message = "未找到数据";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.Error(ex.Message);
+        //    }
+
+        //    return result;
+        //}
+
+        public async Task<ApiResult<PaginationResult<LowerAgentOutputItem>>> ListLowerAgent(ListLowerAgentInput input)
         {
-            var result = new ApiResult<string>().Success();
 
-            if (userEditInput == null)
-            {
-                return result.Error("参数有误");
-            }
+            var where = BuildListLowerAgentWhere(input);
 
-            try
-            {
-                var user = _objectMapper.Map<User>(userEditInput);
+            var agents = await _lowerAgentRepository.QueryByWhereAsync<LowerAgent>(input, null, where);
 
-                user.Id = Guid.NewGuid().ToString("N");
-                user.EmailAddress = "hausthy@163.com";
+            var pageDatas = new PaginationResult<LowerAgentOutputItem>(input)
+                .SetReuslt(agents.TotalCount, LowerAgent.MapToList<LowerAgentOutputItem>(agents.Datas));
 
-                await _repository.InsertAsync(user);
+            return new ApiResult<PaginationResult<LowerAgentOutputItem>>().Success(pageDatas);
 
-                result.Data = user.Id;
-            }
-            catch (Exception ex)
-            {
-                result.Error(ex.Message);
-            }
-
-            return result;
         }
 
-        /// <summary>
-        /// 更新用户
-        /// </summary>
-        /// <param name="userEditInput"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ApiResult<string>> Update(UserEditInputDto userEditInput)
+        public async Task<ApiResult<LowerAgentOutputItem>> GetLowerAgent(string id)
         {
-            var result = new ApiResult<string>().Success();
-
-            if (userEditInput == null || userEditInput.Id.IsNullOrEmpty())
+            var agent = await _lowerAgentRepository.GetAsync(id);
+            if (agent==null)
             {
-                return result.Error("参数有误");
+                return  new ApiResult<LowerAgentOutputItem>().Error("不存在该数据");
             }
-
-            try
-            {
-                var user = await _repository.GetAsync(userEditInput.Id);
-
-                _objectMapper.Map(userEditInput, user);
-
-                user.EmailAddress = "hausthy@163.com";
-
-                var dto = await _repository.UpdateAsync(user);
-
-                result.Data = dto.Id;
-            }
-            catch (EntityNotFoundException)
-            {
-                result.Code = 0;
-                result.Message = "未找到数据";
-            }
-            catch (Exception ex)
-            {
-                result.Error(ex.Message);
-            }
-
-            return result;
+            var output = LowerAgent.MapTo<LowerAgentOutputItem>(agent);
+            return  new ApiResult<LowerAgentOutputItem>().Success(output);
         }
-
-        /// <summary>
-        /// 获取用户详情信息
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ApiResult<UserOutDto>> Get(EntityDto<string> input)
-        {
-            var result = new ApiResult<UserOutDto> { Code = 1 };
-            try
-            {
-                var user = await _repository.GetAsync(input.Id);
-
-                var dto = _objectMapper.Map<UserOutDto>(user);
-
-                result.Data = dto;
-            }
-            catch (EntityNotFoundException)
-            {
-                result.Code = 1;
-                result.Message = "";
-            }
-            catch (Exception ex)
-            {
-                result.Code = 0;
-                result.Message = ex.Message;
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// 获取用户列表
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ApiResult<List<UserOutDto>>> GetList()
-        {
-            var list = await _repository.GetAllListAsync();
-
-            var dtos = _objectMapper.Map<List<UserOutDto>>(list);
-
-            return new ApiResult<List<UserOutDto>>().Success(data: dtos);
-
-        }
-
-        /// <summary>
-        /// 删除用户
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        [HttpDelete]
-        public async Task<ApiResult<string>> Delete(EntityDto<string> input)
-        {
-            var result = new ApiResult<string>().Success("删除成功");
-
-            if (input == null || input.Id.IsNullOrEmpty())
-            {
-                return result.Error("参数有误");
-            }
-
-            try
-            {
-                var user = await _repository.GetAsync(input.Id);
-
-                if (user != null)
-                    await _repository.DeleteAsync(user);
-
-                result.Data = user.Id;
-            }
-            catch (EntityNotFoundException)
-            {
-                result.Code = 0;
-                result.Message = "未找到数据";
-            }
-            catch (Exception ex)
-            {
-                result.Error(ex.Message);
-            }
-
-            return result;
-        }
-
 
 
         #region 私有方法
 
-        /// <summary>
-        /// 获取用户数据实体
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private async Task<User> GetUser(string id)
+        ///// <summary>
+        ///// 获取用户数据实体
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //private async Task<User> GetUser(string id)
+        //{
+        //    return await _repository.GetAsync(id);
+        //}
+
+
+        private static Expression<Func<LowerAgent, bool>> BuildListLowerAgentWhere(ListLowerAgentInput input)
         {
-            return await _repository.GetAsync(id);
+            //todo:用户id和websiteId应该从session中拿
+
+            Expression<Func<LowerAgent, bool>> where = i =>
+                i.UserSysSetting.Userlayer == "0"&&
+                i.UserSysSetting.ParentId == input.Id && 
+                i.User.Id != input.Id
+                && i.User.WebSiteId == input.WebSiteId;
+
+            if (!string.IsNullOrWhiteSpace(input.Key))
+            {
+                where = where.And(i =>
+                    i.User.RealName.Contains(input.Key) || i.User.LoginName.Contains(input.Key) ||
+                    i.User.PhoneNumber.Contains(input.Key) || i.User.Shortname.Contains(input.Key));
+            }
+
+            if (!string.IsNullOrWhiteSpace(input.Swfzr))
+            {
+                where = where.And(i => i.UserSysSetting.Swfzr.Contains(input.Swfzr));
+            }
+
+            if (input.Start.HasValue)
+            {
+                where = where.And(i => i.UserSysSetting.ValidityDate >= input.Start);
+            }
+
+            if (input.End.HasValue)
+            {
+                where = where.And(i => i.UserSysSetting.ValidityDate <= input.End);
+            }
+
+            if (input.MinWdye.HasValue)
+            {
+                where = where.And(i => i.UserWallet.Wdye >= input.MinWdye);
+            }
+
+            if (input.MaxWdye.HasValue)
+            {
+                where = where.And(i => i.UserWallet.Wdye <= input.MaxWdye);
+            }
+            return where;
         }
 
         #endregion

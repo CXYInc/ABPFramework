@@ -30,12 +30,12 @@ namespace CXY.CJS.Repository
         public Task<PaginationResult<TResult>> QueryByWhereAsync<TResult>(Pagination pagination, IEnumerable<IHasSort> sorts, string @where = "",
             params object[] whereParams)
         {
-            return GetAll().WhereSortPageAsync<WebSiteFull, TResult>(pagination, sorts, @where, whereParams);
+            return GetAllNoTracking().WhereSortPageAsync<WebSiteFull, TResult>(pagination, sorts, @where, whereParams);
         }
 
         public Task<PaginationResult<TResult>> QueryByWhereAsync<TResult>(Pagination pagination, IEnumerable<IHasSort> sorts, Expression<Func<WebSiteFull, bool>> @where)
         {
-            return GetAll().WhereSortPageAsync<WebSiteFull, TResult>(pagination, sorts, @where);
+            return GetAllNoTracking().WhereSortPageAsync<WebSiteFull, TResult>(pagination, sorts, @where);
         }
 
         public IQueryable<WebSiteFull> GetAll()
@@ -62,7 +62,7 @@ namespace CXY.CJS.Repository
 
         public Task<WebSiteFull> GetAsync(string id)
         {
-            return GetAll().FirstOrDefaultAsync(i => i.WebSite.Id == id);
+            return GetAllNoTracking().FirstOrDefaultAsync(i => i.WebSite.Id == id);
         }
 
         public async Task InsertAsync(WebSiteFull i)
