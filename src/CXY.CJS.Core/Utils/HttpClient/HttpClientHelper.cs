@@ -7,10 +7,17 @@ using System.Threading.Tasks;
 
 namespace CXY.CJS.Core.HttpClient
 {
+    /// <summary>
+    /// HttpClientHelper
+    /// </summary>
     public class HttpClientHelper
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="httpClientFactory"></param>
         public HttpClientHelper(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
@@ -193,6 +200,11 @@ namespace CXY.CJS.Core.HttpClient
             return httpClientResponse;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpClientRequest"></param>
+        /// <returns></returns>
         public async Task<HttpResponseMessage> PostAsync(HttpClientRequest httpClientRequest)
         {
             try
@@ -211,7 +223,6 @@ namespace CXY.CJS.Core.HttpClient
                     {
                         httpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
                     }
-
                 }
                 var httpContent = new StringContent(httpClientRequest.PostData, httpClientRequest.DataEncoding);
                 if (!httpClientRequest.ContentType.IsNullOrEmpty())
