@@ -10850,3 +10850,43 @@ DEBUG 2018-12-10 10:23:43,946 [2    ] Abp.Modules.AbpModuleManager             -
 DEBUG 2018-12-10 10:23:43,948 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
 DEBUG 2018-12-10 10:23:43,949 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
 DEBUG 2018-12-10 10:23:43,949 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2018-12-12 11:03:14,560 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2018-12-12 11:03:14,827 [1    ] Abp.Modules.AbpModuleManager             - Found 12 ABP modules in total.
+DEBUG 2018-12-12 11:03:14,839 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.WebApi.CJSWebApiModule, CXY.CJS.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,843 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSApplicationModule, CXY.CJS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,843 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.CJSCoreModule, CXY.CJS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,844 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Repository.CJSRepositoryModule, CXY.CJS.Repository, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,845 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,845 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,846 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.Web.Core.CJSWebCoreModule, CXY.CJS.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,846 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: CXY.CJS.EntityFrameworkCore.CJSEntityFrameworkCoreModule, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,846 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,847 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,847 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,847 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.0.2.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:14,852 [1    ] Abp.Modules.AbpModuleManager             - 12 modules loaded.
+DEBUG 2018-12-12 11:03:15,636 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: CXY.CJS.EntityFrameworkCore.CJSDbContext, CXY.CJS.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2018-12-12 11:03:15,812 [1    ] Abp.Localization.LocalizationManager     - Initializing 3 localization sources.
+DEBUG 2018-12-12 11:03:15,938 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2018-12-12 11:03:16,024 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CJS
+DEBUG 2018-12-12 11:03:16,090 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2018-12-12 11:03:16,543 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-12-12 11:03:16,656 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 1 classes define auto mapping attributes
+DEBUG 2018-12-12 11:03:16,656 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - CXY.CJS.Role.Dto.ListRoleOutputItem
+INFO  2018-12-12 11:03:19,290 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/apidoc/index.html  
+INFO  2018-12-12 11:03:21,099 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1779.9577ms 200 text/html
+INFO  2018-12-12 11:03:21,128 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/apidoc/swagger-ui-bundle.js  
+INFO  2018-12-12 11:03:21,141 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/apidoc/swagger-ui-standalone-preset.js  
+INFO  2018-12-12 11:03:21,171 [7    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2018-12-12 11:03:21,189 [10   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2018-12-12 11:03:21,198 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/apidoc/swagger-ui.css  
+INFO  2018-12-12 11:03:21,219 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 102.1751ms 304 application/javascript
+INFO  2018-12-12 11:03:21,255 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 92.5999ms 304 application/javascript
+INFO  2018-12-12 11:03:21,312 [11   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2018-12-12 11:03:21,323 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 131.3181ms 304 text/css
+INFO  2018-12-12 11:03:22,666 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:5000/apidoc/swagger/WebApi/swagger.json  
+INFO  2018-12-12 11:03:23,488 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 652.2451ms 200 application/json;charset=utf-8
+DEBUG 2018-12-12 11:37:56,527 [2    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2018-12-12 11:37:56,530 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-12-12 11:37:56,533 [2    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2018-12-12 11:37:56,533 [2    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
