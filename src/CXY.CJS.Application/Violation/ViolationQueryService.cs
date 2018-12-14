@@ -1,5 +1,8 @@
 ﻿using Abp.Application.Services;
 using Abp.Json;
+using CXY.CJS.Application.Dtos;
+using CXY.CJS.Core.HttpClient;
+using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -13,21 +16,37 @@ using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
 {
-    public class ViolationQueryService : ApplicationService, IViolationQueryService
+    /// <summary>
+    /// 违章查询服务
+    /// </summary>
+    public class ViolationQueryService : CJSAppServiceBase, IViolationQueryService
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClientHelper _httpClientHelper;
 
-        public ViolationQueryService(IHttpClientFactory httpClientFactory)
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="httpClientFactory"></param>
+        /// <param name="httpClientHelper"></param>
+        public ViolationQueryService(IHttpClientFactory httpClientFactory, HttpClientHelper httpClientHelper)
         {
             _httpClientFactory = httpClientFactory;
+            _httpClientHelper = httpClientHelper;
         }
 
+        /// <summary>
+        /// 查询需要发动机位数
+        /// </summary>
+        /// <param name="carConditionInput"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<CarCondition> QueryCondition(CarCodeInfo carCodeInfo)
+        public async Task<ApiResult<ConditionInfo>> QueryCondition(CarConditionInputDto carConditionInput)
         {
-            if (carCodeInfo == null) return null;
-            var ProvinceID = carCodeInfo.Left2ProvinceID;
-            var cpjc = carCodeInfo.CarNumber.Substring(0, 2);
+            if (carConditionInput == null) return null;
+            var ProvinceID = "0";
+            var cpjc = carConditionInput.CarNumber.Substring(0, 2);
+
             #region 苏，苏在城市字典中查不到，因此特殊处理
             if (ProvinceID == "0")
             {
@@ -38,7 +57,7 @@ namespace CXY.CJS.Application
                 }
                 else
                 {
-                    CityCode city = FindByCarPrefix(cpjc);
+                    var city = FindByCarPrefix(cpjc);
                     if (city == null) return null;
                     ProvinceID = city.ProvinceID;
                 }
@@ -98,53 +117,62 @@ namespace CXY.CJS.Application
                 //    CarEngineLen = 0;
                 //}
 
-                return new CarCondition { CarCodeLen = CarCodeLen, CarEngineLen = CarEngineLen };
+                var result = new ConditionInfo { CarCodeLen = CarCodeLen, CarEngineLen = CarEngineLen };
+
+                return new ApiResult<ConditionInfo>().Success(result);
             }
             #endregion
             #region 以下四个按省处理，不按市
-            if (cpjc.Substring(0, 1) == "京"
-                || cpjc.Substring(0, 1) == "沪"
-                || cpjc.Substring(0, 1) == "津"
-                || cpjc.Substring(0, 1) == "渝")
+            var cpjcTemp = cpjc.Substring(0, 1);
+            var cityTemps = new List<string> { "京", "沪", "津", "渝" };
+
+            if (cityTemps.Contains(cpjcTemp))
             {
-                cpjc = cpjc.Substring(0, 1);
+                cpjc = cpjcTemp;
             }
             #endregion
 
-            carCodeInfo.Left2ProvinceID = ProvinceID;
-
             dynamic postData = new ExpandoObject();
             postData.req_data = new ExpandoObject();
-            postData.req_data.Cpjc = cpjc;
-            postData.req_data.Left2ProvinceID = ProvinceID;
-            postData.req_data.Source = carCodeInfo.Source;
+            postData.req_data.cpjc = cpjc;
+            postData.req_data.left2ProvinceID = ProvinceID;
+            postData.req_data.scource = "PC";
 
             var postDataStr = JsonConvert.SerializeObject(postData);
 
             var apiUrl = "http://112.74.132.61:8033/Violation.GetInputCondition";
 
-            //设置请求数据
-            var httpContent = new StringContent(postDataStr);
-            httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
+            var httpClientRequest = new HttpClientRequest
+            {
+                DataEncoding = Encoding.GetEncoding("gb2312"),
+                PostData = postDataStr,
+                ContentType = "text/plain",
+                Url = apiUrl
+            };
 
-            //发送请求
-            var client = _httpClientFactory.CreateClient();
-            var result = await client.PostAsync(apiUrl, httpContent);
+            var httpClientResponse = await _httpClientHelper.PostStringAsync(httpClientRequest);
 
-            var resultContent = await result.Content.ReadAsStringAsync();
+            var conditionApiResult = httpClientResponse.Data.FromJsonString<ConditionApiResult>();
 
-            return resultContent.FromJsonString<CarCondition>();
+            return new ApiResult<ConditionInfo>().Success(conditionApiResult.Data);
         }
 
-        public async Task<Hashtable> QRYW_QUERY_JDCXX_TODAY(CarCodeInfo carCodeInfo)
+        /// <summary>
+        /// 查询发动机号和车架号
+        /// </summary>
+        /// <param name="carCodeInfo"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ApiResult<Hashtable>> QueryCarCodeAndEngineCode(QueryCarCodeInputDto carCodeInfo)
         {
             Hashtable result = new Hashtable();
+
             try
             {
                 string fdjhLen = carCodeInfo.CarEngineLen.ToString();
                 string cjhLen = carCodeInfo.CarCodeLen.ToString();
                 string cp = carCodeInfo.CarNumber.ToLower();
-                string cx = carCodeInfo.PrivateFlag.ToString().PadLeft(2, '0');
+                string cx = carCodeInfo.CarType.PadLeft(2, '0');
                 switch (cx)
                 {
                     case "C":
@@ -169,22 +197,22 @@ namespace CXY.CJS.Application
                         cx = "02";
                         break;
                 }
-                string hpzlmc = carCodeInfo.CarType;
 
-                string engineNo = "", carCode = "", carType = "",
-                    carTypeName = "", seating = "", privateCar = "",
-                    initialRegDate = "", ExaminedType = "OnlineExamined", isbaseOk = "0";
+                string engineNo = "", carCode = "", carType = "", carTypeName = "", seating = "", privateCar = "", initialRegDate = "",
+                    ExaminedType = "OnlineExamined", isbaseOk = "0";
+
                 if (cp.Length >= 7)//去接口查
                 {
                     Hashtable postData = new Hashtable();
-                    postData.Add("source", "PC");
-                    postData.Add("websiteid", "009131");
-                    postData.Add("userid", "009131201808161400180000000009");
-                    postData.Add("shortname", "大搜车");
-                    postData.Add("carnumber", cp);
-                    postData.Add("cartype", cx);
                     postData.Add("enginenolen", fdjhLen);
+                    postData.Add("userid", "009020201501192329000000000002");
                     postData.Add("carcodelen", cjhLen);
+                    postData.Add("carType", cx);
+                    postData.Add("carnumber", cp);
+                    postData.Add("source", "PC");
+                    postData.Add("shortname", "有限公司");
+                    postData.Add("websiteid", "009020");
+
 
                     Hashtable req_data = new Hashtable();
                     req_data.Add("req_data", postData);
@@ -192,33 +220,33 @@ namespace CXY.CJS.Application
 
                     var apiUrl = "http://112.74.132.61:8033/CarInfo.QueryCarBaseInfo";
 
-                    //设置请求数据
-                    var httpContent = new StringContent(postDataStr);
-                    httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
-
-                    //发送请求
-                    var client = _httpClientFactory.CreateClient();
-                    var httpResult = await client.PostAsync(apiUrl, httpContent);
-
-                    var resultContent = await httpResult.Content.ReadAsStringAsync();
-
-                    Hashtable hst = resultContent.FromJsonString<Hashtable>();
-
-                    if (hst != null && hst.ContainsKey("code") && hst["code"] + "" == "1" && hst.ContainsKey("data"))
+                    var httpClientRequest = new HttpClientRequest
                     {
-                        Hashtable resultData = hst["data"].ToString().FromJsonString<Hashtable>();
+                        DataEncoding = Encoding.GetEncoding("gb2312"),
+                        PostData = postDataStr,
+                        ContentType = "text/plain",
+                        Url = apiUrl
+                    };
+
+                    var httpClientResponse = await _httpClientHelper.PostStringAsync(httpClientRequest);
+
+                    var hst = httpClientResponse.Data.FromJsonString<Hashtable>();
+
+                    if (hst != null && hst.ContainsKey("code") && hst["code"].ToString() == "1" && hst.ContainsKey("data"))
+                    {
+                        var resultData = hst["data"].ToString().FromJsonString<Hashtable>();
                         if (resultData != null && resultData.ContainsKey("carCode") && resultData.ContainsKey("engineNo") && resultData.ContainsKey("carType") && resultData.ContainsKey("carTypeName"))
                         {
-                            engineNo = resultData["engineNo"] + "";
-                            carCode = resultData["carCode"] + "";
-                            carType = resultData["carType"] + "";
-                            carTypeName = resultData["carTypeName"] + "";
+                            engineNo = resultData["engineNo"].ToString();
+                            carCode = resultData["carCode"].ToString();
+                            carType = resultData["carType"].ToString();
+                            carTypeName = resultData["carTypeName"].ToString();
                         }
                     }
                 }
 
                 result["code"] = 1;
-                result["message"] = "曾查询过！";
+                result["message"] = "查询成功！";
                 result["FDJH"] = engineNo;
                 result["CJH"] = carCode;
                 result["HPZLMC"] = carTypeName;
@@ -234,43 +262,57 @@ namespace CXY.CJS.Application
                 throw ex;
             }
 
-            return result;
+            return new ApiResult<Hashtable>().Success(result);
         }
 
-        public async Task<Hashtable> QUERY_VIOLATION()
+        /// <summary>
+        ///  违章查询
+        /// </summary>
+        /// <param name="inputDto">违章查询输入参数</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<Hashtable> QueryViolation(QueryViolationInputDto inputDto)
         {
-            var hphm = "粤TPL310";
-            var cjh = "124923";
-            var fdjh = "695018";
-            var hpzl = "02";
-            var hpzlmc = "小型汽车";
-            var IsUseHistory = "0";
-            var UserId = "009020201501192329000000000002";
-            var provinceCode = "0";
-            int enumCarNature = 2;
-            var Shortname = "有限公司";
-            var IsLock = "0";
+            if (inputDto == null) return null;
 
-            string postDataStr = "{\"req_data\":{\"carNumber\":\"" + hphm + "\",\"carCode\":\"" + cjh + "\",\"engineCode\":\"" + fdjh + "\",\"carType\":\"" + hpzl + "\",\"carTypeName\":\"" + hpzlmc + "\",\"isUseHistory\":\"" + IsUseHistory + "\",\"userId\":\"" + UserId + "\",\"provinceCode\":\"" + provinceCode + "\",\"enumCarNature\":\"" + (int)enumCarNature + "\",\"shortname\":\"" + Shortname + "\",\"isCheckLock\":\"" + IsLock + "\",\"source\":\"PC\"}}";
+            Hashtable postData = new Hashtable();
+            postData.Add("carNumber", inputDto.CarNumber);
+            postData.Add("carCode", inputDto.CarCode);
+            postData.Add("engineCode", inputDto.CarEngine);
+            postData.Add("carType", inputDto.CarType.ToString().PadLeft(2, '0'));
+            postData.Add("carTypeName", inputDto.CarTypeName);
+            postData.Add("isUseHistory", inputDto.IsUseHistory.ToString());
+            postData.Add("userId", "009020201501192329000000000002");
+            postData.Add("provinceCode", inputDto.ProvinceCode);
+            postData.Add("enumCarNature", (int)inputDto.EnumCarNature);
+            postData.Add("shortname", "有限公司");
+            postData.Add("isCheckLock", inputDto.IsCheckLock.ToString());
+            postData.Add("source", "PC");
+
+            Hashtable req_data = new Hashtable();
+            req_data.Add("req_data", postData);
+            string postDataStr = req_data.ToJsonString();
 
             var apiUrl = "http://112.74.132.61:8033/Violation.ViolationSearch";
 
-            //设置请求数据
-            var httpContent = new StringContent(postDataStr, Encoding.GetEncoding("gb2312"));
-            httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("text/plain");
+            var httpClientRequest = new HttpClientRequest
+            {
+                DataEncoding = Encoding.GetEncoding("gb2312"),
+                PostData = postDataStr,
+                ContentType = "text/plain",
+                Url = apiUrl
+            };
 
-            //发送请求
-            var client = _httpClientFactory.CreateClient();
-            var httpResult = await client.PostAsync(apiUrl, httpContent);
+            var httpClientResponse = await _httpClientHelper.PostStringAsync(httpClientRequest);
 
-            var resultContent = await httpResult.Content.ReadAsStringAsync();
-
-            return resultContent.FromJsonString<Hashtable>();
+            return httpClientResponse.Data.FromJsonString<Hashtable>();
         }
 
         #region 
         private static List<CityCode> _ChinaCitys = null;
+
         private static readonly object padlock = new object();
+
         private static List<CityCode> ChinaCityQuery
         {
             get
@@ -681,7 +723,8 @@ namespace CXY.CJS.Application
                 return _ChinaCitys;
             }
         }
-        public static CityCode FindByCarPrefix(string CarPrefix)
+
+        private static CityCode FindByCarPrefix(string CarPrefix)
         {
             List<CityCode> query = ChinaCityQuery;
             foreach (CityCode entity in query)

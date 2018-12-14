@@ -1,18 +1,11 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Abp.AutoMapper;
-using AutoMapper.Configuration.Conventions;
-using CXY.CJS.Model;
+﻿using Abp.AutoMapper;
 
 namespace CXY.CJS.Application.Dtos
 {
-    /// <summary>
-    /// 用户业务编辑实体
-    /// </summary>
     [AutoMapTo(typeof(Model.User))]
-    public class UserEditInputDto
+    public class CreateUserInput
     {
-        public string Id { get; set; }
+        public string WebsiteId { get; set; }
         public string UserName { get; set; }
         /// <summary>
         /// 姓名
@@ -43,6 +36,7 @@ namespace CXY.CJS.Application.Dtos
         public string RecommendUserid { get; set; }
 
         public string CardNo { get; set; }
+
 
         public string Address { get; set; }
 
