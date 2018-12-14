@@ -8,20 +8,23 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace>CXY.CJS</RootNamespace>
+    <RootNamespace>CXY.CJS.Application</RootNamespace>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>D:\github\CXY.CJS\src\CXY.CJS.Application\CXY.CJS.Application.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\CXY.CJS.Application.xml</DocumentationFile>
     <OutputPath></OutputPath>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="CXY.CJS.Application.xml" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CXY.CJS.Core\CXY.CJS.Core.csproj" />
     <ProjectReference Include="..\CXY.CJS.Model\CXY.CJS.Model.csproj" />
     <ProjectReference Include="..\CXY.CJS.Repository\CXY.CJS.Repository.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.EntityFrameworkCore" Version="4.0.2" />
     <PackageReference Include="Abp.AutoMapper" Version="4.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.1" />

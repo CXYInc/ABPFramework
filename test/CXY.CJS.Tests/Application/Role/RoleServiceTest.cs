@@ -17,14 +17,14 @@ namespace CXY.CJS.Tests.Application.Role
 
 
         [Fact]
-        public async Task ListRole_Must_HasData()
+        public async Task ListRole_When_NotFound()
         {
             var result = await _service.ListRole(new  ListRoleInput
             {
-                PageIndex = 1,
-                PageSize = 10
+                PageIndex = 10,
+                PageSize = 1000
             });
-            Assert.NotEmpty(result.Datas);
+            Assert.Empty(result.Datas);
 
          
         }

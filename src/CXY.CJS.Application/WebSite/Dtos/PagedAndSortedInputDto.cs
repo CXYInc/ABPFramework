@@ -1,5 +1,5 @@
 using Abp.Application.Services.Dto;
-using CXY.CJS.Constant;
+using CXY.CJS.Core.Constant;
 
 namespace CXY.CJS.Application.Dtos
 {

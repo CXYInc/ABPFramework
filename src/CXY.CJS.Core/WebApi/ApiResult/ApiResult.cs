@@ -1,4 +1,4 @@
-﻿namespace CXY.CJS.WebApi
+﻿namespace CXY.CJS.Core.WebApi
 {
     /// <summary>
     /// api响应实体
@@ -27,6 +27,12 @@
     /// </summary>
     public class ApiResult : ApiResultBase<object>
     {
+        /// <summary>
+        /// 格式化成功数据
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public ApiResult Success(object data = null, string message = "")
         {
             Code = 1;
@@ -34,6 +40,11 @@
             return this;
         }
 
+        /// <summary>
+        /// 格式化失败数据
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public ApiResult Error(string message = "")
         {
             Code = 0;
@@ -48,6 +59,12 @@
     /// <typeparam name="T"></typeparam>
     public class ApiResult<T> : ApiResultBase<T> where T : class
     {
+        /// <summary>
+        /// 格式化成功数据
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public ApiResult<T> Success(T data = null, string message = "")
         {
             Code = 1;
@@ -55,6 +72,11 @@
             return this;
         }
 
+        /// <summary>
+        /// 格式化失败数据
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public ApiResult<T> Error(string message = "")
         {
             Code = 0;

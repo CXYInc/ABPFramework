@@ -7,7 +7,6 @@ namespace CXY.CJS.Model
     /// </summary>
     public class WebSitePayConfig : Entity<string>
     {
-        public string WebSiteId { get; set; }
 
         public bool PayForAnother { get; set; }
 

@@ -1,10 +1,10 @@
 ﻿using Abp.Runtime.Session;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CXY.CJS.Extensions
+namespace CXY.CJS.Core.Extensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IAbpSessionExtension : IAbpSession
     {
         new string UserId { get; }

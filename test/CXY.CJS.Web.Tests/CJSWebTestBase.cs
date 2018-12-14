@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Shouldly;
+using CXY.CJS.Core.Web;
 
 namespace CXY.CJS.Web.Tests
 {
@@ -35,7 +36,7 @@ namespace CXY.CJS.Web.Tests
                 .UseContentRoot(ContentRootFolder.Value);
         }
 
-        #region Get response
+        #region GetWebSite response
 
         protected async Task<T> GetResponseAsObjectAsync<T>(string url,
             HttpStatusCode expectedStatusCode = HttpStatusCode.OK)

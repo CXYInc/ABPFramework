@@ -2,11 +2,11 @@
 using Abp.MultiTenancy;
 using Abp.Runtime;
 using Abp.Runtime.Session;
-using CXY.CJS.Constant;
+using CXY.CJS.Core.Constant;
 using System.Linq;
 using System.Security.Claims;
 
-namespace CXY.CJS.Extensions
+namespace CXY.CJS.Core.Extensions
 {
     class AbpSessionExtension : ClaimsAbpSession, IAbpSessionExtension
     {

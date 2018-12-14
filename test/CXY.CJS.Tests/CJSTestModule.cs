@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Abp.AutoMapper;
 using Abp.Dependency;
 using Abp.EntityFrameworkCore;
 using Abp.Modules;
@@ -8,6 +9,8 @@ using Abp.TestBase;
 using CXY.CJS.EntityFrameworkCore;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
+using CXY.CJS.Core.Config;
+using CXY.CJS.Tests.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,8 +28,23 @@ namespace CXY.CJS.Tests
 
         public override void PreInitialize()
         {
-            //Configuration.UnitOfWork.IsTransactional = false; //EF Core InMemory DB does not support transactions.
-            SetupInMemoryDb();
+            var thisAssembly = typeof(CJSTestModule).GetAssembly();
+
+            var services = new ServiceCollection()
+                //.AddConfigModel()
+                .AddEntityFrameworkSqlServer();
+            //Configuration.UnitOfWork.IsTransactional = false;
+            var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
+
+            //AutoMapper注入
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(cfg =>
+            {
+                cfg.AddProfiles(thisAssembly);
+                //空值不进行Mapper
+                cfg.ForAllMaps((obj, cnfg) => cnfg.ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)));
+            });
+
+            SetupDb(serviceProvider);
         }
 
         public override void Initialize()
@@ -36,21 +54,13 @@ namespace CXY.CJS.Tests
 
       
 
-        private void SetupInMemoryDb()
+        private void SetupDb(IServiceProvider serviceProvider)
         {
-            var services = new ServiceCollection()
-                .AddEntityFrameworkSqlServer();
-          
-            var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
-
             var builder = new DbContextOptionsBuilder<CJSDbContext>();
-
 
             builder.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database=monsters_{Guid.NewGuid().ToString()};Trusted_Connection=True;MultipleActiveResultSets=true")
                 .UseInternalServiceProvider(serviceProvider);
 
-
-          
             IocManager.IocContainer.Register(
                 Component
                     .For<DbContextOptions<CJSDbContext>>()

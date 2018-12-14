@@ -14,7 +14,7 @@ namespace CXY.CJS.Tests
          public IIocManager Ioc => LocalIocManager;
         public CJSTestBase()
         {
-            UsingDbContext(context => new TestDataBuilder(context).Build());
+            UsingDbContext(context => new TestDataBuilder(context).Build().GetAwaiter().GetResult());
         }
 
         protected virtual void UsingDbContext(Action<CJSDbContext> action)

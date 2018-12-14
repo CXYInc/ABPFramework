@@ -1,5 +1,6 @@
 ﻿using Abp.Modules;
 using Abp.Reflection.Extensions;
+using CXY.CJS.Core;
 
 namespace CXY.CJS.Repository
 {

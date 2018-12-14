@@ -2,7 +2,7 @@
 using Abp.Application.Services.Dto;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Model;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
@@ -39,5 +39,6 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         Task<ApiResult<string>> Delete(EntityDto<string> input);
+
     }
 }

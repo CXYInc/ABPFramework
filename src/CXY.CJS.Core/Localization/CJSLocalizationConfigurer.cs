@@ -4,9 +4,9 @@ using Abp.Localization;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Json;
 using Abp.Reflection.Extensions;
-using CXY.CJS.Constant;
+using CXY.CJS.Core.Constant;
 
-namespace CXY.CJS.Localization
+namespace CXY.CJS.Core.Localization
 {
     public static class CJSLocalizationConfigurer
     {

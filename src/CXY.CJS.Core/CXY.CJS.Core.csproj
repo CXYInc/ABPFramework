@@ -8,13 +8,17 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace>CXY.CJS</RootNamespace>
+    <RootNamespace>CXY.CJS.Core</RootNamespace>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\github\CXY.CJS\src\CXY.CJS.Core\CXY.CJS.Core.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\CXY.CJS.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\SourceFiles\*.json" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="CXY.CJS.Core.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp" Version="4.0.2" />

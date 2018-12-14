@@ -3,7 +3,7 @@ using CXY.CJS.Model;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Role.Dto;
-using CXY.CJS.WebApi;
+using CXY.CJS.Core.WebApi;
 
 namespace CXY.CJS.Role
 {
@@ -23,7 +23,7 @@ namespace CXY.CJS.Role
         /// <returns></returns>
         public async Task<PaginationResult<ListRoleOutputItem>> ListRole(ListRoleInput input)
         {
-            // return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input,  new IHasSort[]{ input },"Name!=@0 and Name!=@1","haha","haha1");
+            // return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(inputBase,  new IHasSort[]{ inputBase },"Name!=@0 and Name!=@1","haha","haha1");
             return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input, new IHasSort[] { input });
         }
     }

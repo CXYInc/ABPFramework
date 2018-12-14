@@ -1,20 +1,22 @@
-﻿using CXY.CJS.Enum;
+﻿using CXY.CJS.Core.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-
-namespace CXY.CJS.WebApi
+namespace CXY.CJS.Core.WebApi
 {
+    /// <summary>
+    /// 排序条件
+    /// </summary>
     public interface IHasSort
     {
         /// <summary>
-        /// 被排序的字段
+        /// 排序的字段
         /// </summary>
         string SortField { get; set; }
 
         /// <summary>
-        /// 倒序还是正序
+        /// 排序规则(正序或倒序)
         /// </summary>
-        SortEnum SortOrder { get; set; }
+        SortEnum SortOrder { get; set; } 
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Abp.Application.Services;
-using CXY.CJS.Constant;
-using CXY.CJS.Extensions;
+using CXY.CJS.Core.Constant;
+using CXY.CJS.Core.Extensions;
 
 namespace CXY.CJS
 {

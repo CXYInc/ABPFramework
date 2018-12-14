@@ -6,10 +6,9 @@ namespace CXY.CJS.Model
     /// <summary>
     /// 用户扩展信息
     /// </summary>
-    public class UserAtt : Entity<string>
+    public class UserSysSetting : Entity<string>
     {
         public string WebSiteId { get; set; }
-        public string UserId { get; set; }
         public int? RoleId { get; set; }
         public string ParentId { get; set; }
         /// <summary>

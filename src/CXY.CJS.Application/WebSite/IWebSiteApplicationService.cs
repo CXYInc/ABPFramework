@@ -12,10 +12,40 @@ namespace CXY.CJS.Application
     ///</summary>
     public interface IWebSiteAppService : IApplicationService
     {
-
+        /// <summary>
+        /// 列出站点
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         Task<PaginationResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input);
 
-        Task<GetWebsitOutput> Get(string id);
+        /// <summary>
+        /// 获取站点详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<GetWebsitOutput> GetWebSite(string id);
+
+        /// <summary>
+        /// 新增站点
+        /// </summary>
+        /// <returns></returns>
+        Task<SaveWebSiteOutput> SaveWebSite(SaveWebSiteInput input);
+
+        /// <summary>
+        /// 更新站点
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> UpdateWebSite(UpdateWebSiteInput input);
+
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<bool> ResetPassword(ResetPasswordInput input);
+
+
         //      /// <summary>
         ///// 获取WebSite的分页列表信息
         /////</summary>

@@ -4,39 +4,242 @@
         <name>CXY.CJS.Core</name>
     </assembly>
     <members>
-        <member name="T:CXY.CJS.Authorization.AppLtmPermissions">
+        <member name="T:CXY.CJS.Core.Authorization.AppLtmPermissions">
             <summary>
             52abp定义的默认权限变量名称
             </summary>
         </member>
-        <member name="F:CXY.CJS.Constant.ClaimConst.WebSiteId">
+        <member name="T:CXY.CJS.Core.Config.ConfigModelAttribute">
+            <summary>
+            配置模型标志
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Constant.PageLtmConsts">
+            <summary>
+            默认分页常量
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Constant.PageLtmConsts.DefaultPageSize">
+            <summary>
+            默认页面大小
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Constant.PageLtmConsts.MaxPageSize">
+            <summary>
+            最大页面大小
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Constant.CJSConsts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Constant.CJSConsts.LocalizationSourceName">
+            <summary>
+            本地化资源名称
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Constant.CJSConsts.ConnectionStringName">
+            <summary>
+            默认数据库连接名称
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Constant.ClaimConst">
+            <summary>
+            Claim
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Constant.ClaimConst.WebSiteId">
             <summary>
             站点ID
             </summary>
         </member>
-        <member name="F:CXY.CJS.Constant.ClaimConst.UserId">
+        <member name="F:CXY.CJS.Core.Constant.ClaimConst.UserId">
             <summary>
             用户ID
             </summary>
         </member>
-        <member name="F:CXY.CJS.Constant.ClaimConst.UserName">
+        <member name="F:CXY.CJS.Core.Constant.ClaimConst.UserName">
             <summary>
             用户名称
             </summary>
         </member>
-        <member name="T:CXY.CJS.Constant.EFCoreConsts.EntityLengthNames">
+        <member name="F:CXY.CJS.Core.Constant.ClaimConst.Platform">
+            <summary>
+            请求来源平台
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Constant.EFCoreConsts.EntityLengthNames">
             <summary>
             实体长度单位
             </summary>
         </member>
-        <member name="M:CXY.CJS.HttpClient.HttpClientHelper.PostStringAsync(CXY.CJS.HttpClient.HttpClientRequest)">
+        <member name="T:CXY.CJS.Core.Enum.ComparableEnum">
+            <summary>
+            比较方式枚举
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.Equal">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.NotEqual">
+            <summary>
+            不等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.Greater">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.GreaterEqual">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.Less">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.LessEqual">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.Starts">
+            <summary>
+            头匹配
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.Ends">
+            <summary>
+            尾匹配
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.Contains">
+            <summary>
+            模糊匹配
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.In">
+            <summary>
+            In
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.ComparableEnum.NotIn">
+            <summary>
+            Not In
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Enum.PlatformEnum">
+            <summary>
+            平台枚举
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.PlatformEnum.APP">
+            <summary>
+            移动端应用
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.PlatformEnum.PC">
+            <summary>
+            PC应用
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Enum.SortEnum">
+            <summary>
+            排序方式枚举
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.SortEnum.Asc">
+            <summary>
+            升序
+            </summary>
+        </member>
+        <member name="F:CXY.CJS.Core.Enum.SortEnum.Desc">
+            <summary>
+            降序
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Extensions.IAbpSessionExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.Extensions.TaskTupleExtensions">
+            <summary>
+            异步任务组扩展
+            </summary>
+        </member>
+        <member name="M:CXY.CJS.Core.Extensions.TaskTupleExtensions.GetAwaiter``1(System.ValueTuple{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Core.Extensions.TaskTupleExtensions.ConfigureAwait``1(System.ValueTuple{System.Threading.Tasks.Task{``0}},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <param name="tasks"></param>
+            <param name="continueOnCapturedContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Core.Extensions.TaskTupleExtensions.GetAwaiter``2(System.ValueTuple{System.Threading.Tasks.Task{``0},System.Threading.Tasks.Task{``1}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Core.Utils.Encryptor.MD5Entry(System.String)">
+            <summary>
+            将明文加密成md5格式的密文
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Core.Utils.Encryptor.MD5EntryCN(System.String)">
+            <summary>
+            将明文加密成md5格式的密文(带中文的)
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Core.Utils.RNG.Next">
+            <summary> 
+            产生一个非负数的乱数 
+            </summary> 
+        </member>
+        <member name="M:CXY.CJS.Core.Utils.RNG.Next(System.Int32)">
+            <summary> 
+            产生一个非负数且最大值在 max 以下的乱数 
+            </summary> 
+            <param name="max">最大值</param> 
+        </member>
+        <member name="M:CXY.CJS.Core.Utils.RNG.Next(System.Int32,System.Int32)">
+            <summary> 
+            产生一个非负数且最小值在 min 以上最大值在 max 以下的乱数 
+            </summary> 
+            <param name="min">最小值</param> 
+            <param name="max">最大值</param> 
+        </member>
+        <member name="M:CXY.CJS.Core.HttpClient.HttpClientHelper.PostStringAsync(CXY.CJS.Core.HttpClient.HttpClientRequest)">
             <summary>
              通过Post请求获取String返回值
             </summary>
             <param name="httpClientRequest"></param>
             <returns></returns>
         </member>
-        <member name="M:CXY.CJS.HttpClient.HttpClientHelper.PostAsync``1(CXY.CJS.HttpClient.HttpClientRequest)">
+        <member name="M:CXY.CJS.Core.HttpClient.HttpClientHelper.PostAsync``1(CXY.CJS.Core.HttpClient.HttpClientRequest)">
             <summary>
             通过Post请求获取指定泛型返回值
             </summary>
@@ -44,97 +247,177 @@
             <param name="httpClientRequest"></param>
             <returns></returns>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientRequest.Url">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientRequest.Url">
             <summary>
             请求地址
             </summary>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientRequest.PostData">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientRequest.PostData">
             <summary>
             请求参数
             </summary>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientRequest.ContentType">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientRequest.ContentType">
             <summary>
             内容类型
             </summary>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientRequest.DataEncoding">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientRequest.DataEncoding">
             <summary>
             数据编码类型
             </summary>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientRequest.Headers">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientRequest.Headers">
             <summary>
             请求头集合
             </summary>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientResponse`1.IsSuccess">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientResponse`1.IsSuccess">
             <summary>
             是否请求成功
             </summary>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientResponse`1.Code">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientResponse`1.Code">
             <summary>
             HttpStatusCode
             </summary>
         </member>
-        <member name="P:CXY.CJS.HttpClient.HttpClientResponse`1.Data">
+        <member name="P:CXY.CJS.Core.HttpClient.HttpClientResponse`1.Data">
             <summary>
             请求返回数据
             </summary>
         </member>
-        <member name="T:CXY.CJS.WebApi.ApiPageRequest`1">
+        <member name="T:CXY.CJS.Core.WebApi.ApiPageRequest`1">
             <summary>
             Api分页请求实体
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="T:CXY.CJS.WebApi.ApiPageBaseResult`1">
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageRequest`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageRequest`1.PageSize">
+            <summary>
+            页面大小
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageRequest`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.IHasSort.SortField">
+            <summary>
+            被排序的字段
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.IHasSort.SortOrder">
+            <summary>
+            倒序还是正序
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.WebApi.ApiPageBaseResult`1">
             <summary>
             Api响应分页实体
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="T:CXY.CJS.WebApi.ApiPageResult`1">
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageBaseResult`1.PageIndex">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageBaseResult`1.PageSize">
+            <summary>
+            页面大小
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageBaseResult`1.PageTotal">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageBaseResult`1.PageData">
+            <summary>
+            当前页数据
+            </summary>
+        </member>
+        <member name="P:CXY.CJS.Core.WebApi.ApiPageBaseResult`1.Count">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="T:CXY.CJS.Core.WebApi.ApiPageResult`1">
             <summary>
             Api分页响应实体
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="T:CXY.CJS.WebApi.ApiResultBase`1">
+        <member name="T:CXY.CJS.Core.WebApi.ApiResultBase`1">
             <summary>
             api响应实体
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="P:CXY.CJS.WebApi.ApiResultBase`1.Code">
+        <member name="P:CXY.CJS.Core.WebApi.ApiResultBase`1.Code">
             <summary>
             Api响应码
             </summary>
         </member>
-        <member name="P:CXY.CJS.WebApi.ApiResultBase`1.Data">
+        <member name="P:CXY.CJS.Core.WebApi.ApiResultBase`1.Data">
             <summary>
             Api响应数据
             </summary>
         </member>
-        <member name="P:CXY.CJS.WebApi.ApiResultBase`1.Message">
+        <member name="P:CXY.CJS.Core.WebApi.ApiResultBase`1.Message">
             <summary>
             Api响应消息
             </summary>
         </member>
-        <member name="T:CXY.CJS.WebApi.ApiResult">
+        <member name="T:CXY.CJS.Core.WebApi.ApiResult">
             <summary>
             api响应实体
             </summary>
         </member>
-        <member name="T:CXY.CJS.WebApi.ApiResult`1">
+        <member name="M:CXY.CJS.Core.WebApi.ApiResult.Success(System.Object,System.String)">
+            <summary>
+            格式化成功数据
+            </summary>
+            <param name="data"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Core.WebApi.ApiResult.Error(System.String)">
+            <summary>
+            格式化失败数据
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CXY.CJS.Core.WebApi.ApiResult`1">
             <summary>
             api响应实体
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="T:CXY.CJS.Web.WebContentDirectoryFinder">
+        <member name="M:CXY.CJS.Core.WebApi.ApiResult`1.Success(`0,System.String)">
+            <summary>
+            格式化成功数据
+            </summary>
+            <param name="data"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CXY.CJS.Core.WebApi.ApiResult`1.Error(System.String)">
+            <summary>
+            格式化失败数据
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CXY.CJS.Core.Web.WebContentDirectoryFinder">
             <summary>
             This class is used to find root path of the web project in;
             unit tests (to find views) and entity framework core command line commands (to find conn string).
