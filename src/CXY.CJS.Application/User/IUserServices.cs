@@ -4,6 +4,7 @@ using CXY.CJS.Application.Dtos;
 using CXY.CJS.Model;
 using CXY.CJS.Core.WebApi;
 using System.Threading.Tasks;
+using CXY.CJS.Repository.SeedWork;
 
 namespace CXY.CJS.Application
 {
@@ -17,28 +18,43 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="userEditInput"></param>
         /// <returns></returns>
-        Task<ApiResult<string>> Create(UserEditInputDto userEditInput);
+        Task<ApiResult<string>> Create(CreateUserInput userEditInput);
 
         /// <summary>
         /// 获取用户信息
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        Task<ApiResult<UserOutDto>> Get(EntityDto<string> input);
+        Task<ApiResult<UserOutDto>> Get(string id);
 
         /// <summary>
         /// 更新用户
         /// </summary>
         /// <param name="userEditInput"></param>
         /// <returns></returns>
-        Task<ApiResult<string>> Update(UserEditInputDto userEditInput);
+        Task<ApiResult> Update(UserEditInputDto userEditInput);
 
         /// <summary>
         /// 删除用户
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<ApiResult<string>> Delete(EntityDto<string> input);
+        Task<ApiResult> Delete(string input);
 
+        //用户绑定角色
+
+        /// <summary>
+        /// 列出下游代理商
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ApiResult<PaginationResult<LowerAgentOutputItem>>> ListLowerAgent(ListLowerAgentInput input);
+
+        /// <summary>
+        /// 获取代理商
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ApiResult<LowerAgentOutputItem>> GetLowerAgent(string id);
     }
 }

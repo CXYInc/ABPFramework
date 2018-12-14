@@ -10,7 +10,6 @@ namespace CXY.CJS.Model
     public class UserWallet : Entity<string>
     {
         public string WebSiteId { get; set; }
-        public string Userid { get; set; }
         /// <summary>
         /// 当前余额
         /// </summary>

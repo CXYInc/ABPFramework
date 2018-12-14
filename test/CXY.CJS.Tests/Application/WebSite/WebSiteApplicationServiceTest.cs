@@ -24,6 +24,17 @@ namespace CXY.CJS.Tests.Application.WebSite
 
 
         [Fact]
+        public async Task GetWebSite_When_Fund()
+        {
+            var first = await _service.GetWebSite(WebSiteDatas.SuperWebSite.Id);
+            Assert.NotNull(first);
+
+            var second = await _service.GetWebSite(WebSiteDatas.SuperWebSite.Id);
+            Assert.NotNull(second);
+        }
+
+
+        [Fact]
         public async Task GetWebSite_When_NotFund()
         {
             var noExistResult = await _service.GetWebSite(Guid.NewGuid().ToString() + "1234");
@@ -40,16 +51,18 @@ namespace CXY.CJS.Tests.Application.WebSite
             var thanCountResult = await _service.ListWebSite(new ListWebSiteInput
             {
                 PageIndex = 100,
-                PageSize = 10
+                PageSize = 10,
+                IsHide = true
             });
             Assert.Empty(thanCountResult.Datas);
 
-            var deletedListResult = await _service.ListWebSite(new ListWebSiteInput
-            {
-                Key = WebSiteDatas.DedeletedWebSite.WebSiteName
-            });
+            //var deletedListResult = await _service.ListWebSite(new ListWebSiteInput
+            //{
+            //    Key = WebSiteDatas.DedeletedWebSite.WebSiteName,
+            //    IsHide = true
+            //});
 
-            Assert.Empty(deletedListResult.Datas);
+            //Assert.Empty(deletedListResult.Datas);
         }
 
         [Fact]
