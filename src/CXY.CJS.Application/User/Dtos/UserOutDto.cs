@@ -5,8 +5,8 @@ using Abp.AutoMapper;
 
 namespace CXY.CJS.Application.Dtos
 {
-    [AutoMapFrom(typeof(Model.User))]
-    public class UserOutDto: Model.User
+    [AutoMapFrom(typeof(Model.Users))]
+    public class UserOutDto: Model.Users
     {
     }
 }

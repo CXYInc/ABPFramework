@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using Abp.Application.Services;
+﻿using Abp.Application.Services;
 using CXY.CJS.Menu.Dto;
 using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.Role.Dto;
+using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
 {

@@ -27,7 +27,6 @@ namespace CXY.CJS.Application
         /// 构造函数自动注入
         /// </summary>
         /// <param name="testRepository"></param>
-        /// <param name="httpClientHelper"></param>
         /// <param name="objectMapper"></param>
         public TestService(ITestRepository testRepository, IObjectMapper objectMapper)
         {
@@ -48,6 +47,9 @@ namespace CXY.CJS.Application
             return _testRepository.Add(test);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [HttpPost("Update")]
         [AllowAnonymous]
         public void Update()

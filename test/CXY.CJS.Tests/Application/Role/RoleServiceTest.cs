@@ -1,11 +1,11 @@
 ﻿using CXY.CJS.Application;
-using CXY.CJS.Role.Dto;
+using CXY.CJS.Application.Dto;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace CXY.CJS.Tests.Application.Role
 {
-    public class RoleServiceTest: IClassFixture<CJSTestBase>
+    public class RoleServiceTest : IClassFixture<CJSTestBase>
     {
         private readonly IRoleService _service;
         public RoleServiceTest(CJSTestBase testBase)
@@ -16,14 +16,14 @@ namespace CXY.CJS.Tests.Application.Role
         [Fact]
         public async Task ListRole_When_NotFound()
         {
-            var result = await _service.ListRole(new  ListRoleInput
+            var result = await _service.ListRole(new ListRoleInput
             {
                 PageIndex = 10,
                 PageSize = 1000
             });
             Assert.Empty(result.Datas);
 
-         
+
         }
     }
 }

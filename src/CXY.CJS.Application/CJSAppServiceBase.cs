@@ -9,9 +9,14 @@ namespace CXY.CJS
     /// </summary>
     public abstract class CJSAppServiceBase : ApplicationService
     {
-        //隐藏父类的AbpSession
+        /// <summary>
+        /// AbpSession
+        /// </summary>
         public new IAbpSessionExtension AbpSession { get; set; }
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         protected CJSAppServiceBase()
         {
             LocalizationSourceName = CJSConsts.LocalizationSourceName;

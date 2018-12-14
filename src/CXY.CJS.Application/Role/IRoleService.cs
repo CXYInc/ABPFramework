@@ -1,12 +1,15 @@
 ﻿using Abp.Application.Services;
-using CXY.CJS.Role.Dto;
-using CXY.CJS.Core.WebApi;
-using System.Threading.Tasks;
-using CXY.CJS.Repository.SeedWork;
 using Abp.Application.Services.Dto;
+using CXY.CJS.Application.Dto;
+using CXY.CJS.Core.WebApi;
+using CXY.CJS.Repository.SeedWork;
+using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IRoleService : IApplicationService
     {
         /// <summary>
@@ -15,7 +18,6 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         Task<PaginationResult<ListRoleOutputItem>> ListRole(ListRoleInput input);
-
 
         /// <summary>
         /// 创建/更新角色

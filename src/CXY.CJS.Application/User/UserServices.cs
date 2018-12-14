@@ -25,16 +25,19 @@ namespace CXY.CJS.Application
     /// </summary>
     public class UserServices : CJSAppServiceBase, IUserServices
     {
-        private readonly IRepository<User, string> _repository;
+        private readonly IRepository<Users, string> _repository;
         private readonly IRepository<UserRole, string> _userRolerepository;
         private readonly IObjectMapper _objectMapper;
         private ILowerAgentRepository _lowerAgentRepository;
+        
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="objectMapper"></param>
-        public UserServices(IRepository<User, string> repository, IObjectMapper objectMapper, ILowerAgentRepository lowerAgentRepository, IRepository<UserRole, string> userRolerepository)
+        /// <param name="lowerAgentRepository"></param>
+        /// <param name="userRolerepository"></param>
+        public UserServices(IRepository<Users, string> repository, IObjectMapper objectMapper, ILowerAgentRepository lowerAgentRepository, IRepository<UserRole, string> userRolerepository)
         {
             _repository = repository;
             _objectMapper = objectMapper;
@@ -63,7 +66,7 @@ namespace CXY.CJS.Application
                 {
                     return result.Error("请输入密码！");
                 }
-                var user = _objectMapper.Map<User>(userEditInput);
+                var user = _objectMapper.Map<Users>(userEditInput);
                 var time = DateTime.Now;
                 user.Id = userEditInput.WebSiteId + time.ToString("yyyyMMddHHmmss") + RNG.Next(10).ToString().PadLeft(10, '0');
                 user.CreationTime = time;
@@ -133,7 +136,6 @@ namespace CXY.CJS.Application
 
             return result;
         }
-
 
         /// <summary>
         /// 删除用户
@@ -230,6 +232,11 @@ namespace CXY.CJS.Application
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ApiResult<LowerAgentOutputItem>> GetLowerAgent(string id)
         {
             var agent = await _lowerAgentRepository.GetAsync(id);
@@ -260,7 +267,6 @@ namespace CXY.CJS.Application
             return result;
         }
 
-
         #region 私有方法
 
         /// <summary>
@@ -268,7 +274,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private async Task<User> GetUser(string id)
+        private async Task<Users> GetUser(string id)
         {
             return await _repository.GetAsync(id);
         }

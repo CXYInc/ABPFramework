@@ -9,7 +9,7 @@ namespace CXY.CJS.Application.Dtos
     /// <summary>
     /// 用户业务编辑实体
     /// </summary>
-    [AutoMapTo(typeof(Model.User))]
+    [AutoMapTo(typeof(Model.Users))]
     public class UserEditInputDto
     {
         public string Id { get; set; }

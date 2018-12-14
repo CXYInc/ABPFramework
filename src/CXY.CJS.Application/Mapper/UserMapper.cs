@@ -10,8 +10,8 @@ namespace CXY.CJS.Application.Mapper
         {
             public UserProfile()
             {
-                CreateMap<UserEditInputDto, User>();
-                CreateMap<User, UserOutDto>();
+                CreateMap<UserEditInputDto, Users>();
+                CreateMap<Users, UserOutDto>();
             }
         }
     }

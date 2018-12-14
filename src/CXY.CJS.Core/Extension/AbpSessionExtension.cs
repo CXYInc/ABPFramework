@@ -8,19 +8,37 @@ using System.Security.Claims;
 
 namespace CXY.CJS.Core.Extensions
 {
-    class AbpSessionExtension : ClaimsAbpSession, IAbpSessionExtension
+    /// <summary>
+    /// AbpSession扩展
+    /// </summary>
+    public class AbpSessionExtension : ClaimsAbpSession, IAbpSessionExtension
     {
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="principalAccessor"></param>
+        /// <param name="multiTenancy"></param>
+        /// <param name="tenantResolver"></param>
+        /// <param name="sessionOverrideScopeProvider"></param>
         public AbpSessionExtension(IPrincipalAccessor principalAccessor, IMultiTenancyConfig multiTenancy, ITenantResolver tenantResolver, IAmbientScopeProvider<SessionOverride> sessionOverrideScopeProvider)
             : base(principalAccessor, multiTenancy, tenantResolver, sessionOverrideScopeProvider)
         {
         }
 
+        /// <summary>
+        /// 当前站点ID
+        /// </summary>
         public string WebSiteId => GetClaimValue(ClaimConst.WebSiteId);
 
+        /// <summary>
+        /// 当前登录用户ID
+        /// </summary>
         public new string UserId => GetClaimValue(ClaimConst.UserId);
 
-        public  string UserName => GetClaimValue(ClaimConst.UserName);
+        /// <summary>
+        /// 当前登录用户名称
+        /// </summary>
+        public string UserName => GetClaimValue(ClaimConst.UserName);
 
         private string GetClaimValue(string claimType)
         {

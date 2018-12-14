@@ -2,7 +2,7 @@
 
 namespace CXY.CJS.Application.Dtos
 {
-    [AutoMapTo(typeof(Model.User))]
+    [AutoMapTo(typeof(Model.Users))]
     public class UserRoleOutputItem
     {
         public string RoleId { get; set; }

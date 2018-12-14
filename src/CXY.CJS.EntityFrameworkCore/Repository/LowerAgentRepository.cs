@@ -15,13 +15,13 @@ namespace CXY.CJS.Repository
 {
     public class LowerAgentRepository : ILowerAgentRepository
     {
-        private readonly IRepository<User, string> _userRepository;
+        private readonly IRepository<Users, string> _userRepository;
         private readonly IRepository<UserSysSetting, string> _userSysSetRepository;
         private readonly IRepository<UserScore, string> _userScoreRepository;
         private readonly IRepository<UserWallet, string> _userWalletRepository;
         private readonly IRepository<UserMarkupSetting, string> _userMarkupSetRepository;
 
-        public LowerAgentRepository(IRepository<User, string> userRepository, IRepository<UserSysSetting, string> userSysSetRepository, IRepository<UserScore, string> userScoreRepository, IRepository<UserWallet, string> userWalletRepository, IRepository<UserMarkupSetting, string> userMarkupSetRepository)
+        public LowerAgentRepository(IRepository<Users, string> userRepository, IRepository<UserSysSetting, string> userSysSetRepository, IRepository<UserScore, string> userScoreRepository, IRepository<UserWallet, string> userWalletRepository, IRepository<UserMarkupSetting, string> userMarkupSetRepository)
         {
             _userRepository = userRepository;
             _userSysSetRepository = userSysSetRepository;

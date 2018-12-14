@@ -1,7 +1,7 @@
 ﻿using System;
 using Abp.AutoMapper;
 
-namespace CXY.CJS.Role.Dto
+namespace CXY.CJS.Application.Dto
 {
     [AutoMapTo(typeof(Model.Role))]
     public class ListRoleOutputItem
