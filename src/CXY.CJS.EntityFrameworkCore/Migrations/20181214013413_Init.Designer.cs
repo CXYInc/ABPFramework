@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CXY.CJS.Migrations
 {
     [DbContext(typeof(CJSDbContext))]
-    [Migration("20181213092119_201812131717")]
-    partial class _201812131717
+    [Migration("20181214013413_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,9 +130,9 @@ namespace CXY.CJS.Migrations
 
                     b.Property<DateTime>("CreationTime");
 
-                    b.Property<long?>("CreatorUserId");
+                    b.Property<string>("CreatorUserId");
 
-                    b.Property<long?>("DeleterUserId");
+                    b.Property<string>("DeleterUserId");
 
                     b.Property<DateTime?>("DeletionTime");
 
@@ -154,7 +154,7 @@ namespace CXY.CJS.Migrations
 
                     b.Property<DateTime?>("LastModificationTime");
 
-                    b.Property<long?>("LastModifierUserId");
+                    b.Property<string>("LastModifierUserId");
 
                     b.Property<string>("LoginName");
 
@@ -187,6 +187,92 @@ namespace CXY.CJS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("CXY.CJS.Model.UserMarkupSetting", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<string>("CreatorUserId");
+
+                    b.Property<string>("DeleterUserId");
+
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<decimal?>("Gdlr");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<string>("LastModifierUserId");
+
+                    b.Property<string>("ProfitJson");
+
+                    b.Property<string>("Userid");
+
+                    b.Property<string>("WebSiteId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserMarkupSettings");
+                });
+
+            modelBuilder.Entity("CXY.CJS.Model.UserRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<long?>("CreatorUserId");
+
+                    b.Property<string>("RoleId");
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("WebSiteId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("CXY.CJS.Model.UserScore", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("Drzsjf");
+
+                    b.Property<DateTime>("Drzsrq");
+
+                    b.Property<int?>("DrzssyJf");
+
+                    b.Property<int?>("GivePointsPerMonth");
+
+                    b.Property<int?>("GivePointsSameMonth");
+
+                    b.Property<int?>("GivePointsSurplusSameMonth");
+
+                    b.Property<decimal?>("JfPrice");
+
+                    b.Property<int>("NoteNumber");
+
+                    b.Property<decimal?>("NotePrice");
+
+                    b.Property<int?>("RzsJf");
+
+                    b.Property<int?>("WdJf");
+
+                    b.Property<string>("WebSiteId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserScores");
                 });
 
             modelBuilder.Entity("CXY.CJS.Model.UserSysSetting", b =>
@@ -365,58 +451,36 @@ namespace CXY.CJS.Migrations
                     b.ToTable("UserSysSettings");
                 });
 
-            modelBuilder.Entity("CXY.CJS.Model.UserScore", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("Drzsjf");
-
-                    b.Property<DateTime>("Drzsrq");
-
-                    b.Property<int?>("DrzssyJf");
-
-                    b.Property<int?>("GivePointsPerMonth");
-
-                    b.Property<int?>("GivePointsSameMonth");
-
-                    b.Property<int?>("GivePointsSurplusSameMonth");
-
-                    b.Property<decimal?>("JfPrice");
-
-                    b.Property<int>("NoteNumber");
-
-                    b.Property<decimal?>("NotePrice");
-
-                    b.Property<int?>("RzsJf");
-
-                    b.Property<int?>("WdJf");
-
-                    b.Property<string>("WebSiteId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserScores");
-                });
-
-            modelBuilder.Entity("CXY.CJS.Model.UserRole", b =>
+            modelBuilder.Entity("CXY.CJS.Model.UserWallet", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreationTime");
 
-                    b.Property<long?>("CreatorUserId");
+                    b.Property<string>("CreatorUserId");
 
-                    b.Property<string>("RoleId");
+                    b.Property<string>("DeleterUserId");
 
-                    b.Property<string>("UserId");
+                    b.Property<DateTime?>("DeletionTime");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("LastModificationTime");
+
+                    b.Property<string>("LastModifierUserId");
+
+                    b.Property<decimal?>("Overdrftamount");
+
+                    b.Property<string>("Userid");
+
+                    b.Property<decimal?>("Wdye");
 
                     b.Property<string>("WebSiteId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserWallets");
                 });
 
             modelBuilder.Entity("CXY.CJS.Model.WebSite", b =>

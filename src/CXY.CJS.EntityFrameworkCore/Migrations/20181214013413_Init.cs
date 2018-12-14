@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CXY.CJS.Migrations
 {
-    public partial class _201812131717 : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -80,7 +80,109 @@ namespace CXY.CJS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAtts",
+                name: "UserMarkupSettings",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    Userid = table.Column<string>(nullable: true),
+                    Gdlr = table.Column<decimal>(nullable: true),
+                    ProfitJson = table.Column<string>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<string>(nullable: true),
+                    LastModificationTime = table.Column<DateTime>(nullable: true),
+                    LastModifierUserId = table.Column<string>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    DeleterUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserMarkupSettings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    RoleId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    RealName = table.Column<string>(nullable: true),
+                    Shortname = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true),
+                    LoginName = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    Safepassword = table.Column<string>(nullable: true),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(nullable: true),
+                    UserType = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    LastLoginTime = table.Column<DateTime>(nullable: true),
+                    CreatorUserId = table.Column<string>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    LastModifierUserId = table.Column<string>(nullable: true),
+                    LastModificationTime = table.Column<DateTime>(nullable: true),
+                    DeleterUserId = table.Column<string>(nullable: true),
+                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Ispanuse = table.Column<int>(nullable: true),
+                    RecommendUserName = table.Column<string>(nullable: true),
+                    RecommendUserid = table.Column<string>(nullable: true),
+                    CardNo = table.Column<string>(nullable: true),
+                    Isdelete = table.Column<int>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    UserProvince = table.Column<int>(nullable: true),
+                    UserCity = table.Column<int>(nullable: true),
+                    PaymentPwd = table.Column<string>(nullable: true),
+                    IsPaymentPwd = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserScores",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    Drzsjf = table.Column<int>(nullable: true),
+                    Drzsrq = table.Column<DateTime>(nullable: false),
+                    DrzssyJf = table.Column<int>(nullable: true),
+                    WdJf = table.Column<int>(nullable: true),
+                    RzsJf = table.Column<int>(nullable: true),
+                    GivePointsSurplusSameMonth = table.Column<int>(nullable: true),
+                    GivePointsPerMonth = table.Column<int>(nullable: true),
+                    GivePointsSameMonth = table.Column<int>(nullable: true),
+                    NoteNumber = table.Column<int>(nullable: false),
+                    JfPrice = table.Column<decimal>(nullable: true),
+                    NotePrice = table.Column<decimal>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserScores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSysSettings",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -170,87 +272,29 @@ namespace CXY.CJS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAtts", x => x.Id);
+                    table.PrimaryKey("PK_UserSysSettings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserJfs",
+                name: "UserWallets",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     WebSiteId = table.Column<string>(nullable: true),
-                    Drzsjf = table.Column<int>(nullable: true),
-                    Drzsrq = table.Column<DateTime>(nullable: false),
-                    DrzssyJf = table.Column<int>(nullable: true),
-                    WdJf = table.Column<int>(nullable: true),
-                    RzsJf = table.Column<int>(nullable: true),
-                    GivePointsSurplusSameMonth = table.Column<int>(nullable: true),
-                    GivePointsPerMonth = table.Column<int>(nullable: true),
-                    GivePointsSameMonth = table.Column<int>(nullable: true),
-                    NoteNumber = table.Column<int>(nullable: false),
-                    JfPrice = table.Column<decimal>(nullable: true),
-                    NotePrice = table.Column<decimal>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserJfs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    WebSiteId = table.Column<string>(nullable: true),
-                    RoleId = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true),
+                    Userid = table.Column<string>(nullable: true),
+                    Wdye = table.Column<decimal>(nullable: true),
+                    Overdrftamount = table.Column<decimal>(nullable: true),
                     CreationTime = table.Column<DateTime>(nullable: false),
-                    CreatorUserId = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(nullable: true),
-                    RealName = table.Column<string>(nullable: true),
-                    Shortname = table.Column<string>(nullable: true),
-                    FullName = table.Column<string>(nullable: true),
-                    LoginName = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    Safepassword = table.Column<string>(nullable: true),
-                    WebSiteId = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    EmailAddress = table.Column<string>(nullable: true),
-                    UserType = table.Column<int>(nullable: false),
-                    IsActive = table.Column<bool>(nullable: false),
-                    LastLoginTime = table.Column<DateTime>(nullable: true),
-                    CreatorUserId = table.Column<long>(nullable: true),
-                    CreationTime = table.Column<DateTime>(nullable: false),
-                    LastModifierUserId = table.Column<long>(nullable: true),
+                    CreatorUserId = table.Column<string>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
-                    DeleterUserId = table.Column<long>(nullable: true),
-                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    LastModifierUserId = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    Ispanuse = table.Column<int>(nullable: true),
-                    RecommendUserName = table.Column<string>(nullable: true),
-                    RecommendUserid = table.Column<string>(nullable: true),
-                    CardNo = table.Column<string>(nullable: true),
-                    Isdelete = table.Column<int>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    UserProvince = table.Column<int>(nullable: true),
-                    UserCity = table.Column<int>(nullable: true),
-                    PaymentPwd = table.Column<string>(nullable: true),
-                    IsPaymentPwd = table.Column<int>(nullable: true)
+                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    DeleterUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_UserWallets", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -373,16 +417,22 @@ namespace CXY.CJS.Migrations
                 name: "Tests");
 
             migrationBuilder.DropTable(
-                name: "UserAtts");
-
-            migrationBuilder.DropTable(
-                name: "UserJfs");
+                name: "UserMarkupSettings");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "UserScores");
+
+            migrationBuilder.DropTable(
+                name: "UserSysSettings");
+
+            migrationBuilder.DropTable(
+                name: "UserWallets");
 
             migrationBuilder.DropTable(
                 name: "WebSiteConfigs");
