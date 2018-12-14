@@ -14,5 +14,14 @@ namespace CXY.CJS.Role
         /// <param name="input"></param>
         /// <returns></returns>
         Task<PaginationResult<ListRoleOutputItem>> ListRole(ListRoleInput input);
+
+
+        //新增
+
+        //更新
+
+        //删除
+
+        //绑定菜单
     }
 }

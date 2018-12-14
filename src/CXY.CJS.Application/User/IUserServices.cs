@@ -41,6 +41,8 @@ namespace CXY.CJS.Application
         ///// <returns></returns>
         //Task<ApiResult<string>> Delete(EntityDto<string> input);
 
+         //用户绑定角色
+
         /// <summary>
         /// 列出下游代理商
         /// </summary>
