@@ -111,7 +111,7 @@ namespace CXY.CJS.WebApi
 
             });
 
-            services.Configure<ApiConfig>(_appConfiguration.GetSection("ApiConfig"));
+            services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiConfig"));
 
             // Configure Abp and Dependency Injection
             return services.AddAbp<CJSWebApiModule>(options =>

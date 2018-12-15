@@ -21,7 +21,7 @@ namespace CXY.CJS.Application
     /// </summary>
     public class ViolationQueryService : CJSAppServiceBase, IViolationQueryService
     {
-        private readonly ApiConfig _apiConfig;
+        private readonly ApiUrlConfig _apiConfig;
         private readonly HttpClientHelper _httpClientHelper;
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="apiConfig"></param>
         /// <param name="httpClientHelper"></param>
-        public ViolationQueryService(IOptionsSnapshot<ApiConfig> apiConfig, HttpClientHelper httpClientHelper)
+        public ViolationQueryService(IOptionsSnapshot<ApiUrlConfig> apiConfig, HttpClientHelper httpClientHelper)
         {
             _apiConfig = apiConfig.Value;
             _httpClientHelper = httpClientHelper;

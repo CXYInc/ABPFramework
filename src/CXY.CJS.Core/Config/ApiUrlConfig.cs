@@ -7,7 +7,7 @@ namespace CXY.CJS.Core.Config
     /// <summary>
     /// Api地址
     /// </summary>
-    public class ApiConfig
+    public class ApiUrlConfig
     {
         /// <summary>
         /// 查询发动机和车架号位数接口地址
