@@ -9,22 +9,27 @@ using System;
 using System.Linq;
 using CXY.CJS.Core.Extensions;
 using System.Threading.Tasks;
+using Abp.Domain.Repositories;
 
 namespace CXY.CJS.Application
 {
     public class RoleService : CJSAppServiceBase, IRoleService
     {
         private readonly IRoleRepository _roleRepository;
-        private readonly IRoleMenuRepository _roleMenuRepository;
         private readonly IUserRepository _uerRepository;
+        private readonly IRepository<UserRole, string> _userRoleRepository;
+        private readonly IRepository<RoleMenu, string> _roleMenuRepository;
+        private readonly IRepository<Model.Menu, string> _menuRepository;
 
         private readonly IObjectMapper _objectMapper;
 
-        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper, IRoleMenuRepository roleMenuRepository, IUserRepository uerRepository)
+        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper, IRepository<RoleMenu, string> roleMenuRepository, IUserRepository uerRepository, IRepository<UserRole, string> userRoleRepository, IRepository<Model.Menu, string> menuRepository)
         {
             _roleRepository = roleRepository;
             _roleMenuRepository = roleMenuRepository;
             _uerRepository = uerRepository;
+            _userRoleRepository = userRoleRepository;
+            _menuRepository = menuRepository;
             _objectMapper = objectMapper;
         }
 
@@ -121,17 +126,28 @@ namespace CXY.CJS.Application
             // return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(inputBase,  new IHasSort[]{ inputBase },"Name!=@0 and Name!=@1","haha","haha1");
             return (await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input, new IHasSort[] { input })).ToApiPageResult();
         }
-         
 
-        ///// <summary>
-        ///// 获取角色菜单
-        ///// </summary>
-        ///// <returns></returns>
-        //public Task<ListResultDto<MenuOutputItem>> GetMenus()
-        //{
-        //    var userInfo = GetUserInfo();
-        //    //获取用户所含角色 
-        //    //根据角色获取菜单
-        //}
+
+        /// <summary>
+        /// 获取角色菜单
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ListResultDto<MenuOutputItem>> GetMenusAsync()
+        {
+            //获取用户所含角色 
+            var userRoles = await _userRoleRepository.GetAllListAsync(o => o.UserId == AbpSession.UserId);
+            //根据角色获取菜单
+            var roleMenu = await _roleMenuRepository.GetAllListAsync();
+            var menuList = await _menuRepository.GetAllListAsync();
+            var result = from a in userRoles
+                         join b in roleMenu on a.RoleId equals b.RoleId //into temp
+                         join m in menuList on b.MenuId equals m.Id 
+                         select new Model.Menu {};
+            result = result.Distinct().ToList();
+
+            var dto = _objectMapper.Map<ListResultDto<MenuOutputItem>>(result);
+
+            return dto;
+        }
     }
 }
