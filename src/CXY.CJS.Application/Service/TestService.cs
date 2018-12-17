@@ -10,28 +10,31 @@ using Microsoft.AspNetCore.Mvc;
 using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.Extension;
 using System.Collections.Generic;
+using Abp.Net.Mail;
 
 namespace CXY.CJS.Application
 {
     /// <summary>
     /// 测试服务
     /// </summary>
-    [Authorize]
+    //[Authorize]
     [Route("/api/services/app/[controller]")]
+    [Authorize]
     public class TestService : CJSAppServiceBase, ITestService
     {
         private readonly ITestRepository _testRepository;
         private readonly IObjectMapper _objectMapper;
-
+        private readonly IEmailSender _emailSender;
         /// <summary>
         /// 构造函数自动注入
         /// </summary>
         /// <param name="testRepository"></param>
         /// <param name="objectMapper"></param>
-        public TestService(ITestRepository testRepository, IObjectMapper objectMapper)
+        public TestService(ITestRepository testRepository, IObjectMapper objectMapper, IEmailSender emailSender)
         {
             _testRepository = testRepository;
             _objectMapper = objectMapper;
+            _emailSender = emailSender;
         }
 
         /// <summary>
@@ -106,6 +109,13 @@ namespace CXY.CJS.Application
           var list=  _testRepository.GetAll();
 
             return _objectMapper.Map<List<TestOutDto>>(list);
+        }
+
+        [HttpPost("SendEmailTest")]
+        [AllowAnonymous]
+        public void SendEmailTest()
+        {
+            _emailSender.Send("someone@qq.com", "测试邮件，请勿回复", "收到请勿回复!");
         }
     }
 }

@@ -22,6 +22,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Abp.MailKit;
+using Abp.Net.Mail;
+using Abp.Net.Mail.Smtp;
+using CXY.CJS.WebApi.Configuration;
 
 namespace CXY.CJS.WebApi
 {
@@ -116,6 +120,14 @@ namespace CXY.CJS.WebApi
             });
 
             services.AddSingleton(_jwtBearerConfig);
+
+            // 配置邮件发送
+            var mailSendConfig = _appConfiguration.GetSection("SmtpSenderConfiguration").Get<SmtpSenderConfiguration>();
+            services.AddSingleton<IEmailSenderConfiguration>(mailSendConfig);
+            services.AddSingleton<ISmtpEmailSenderConfiguration>(mailSendConfig);
+            services.AddSingleton<IAbpMailKitConfiguration, MailKitConfiguration>();
+            services.AddTransient<IMailKitSmtpBuilder, DefaultMailKitSmtpBuilder>();
+            services.AddTransient<IEmailSender, MailKitEmailSender>();
 
             services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiUrlConfig"));
 

@@ -18,5 +18,7 @@ namespace CXY.CJS.Application
         ApiResult<Test> GetTest(string id);
 
         List<TestOutDto> EnumMapperTest();
+
+        void SendEmailTest();
     }
 }
