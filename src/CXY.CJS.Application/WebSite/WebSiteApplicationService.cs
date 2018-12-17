@@ -28,7 +28,7 @@ namespace CXY.CJS.Application
     /// <summary>
     /// WebSite应用层服务的接口实现方法  
     ///</summary>
-    [AllowAnonymous]
+    [Authorize]
     public class WebSiteAppService : CJSAppServiceBase, IWebSiteAppService
     {
         private readonly IWebsiteRepository _websiteRepository;

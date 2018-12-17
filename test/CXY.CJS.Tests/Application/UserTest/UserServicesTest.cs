@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Abp.AutoMapper;
 using CXY.CJS.Application;
 using CXY.CJS.Application.Dtos;
+using CXY.CJS.Repository;
 using CXY.CJS.Tests.TestDatas;
 using Newtonsoft.Json.Linq;
 using Xunit;
@@ -13,8 +14,6 @@ namespace CXY.CJS.Tests.Application.UserTest
     public class UserServicesTest : IClassFixture<CJSTestBase>
     {
         private readonly IUserServices _service;
-
-
 
         public UserServicesTest(CJSTestBase testBase)
         {
@@ -36,7 +35,7 @@ namespace CXY.CJS.Tests.Application.UserTest
             var userResult = await _service.Get(UserDatas.SuperWebSiteLowerAgent.Id);
             var updateUser = userResult.Data.MapTo<UserEditInputDto>();
             var result = await _service.Update(updateUser);
-            Assert.Equal(1,result.Code);
+            Assert.Equal(1, result.Code);
         }
 
 
@@ -78,7 +77,7 @@ namespace CXY.CJS.Tests.Application.UserTest
                 PageSize = 10,
                 PageIndex = 1,
             });
-           var agent= result.Data.Datas?.FirstOrDefault(i => i.Id == UserDatas.SuperWebSiteLowerAgent.Id);
+            var agent = result.Data.Datas?.FirstOrDefault(i => i.Id == UserDatas.SuperWebSiteLowerAgent.Id);
             Assert.NotNull(agent);
         }
 
@@ -86,7 +85,7 @@ namespace CXY.CJS.Tests.Application.UserTest
         public async Task GetLowerAgent_When_NotFund()
         {
             var noExistResult = await _service.GetLowerAgent(Guid.NewGuid().ToString() + "1234");
-            Assert.Equal(0,noExistResult.Code);
+            Assert.Equal(0, noExistResult.Code);
         }
 
         [Fact]
@@ -102,6 +101,56 @@ namespace CXY.CJS.Tests.Application.UserTest
         {
             var result = await _service.GetUserRoles(UserDatas.SuperWebSiteLowerAgent.Id);
             Assert.NotEmpty(result.Data);
+        }
+
+
+
+        [Fact]
+        public async Task GrantOrRemoveUserRole_When_NoFoundUserOrRole()
+        {
+            var nofoundUser = await _service.GrantOrRemoveUserRole(new GrantOrRemoveUserRoleInput
+            {
+                UserId = Guid.NewGuid().ToString(),
+                RoleId = RoleDatas.WillBeGrantOrRemoveRole.Id,
+            });
+            Assert.Equal("无法找到该用户！", nofoundUser.Message);
+
+            var nofoundRole = await _service.GrantOrRemoveUserRole(new GrantOrRemoveUserRoleInput
+            {
+                UserId = UserDatas.SuperWebSiteLowerAgent.Id,
+                RoleId = Guid.NewGuid().ToString()
+            });
+            Assert.Equal("无法找到该角色！", nofoundRole.Message);
+        }
+
+
+        [Fact]
+        public async Task GrantOrRemoveUserRole_When_Success()
+        {
+            var userId = UserDatas.SuperWebSiteLowerAgent.Id;
+            var roleId = RoleDatas.WillBeGrantOrRemoveRole.Id;
+            var grantResult = await _service.GrantOrRemoveUserRole(new GrantOrRemoveUserRoleInput
+            {
+                UserId = userId,
+                RoleId = roleId,
+                IsGrant = true
+            });
+
+            Assert.Equal(1, grantResult.Code);
+            var afterGrant = await _service.GetUserRoles(userId);
+
+            Assert.NotNull(afterGrant.Data.FirstOrDefault(i => i.RoleId == roleId));
+
+            var removeResult = await _service.GrantOrRemoveUserRole(new GrantOrRemoveUserRoleInput
+            {
+                UserId = userId,
+                RoleId = roleId,
+                IsGrant = false
+            });
+
+            Assert.Equal(1, removeResult.Code);
+            var afterRemove = await _service.GetUserRoles(userId);
+            Assert.Null(afterRemove.Data.FirstOrDefault(i => i.RoleId == roleId));
         }
 
 

@@ -65,6 +65,12 @@ namespace CXY.CJS.Application
         /// <param name="id"></param>
         /// <returns></returns>
         Task<ApiResult<IEnumerable<UserRoleOutputItem>>> GetUserRoles(string id);
-        
+
+        /// <summary>
+        /// 授予或去除用户角色
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        Task<ApiResult> GrantOrRemoveUserRole(GrantOrRemoveUserRoleInput input);
     }
 }

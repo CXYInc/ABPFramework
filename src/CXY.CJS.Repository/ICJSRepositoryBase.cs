@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Abp.Dependency;
 using Abp.Domain.Entities;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace CXY.CJS.Repository
 
         Task<TEntity> UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
+
+        Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);
     }
 
     public interface ICJSRepositoryBase<TEntity> : ITransientDependency where TEntity : class, IEntity<int>
@@ -32,5 +35,7 @@ namespace CXY.CJS.Repository
 
         Task<TEntity> UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
+
+        Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);
     }
 }

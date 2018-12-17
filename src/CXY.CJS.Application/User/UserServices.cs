@@ -16,6 +16,7 @@ using System.Net;
 using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Specifications;
+using CXY.CJS.Core.Extensions;
 using CXY.CJS.Core.Utils;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.MixModel;
@@ -27,13 +28,14 @@ namespace CXY.CJS.Application
     /// <summary>
     /// 用户服务
     /// </summary>
+    [Authorize]
     public class UserServices : CJSAppServiceBase, IUserServices
     {
-        private readonly IUserRepository _repository;
-        private readonly IRepository<UserRole, string> _userRolerepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IUserRoleRepository _userRolerepository;
         private readonly IObjectMapper _objectMapper;
         private ILowerAgentRepository _lowerAgentRepository;
-
+        private readonly IRoleRepository _roleRepository;
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -41,12 +43,13 @@ namespace CXY.CJS.Application
         /// <param name="objectMapper"></param>
         /// <param name="lowerAgentRepository"></param>
         /// <param name="userRolerepository"></param>
-        public UserServices(IUserRepository repository, IObjectMapper objectMapper, ILowerAgentRepository lowerAgentRepository, IRepository<UserRole, string> userRolerepository)
+        public UserServices(IUserRepository repository, IObjectMapper objectMapper, ILowerAgentRepository lowerAgentRepository, IUserRoleRepository userRolerepository, IRoleRepository roleRepository)
         {
-            _repository = repository;
+            _userRepository = repository;
             _objectMapper = objectMapper;
             _lowerAgentRepository = lowerAgentRepository;
             _userRolerepository = userRolerepository;
+            _roleRepository = roleRepository;
         }
 
         /// <summary>
@@ -63,7 +66,7 @@ namespace CXY.CJS.Application
             user.Id = userEditInput.WebSiteId + time.ToString("yyyyMMddHHmmss") + RNG.Next(10).ToString().PadLeft(10, '0');
             user.CreationTime = time;
             user.Password = Encryptor.MD5Entry(userEditInput.Password);
-            await _repository.InsertAsync(user);
+            await _userRepository.InsertAsync(user);
 
             return ApiResult.Success(user.Id);
         }
@@ -76,7 +79,7 @@ namespace CXY.CJS.Application
         [HttpPost]
         public async Task<ApiResult> Update(UserEditInputDto userEditInput)
         {
-            var user = await _repository.FirstOrDefaultAsync(i => i.Id == userEditInput.Id);
+            var user = await _userRepository.FirstOrDefaultAsync(i => i.Id == userEditInput.Id);
             if (user == null)
             {
                 return ApiResult.DataNotFound();
@@ -87,7 +90,7 @@ namespace CXY.CJS.Application
                 user.Password = Encryptor.MD5Entry(userEditInput.Password);
             }
             user.LastModificationTime = DateTime.Now;
-            await _repository.UpdateAsync(user);
+            await _userRepository.UpdateAsync(user);
             return new ApiResult().Success();
         }
 
@@ -103,30 +106,30 @@ namespace CXY.CJS.Application
             {
                 return ApiResult.ValidationError();
             }
-            var user = await _repository.FirstOrDefaultAsync(input);
+            var user = await _userRepository.FirstOrDefaultAsync(input);
             if (user == null)
             {
                 return ApiResult.DataNotFound();
             }
             user.LastModificationTime = DateTime.Now;
             user.IsDeleted = true;
-            await _repository.UpdateAsync(user);
+            await _userRepository.UpdateAsync(user);
             return new ApiResult().Success();
         }
 
         /// <summary>
         /// 获取用户详情信息
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<ApiResult<UserOutDto>> Get(string input)
+        [HttpGet]
+        public async Task<ApiResult<UserOutDto>> Get(string id)
         {
-            if (string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(id))
             {
                 return ApiResult.ValidationError<UserOutDto>();
             }
-            var user = await _repository.FirstOrDefaultAsync(input);
+            var user = await _userRepository.FirstOrDefaultAsync(id);
             if (user==null)
             {
                 return ApiResult.DataNotFound<UserOutDto>();
@@ -187,6 +190,54 @@ namespace CXY.CJS.Application
             return ApiResult.Success(userRoles.MapTo<IEnumerable<UserRoleOutputItem>>());
         }
 
+
+        /// <summary>
+        /// 授予或移除用户的角色
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ApiResult> GrantOrRemoveUserRole(GrantOrRemoveUserRoleInput input)
+        {
+            var userTask = _userRepository.FirstOrDefaultAsync(input.UserId);
+            var roleTask =  _roleRepository.FirstOrDefaultAsync(input.RoleId);
+            var userRoleTask =
+                _userRolerepository.FirstOrDefaultAsync(i => i.UserId == input.UserId && i.RoleId == input.RoleId);
+
+            var (user, role, userRole) = await (userTask, roleTask, userRoleTask);
+
+            if (role==null)
+            {
+                return new ApiResult().Error("无法找到该角色！");
+            }
+
+            if (user == null)
+            {
+                return new ApiResult().Error("无法找到该用户！");
+            }
+            if (input.IsGrant)
+            {
+                if (userRole==null)
+                {
+                    await _userRolerepository.InsertAsync(new UserRole
+                    {
+                        CreationTime = DateTime.Now,
+                        Id = Guid.NewGuid().ToString(),
+                        UserId = input.UserId,
+                        RoleId =input.RoleId,
+                        WebSiteId = user.WebSiteId
+                    });
+                }
+            }
+            else
+            {
+                if (userRole!=null)
+                {
+                    await _userRolerepository.DeleteAsync(userRole);
+                }
+            }
+            return new ApiResult().Success();
+        }
+
         #region 私有方法
 
         /// <summary>
@@ -196,7 +247,7 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         private async Task<Users> GetUser(string id)
         {
-            return await _repository.FirstOrDefaultAsync(id);
+            return await _userRepository.FirstOrDefaultAsync(id);
         }
 
 

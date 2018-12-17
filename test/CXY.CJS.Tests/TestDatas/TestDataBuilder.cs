@@ -56,6 +56,7 @@ namespace CXY.CJS.Tests.TestDatas
         private void InitRoles()
         {
             AddTask(_context.Roles.AddAsync(RoleDatas.LowerAgentRole));
+            AddTask(_context.Roles.AddAsync(RoleDatas.WillBeGrantOrRemoveRole));
         }
 
         private void InitMenu()
