@@ -3,6 +3,9 @@ using System.Text;
 
 namespace CXY.CJS.Core.Utils
 {
+    /// <summary>
+    /// 加密帮助类
+    /// </summary>
     public class Encryptor
     {
         /// <summary>

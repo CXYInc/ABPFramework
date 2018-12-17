@@ -1,15 +1,17 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using CXY.CJS.Core.Config;
 using CXY.CJS.Core.Constant;
+using CXY.CJS.Core.Utils;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.JwtAuthentication;
 using CXY.CJS.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -21,24 +23,40 @@ namespace CXY.CJS.WebApi.Controllers
     {
         private readonly JwtTokenProvider _jwtTokenProvider;
         private readonly IRepository<Users, string> _repository;
+        private readonly JwtBearerConfig _jwtBearerConfig;
 
-        public AuthController(JwtTokenProvider jwtTokenProvider, IHttpClientFactory httpClientFactory, IRepository<Users, string> repository)
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="jwtTokenProvider"></param>
+        /// <param name="repository"></param>
+        public AuthController(JwtBearerConfig jwtBearerConfig, JwtTokenProvider jwtTokenProvider, IRepository<Users, string> repository)
         {
+            _jwtBearerConfig = jwtBearerConfig;
             _jwtTokenProvider = jwtTokenProvider;
             _repository = repository;
         }
 
+        /// <summary>
+        /// 获取用户登录信息接口
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<string> GetUserInfo()
         {
             return new string[] { AbpSession.UserId, AbpSession.UserName, AbpSession.WebSiteId };
         }
 
+        /// <summary>
+        /// 用户登录接口
+        /// </summary>
+        /// <param name="loginInfo"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ApiResult<string>> UserLogin([FromBody] UserLoginInfo loginInfo)
+        public async Task<ApiResult<LoginResult>> UserLogin([FromBody] UserLoginInfo loginInfo)
         {
-            var result = new ApiResult<string>().Success();
+            var result = new ApiResult<LoginResult>().Success();
 
             if (loginInfo == null)
             {
@@ -47,9 +65,14 @@ namespace CXY.CJS.WebApi.Controllers
 
             try
             {
-                var user = await _repository.SingleAsync(x => x.UserName == loginInfo.LoginName && x.Password == loginInfo.Password && x.WebSiteId == loginInfo.WebSiteId);
+                var user = await _repository.FirstOrDefaultAsync(x => x.UserName == loginInfo.LoginName && x.WebSiteId == loginInfo.WebSiteId);
 
                 if (user == null)
+                {
+                    return result.Error("账号不存在");
+                }
+
+                if (user.Password != Encryptor.MD5Entry(loginInfo.Password))
                 {
                     return result.Error("账号或密码错误");
                 }
@@ -65,7 +88,7 @@ namespace CXY.CJS.WebApi.Controllers
 
                 var token = _jwtTokenProvider.GenerateJwtToken(claims);
 
-                result.Data = token;
+                result.Data = new LoginResult { Token = token, Expired = _jwtBearerConfig.ValidMinutes * 60 };
             }
             catch (EntityNotFoundException)
             {
