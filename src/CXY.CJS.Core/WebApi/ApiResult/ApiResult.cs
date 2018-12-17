@@ -40,6 +40,16 @@
             return this;
         }
 
+        public static ApiResult<T> Success<T>(T data , string message = "") where T : class
+        {
+            return new ApiResult<T>
+            {
+                Code = 1,
+                Data = data,
+                Message =message
+            };
+        }
+
         /// <summary>
         /// 格式化失败数据
         /// </summary>
@@ -50,6 +60,53 @@
             Code = 0;
             Message = message;
             return this;
+        }
+
+
+        public static ApiResult ValidationError(string message = "参数有误")
+        {
+            return new ApiResult
+            {
+                Code = 0,
+                Message = message
+            };
+        }
+
+        public static ApiResult<T> ValidationError<T>(string message = "参数有误") where T : class
+        {
+            return new ApiResult<T>
+            {
+                Code = 0,
+                Message = message
+            };
+        }
+
+        public static ApiResult DataNotFound()
+        {
+            return  new ApiResult
+            {
+                Code = 0,
+                Message = "未找到数据"
+            };
+        }
+
+        public static ApiResult<T> DataNotFound<T>() where T : class
+        {
+            return new ApiResult<T>
+            {
+                Code = 0,
+                Message = "未找到数据"
+            };
+        }
+
+
+        public static ApiResult<T> Error<T>(string message = "") where T : class
+        {
+            return new ApiResult<T>
+            {
+                Code = 0,
+                Message = message
+            };
         }
     }
 

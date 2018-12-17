@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Dependency;
 using Abp.EntityFrameworkCore;
@@ -11,8 +12,11 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
 using CXY.CJS.Core.Config;
 using CXY.CJS.Tests.Extensions;
+using CXY.CJS.Tests.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CXY.CJS.Tests
 {
@@ -34,8 +38,12 @@ namespace CXY.CJS.Tests
                 //.AddConfigModel()
                 .AddEntityFrameworkSqlServer();
             //Configuration.UnitOfWork.IsTransactional = false;
-            var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
 
+            // no active AuthorizationService
+            NotUseAuthorizationService(services);
+
+             var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(IocManager.IocContainer, services);
+            
             //AutoMapper×¢Èë
             Configuration.Modules.AbpAutoMapper().Configurators.Add(cfg =>
             {
@@ -67,6 +75,12 @@ namespace CXY.CJS.Tests
                     .Instance(builder.Options)
                     .LifestyleSingleton()
             );
+        }
+
+        private void NotUseAuthorizationService(IServiceCollection services)
+        {
+            services.Replace(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton<IAuthorizationService, AlwaysAllowAuthorizationService>());
+            services.Replace(Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton<IAuthorizationHelper, NotActiveAuthorizationHelper>());
         }
     }
 }

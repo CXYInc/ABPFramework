@@ -2,7 +2,7 @@
 using Abp.AutoMapper;
 using Newtonsoft.Json;
 
-namespace CXY.CJS.Menu.Dto
+namespace CXY.CJS.Application.Dtos
 {
     [AutoMapTo(typeof(Model.Menu))]
     public class SaveMenuInput

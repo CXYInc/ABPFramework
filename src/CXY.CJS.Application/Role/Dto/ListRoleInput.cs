@@ -2,7 +2,7 @@
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Core.WebApi;
 
-namespace CXY.CJS.Application.Dto
+namespace CXY.CJS.Application.Dtos
 {
     /// <summary>
     /// 
