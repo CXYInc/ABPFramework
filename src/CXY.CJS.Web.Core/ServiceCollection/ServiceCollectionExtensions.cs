@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Text;
 using CXY.CJS.Web.Core.Extensions;
+using CXY.CJS.Web.Core.Filter;
 using Newtonsoft.Json.Converters;
 
 namespace CXY.CJS.Web.Core
@@ -20,7 +21,10 @@ namespace CXY.CJS.Web.Core
 
             services.AddHttpClient();
 
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(new ApiErrorAttibute());
+            });
 
             services.PostConfigure<MvcJsonOptions>(options =>
             {
