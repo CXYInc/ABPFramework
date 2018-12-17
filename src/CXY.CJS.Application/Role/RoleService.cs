@@ -1,17 +1,14 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.ObjectMapping;
-using CXY.CJS.Application.Dto;
+using CXY.CJS.Application.Dtos;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.Core.WebApi;
-using Abp.ObjectMapping;
 using System;
 using System.Linq;
-using Abp.Application.Services.Dto;
-using CXY.CJS.Application.Dtos;
 using CXY.CJS.Core.Extensions;
+using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
 {
@@ -124,6 +121,7 @@ namespace CXY.CJS.Application
             // return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(inputBase,  new IHasSort[]{ inputBase },"Name!=@0 and Name!=@1","haha","haha1");
             return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input, new IHasSort[] { input });
         }
+         
 
         ///// <summary>
         ///// 获取角色菜单

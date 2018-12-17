@@ -4,6 +4,7 @@ using CXY.CJS.Repository.SeedWork;
 using Abp.Application.Services.Dto;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Model;
+using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
 {
