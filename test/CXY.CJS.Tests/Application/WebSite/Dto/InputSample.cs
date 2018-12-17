@@ -11,7 +11,7 @@ namespace CXY.CJS.Tests.Application.WebSite
         {
             return new SaveWebSiteInput
             {
-                WebSiteChName = Guid.NewGuid().ToString("N").Substring(0, 6),
+                WebSiteName = Guid.NewGuid().ToString("N").Substring(0, 6),
                 OrderGiveNum = 1,
                 Id = Guid.NewGuid().ToString("N").Substring(0, 6),
                 Loginname = Guid.NewGuid().ToString("N").Substring(0, 6),

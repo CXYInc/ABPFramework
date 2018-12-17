@@ -116,9 +116,9 @@ namespace CXY.CJS.Tests.Application.WebSite
             var newInput = InputSample.GetRandomSaveWebSiteInput();
             await _service.SaveWebSite(newInput);
             var website = (await _service.GetWebSite(newInput.Id)).Data;
-            //var updateInput = JObject.FromObject(website).ToObject<UpdateWebSiteInput>();
-            var updateInput = website.MapTo<UpdateWebSiteInput>();
-            updateInput.WebSiteChName = Guid.NewGuid().ToString();
+            var updateInput = JObject.FromObject(website).ToObject<UpdateWebSiteInput>();
+            //var updateInput = website.MapTo<UpdateWebSiteInput>();
+            updateInput.WebSiteName = Guid.NewGuid().ToString();
             var result = await _service.UpdateWebSite(updateInput);
             Assert.Equal(1,result.Code);
         }

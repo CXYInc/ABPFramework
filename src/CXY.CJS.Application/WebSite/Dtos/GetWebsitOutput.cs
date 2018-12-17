@@ -18,10 +18,10 @@ namespace CXY.CJS.Application.Dtos
         public string AskPriceMailAddress { get; set; }
         public int GivePointsPerMonth { get; set; }
         public string WFTKey { get; set; }
-        [JsonProperty("Wxsub_appid")]
+        //[JsonProperty("Wxsub_appid")]
         public string WxsubAppId { get; set; }
         public string AlipayPrivateKey { get; set; }
-        [JsonProperty("WFTMch_id")]
+        //[JsonProperty("WFTMch_id")]
         public string WFTMchId { get; set; }
         public string WebSiteChName { get; set; }
         public string AlipayPublicKey { get; set; }
@@ -40,11 +40,11 @@ namespace CXY.CJS.Application.Dtos
         public string WebSiteType { get; set; }
         public int WeiXinGiro { get; set; }
         public int IsDownApp { get; set; }
-        [JsonProperty("Wxsub_key")]
+        //[JsonProperty("Wxsub_key")]
         public string WxsubKey { get; set; }
         public int AlipayGiro { get; set; }
         public string WebSiteMemo { get; set; }
-        [JsonProperty("Wxsub_mch_id")]
+        //[JsonProperty("Wxsub_mch_id")]
         public string WxsubMchId { get; set; }
         public string Wxkey { get; set; }
         public string CustQQ { get; set; }
@@ -71,10 +71,10 @@ namespace CXY.CJS.Application.Dtos
         public int MasterAgentDefaultGivePoints { get; set; }
         public string ReceivableDate { get; set; }
 
-        [JsonProperty("PROVINCEID")]
+        //[JsonProperty("PROVINCEID")]
         public string Provinceid { get; set; }
         public string WebSiteDomains { get; set; }
-        [JsonProperty("Wxmch_id")]
+        //[JsonProperty("Wxmch_id")]
         public string WxmchId { get; set; }
         public int IsRevice { get; set; }
         public string WebSiteId { get; set; }

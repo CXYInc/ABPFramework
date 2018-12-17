@@ -12,7 +12,7 @@ namespace CXY.CJS.Application.Dtos
         /// 站点名称
         /// </summary>
         [Required]
-        public string WebSiteChName { get; set; }
+        public string WebSiteName { get; set; }
 
         [Required]
         public string Id { get; set; }
@@ -80,17 +80,17 @@ namespace CXY.CJS.Application.Dtos
         public int IsUseSysWeiXinPay { get; set; }
         public bool PayForAnother { get; set; }
         public string WxappID { get; set; }
-        [JsonProperty("Wxsub_appid")]
+        //[JsonProperty("Wxsub_appid")]
         public string WxsubAppId { get; set; }
-        [JsonProperty("Wxmch_id")]
+        //[JsonProperty("Wxmch_id")]
         public string WxmchId { get; set; }
-        [JsonProperty("Wxsub_mch_id")]
+        //[JsonProperty("Wxsub_mch_id")]
         public string WxSubMchId { get; set; }
         public string Wxkey { get; set; }
-        [JsonProperty("Wxsub_key")]
+        //[JsonProperty("Wxsub_key")]
         public string WxsubKey { get; set; }
         public int IsWFTPayment { get; set; }
-        [JsonProperty("WFTMch_id")]
+        //[JsonProperty("WFTMch_id")]
         public string WFTMchId { get; set; }
         public string WFTKey { get; set; }
         /// <summary>
@@ -150,10 +150,6 @@ namespace CXY.CJS.Application.Dtos
         public override void AddValidationErrors(CustomValidationContext context)
         {
             base.AddValidationErrors(context);
-            if (String.IsNullOrWhiteSpace(WebSiteMater))
-            {
-                context.Results.Add(new ValidationResult("站点管理员不能为null"));
-            }
         }
     }
     public class SaveWebSiteInput : UpdateOrSaveWebSiteInputBase
