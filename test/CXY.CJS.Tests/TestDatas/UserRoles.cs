@@ -8,8 +8,9 @@ namespace CXY.CJS.Tests.TestDatas
         {
             Id =Guid.NewGuid().ToString(),
             CreationTime = DateTime.Now,
-            RoleId = Guid.NewGuid().ToString(),
-            UserId = UserDatas.SuperWebSiteLowerAgent.Id
+            RoleId = RoleDatas.LowerAgentRole.Id,
+            UserId = UserDatas.SuperWebSiteLowerAgent.Id,
+            WebSiteId = WebSiteDatas.SuperWebSite.Id
         };
     }
 }

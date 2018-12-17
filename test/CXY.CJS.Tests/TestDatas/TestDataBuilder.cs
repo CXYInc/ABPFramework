@@ -28,6 +28,7 @@ namespace CXY.CJS.Tests.TestDatas
             InitUserSysSettingDatas();
             InitUserWalletDatas();
 
+            InitRoles();
 
             await Task.WhenAll(_actionTasks);
         }
@@ -50,6 +51,11 @@ namespace CXY.CJS.Tests.TestDatas
         private void InitUserWalletDatas()
         {
             AddTask(_context.UserWallets.AddAsync(UserWalletDatas.SuperWebSiteLowerAgentUserWallet));
+        }
+
+        private void InitRoles()
+        {
+            AddTask(_context.Roles.AddAsync(RoleDatas.LowerAgentRole));
         }
 
         private void InitMenu()

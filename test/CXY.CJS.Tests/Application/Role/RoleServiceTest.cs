@@ -1,6 +1,9 @@
 ﻿using CXY.CJS.Application;
 using CXY.CJS.Application.Dto;
 using System.Threading.Tasks;
+using CXY.CJS.Core.Enums;
+using CXY.CJS.Model;
+using CXY.CJS.Tests.TestDatas;
 using Xunit;
 
 namespace CXY.CJS.Tests.Application.Role
@@ -22,6 +25,21 @@ namespace CXY.CJS.Tests.Application.Role
                 PageSize = 1000
             });
             Assert.Empty(result.Datas);
+
+
+        }
+
+        [Fact]
+        public async Task ListRole_When_Found()
+        {
+            var result = await _service.ListRole(new ListRoleInput
+            {
+                PageIndex = 1,
+                PageSize = 10,
+                SortField = nameof(Model.Role.CreationTime),
+                SortOrder = SortEnum.Desc
+            });
+            Assert.NotEmpty(result.Datas);
 
 
         }
