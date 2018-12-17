@@ -141,8 +141,7 @@ namespace CXY.CJS.Application
             var menuList = await _menuRepository.GetAllListAsync();
             var result = from a in userRoles
                          join b in roleMenu on a.RoleId equals b.RoleId //into temp
-                         join m in menuList on b.MenuId equals m.Id into temp
-                         from t in temp.DefaultIfEmpty()
+                         join m in menuList on b.MenuId equals m.Id 
                          select new Model.Menu {};
             result = result.Distinct().ToList();
 
