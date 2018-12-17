@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CXY.CJS.Application.Dtos;
-using CXY.CJS.Menu.Dto;
 using CXY.CJS.Model;
 
 namespace CXY.CJS.Tests.Mapper

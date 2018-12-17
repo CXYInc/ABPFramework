@@ -1,6 +1,6 @@
 ﻿using CXY.CJS.Application;
-using CXY.CJS.Application.Dto;
 using System.Threading.Tasks;
+using CXY.CJS.Application.Dtos;
 using CXY.CJS.Core.Enums;
 using CXY.CJS.Model;
 using CXY.CJS.Tests.TestDatas;

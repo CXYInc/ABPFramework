@@ -1,12 +1,12 @@
 ﻿using Abp.AutoMapper;
 using Abp.UI;
 using CXY.CJS.Menu;
-using CXY.CJS.Menu.Dto;
 using CXY.CJS.Tests.TestDatas;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using CXY.CJS.Application;
+using CXY.CJS.Application.Dtos;
 using Xunit;
 
 namespace CXY.CJS.Tests.Application.MenuTest
