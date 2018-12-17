@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using Abp.AutoMapper;
 using Abp.UI;
 using CXY.CJS.Application;
-using CXY.CJS.Menu.Dto;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.Extensions;
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Core.WebApi;
+using CXY.CJS.Application.Dtos;
 
 namespace CXY.CJS.Menu
 {

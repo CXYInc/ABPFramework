@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CXY.CJS.Role.Dto;
-
+using CXY.CJS.Application.Dtos;
+using CXY.CJS.Model;
 
 namespace CXY.CJS.Application.Mapper
 {
@@ -10,7 +10,7 @@ namespace CXY.CJS.Application.Mapper
         {
             public RoleProfile()
             {
-                CreateMap<RoleEditInputDto, Model.Role>();
+                CreateMap<RoleEditInputDto, Role>();
             }
         }
     }

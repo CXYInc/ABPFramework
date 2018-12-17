@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using CXY.CJS.Core.Constant;
 using CXY.CJS.Core.Extensions;
+using System.Collections.Generic;
 
 namespace CXY.CJS
 {
@@ -15,6 +16,10 @@ namespace CXY.CJS
         protected CJSAppServiceBase()
         {
             LocalizationSourceName = CJSConsts.LocalizationSourceName;
+        }
+        protected IEnumerable<string> GetUserInfo()
+        {
+            return new string[] { AbpSession.UserId, AbpSession.UserName, AbpSession.WebSiteId };
         }
     }
 }

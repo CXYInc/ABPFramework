@@ -2,24 +2,29 @@
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.SeedWork;
-using CXY.CJS.Role.Dto;
 using CXY.CJS.Core.WebApi;
 using Abp.ObjectMapping;
-using CXY.CJS.Model;
 using System;
 using System.Linq;
 using Abp.Application.Services.Dto;
+using CXY.CJS.Application.Dtos;
+using CXY.CJS.Core.Extensions;
 
 namespace CXY.CJS.Application
 {
-    public class RoleService : IRoleService
+    public class RoleService : CJSAppServiceBase, IRoleService
     {
         private readonly IRoleRepository _roleRepository;
+        private readonly IRoleMenuRepository _roleMenuRepository;
+        private readonly IUserRepository _uerRepository;
+
         private readonly IObjectMapper _objectMapper;
 
-        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper)
+        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper, IRoleMenuRepository roleMenuRepository, IUserRepository uerRepository)
         {
             _roleRepository = roleRepository;
+            _roleMenuRepository = roleMenuRepository;
+            _uerRepository = uerRepository;
             _objectMapper = objectMapper;
         }
 
@@ -28,7 +33,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="roleEditInputDto"></param>
         /// <returns></returns>
-        public async Task<ApiResult<Model.Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto)
+        public async Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto)
         {
             var result = new ApiResult<Model.Role>().Success();
 
@@ -107,7 +112,7 @@ namespace CXY.CJS.Application
         }
 
         /// <summary>
-        /// 列出用户角色
+        /// 列出角色
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -117,5 +122,15 @@ namespace CXY.CJS.Application
             return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input, new IHasSort[] { input });
         }
 
+        ///// <summary>
+        ///// 获取角色菜单
+        ///// </summary>
+        ///// <returns></returns>
+        //public Task<ListResultDto<MenuOutputItem>> GetMenus()
+        //{
+        //    var userInfo = GetUserInfo();
+        //    //获取用户所含角色 
+        //    //根据角色获取菜单
+        //}
     }
 }

@@ -2,7 +2,7 @@
 using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Core.WebApi;
 
-namespace CXY.CJS.Menu.Dto
+namespace CXY.CJS.Application.Dtos
 {
     public class ListMenuInput : Pagination
     {
