@@ -29,21 +29,25 @@ namespace CXY.CJS.WebApi
     {
         private const string _defaultCorsPolicyName = "localhost";
         private const string _allowAnyOriginCorsPolicyName = "AllowAnyOrigin";
+        private readonly JwtBearerConfig _jwtBearerConfig;
         private readonly IConfigurationRoot _appConfiguration;
-        private readonly string _audience = "CXY.CJS";
-        private readonly string _issuer = "CXY.CJS";
-        private readonly string _jwt_secret = "";
-        private readonly int _validMinutes = 30;
         private readonly IHostingEnvironment _env;
 
         public Startup(IHostingEnvironment env)
         {
             _env = env;
             _appConfiguration = env.GetAppConfiguration();
-            _jwt_secret = _appConfiguration.GetValue<string>("Authentication:JwtBearer:PrivateKeys");
-            _audience = _appConfiguration.GetValue<string>("Authentication:JwtBearer:Audience");
-            _issuer = _appConfiguration.GetValue<string>("Authentication:JwtBearer:Issuer");
-            _validMinutes = _appConfiguration.GetValue<int>("Authentication:JwtBearer:ValidMinutes");
+
+            _jwtBearerConfig = new JwtBearerConfig
+            {
+                IsEnabled = true,
+                Issuer = "CXY.CJS",
+                Audience = "CXY.CJS",
+                ValidMinutes = 30,
+                PrivateKeys = ""
+            };
+
+            _appConfiguration.GetSection("Authentication:JwtBearer").Bind(_jwtBearerConfig);
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -77,13 +81,13 @@ namespace CXY.CJS.WebApi
 
             services.AddJwtAuthentication(option =>
             {
-                option.Audience = _audience;
+                option.Audience = _jwtBearerConfig.Audience;
                 option.ValidateAudience = true;
-                option.Issuer = _issuer;
+                option.Issuer = _jwtBearerConfig.Issuer;
                 option.ValidateIssuer = true;
                 option.SecurityAlgorithms = SecurityAlgorithms.HmacSha256;
-                option.SigningKey = _jwt_secret;
-                option.ValidMinutes = _validMinutes;
+                option.SigningKey = _jwtBearerConfig.PrivateKeys;
+                option.ValidMinutes = _jwtBearerConfig.ValidMinutes;
                 option.OnChallenge = context => JwtOptionsCallBack.OnChallenge(context);
                 option.OnAuthenticationFailed = context => JwtOptionsCallBack.OnAuthenticationFailed(context);
                 option.OnTokenValidated = context => JwtOptionsCallBack.OnTokenValidated(context);
@@ -111,7 +115,9 @@ namespace CXY.CJS.WebApi
 
             });
 
-            services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiConfig"));
+            services.AddSingleton(_jwtBearerConfig);
+
+            services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiUrlConfig"));
 
             // Configure Abp and Dependency Injection
             return services.AddAbp<CJSWebApiModule>(options =>
