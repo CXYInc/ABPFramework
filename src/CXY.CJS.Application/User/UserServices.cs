@@ -8,8 +8,10 @@ using CXY.CJS.Model;
 using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using Abp.AutoMapper;
 using Abp.Specifications;
 using CXY.CJS.Core.Utils;
 using CXY.CJS.Repository;
@@ -23,19 +25,24 @@ namespace CXY.CJS.Application
     /// </summary>
     public class UserServices : CJSAppServiceBase, IUserServices
     {
-        private readonly IRepository<User, string> _repository;
+        private readonly IRepository<Users, string> _repository;
+        private readonly IRepository<UserRole, string> _userRolerepository;
         private readonly IObjectMapper _objectMapper;
         private ILowerAgentRepository _lowerAgentRepository;
+        
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="objectMapper"></param>
-        public UserServices(IRepository<User, string> repository, IObjectMapper objectMapper, ILowerAgentRepository lowerAgentRepository)
+        /// <param name="lowerAgentRepository"></param>
+        /// <param name="userRolerepository"></param>
+        public UserServices(IRepository<Users, string> repository, IObjectMapper objectMapper, ILowerAgentRepository lowerAgentRepository, IRepository<UserRole, string> userRolerepository)
         {
             _repository = repository;
             _objectMapper = objectMapper;
             _lowerAgentRepository = lowerAgentRepository;
+            _userRolerepository = userRolerepository;
         }
 
         /// <summary>
@@ -59,7 +66,7 @@ namespace CXY.CJS.Application
                 {
                     return result.Error("请输入密码！");
                 }
-                var user = _objectMapper.Map<User>(userEditInput);
+                var user = _objectMapper.Map<Users>(userEditInput);
                 var time = DateTime.Now;
                 user.Id = userEditInput.WebSiteId + time.ToString("yyyyMMddHHmmss") + RNG.Next(10).ToString().PadLeft(10, '0');
                 user.CreationTime = time;
@@ -113,7 +120,7 @@ namespace CXY.CJS.Application
                     user.Password = Encryptor.MD5Entry(userEditInput.Password);
                 }
 
-                user.LastModificationTime=DateTime.Now;
+                user.LastModificationTime = DateTime.Now;
                 var dto = await _repository.UpdateAsync(user);
                 result.Data = dto.Id;
             }
@@ -129,7 +136,6 @@ namespace CXY.CJS.Application
 
             return result;
         }
-
 
         /// <summary>
         /// 删除用户
@@ -150,7 +156,7 @@ namespace CXY.CJS.Application
                 var user = await _repository.GetAsync(input);
                 user.LastModificationTime = DateTime.Now;
                 user.IsDeleted = true;
-               var dto = await _repository.UpdateAsync(user);
+                var dto = await _repository.UpdateAsync(user);
             }
             catch (EntityNotFoundException)
             {
@@ -226,17 +232,40 @@ namespace CXY.CJS.Application
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ApiResult<LowerAgentOutputItem>> GetLowerAgent(string id)
         {
             var agent = await _lowerAgentRepository.GetAsync(id);
-            if (agent==null)
+            if (agent == null)
             {
-                return  new ApiResult<LowerAgentOutputItem>().Error("不存在该数据");
+                return new ApiResult<LowerAgentOutputItem>().Error("不存在该数据");
             }
             var output = LowerAgent.MapTo<LowerAgentOutputItem>(agent);
-            return  new ApiResult<LowerAgentOutputItem>().Success(output);
+            return new ApiResult<LowerAgentOutputItem>().Success(output);
         }
 
+        /// <summary>
+        /// 获取用户所拥有的角色
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ApiResult<IEnumerable<UserRoleOutputItem>>> GetUserRoles(string id)
+        {
+            var result = new ApiResult<IEnumerable<UserRoleOutputItem>>().Success();
+
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return result.Error("参数有误");
+            }
+
+            var userRoles = await _userRolerepository.GetAllListAsync(i => i.UserId == id);
+            result.Data = userRoles.MapTo<IEnumerable<UserRoleOutputItem>>();
+            return result;
+        }
 
         #region 私有方法
 
@@ -245,7 +274,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private async Task<User> GetUser(string id)
+        private async Task<Users> GetUser(string id)
         {
             return await _repository.GetAsync(id);
         }
@@ -256,8 +285,8 @@ namespace CXY.CJS.Application
             //todo:用户id和websiteId应该从session中拿
 
             Expression<Func<LowerAgent, bool>> where = i =>
-                i.UserSysSetting.Userlayer == "0"&&
-                i.UserSysSetting.ParentId == input.Id && 
+                i.UserSysSetting.Userlayer == "0" &&
+                i.UserSysSetting.ParentId == input.Id &&
                 i.User.Id != input.Id
                 && i.User.WebSiteId == input.WebSiteId;
 

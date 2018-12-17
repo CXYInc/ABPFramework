@@ -2,7 +2,7 @@
 
 namespace CXY.CJS.Application.Dtos
 {
-    [AutoMapTo(typeof(Model.User))]
+    [AutoMapTo(typeof(Model.Users))]
     public class CreateUserInput
     {
         public string WebsiteId { get; set; }

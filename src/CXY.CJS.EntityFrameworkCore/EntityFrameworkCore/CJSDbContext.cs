@@ -21,7 +21,7 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public DbSet<Menu> Menus { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         public DbSet<UserMarkupSetting> UserMarkupSettings { get; set; }
         public DbSet<UserScore> UserScores { get; set; }

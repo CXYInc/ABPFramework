@@ -20,9 +20,9 @@ namespace CXY.CJS.WebApi.Controllers
     public class AuthController : CJSBaseController
     {
         private readonly JwtTokenProvider _jwtTokenProvider;
-        private readonly IRepository<User, string> _repository;
+        private readonly IRepository<Users, string> _repository;
 
-        public AuthController(JwtTokenProvider jwtTokenProvider, IHttpClientFactory httpClientFactory, IRepository<User, string> repository)
+        public AuthController(JwtTokenProvider jwtTokenProvider, IHttpClientFactory httpClientFactory, IRepository<Users, string> repository)
         {
             _jwtTokenProvider = jwtTokenProvider;
             _repository = repository;

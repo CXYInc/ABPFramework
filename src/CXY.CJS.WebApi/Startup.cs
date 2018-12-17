@@ -6,6 +6,7 @@ using Castle.Facilities.Logging;
 using Castle.MicroKernel.ModelBuilder.Inspectors;
 using Castle.MicroKernel.SubSystems.Conversion;
 using CXY.CJS.Configuration;
+using CXY.CJS.Core.Config;
 using CXY.CJS.JwtAuthentication;
 using CXY.CJS.Web.Core;
 using CXY.CJS.Web.Core.Extensions;
@@ -109,6 +110,8 @@ namespace CXY.CJS.WebApi
                 options.IncludeXmlComments(xmlPath);
 
             });
+
+            services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiConfig"));
 
             // Configure Abp and Dependency Injection
             return services.AddAbp<CJSWebApiModule>(options =>

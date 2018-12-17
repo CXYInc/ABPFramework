@@ -4,7 +4,7 @@ using CXY.CJS.Model;
 
 namespace CXY.CJS.Application.Mapper
 {
-    class RoleMapper
+    public class RoleMapper
     {
         internal class RoleProfile : Profile
         {

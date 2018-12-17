@@ -97,6 +97,14 @@ namespace CXY.CJS.Tests.Application.UserTest
         }
 
 
+        [Fact]
+        public async Task GetUserRoles_When_Fund()
+        {
+            var result = await _service.GetUserRoles(UserDatas.SuperWebSiteLowerAgent.Id);
+            Assert.NotEmpty(result.Data);
+        }
+
+
 
     }
 }

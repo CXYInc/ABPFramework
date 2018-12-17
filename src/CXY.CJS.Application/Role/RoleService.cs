@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using Abp.Application.Services.Dto;
+using Abp.ObjectMapping;
+using CXY.CJS.Application.Dto;
+using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.SeedWork;
@@ -35,7 +38,7 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         public async Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto)
         {
-            var result = new ApiResult<Model.Role>().Success();
+            var result = new ApiResult<Role>().Success();
 
             if (roleEditInputDto == null)
             {

@@ -2,7 +2,7 @@
 
 namespace CXY.CJS.Repository
 {
-    public interface IUserRepository : ICJSRepositoryBase<User, string>
+    public interface IUserRepository : ICJSRepositoryBase<Users, string>
     {
         
     }

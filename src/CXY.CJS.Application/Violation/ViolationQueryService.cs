@@ -1,16 +1,16 @@
-﻿using Abp.Application.Services;
-using Abp.Json;
+﻿using Abp.Json;
 using CXY.CJS.Application.Dtos;
+using CXY.CJS.Core.Config;
 using CXY.CJS.Core.HttpClient;
 using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,17 +21,17 @@ namespace CXY.CJS.Application
     /// </summary>
     public class ViolationQueryService : CJSAppServiceBase, IViolationQueryService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiUrlConfig _apiConfig;
         private readonly HttpClientHelper _httpClientHelper;
 
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="httpClientFactory"></param>
+        /// <param name="apiConfig"></param>
         /// <param name="httpClientHelper"></param>
-        public ViolationQueryService(IHttpClientFactory httpClientFactory, HttpClientHelper httpClientHelper)
+        public ViolationQueryService(IOptionsSnapshot<ApiUrlConfig> apiConfig, HttpClientHelper httpClientHelper)
         {
-            _httpClientFactory = httpClientFactory;
+            _apiConfig = apiConfig.Value;
             _httpClientHelper = httpClientHelper;
         }
 
@@ -140,7 +140,7 @@ namespace CXY.CJS.Application
 
             var postDataStr = JsonConvert.SerializeObject(postData);
 
-            var apiUrl = "http://112.74.132.61:8033/Violation.GetInputCondition";
+            var apiUrl = _apiConfig.QueryInputConditionApiUrl;
 
             var httpClientRequest = new HttpClientRequest
             {
@@ -218,7 +218,7 @@ namespace CXY.CJS.Application
                     req_data.Add("req_data", postData);
                     string postDataStr = req_data.ToJsonString();
 
-                    var apiUrl = "http://112.74.132.61:8033/CarInfo.QueryCarBaseInfo";
+                    var apiUrl = _apiConfig.QueryCarCodeAndEngineCodeApiUrl;
 
                     var httpClientRequest = new HttpClientRequest
                     {
@@ -293,7 +293,7 @@ namespace CXY.CJS.Application
             req_data.Add("req_data", postData);
             string postDataStr = req_data.ToJsonString();
 
-            var apiUrl = "http://112.74.132.61:8033/Violation.ViolationSearch";
+            var apiUrl =_apiConfig.QueryViolationApiUrl;
 
             var httpClientRequest = new HttpClientRequest
             {

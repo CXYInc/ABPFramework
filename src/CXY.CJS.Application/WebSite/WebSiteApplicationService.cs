@@ -339,7 +339,7 @@ namespace CXY.CJS.Application
 
             // 创建站点管理员账号信息
 
-            var insertUserTask = _userRepository.InsertAsync(new User
+            var insertUserTask = _userRepository.InsertAsync(new Users
             {
                 Id = userId,
                 WebSiteId = input.Id,

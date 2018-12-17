@@ -4,7 +4,7 @@ using CXY.CJS.Model;
 
 namespace CXY.CJS.Repository
 {
-    public class UserRepository : CJSRepositoryBase<User, string>, IUserRepository
+    public class UserRepository : CJSRepositoryBase<Users, string>, IUserRepository
     {
         public UserRepository(IDbContextProvider<CJSDbContext> dbContextProvider) : base(dbContextProvider)
         {

@@ -5,7 +5,7 @@ namespace CXY.CJS.Tests.TestDatas
 {
     public static class UserDatas
     {
-        public static readonly User SuperWebSiteMasterUser=new User
+        public static readonly Users SuperWebSiteMasterUser=new Users
         {
             Id = WebSiteDatas.SuperWebSite.WebSiteMater,
             WebSiteId = WebSiteDatas.SuperWebSite.Id,
@@ -24,7 +24,7 @@ namespace CXY.CJS.Tests.TestDatas
         };
 
 
-        public static readonly User SuperWebSiteLowerAgent = new User
+        public static readonly Users SuperWebSiteLowerAgent = new Users
         {
             Id = Guid.NewGuid().ToString(),
             WebSiteId = WebSiteDatas.SuperWebSite.Id,
@@ -43,7 +43,7 @@ namespace CXY.CJS.Tests.TestDatas
         };
 
 
-        public static readonly User WillBeDelUser = new User
+        public static readonly Users WillBeDelUser = new Users
         {
             Id = Guid.NewGuid().ToString(),
             WebSiteId = WebSiteDatas.SuperWebSite.Id,

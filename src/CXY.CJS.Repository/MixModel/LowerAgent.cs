@@ -7,7 +7,7 @@ namespace CXY.CJS.Repository.MixModel
 {
     public class LowerAgent
     {
-        public  User User { get; set; }
+        public  Users User { get; set; }
         public UserSysSetting UserSysSetting { get; set; }
         public UserScore UserScore { get; set; }
         public UserWallet UserWallet { get; set; }
@@ -18,7 +18,7 @@ namespace CXY.CJS.Repository.MixModel
             var temp = JObject.FromObject(source);
             return new LowerAgent
             {
-                User = temp.ToObject<User>(),
+                User = temp.ToObject<Users>(),
                 UserSysSetting = temp.ToObject<UserSysSetting>(),
                 UserScore = temp.ToObject<UserScore>(),
                 UserWallet = temp.ToObject<UserWallet>(),

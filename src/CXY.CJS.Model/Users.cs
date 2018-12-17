@@ -11,7 +11,7 @@ namespace CXY.CJS.Model
     /// <summary>
     /// 用户基础定义
     /// </summary>
-    public class User : Entity<string>
+    public class Users : Entity<string>
     {
         public string UserName { get; set; }
         /// <summary>
@@ -80,7 +80,7 @@ namespace CXY.CJS.Model
         public int? IsPaymentPwd { get; set; }
 
 
-        public User()
+        public Users()
         {
             CreationTime = Clock.Now;
             IsActive = true;

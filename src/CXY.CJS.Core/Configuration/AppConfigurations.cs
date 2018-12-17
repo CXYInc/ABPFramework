@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace CXY.CJS.Core.Configuration
 {
+    /// <summary>
+    /// 配置管理
+    /// </summary>
     public static class AppConfigurations
     {
         private static readonly ConcurrentDictionary<string, IConfigurationRoot> ConfigurationCache;
@@ -13,6 +16,12 @@ namespace CXY.CJS.Core.Configuration
             ConfigurationCache = new ConcurrentDictionary<string, IConfigurationRoot>();
         }
 
+        /// <summary>
+        /// 获取配置信息
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="environmentName"></param>
+        /// <returns></returns>
         public static IConfigurationRoot Get(string path, string environmentName = null)
         {
             var cacheKey = path + "#" + environmentName;

@@ -9,9 +9,6 @@ namespace CXY.CJS.Repository.Extensions
 {
     public static class QueryableExtension
     {
-
-
-
         /// <summary>
         /// 构建分页
         /// </summary>
@@ -19,12 +16,10 @@ namespace CXY.CJS.Repository.Extensions
         /// <param name="query"></param>
         /// <param name="pagination"></param>
         /// <returns></returns>
-        public static IQueryable<TEntity> BuildPage<TEntity>(this IQueryable<TEntity> query,Pagination pagination)
+        public static IQueryable<TEntity> BuildPage<TEntity>(this IQueryable<TEntity> query, Pagination pagination)
         {
-          return  query.Skip((pagination.PageIndex - 1) * pagination.PageSize).Take(pagination.PageSize);
+            return query.Skip((pagination.PageIndex - 1) * pagination.PageSize).Take(pagination.PageSize);
         }
-
-
 
         /// <summary>
         /// 拼接where
@@ -59,8 +54,7 @@ namespace CXY.CJS.Repository.Extensions
         /// <param name="query"></param>
         /// <param name="sortBy">排序条件</param>
         /// <returns></returns>
-        public static IQueryable<TEntity> BuildSort<TEntity>(
-          this IQueryable<TEntity> query, IEnumerable<IHasSort> sortBy)
+        public static IQueryable<TEntity> BuildSort<TEntity>(this IQueryable<TEntity> query, IEnumerable<IHasSort> sortBy)
         {
             if (sortBy != null && sortBy.Count() > 0)
             {

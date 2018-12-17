@@ -7,8 +7,14 @@ using CXY.CJS.Core.Localization;
 
 namespace CXY.CJS.Core
 {
+    /// <summary>
+    /// CJSCoreModule
+    /// </summary>
     public class CJSCoreModule : AbpModule
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public override void PreInitialize()
         {
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
@@ -16,6 +22,9 @@ namespace CXY.CJS.Core
             CJSLocalizationConfigurer.Configure(Configuration.Localization);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Initialize()
         {
             //todo:待替换成自动配置
