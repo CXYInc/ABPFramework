@@ -41,18 +41,13 @@ namespace CXY.CJS.Application
         public async Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto)
         {
             var result = new ApiResult<Role>().Success();
-
-            if (roleEditInputDto == null)
-            {
-                return result.Error("参数有误");
-            }
             try
             {
                 var roleList = _roleRepository.GetAll();
                 var role = _objectMapper.Map<Model.Role>(roleEditInputDto);
                 if (string.IsNullOrEmpty(roleEditInputDto.Id))
                 {
-                    var findRole = roleList.Where(o => o.WebSiteId == roleEditInputDto.WebSiteId && o.Name == roleEditInputDto.Name && !o.IsDeleted);
+                    var findRole = roleList.FirstOrDefault(o => o.WebSiteId == roleEditInputDto.WebSiteId && o.Name == roleEditInputDto.Name && !o.IsDeleted);
                     if (findRole == null)
                     {
                         role.Id = Guid.NewGuid().ToString("N");
@@ -66,7 +61,7 @@ namespace CXY.CJS.Application
                 }
                 else
                 {
-                    var findRole = roleList.Where(o => o.WebSiteId == roleEditInputDto.WebSiteId && o.Id == roleEditInputDto.Id);
+                    var findRole = roleList.FirstOrDefault(o => o.WebSiteId == roleEditInputDto.WebSiteId && o.Id == roleEditInputDto.Id);
                     if (findRole == null)
                     {
                         return result.Error("更新的角色不存在");
