@@ -21,7 +21,7 @@ namespace CXY.CJS.Application.Dtos
         public string Address { get; set; }
         public string Shortname { get; set; }
         public string Fullname { get; set; }
-        public int Ispanuse { get; set; }
+        public int? Ispanuse { get; set; }
         public string Recommendusername { get; set; }
         public string Recommenduserid { get; set; }
         public string Cardno { get; set; }

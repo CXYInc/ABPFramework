@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Abp.AutoMapper;
+using Abp.Runtime.Validation;
 using AutoMapper.Configuration.Conventions;
 using CXY.CJS.Model;
 
@@ -10,9 +11,11 @@ namespace CXY.CJS.Application.Dtos
     /// 用户业务编辑实体
     /// </summary>
     [AutoMapTo(typeof(Model.Users))]
-    public class UserEditInputDto
+    public class UserEditInputDto : ICustomValidate
     {
+        [Required]
         public string Id { get; set; }
+
         public string UserName { get; set; }
         /// <summary>
         /// 姓名
@@ -54,5 +57,13 @@ namespace CXY.CJS.Application.Dtos
         /// 是否开启支付密码
         /// </summary>
         public int? IsPaymentPwd { get; set; }
+
+        public void AddValidationErrors(CustomValidationContext context)
+        {
+            if (string.IsNullOrWhiteSpace(Id))
+            {
+                context.Results.Add(new ValidationResult("id不能为空"));
+            }
+        }
     }
 }
