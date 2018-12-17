@@ -1,8 +1,9 @@
-﻿using Abp.Application.Services;
-using Abp.Application.Services.Dto;
-using CXY.CJS.Application.Dto;
+﻿using Abp.Application.Services; 
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Repository.SeedWork;
+using Abp.Application.Services.Dto;
+using CXY.CJS.Application.Dtos;
+using CXY.CJS.Model;
 using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
@@ -24,7 +25,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="roleEditInputDto"></param>
         /// <returns></returns>
-        Task<ApiResult<Model.Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto);
+        Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto);
 
         /// <summary>
         /// 删除角色(软删除)
@@ -33,5 +34,7 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         Task<ApiResult<string>> DeleteRoleAsync(EntityDto<string> input);
         //绑定菜单
+
+       // Task<ListResultDto<MenuOutputItem>> GetMenus();
     }
 }

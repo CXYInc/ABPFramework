@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CXY.CJS.Application.Dto
+namespace CXY.CJS.Application.Dtos
 {
     public class RoleEditInputDto
     {

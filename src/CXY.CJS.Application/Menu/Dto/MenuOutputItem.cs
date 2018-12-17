@@ -3,7 +3,7 @@ using Abp.AutoMapper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace CXY.CJS.Menu.Dto
+namespace CXY.CJS.Application.Dtos
 {
     [AutoMapTo(typeof(Model.Menu))]
     public class MenuOutputItem

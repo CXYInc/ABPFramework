@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CXY.CJS.Application.Dto;
+using CXY.CJS.Application.Dtos;
 using CXY.CJS.Model;
 
 namespace CXY.CJS.Application.Mapper

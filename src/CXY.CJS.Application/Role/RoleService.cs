@@ -1,24 +1,30 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.ObjectMapping;
-using CXY.CJS.Application.Dto;
+using CXY.CJS.Application.Dtos;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
 using CXY.CJS.Repository.SeedWork;
 using System;
 using System.Linq;
+using CXY.CJS.Core.Extensions;
 using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
 {
-    public class RoleService : IRoleService
+    public class RoleService : CJSAppServiceBase, IRoleService
     {
         private readonly IRoleRepository _roleRepository;
+        private readonly IRoleMenuRepository _roleMenuRepository;
+        private readonly IUserRepository _uerRepository;
+
         private readonly IObjectMapper _objectMapper;
 
-        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper)
+        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper, IRoleMenuRepository roleMenuRepository, IUserRepository uerRepository)
         {
             _roleRepository = roleRepository;
+            _roleMenuRepository = roleMenuRepository;
+            _uerRepository = uerRepository;
             _objectMapper = objectMapper;
         }
 
@@ -106,7 +112,7 @@ namespace CXY.CJS.Application
         }
 
         /// <summary>
-        /// 列出用户角色
+        /// 列出角色
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -115,6 +121,17 @@ namespace CXY.CJS.Application
             // return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(inputBase,  new IHasSort[]{ inputBase },"Name!=@0 and Name!=@1","haha","haha1");
             return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input, new IHasSort[] { input });
         }
+         
 
+        ///// <summary>
+        ///// 获取角色菜单
+        ///// </summary>
+        ///// <returns></returns>
+        //public Task<ListResultDto<MenuOutputItem>> GetMenus()
+        //{
+        //    var userInfo = GetUserInfo();
+        //    //获取用户所含角色 
+        //    //根据角色获取菜单
+        //}
     }
 }
