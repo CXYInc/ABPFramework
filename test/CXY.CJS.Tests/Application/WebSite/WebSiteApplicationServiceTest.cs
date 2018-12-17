@@ -38,10 +38,10 @@ namespace CXY.CJS.Tests.Application.WebSite
         public async Task GetWebSite_When_NotFund()
         {
             var noExistResult = await _service.GetWebSite(Guid.NewGuid().ToString() + "1234");
-            Assert.Null(noExistResult);
+            Assert.Null(noExistResult.Data);
 
             var deletedListResult = await _service.GetWebSite(WebSiteDatas.DedeletedWebSite.Id);
-            Assert.Null(deletedListResult);
+            Assert.Null(deletedListResult.Data);
         }
 
 
@@ -54,7 +54,7 @@ namespace CXY.CJS.Tests.Application.WebSite
                 PageSize = 10,
                 IsHide = true
             });
-            Assert.Empty(thanCountResult.Datas);
+            Assert.Empty(thanCountResult.Data.PageData);
 
             //var deletedListResult = await _service.ListWebSite(new ListWebSiteInput
             //{
@@ -73,7 +73,7 @@ namespace CXY.CJS.Tests.Application.WebSite
                 PageIndex = 1,
                 PageSize = 10
             });
-            Assert.NotEmpty(noFilterResult.Datas);
+            Assert.NotEmpty(noFilterResult.Data.PageData);
         }
 
 
@@ -107,7 +107,7 @@ namespace CXY.CJS.Tests.Application.WebSite
         public async Task SaveWebSite_When_Success()
         {
             var output = await _service.SaveWebSite(InputSample.NewSaveWebSiteInput);
-            Assert.NotEmpty(output.Safepassword);
+            Assert.NotEmpty(output.Data.Safepassword);
         }
 
         [Fact]
@@ -115,21 +115,22 @@ namespace CXY.CJS.Tests.Application.WebSite
         {
             var newInput = InputSample.GetRandomSaveWebSiteInput();
             await _service.SaveWebSite(newInput);
-            var website = await _service.GetWebSite(newInput.Id);
+            var website = (await _service.GetWebSite(newInput.Id)).Data;
             //var updateInput = JObject.FromObject(website).ToObject<UpdateWebSiteInput>();
             var updateInput = website.MapTo<UpdateWebSiteInput>();
             updateInput.WebSiteChName = Guid.NewGuid().ToString();
             var result = await _service.UpdateWebSite(updateInput);
-            Assert.True(result);
+            Assert.Equal(1,result.Code);
         }
 
         [Fact]
         public async Task ResetPassword_When_Success()
         {
-            Assert.True(await _service.ResetPassword(new ResetPasswordInput
+            var _=await _service.ResetPassword(new ResetPasswordInput
             {
                 UserId = WebSiteDatas.SuperWebSite.WebSiteMater
-            }));
+            });
+            Assert.Equal(1, _.Code);
         }
 
         

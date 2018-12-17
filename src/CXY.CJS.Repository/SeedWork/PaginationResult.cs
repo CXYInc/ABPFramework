@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CXY.CJS.Core.WebApi;
 
 namespace CXY.CJS.Repository.SeedWork
 {
@@ -18,11 +19,19 @@ namespace CXY.CJS.Repository.SeedWork
             this.PageSize = p.PageSize;
         }
 
-        public PaginationResult<TEntity> SetReuslt(int totalCount, IEnumerable<TEntity> datas)
+        public ApiPageResult<TEntity> ToApiPageResult()
         {
-            this.TotalCount = totalCount;
-            this.Datas = datas;
-            return this;
+            return new ApiPageResult<TEntity>
+            {
+                Code = 1,
+                Data = new ApiPageBaseResult<TEntity>
+                {
+                    Count = TotalCount,
+                    PageData = Datas,
+                    PageSize = PageSize,
+                    PageIndex = PageIndex
+                }
+            };
         }
 
 

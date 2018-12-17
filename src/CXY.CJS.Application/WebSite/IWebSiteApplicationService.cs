@@ -3,6 +3,7 @@ using Abp.Application.Services.Dto;
 using CXY.CJS.Application.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CXY.CJS.Core.WebApi;
 using CXY.CJS.Repository.SeedWork;
 
 namespace CXY.CJS.Application
@@ -17,33 +18,33 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<PaginationResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input);
+        Task<ApiPageResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input);
 
         /// <summary>
         /// 获取站点详情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<GetWebsitOutput> GetWebSite(string id);
+        Task<ApiResult<GetWebsitOutput>> GetWebSite(string id);
 
         /// <summary>
         /// 新增站点
         /// </summary>
         /// <returns></returns>
-        Task<SaveWebSiteOutput> SaveWebSite(SaveWebSiteInput input);
+        Task<ApiResult<SaveWebSiteOutput>> SaveWebSite(SaveWebSiteInput input);
 
         /// <summary>
         /// 更新站点
         /// </summary>
         /// <returns></returns>
-        Task<bool> UpdateWebSite(UpdateWebSiteInput input);
+        Task<ApiResult> UpdateWebSite(UpdateWebSiteInput input);
 
         /// <summary>
         /// 重置密码
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<bool> ResetPassword(ResetPasswordInput input);
+        Task<ApiResult> ResetPassword(ResetPasswordInput input);
 
 
         //      /// <summary>

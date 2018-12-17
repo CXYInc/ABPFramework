@@ -18,7 +18,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<PaginationResult<ListRoleOutputItem>> ListRole(ListRoleInput input);
+        Task<ApiPageResult<ListRoleOutputItem>> ListRole(ListRoleInput input);
 
         /// <summary>
         /// 创建/更新角色

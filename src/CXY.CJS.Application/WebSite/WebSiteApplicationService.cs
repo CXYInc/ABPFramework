@@ -21,6 +21,7 @@ using Abp.UI;
 using CXY.CJS.Core.Config;
 using CXY.CJS.Core.Extensions;
 using CXY.CJS.Core.Utils;
+using CXY.CJS.Core.WebApi;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CXY.CJS.Application
@@ -224,7 +225,7 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
 
-        public async Task<PaginationResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input)
+        public async Task<ApiPageResult<ListWebSiteOutputItem>> ListWebSite(ListWebSiteInput input)
         {
             Expression<Func<WebSiteFull, bool>> where = i=>i.WebSite.IsDeleted==false;
 
@@ -238,8 +239,9 @@ namespace CXY.CJS.Application
             }
             var resultTemp = await _siteFullRepository.QueryByWhereAsync<WebSiteFull>(input, null, where);
 
-            return new PaginationResult<ListWebSiteOutputItem>(input)
-                    .SetReuslt(resultTemp.TotalCount, WebSiteFull.MapToList<ListWebSiteOutputItem>(resultTemp.Datas));
+            return input
+                .SetResult(resultTemp.TotalCount, WebSiteFull.MapToList<ListWebSiteOutputItem>(resultTemp.Datas))
+                .ToApiPageResult();
         }
 
         /// <summary>
@@ -247,7 +249,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<GetWebsitOutput> GetWebSite(string id)
+        public async Task<ApiResult<GetWebsitOutput>> GetWebSite(string id)
         {
             GetWebsitOutput result = null;
             var webSite = await _siteFullRepository.GetAsync(id);
@@ -255,7 +257,7 @@ namespace CXY.CJS.Application
             {
                 if (webSite.WebSite.IsDeleted)
                 {
-                    return null;
+                    return ApiResult.DataNotFound<GetWebsitOutput>();
                 }
                 result = WebSiteFull.MapTo<GetWebsitOutput>(webSite);
                 if (!string.IsNullOrEmpty(webSite.WebSite.WebSiteMater))
@@ -295,7 +297,7 @@ namespace CXY.CJS.Application
                 }
             }
 
-            return result;
+            return ApiResult.Success(result);
         }
 
         /// <summary>
@@ -303,7 +305,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<SaveWebSiteOutput> SaveWebSite(SaveWebSiteInput input)
+        public async Task<ApiResult<SaveWebSiteOutput>> SaveWebSite(SaveWebSiteInput input)
         {
             // 是否使用系统的配置
             WhenUseSysAlipayPayment(input);
@@ -372,11 +374,11 @@ namespace CXY.CJS.Application
 
             await (insertWebSiteTask, insertUserTask, insertUserSysSettingTask, insertUserScoreTask);
 
-            return new SaveWebSiteOutput
+            return ApiResult.Success(new SaveWebSiteOutput
             {
                 Safepassword = safePassword,
                 LoginName = input.Loginname
-            };
+            }) ;
         }
 
         /// <summary>
@@ -385,7 +387,7 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<bool> UpdateWebSite(UpdateWebSiteInput input)
+        public async Task<ApiResult> UpdateWebSite(UpdateWebSiteInput input)
         {
             // 是否使用系统的配置
             WhenUseSysAlipayPayment(input);
@@ -405,7 +407,8 @@ namespace CXY.CJS.Application
 
             if (websiteTemp == null)
             {
-                throw new UserFriendlyException("该站点不存在,无法编辑！");
+                return ApiResult.DataNotFound();
+                //throw new UserFriendlyException("该站点不存在,无法编辑！");
             }
 
             // 更新站点
@@ -445,7 +448,7 @@ namespace CXY.CJS.Application
             //    ||website.DefaultNotePrice!=input.DefaultNotePrice)
             //{
             //}
-            return true;
+            return new ApiResult().Success();
         }
 
         /// <summary>
@@ -454,18 +457,18 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<bool> ResetPassword(ResetPasswordInput input)
+        public async Task<ApiResult> ResetPassword(ResetPasswordInput input)
         {
             var user = await _userRepository.FirstOrDefaultAsync(input.UserId);
             if (user==null)
             {
-                throw new UserFriendlyException("找不到该用户！");
+                return  ApiResult.DataNotFound();
             }
             string srtPassword = "123456";
             srtPassword = Encryptor.MD5Entry(srtPassword);
             user.Password = srtPassword;
             await _userRepository.UpdateAsync(user);
-            return true;
+            return new ApiResult().Success();
         }
 
         private void WhenUseSysAlipayPayment(UpdateOrSaveWebSiteInputBase input)

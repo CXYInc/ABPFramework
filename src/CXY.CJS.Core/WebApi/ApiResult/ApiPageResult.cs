@@ -7,7 +7,7 @@ namespace CXY.CJS.Core.WebApi
     /// Api响应分页实体
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ApiPageBaseResult<T> where T : class
+    public class ApiPageBaseResult<T> 
     {
         /// <summary>
         /// 当前页
@@ -27,7 +27,7 @@ namespace CXY.CJS.Core.WebApi
         /// <summary>
         /// 当前页数据
         /// </summary>
-        public List<T> PageData { get; set; }
+        public IEnumerable<T> PageData { get; set; }
 
         /// <summary>
         /// 总记录数
@@ -39,7 +39,7 @@ namespace CXY.CJS.Core.WebApi
     /// Api分页响应实体
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ApiPageResult<T> : ApiResult<ApiPageBaseResult<T>> where T : class
+    public class ApiPageResult<T> : ApiResult<ApiPageBaseResult<T>> 
     {
     }
 }

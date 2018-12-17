@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CXY.CJS.Repository.SeedWork
 {
@@ -17,6 +18,17 @@ namespace CXY.CJS.Repository.SeedWork
         /// </summary>
       
         public int PageSize { get; set; } = 10;
+
+        public  PaginationResult<TEntity> SetResult<TEntity>(int totalCount, IEnumerable<TEntity> datas)
+        {
+            return new PaginationResult<TEntity>
+            {
+                Datas = datas,
+                PageIndex = this.PageIndex,
+                PageSize = this.PageSize,
+                TotalCount = totalCount
+            };
+        }
     }
 
 }

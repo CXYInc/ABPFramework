@@ -150,10 +150,9 @@ namespace CXY.CJS.Application
 
             var agents = await _lowerAgentRepository.QueryByWhereAsync<LowerAgent>(input, null, where);
 
-            var pageDatas = new PaginationResult<LowerAgentOutputItem>(input)
-                .SetReuslt(agents.TotalCount, LowerAgent.MapToList<LowerAgentOutputItem>(agents.Datas));
+            var pageDatas = input.SetResult(agents.TotalCount, LowerAgent.MapToList<LowerAgentOutputItem>(agents.Datas));
 
-            return new ApiResult<PaginationResult<LowerAgentOutputItem>>().Success(pageDatas);
+            return ApiResult.Success(pageDatas);
 
         }
 

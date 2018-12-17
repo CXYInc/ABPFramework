@@ -24,7 +24,7 @@ namespace CXY.CJS.Tests.Application.Role
                 PageIndex = 10,
                 PageSize = 1000
             });
-            Assert.Empty(result.Datas);
+            Assert.Empty(result.Data.PageData);
 
 
         }
@@ -39,7 +39,7 @@ namespace CXY.CJS.Tests.Application.Role
                 SortField = nameof(Model.Role.CreationTime),
                 SortOrder = SortEnum.Desc
             });
-            Assert.NotEmpty(result.Datas);
+            Assert.NotEmpty(result.Data.PageData);
 
 
         }

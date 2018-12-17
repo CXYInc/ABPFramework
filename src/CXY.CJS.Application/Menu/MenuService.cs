@@ -26,10 +26,11 @@ namespace CXY.CJS.Menu
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<MenuOutputItem> GetMenu(string id)
+        public async Task<ApiResult<MenuOutputItem>> GetMenu(string id)
         {
             var menu = await GetByIdAsync(id);
-            return menu == null ? null : menu.MapTo<MenuOutputItem>();
+
+            return ApiResult.Success(menu.MapTo<MenuOutputItem>()) ;
         }
 
         /// <summary>
@@ -37,10 +38,10 @@ namespace CXY.CJS.Menu
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public Task<PaginationResult<MenuOutputItem>> ListMenu(ListMenuInput input)
+        public async Task<ApiPageResult<MenuOutputItem>> ListMenu(ListMenuInput input)
         {
-            return _menuRepository.QueryByWhereAsync<MenuOutputItem>
-                (input, null, i => i.IsDeleted == false);
+            return (await _menuRepository.QueryByWhereAsync<MenuOutputItem>
+                (input, null, i => i.IsDeleted == false)).ToApiPageResult();
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace CXY.CJS.Menu
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> SaveMenu(SaveMenuInput input)
+        public async Task<ApiResult<string>> SaveMenu(SaveMenuInput input)
         {
             var saveMenuLeval = 0;
             if (input.ParentId != null)
@@ -65,7 +66,8 @@ namespace CXY.CJS.Menu
             saveMenu.Id = Guid.NewGuid().ToString();
             saveMenu.MenuLeval = saveMenuLeval;
             await _menuRepository.InsertAsync(saveMenu);
-            return true;
+
+            return ApiResult.Success(saveMenu.Id);
         }
 
         /// <summary>
@@ -73,12 +75,12 @@ namespace CXY.CJS.Menu
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<bool> UpdateMenu(UpdateMenuInput input)
+        public async Task<ApiResult> UpdateMenu(UpdateMenuInput input)
         {
             var menu = await GetByIdAsync(input.Id);
             if (menu == null)
             {
-                throw new UserFriendlyException("不存在该菜单！");
+               return ApiResult.DataNotFound();
             }
             // 更新菜单时不允许更新父节点
             menu.MenuName = input.MenuName;
@@ -92,7 +94,7 @@ namespace CXY.CJS.Menu
             menu.Weight = input.Weight;
             menu.LastModificationTime=DateTime.Now;
             await _menuRepository.UpdateAsync(menu);
-            return true;
+            return  new ApiResult().Success();
         }
 
 
@@ -101,16 +103,16 @@ namespace CXY.CJS.Menu
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<bool> RemoveMenu(string id)
+        public async Task<ApiResult> RemoveMenu(string id)
         {
             var menu = await GetByIdAsync(id);
             if (menu == null)
             {
-                throw new UserFriendlyException("不存在该菜单！");
+                return ApiResult.DataNotFound();
             }
             menu.IsDeleted = true;
             await _menuRepository.UpdateAsync(menu);
-            return true;
+            return new ApiResult().Success();
         }
 
         private async Task<Model.Menu> GetByIdAsync(string id)

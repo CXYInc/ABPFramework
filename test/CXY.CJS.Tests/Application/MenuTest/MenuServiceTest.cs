@@ -24,10 +24,10 @@ namespace CXY.CJS.Tests.Application.MenuTest
         public async Task GetMenu_When_NotFund()
         {
             var noExistResult = await _service.GetMenu(Guid.NewGuid().ToString() + "1234");
-            Assert.Null(noExistResult);
+            Assert.Null(noExistResult.Data);
 
             var deletedListResult = await _service.GetMenu(MenuDatas.DedeletedModuleMenu.Id);
-            Assert.Null(deletedListResult);
+            Assert.Null(deletedListResult.Data);
         }
 
 
@@ -46,7 +46,7 @@ namespace CXY.CJS.Tests.Application.MenuTest
                 PageIndex = 100,
                 PageSize = 10
             });
-            Assert.Empty(thanCountResult.Datas);
+            Assert.Empty(thanCountResult.Data.PageData);
         }
 
 
@@ -58,7 +58,7 @@ namespace CXY.CJS.Tests.Application.MenuTest
                 PageIndex = 1,
                 PageSize = 10
             });
-            Assert.NotEmpty(noFilterResult.Datas);
+            Assert.NotEmpty(noFilterResult.Data.PageData);
         }
 
         [Fact]
@@ -70,8 +70,8 @@ namespace CXY.CJS.Tests.Application.MenuTest
             await _service.SaveMenu(insertOutput);
             var afterMenu =
                 (await _service.ListMenu(new ListMenuInput()))
-                .Datas.FirstOrDefault(i => i.MenuName == "子菜单");
-            Assert.Equal(afterMenu.MenuLeval, MenuDatas.UserModule.MenuLeval+1);
+                .Data.PageData.FirstOrDefault(i => i.MenuName == "子菜单");
+            Assert.Equal(afterMenu.MenuLeval, MenuDatas.UserModule.MenuLeval + 1);
         }
 
 
@@ -89,13 +89,10 @@ namespace CXY.CJS.Tests.Application.MenuTest
         [Fact]
         public async Task UpdateMenu_When_NotFound()
         {
-            await Assert.ThrowsAsync<UserFriendlyException>(async () =>
-            {
-                var updateOutput = MenuDatas.UserModule.MapTo<UpdateMenuInput>();
-                updateOutput.Id = Guid.NewGuid().ToString();
-                await _service.UpdateMenu(updateOutput);
-            });
-
+            var updateOutput = MenuDatas.UserModule.MapTo<UpdateMenuInput>();
+            updateOutput.Id = Guid.NewGuid().ToString();
+            var result = await _service.UpdateMenu(updateOutput);
+            Assert.Equal(0, result.Code);
         }
 
         [Fact]
@@ -105,23 +102,24 @@ namespace CXY.CJS.Tests.Application.MenuTest
             newUserModule.IsOut = true;
             await _service.UpdateMenu(newUserModule.MapTo<UpdateMenuInput>());
             var finalUserModule = await _service.GetMenu(newUserModule.Id);
-            Assert.Equal(newUserModule.IsOut, finalUserModule.IsOut);
+            Assert.Equal(newUserModule.IsOut, finalUserModule.Data.IsOut);
         }
 
         [Fact]
         public async Task RemoveMenu_When_NotFound()
         {
-            await Assert.ThrowsAsync<UserFriendlyException>(async () =>
-            {
-                Assert.True(await _service.RemoveMenu(Guid.NewGuid().ToString()));
-            });
+            var _ = await _service.RemoveMenu(Guid.NewGuid().ToString());
+
+            Assert.Equal(0, _.Code);
+
         }
 
 
         [Fact]
         public async Task RemoveMenu_When_Success()
         {
-            Assert.True(await _service.RemoveMenu(MenuDatas.WillBeDedeletedMenu.Id));
+            var _ = await _service.RemoveMenu(MenuDatas.WillBeDedeletedMenu.Id);
+            Assert.Equal(1, _.Code);
         }
 
 
