@@ -18,14 +18,14 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<ApiPageResult<ListRoleOutputItem>> ListRole(ListRoleInput input);
+        Task<ApiPageResult<ListRoleOutput>> ListRole(ListRoleInput input);
 
         /// <summary>
         /// 创建/更新角色
         /// </summary>
         /// <param name="roleEditInputDto"></param>
         /// <returns></returns>
-        Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto);
+        Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInput roleEditInputDto);
 
         /// <summary>
         /// 删除角色(软删除)

@@ -2,17 +2,14 @@
 
 namespace CXY.CJS.Application.Dtos
 {
-    public class RoleEditInputDto
+    public class RoleEditInput
     {
-        [MaxLength(36, ErrorMessage = "Id超出最大长度")]
-        [MinLength(32, ErrorMessage = "Id小于最小长度")]
-        [Required(ErrorMessage = "Id不能为空")]
         public string Id { get; set; }
-        /// <summary>
-        /// 站点Id
-        /// </summary>
-        [Required]
-        public string WebSiteId { get; set; }
+        ///// <summary>
+        ///// 站点Id
+        ///// </summary>
+        //[Required]
+        //public string WebSiteId { get; set; }
 
         /// <summary>
         /// 角色名称

@@ -7,11 +7,11 @@ namespace CXY.CJS.Tests.Application.WebSite
 {
     public class UpdateOrSaveWebSiteInputTest : IClassFixture<CJSTestBase>
     {
-        private readonly IWebSiteAppService _service;
+        private readonly IWebSiteService _service;
 
         public UpdateOrSaveWebSiteInputTest(CJSTestBase testBase)
         {
-            _service = testBase.Ioc.Resolve<IWebSiteAppService>();
+            _service = testBase.Ioc.Resolve<IWebSiteService>();
         }
 
         [Fact]

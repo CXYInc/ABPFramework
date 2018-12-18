@@ -13,13 +13,13 @@ namespace CXY.CJS.Tests.Application.WebSite
 {
     public class WebSiteApplicationServiceTest : IClassFixture<CJSTestBase>
     {
-        private readonly IWebSiteAppService _service;
+        private readonly IWebSiteService _service;
 
        
 
         public WebSiteApplicationServiceTest(CJSTestBase testBase)
         {
-            _service = testBase.Ioc.Resolve<IWebSiteAppService>();
+            _service = testBase.Ioc.Resolve<IWebSiteService>();
         }
 
 

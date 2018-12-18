@@ -10,7 +10,7 @@ using CXY.CJS.Repository.SeedWork;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Application.Dtos;
 
-namespace CXY.CJS.Menu
+namespace CXY.CJS.Application
 {
     public class MenuService : IMenuService
     {

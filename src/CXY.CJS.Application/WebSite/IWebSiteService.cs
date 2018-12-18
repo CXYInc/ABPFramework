@@ -11,7 +11,7 @@ namespace CXY.CJS.Application
     /// <summary>
     /// WebSite应用层服务的接口方法
     ///</summary>
-    public interface IWebSiteAppService : IApplicationService
+    public interface IWebSiteService : IApplicationService
     {
         /// <summary>
         /// 列出站点
