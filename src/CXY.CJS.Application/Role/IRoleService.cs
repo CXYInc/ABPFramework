@@ -40,6 +40,12 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         Task<ApiResult<MenuOutputItem>> GetUserRoleMenusAsync();
 
+
+        /// <summary>
+        /// 给角色授权
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         Task<ApiResult> GrantOrRemoveRolMenu(GrantRoleMenuInput input);
     }
 }
