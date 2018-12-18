@@ -36,6 +36,12 @@ namespace CXY.CJS.EntityFrameworkCore
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleMenu> RoleMenus { get; set; }
 
+        public DbSet<Notice> Notices { get; set; }
+
+        public DbSet<SmsSendRecord> SmsSendRecords { get; set; }
+
+        
+
         #endregion
 
         public CJSDbContext(DbContextOptions<CJSDbContext> options)
