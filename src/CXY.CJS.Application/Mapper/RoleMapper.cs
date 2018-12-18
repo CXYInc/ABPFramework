@@ -10,7 +10,7 @@ namespace CXY.CJS.Application.Mapper
         {
             public RoleProfile()
             {
-                CreateMap<RoleEditInputDto, Role>();
+                CreateMap<RoleEditInput, Role>();
             }
         }
     }

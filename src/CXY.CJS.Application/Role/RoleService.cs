@@ -44,7 +44,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="roleEditInputDto"></param>
         /// <returns></returns>
-        public async Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInputDto roleEditInputDto)
+        public async Task<ApiResult<Role>> SaveOrUpdateRole(RoleEditInput roleEditInputDto)
         {
             var result = new ApiResult<Role>().Success();
             try
@@ -123,10 +123,10 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<ApiPageResult<ListRoleOutputItem>> ListRole(ListRoleInput input)
+        public async Task<ApiPageResult<ListRoleOutput>> ListRole(ListRoleInput input)
         {
             // return await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(inputBase,  new IHasSort[]{ inputBase },"Name!=@0 and Name!=@1","haha","haha1");
-            return (await _roleRepository.QueryByWhereAsync<ListRoleOutputItem>(input, new IHasSort[] { input })).ToApiPageResult();
+            return (await _roleRepository.QueryByWhereAsync<ListRoleOutput>(input, new IHasSort[] { input })).ToApiPageResult();
         }
 
 

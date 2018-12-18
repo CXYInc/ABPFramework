@@ -4,7 +4,7 @@ using Abp.AutoMapper;
 namespace CXY.CJS.Application.Dtos
 {
     [AutoMapTo(typeof(Model.Role))]
-    public class ListRoleOutputItem
+    public class ListRoleOutput
     {
         public string Id { get; set; }
         public string WebSiteId { get; set; }

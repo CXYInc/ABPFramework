@@ -2,7 +2,7 @@
 
 namespace CXY.CJS.Application.Dtos
 {
-    public class RoleEditInputDto
+    public class RoleEditInput
     {
         public string Id { get; set; }
         ///// <summary>
