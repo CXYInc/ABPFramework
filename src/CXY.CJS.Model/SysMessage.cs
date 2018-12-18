@@ -7,7 +7,7 @@ namespace CXY.CJS.Model
     /// <summary>
     /// 站内信
     /// </summary>
-    public class Notice : Entity<string>, IHasCreationTime
+    public class SysMessage : Entity<string>, IHasCreationTime
     {
         public int NoticeType { get; set; }
         public string NoticeTitle { get; set; }

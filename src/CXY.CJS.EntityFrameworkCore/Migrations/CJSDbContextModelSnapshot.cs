@@ -55,7 +55,7 @@ namespace CXY.CJS.Migrations
                     b.ToTable("Menus");
                 });
 
-            modelBuilder.Entity("CXY.CJS.Model.Notice", b =>
+            modelBuilder.Entity("CXY.CJS.Model.SysMessage", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
