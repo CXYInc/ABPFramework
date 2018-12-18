@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace CXY.CJS.Model
+{
+    public  class QuotationRule
+    {
+        public string WebSiteId { get; set; }
+        public string Ddbjid { get; set; }
+        public int? Ddid { get; set; }
+        public string Fromuserid { get; set; }
+        public DateTime? Created { get; set; }
+        public string Lefthphm { get; set; }
+        public string Leftwsbh { get; set; }
+        public string Hpzl { get; set; }
+        public DateTime? Wftimestart { get; set; }
+        public DateTime? Wftimeend { get; set; }
+        public decimal? Wfjestart { get; set; }
+        public decimal? Wfjeend { get; set; }
+        public int? Jsz { get; set; }
+        public int? Xsz { get; set; }
+        public int? Sfz { get; set; }
+        public int? Bxd { get; set; }
+        public string Blsm { get; set; }
+        public int? State { get; set; }
+        public string Passid { get; set; }
+        public decimal? Xc { get; set; }
+        public decimal? Bkf { get; set; }
+        public decimal? K01f { get; set; }
+        public decimal? K02f { get; set; }
+        public decimal? K03f { get; set; }
+        public decimal? K06f { get; set; }
+        public decimal? K12f { get; set; }
+        public decimal? K13441 { get; set; }
+        public decimal? K1622 { get; set; }
+        public decimal? K1625 { get; set; }
+        public decimal? K4608 { get; set; }
+        public decimal? K4614 { get; set; }
+        public decimal? K7601 { get; set; }
+        public decimal? K6046 { get; set; }
+        public decimal? K6050 { get; set; }
+        public decimal? K6048 { get; set; }
+        public decimal? Xcsj { get; set; }
+        public decimal? Bkfsj { get; set; }
+        public decimal? K01sj { get; set; }
+        public decimal? K02sj { get; set; }
+        public decimal? K03sj { get; set; }
+        public decimal? K06sj { get; set; }
+        public decimal? K12sj { get; set; }
+        public decimal? K13441sj { get; set; }
+        public decimal? K1622sj { get; set; }
+        public decimal? K1625sj { get; set; }
+        public decimal? K4608sj { get; set; }
+        public decimal? K4614sj { get; set; }
+        public decimal? K7601sj { get; set; }
+        public decimal? K6046sj { get; set; }
+        public decimal? K6050sj { get; set; }
+        public decimal? K6048sj { get; set; }
+        public string Hpzlmc { get; set; }
+        public string PriceSource { get; set; }
+        public string CarNature { get; set; }
+        public string BlurLocation { get; set; }
+        public decimal? K13446 { get; set; }
+        public decimal? K8209 { get; set; }
+        public decimal? K8606 { get; set; }
+        public decimal? K13446sj { get; set; }
+        public decimal? K8209sj { get; set; }
+        public decimal? K8606sj { get; set; }
+        public string FromPriceModelName { get; set; }
+        public string FromSysDdbjid { get; set; }
+        public int? ApplyAction { get; set; }
+        public string ApplyActionId { get; set; }
+        public string FromDdbjid { get; set; }
+        public int? Ischoose { get; set; }
+        public string Operator { get; set; }
+        public string Approver { get; set; }
+        public int? NormalScore { get; set; }
+        public int? UnLockScore { get; set; }
+        public decimal? UnLockK01f { get; set; }
+        public decimal? UnLockK02f { get; set; }
+        public decimal? UnLockK03f { get; set; }
+        public decimal? UnLockK06f { get; set; }
+        public decimal? UnLockK6046 { get; set; }
+        public decimal? UnLockK6048 { get; set; }
+        public decimal? UnLockK6050 { get; set; }
+        public decimal? UnLockK13441 { get; set; }
+        public decimal? UnLockK13442 { get; set; }
+        public decimal? UnLockK13521 { get; set; }
+        public decimal? K13521 { get; set; }
+        public decimal? K13521sj { get; set; }
+        public decimal? K13442sj { get; set; }
+        public int? IsExpressway { get; set; }
+        public string NeedMakeDataEnum { get; set; }
+        public decimal? UnLockK13446 { get; set; }
+        public decimal? K13442 { get; set; }
+        public int? IsUnLock { get; set; }
+        public decimal? K30191 { get; set; }
+        public decimal? UnLockK30191 { get; set; }
+        public decimal? K30191sj { get; set; }
+        public decimal? K30192 { get; set; }
+        public decimal? UnLockK30192 { get; set; }
+        public decimal? K30192sj { get; set; }
+        public decimal? Bhp { get; set; }
+        public decimal? Bhpsj { get; set; }
+    }
+}
