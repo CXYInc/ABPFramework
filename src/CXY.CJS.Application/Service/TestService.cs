@@ -1,4 +1,5 @@
-﻿using Abp.Application.Services;
+﻿using System;
+using Abp.Application.Services;
 using Abp.ObjectMapping;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Core.HttpClient;
@@ -11,6 +12,7 @@ using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.Extension;
 using System.Collections.Generic;
 using Abp.Net.Mail;
+using Castle.Core.Logging;
 using CXY.CJS.Core.Utils.Mail;
 
 namespace CXY.CJS.Application
@@ -26,16 +28,18 @@ namespace CXY.CJS.Application
         private readonly ITestRepository _testRepository;
         private readonly IObjectMapper _objectMapper;
         private readonly ISystemSmtpSender _emailSender;
+        private readonly ILogger _logger;
         /// <summary>
         /// 构造函数自动注入
         /// </summary>
         /// <param name="testRepository"></param>
         /// <param name="objectMapper"></param>
-        public TestService(ITestRepository testRepository, IObjectMapper objectMapper, ISystemSmtpSender emailSender)
+        public TestService(ITestRepository testRepository, IObjectMapper objectMapper, ISystemSmtpSender emailSender, ILogger logger)
         {
             _testRepository = testRepository;
             _objectMapper = objectMapper;
             _emailSender = emailSender;
+            _logger = logger;
         }
 
         /// <summary>
@@ -117,6 +121,15 @@ namespace CXY.CJS.Application
         public void SendEmailTest()
         {
             _emailSender.Send("someone@qq.com", "测试邮件，请勿回复", "收到请勿回复!");
+        }
+
+
+        [HttpPost("LoggerInfo")]
+        [Authorize]
+        public void LoggerInfo()
+        {
+            var exampleUser = new Users { Id = "1", RealName = "Adam", CreationTime = DateTime.Now };
+            _logger.InfoFormat("Created {@User} on {Created}", exampleUser, DateTime.Now);
         }
     }
 }

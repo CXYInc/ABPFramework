@@ -1,5 +1,4 @@
 ﻿using Abp.AspNetCore;
-using Abp.Castle.Logging.Log4Net;
 using Abp.Dependency;
 using Abp.Extensions;
 using Castle.Facilities.Logging;
@@ -25,9 +24,13 @@ using System.Linq;
 using Abp.MailKit;
 using Abp.Net.Mail;
 using Abp.Net.Mail.Smtp;
+using Castle.MicroKernel.Registration;
+using Castle.Services.Logging.SerilogIntegration;
 using CXY.CJS.Core.Utils.Mail;
 using CXY.CJS.Core.Utils.SMS;
 using CXY.CJS.Web.Core.Mail;
+using Serilog;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace CXY.CJS.WebApi
 {
@@ -136,7 +139,27 @@ namespace CXY.CJS.WebApi
             return services.AddAbp<CJSWebApiModule>(options =>
             {
                 //Configure Log4Net logging
-                options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.UseAbpLog4Net().WithConfig("log4net.config"));
+                //options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.LogUsing<ser>()().WithConfig("log4net.config"));
+                var configBuilder = new LoggerConfiguration() //Configure Serilog here!
+                    
+                        //.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.txt",
+                        //    outputTemplate:
+                        //    "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
+                        //.WriteTo.MSSqlServer(_appConfiguration["connectionString"], tableName)
+                        //.CreateLogger();;
+                    ;
+                if (_env.IsDevelopment())
+                {
+                    configBuilder = configBuilder.WriteTo.Console();
+                }
+                if (!_env.IsDevelopment())
+                {
+                    configBuilder= configBuilder.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.txt", 
+                        outputTemplate:"{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
+                }
+
+                options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.LogUsing(new SerilogFactory(configBuilder.CreateLogger())));
+
 
                 //解决属性依赖注入报错
                 var propInjector = options.IocManager.IocContainer.Kernel.ComponentModelBuilder
