@@ -10,9 +10,15 @@ using System.Linq;
 using CXY.CJS.Core.Extensions;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Abp.AutoMapper;
 
 namespace CXY.CJS.Application
 {
+    /// <summary>
+    /// 角色服务
+    /// </summary>
+    [AllowAnonymous]
     public class RoleService : CJSAppServiceBase, IRoleService
     {
         private readonly IRoleRepository _roleRepository;
@@ -124,25 +130,80 @@ namespace CXY.CJS.Application
 
 
         /// <summary>
-        /// 获取角色菜单
+        /// 获取用户的角色的菜单
         /// </summary>
         /// <returns></returns>
-        public async Task<ListResultDto<MenuOutputItem>> GetMenusAsync()
+        public async Task<ApiResult<MenuOutputItem>> GetUserRoleMenusAsync()
         {
-            //获取用户所含角色 
-            var userRoles = await _userRoleRepository.GetAllListAsync(o => o.UserId == AbpSession.UserId);
-            //根据角色获取菜单
-            var roleMenu = await _roleMenuRepository.GetAllListAsync();
-            var menuList = await _menuRepository.GetAllListAsync();
-            var result = from a in userRoles
-                         join b in roleMenu on a.RoleId equals b.RoleId //into temp
-                         join m in menuList on b.MenuId equals m.Id 
-                         select new Model.Menu {};
-            result = result.Distinct().ToList();
+            try
+            {
+                //获取用户所含角色 
+                var userRoles = await _userRoleRepository.GetAllListAsync(o => o.UserId == AbpSession.UserId);
+                //根据角色获取菜单
+                var roleMenu = await _roleMenuRepository.GetAllListAsync();
+                var menuList = await _menuRepository.GetAllListAsync();
+                var result = from a in userRoles
+                             join b in roleMenu on a.RoleId equals b.RoleId
+                             join m in menuList on b.MenuId equals m.Id
+                             select new Model.Menu { };
+                result = result.Distinct().ToList();
 
-            var dto = _objectMapper.Map<ListResultDto<MenuOutputItem>>(result);
+                return ApiResult.Success(result.MapTo<MenuOutputItem>());
+            }
+            catch (Exception ex)
+            {
+                return new ApiResult<MenuOutputItem>().Error(ex.Message);
+            }
 
-            return dto;
+        }
+
+
+        /// <summary>
+        /// 给角色授权
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ApiResult> GrantOrRemoveRolMenu(GrantRoleMenuInput input)
+        {
+            try
+            {
+                var roleTask = _userRoleRepository.FirstOrDefaultAsync(input.RoleId);
+                var menuTask = _menuRepository.FirstOrDefaultAsync(input.MenuId);
+                var roleMenuTask = _roleMenuRepository.GetAllListAsync(o => o.RoleId == input.RoleId && o.MenuId == input.MenuId);
+                var (role, menu, roleMenu) = await (roleTask, menuTask, roleMenuTask);
+                if (role == null)
+                {
+                    return new ApiResult().Error("无法找到该角色！");
+                }
+                if (menu == null)
+                {
+                    return new ApiResult().Error("无法找到该菜单！");
+                }
+                if (input.IsGrant)
+                {
+                    if (roleMenuTask == null)
+                    {
+                        await _roleMenuRepository.InsertAsync(new RoleMenu
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            RoleId = role.Id,
+                            MenuId = menu.Id
+                        });
+                    }
+                }
+                else
+                {
+                    if (roleMenuTask != null)
+                    {
+                        await _roleMenuRepository.DeleteAsync(roleMenu.FirstOrDefault());
+                    }
+                }
+                return new ApiResult().Success();
+            }
+            catch (Exception ex)
+            {
+                return new ApiResult().Error(ex.Message);
+            }
         }
     }
 }

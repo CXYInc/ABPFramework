@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using CXY.CJS.Web.Core.Filter;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Text;
-using CXY.CJS.Web.Core.Extensions;
-using CXY.CJS.Web.Core.Filter;
-using Newtonsoft.Json.Converters;
 
 namespace CXY.CJS.Web.Core
 {
@@ -29,8 +26,9 @@ namespace CXY.CJS.Web.Core
             services.PostConfigure<MvcJsonOptions>(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-                //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                //options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 //options.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
         }

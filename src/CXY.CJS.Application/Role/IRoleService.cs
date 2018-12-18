@@ -1,4 +1,4 @@
-﻿using Abp.Application.Services; 
+﻿using Abp.Application.Services;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Repository.SeedWork;
 using Abp.Application.Services.Dto;
@@ -33,8 +33,13 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         Task<ApiResult<string>> DeleteRoleAsync(EntityDto<string> input);
-        //绑定菜单
 
-       // Task<ListResultDto<MenuOutputItem>> GetMenus();
+        /// <summary>
+        /// 获取用户角色菜单
+        /// </summary>
+        /// <returns></returns>
+        Task<ApiResult<MenuOutputItem>> GetUserRoleMenusAsync();
+
+        Task<ApiResult> GrantOrRemoveRolMenu(GrantRoleMenuInput input);
     }
 }
