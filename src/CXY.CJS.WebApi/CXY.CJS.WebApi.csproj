@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="Abp.Castle.Log4Net" Version="4.0.2" />
-    <PackageReference Include="Abp.MailKit" Version="4.0.2" />
     <PackageReference Include="Castle.LoggingFacility.MsLogging" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
@@ -34,5 +33,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema=":" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -11,6 +11,7 @@ using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.Extension;
 using System.Collections.Generic;
 using Abp.Net.Mail;
+using CXY.CJS.Core.Utils.Mail;
 
 namespace CXY.CJS.Application
 {
@@ -24,13 +25,13 @@ namespace CXY.CJS.Application
     {
         private readonly ITestRepository _testRepository;
         private readonly IObjectMapper _objectMapper;
-        private readonly IEmailSender _emailSender;
+        private readonly ISystemSmtpSender _emailSender;
         /// <summary>
         /// 构造函数自动注入
         /// </summary>
         /// <param name="testRepository"></param>
         /// <param name="objectMapper"></param>
-        public TestService(ITestRepository testRepository, IObjectMapper objectMapper, IEmailSender emailSender)
+        public TestService(ITestRepository testRepository, IObjectMapper objectMapper, ISystemSmtpSender emailSender)
         {
             _testRepository = testRepository;
             _objectMapper = objectMapper;
