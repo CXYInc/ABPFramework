@@ -4,14 +4,16 @@ using CXY.CJS.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CXY.CJS.Migrations
 {
     [DbContext(typeof(CJSDbContext))]
-    partial class CJSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181218074726_AddSmsRecordAndNotice")]
+    partial class AddSmsRecordAndNotice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

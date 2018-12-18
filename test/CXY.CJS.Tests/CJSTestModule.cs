@@ -11,6 +11,7 @@ using CXY.CJS.EntityFrameworkCore;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
 using CXY.CJS.Core.Config;
+using CXY.CJS.Core.Utils.SMS;
 using CXY.CJS.Tests.Extensions;
 using CXY.CJS.Tests.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,11 @@ namespace CXY.CJS.Tests
             var thisAssembly = typeof(CJSTestModule).GetAssembly();
 
             var services = new ServiceCollection()
+                .AddHttpClient()
+                .AddSmsSender(new SmsSenderConfiguration
+                {
+                    Url = "http://127.0.0.1/api/sendsms"
+                })
                 //.AddConfigModel()
                 .AddEntityFrameworkSqlServer();
             //Configuration.UnitOfWork.IsTransactional = false;
