@@ -30,7 +30,7 @@ namespace CXY.CJS.Application
     /// WebSite应用层服务的接口实现方法  
     ///</summary>
     [Authorize]
-    public class WebSiteAppService : CJSAppServiceBase, IWebSiteAppService
+    public class WebSiteService : CJSAppServiceBase, IWebSiteService
     {
         private readonly IWebsiteRepository _websiteRepository;
 
@@ -49,7 +49,7 @@ namespace CXY.CJS.Application
         /// <summary>
         /// 构造函数 
         ///</summary>
-        public WebSiteAppService(IWebsiteRepository websiteRepository, IWebSiteFullRepository siteFullRepository, SysAlipayConfig sysAlipayConfig, SysWeiXinPayConfig sysWeiXinPayConfig, IUserScoreRepository userScoreRepository, IUserSysSettingRepository userSysSettingRepository, IUserRepository userRepository)
+        public WebSiteService(IWebsiteRepository websiteRepository, IWebSiteFullRepository siteFullRepository, SysAlipayConfig sysAlipayConfig, SysWeiXinPayConfig sysWeiXinPayConfig, IUserScoreRepository userScoreRepository, IUserSysSettingRepository userSysSettingRepository, IUserRepository userRepository)
         {
             _websiteRepository = websiteRepository;
             _siteFullRepository = siteFullRepository;

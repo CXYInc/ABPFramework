@@ -25,7 +25,7 @@ namespace CXY.CJS.Application
         private readonly IUserRepository _uerRepository;
         private readonly IRepository<UserRole, string> _userRoleRepository;
         private readonly IRepository<RoleMenu, string> _roleMenuRepository;
-        private readonly IRepository<Model.Menu, string> _menuRepository;
+        private readonly IRepository<Menu, string> _menuRepository;
 
         private readonly IObjectMapper _objectMapper;
 
@@ -50,13 +50,14 @@ namespace CXY.CJS.Application
             try
             {
                 var roleList = _roleRepository.GetAll();
-                var role = _objectMapper.Map<Model.Role>(roleEditInputDto);
+                var role = _objectMapper.Map<Role>(roleEditInputDto);
                 if (string.IsNullOrEmpty(roleEditInputDto.Id))
                 {
-                    var findRole = roleList.FirstOrDefault(o => o.WebSiteId == roleEditInputDto.WebSiteId && o.Name == roleEditInputDto.Name && !o.IsDeleted);
+                    var findRole = roleList.FirstOrDefault(o => o.WebSiteId == AbpSession.WebSiteId && o.Name == roleEditInputDto.Name && !o.IsDeleted);
                     if (findRole == null)
                     {
                         role.Id = Guid.NewGuid().ToString("N");
+                        role.WebSiteId = AbpSession.WebSiteId;
                         await _roleRepository.InsertAsync(role);
                         result.Data = role;
                     }
@@ -67,7 +68,7 @@ namespace CXY.CJS.Application
                 }
                 else
                 {
-                    var findRole = roleList.FirstOrDefault(o => o.WebSiteId == roleEditInputDto.WebSiteId && o.Id == roleEditInputDto.Id);
+                    var findRole = roleList.FirstOrDefault(o => o.WebSiteId == AbpSession.WebSiteId && o.Id == roleEditInputDto.Id);
                     if (findRole == null)
                     {
                         return result.Error("更新的角色不存在");
