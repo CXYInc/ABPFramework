@@ -26,6 +26,7 @@ using Abp.MailKit;
 using Abp.Net.Mail;
 using Abp.Net.Mail.Smtp;
 using CXY.CJS.Core.Utils.Mail;
+using CXY.CJS.Core.Utils.SMS;
 using CXY.CJS.Web.Core.Mail;
 
 namespace CXY.CJS.WebApi
@@ -125,6 +126,9 @@ namespace CXY.CJS.WebApi
             // 配置邮件发送
             var mailSendConfig = _appConfiguration.GetSection("SystemSmtpSenderConfiguration").Get<SystemSmtpSenderConfiguration>();
             services.AddSystemSmtpSender(mailSendConfig);
+
+            //配置短信发送
+            services.AddSmsSender(_appConfiguration.GetSection("SmsSenderConfiguration").Get<SmsSenderConfiguration>());
 
             services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiUrlConfig"));
 
