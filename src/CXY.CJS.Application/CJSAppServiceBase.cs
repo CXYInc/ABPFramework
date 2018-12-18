@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using CXY.CJS.Core.Constant;
 using CXY.CJS.Core.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 
 namespace CXY.CJS
@@ -8,6 +9,7 @@ namespace CXY.CJS
     /// <summary>
     /// Derive your application services from this class.
     /// </summary>
+    [Authorize]    
     public abstract class CJSAppServiceBase : ApplicationService
     {
         /// <summary>
@@ -22,6 +24,7 @@ namespace CXY.CJS
         {
             LocalizationSourceName = CJSConsts.LocalizationSourceName;
         }
+        
         protected IEnumerable<string> GetUserInfo()
         {
             return new string[] { AbpSession.UserId, AbpSession.UserName, AbpSession.WebSiteId };

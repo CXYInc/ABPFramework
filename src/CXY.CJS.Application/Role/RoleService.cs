@@ -10,9 +10,14 @@ using System.Linq;
 using CXY.CJS.Core.Extensions;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CXY.CJS.Application
 {
+    /// <summary>
+    /// 角色服务
+    /// </summary>
+    [AllowAnonymous]
     public class RoleService : CJSAppServiceBase, IRoleService
     {
         private readonly IRoleRepository _roleRepository;
