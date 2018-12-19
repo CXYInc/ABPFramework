@@ -1,6 +1,5 @@
 ﻿using Abp.AutoMapper;
 using Abp.UI;
-using CXY.CJS.Menu;
 using CXY.CJS.Tests.TestDatas;
 using System;
 using System.Linq;
