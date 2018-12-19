@@ -117,7 +117,7 @@ namespace CXY.CJS.Application
         }
 
         [HttpPost("SendEmailTest")]
-        [AllowAnonymous]
+        [Authorize]
         public void SendEmailTest()
         {
             _emailSender.Send("someone@qq.com", "测试邮件，请勿回复", "收到请勿回复!");

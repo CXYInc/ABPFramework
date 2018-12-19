@@ -30,6 +30,8 @@ using CXY.CJS.Core.Utils.Mail;
 using CXY.CJS.Core.Utils.SMS;
 using CXY.CJS.Web.Core.Mail;
 using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace CXY.CJS.WebApi
@@ -140,27 +142,31 @@ namespace CXY.CJS.WebApi
             {
                 //Configure Log4Net logging
                 //options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.LogUsing<ser>()().WithConfig("log4net.config"));
-
-                //Configure Serilog
-                var configBuilder = new LoggerConfiguration();
-
-                //.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.txt",
-                //    outputTemplate:
-                //    "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
-                //.WriteTo.MSSqlServer(_appConfiguration["connectionString"], tableName)
-                //.CreateLogger();;
-
+                var configBuilder = new LoggerConfiguration() //Configure Serilog here!
+                    
+                        //.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.txt",
+                        //    outputTemplate:
+                        //    "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
+                        //.WriteTo.MSSqlServer(_appConfiguration["connectionString"], tableName)
+                        //.CreateLogger();;
+                    ;
                 if (_env.IsDevelopment())
                 {
                     configBuilder = configBuilder.WriteTo.Console();
                 }
-                if (!_env.IsDevelopment())
+                if (_env.IsDevelopment())
                 {
-                    configBuilder= configBuilder.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.log", 
-                        outputTemplate:"{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
+                    //为了提高写入性能，指定buffered: true将允许底层流缓冲写入。
+                    configBuilder = configBuilder
+                        .WriteTo.Logger(l => l.Filter.ByIncludingOnly(e => e.Level == LogEventLevel.Information).WriteTo.RollingFile("App_Data\\Logs\\Info\\{Date}.txt", buffered: true,flushToDiskInterval:TimeSpan.FromSeconds(5)))
+                        .WriteTo.Logger(l => l.Filter.ByIncludingOnly(e => e.Level == LogEventLevel.Debug).WriteTo.RollingFile("App_Data\\Logs\\Debug\\{Date}.txt", buffered: true, flushToDiskInterval: TimeSpan.FromSeconds(3)))
+                        .WriteTo.Logger(l => l.Filter.ByIncludingOnly(e => e.Level == LogEventLevel.Warning).WriteTo.RollingFile("App_Data\\Logs\\Warning\\{Date}.txt"))
+                        .WriteTo.Logger(l => l.Filter.ByIncludingOnly(e => e.Level == LogEventLevel.Error).WriteTo.RollingFile("App_Data\\Logs\\Error\\{Date}.txt"))
+                        .WriteTo.RollingFile("App_Data\\Logs\\Verbose\\{Date}.txt", buffered: true, flushToDiskInterval: TimeSpan.FromSeconds(10));
                 }
 
                 options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.LogUsing(new SerilogFactory(configBuilder.CreateLogger())));
+
 
                 //解决属性依赖注入报错
                 var propInjector = options.IocManager.IocContainer.Kernel.ComponentModelBuilder
