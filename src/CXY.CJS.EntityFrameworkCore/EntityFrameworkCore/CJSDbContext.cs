@@ -58,6 +58,7 @@ namespace CXY.CJS.EntityFrameworkCore
         {
             builder.ApplyConfiguration(new TestConfiguration());
             builder.ApplyConfiguration(new WebSiteConfiguration());
+            builder.ApplyConfiguration(new BatchCarConfiguration());
 
             base.OnModelCreating(builder);
         }
