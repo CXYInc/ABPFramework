@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CXY.CJS.Model
 {
-    public  class BatchAskPricre
+    public  class BatchAskPrice
     {
         public string Id { get; set; }
         public string IncBatchId { get; set; }

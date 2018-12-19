@@ -40,7 +40,7 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public DbSet<SmsSendRecord> SmsSendRecords { get; set; }
 
-        
+        public DbSet<BatchCar> BatchCar { get; set; }
 
         #endregion
 
@@ -54,6 +54,7 @@ namespace CXY.CJS.EntityFrameworkCore
         {
             builder.ApplyConfiguration(new TestConfiguration());
             builder.ApplyConfiguration(new WebSiteConfiguration());
+            builder.ApplyConfiguration(new BatchCarConfiguration());
 
             base.OnModelCreating(builder);
         }

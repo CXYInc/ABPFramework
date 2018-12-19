@@ -5,7 +5,7 @@ using System;
 
 namespace CXY.CJS.Model
 {
-    public class BatchInfo : Entity<string>, IHasModificationTime, IHasDeletionTime, ISoftDelete, IFullAudited
+    public class BatchInfo : Entity<string>
     {
         public BatchInfo()
         {
@@ -15,19 +15,24 @@ namespace CXY.CJS.Model
         }
         public string Id { get; set; }
         public string WebSiteId { get; set; }
-        public string CarCount { get; set; }
+
+        /// <summary>
+        /// 车辆数
+        /// </summary>
+        public int CarCount { get; set; }
+
         /// <summary>
         /// 批次违章数
         /// </summary>
-        public string ViolationCount { get; set; }
+        public int ViolationCount { get; set; }
         /// <summary>
         /// 需要系统报价数
         /// </summary>
-        public string NeedPriceCount { get; set; }
+        public int NeedPriceCount { get; set; }
         /// <summary>
         /// 已报价数
         /// </summary>
-        public string HadPriceCount { get; set; }
+        public int HadPriceCount { get; set; }
 
 
         /// <summary>
@@ -55,8 +60,8 @@ namespace CXY.CJS.Model
         public DateTime? LastModificationTime { get; set; }
         public DateTime? DeletionTime { get; set; }
         public bool IsDeleted { get; set; }
-        public long? CreatorUserId { get; set; }
-        public long? LastModifierUserId { get; set; }
-        public long? DeleterUserId { get; set; }
+        public string CreatorUserId { get; set; }
+        public string LastModifierUserId { get; set; }
+        public string DeleterUserId { get; set; }
     }
 }
