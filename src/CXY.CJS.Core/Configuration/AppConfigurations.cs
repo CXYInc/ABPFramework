@@ -42,6 +42,7 @@ namespace CXY.CJS.Core.Configuration
                 builder = builder.AddJsonFile($"appsettings.{environmentName}.json", optional: true);
             }
 
+            //serilog配置
             builder.AddJsonFile("serilogsetting.json", optional: true, reloadOnChange: true);
 
             builder = builder.AddEnvironmentVariables();

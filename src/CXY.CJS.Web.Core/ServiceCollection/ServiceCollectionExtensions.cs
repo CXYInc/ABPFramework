@@ -11,7 +11,7 @@ namespace CXY.CJS.Web.Core
     {
         public static void AddWebApiServices(this IServiceCollection services, IHostingEnvironment env)
         {
-            // 使程序支持GBK,gb2312
+            //使程序支持GBK,gb2312
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             //services.AddConfigModel();

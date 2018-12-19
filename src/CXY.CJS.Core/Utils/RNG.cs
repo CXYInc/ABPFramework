@@ -3,6 +3,9 @@ using System.Security.Cryptography;
 
 namespace CXY.CJS.Core.Utils
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RNG
     {
         private static RNGCryptoServiceProvider rngp = new RNGCryptoServiceProvider();
@@ -31,6 +34,12 @@ namespace CXY.CJS.Core.Utils
             return value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="max"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public static int RandomNext(int max, int index = 1)
         {
             Random rd = new Random(index);

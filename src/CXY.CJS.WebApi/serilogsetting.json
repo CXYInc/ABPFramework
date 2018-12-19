@@ -1,11 +1,12 @@
 {
   "Serilog": {
+    //日志等级有小到大：Verbose->Debug->Information->Warning->Error->Fatal
     "Using": [ "Serilog.Sinks.File", "Serilog.Sinks.RollingFile", "Serilog.Sinks.Console", "Serilog.Filters.Expressions" ],
     "MinimumLevel": {
       "Default": "Debug",
       "Override": {
-        "Microsoft": "Information", //将Microsoft前缀的日志的最小输出级别改成Information
-        "System": "Information" //将System前缀的日志的最小输出级别改成Information
+        "Microsoft": "Debug", //将Microsoft前缀的日志的最小输出级别改成Information
+        "System": "Debug" //将System前缀的日志的最小输出级别改成Information
       }
     },
     "WriteTo": [
@@ -19,8 +20,8 @@
           "fileSizeLimitBytes": 5242880, //单个日志文件大小
           "retainedFileCountLimit": 10, //日志保留最大数量
           //"formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog", //日志格式化格式
-          "buffered": true, //是否以流的形式写文件
-          "shared": false //是否允许文件多进程共享(buffered:true时,不可共享)
+          "buffered": false, //是否以流的形式写文件
+          "shared": true //是否允许文件多进程共享(buffered:true时,不可共享)
         }
       },
       {
