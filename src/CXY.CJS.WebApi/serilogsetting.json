@@ -4,8 +4,8 @@
     "MinimumLevel": {
       "Default": "Debug",
       "Override": {
-        "Microsoft": "Warning",
-        "System": "Warning"
+        "Microsoft": "Information", //将Microsoft前缀的日志的最小输出级别改成Information
+        "System": "Information" //将System前缀的日志的最小输出级别改成Information
       }
     },
     "WriteTo": [
@@ -122,17 +122,4 @@
     ],
     "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ]
   }
-
-  //"Serilog": {
-  //  "Using": [ "Serilog.Sinks.File", "Serilog.Sinks.RollingFile", "Serilog.Sinks.Console", "Serilog.Filters.Expressions" ],
-  //  "MinimumLevel": "Debug",
-  //  "WriteTo": [
-  //    { "Name": "Console" },
-  //    {
-  //      "Name": "RollingFile",
-  //      "Args": { "pathFormat": "Logs\\Debug\\{Date}.log" }
-  //    }
-  //  ],
-  //  "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ]
-  //}
 }

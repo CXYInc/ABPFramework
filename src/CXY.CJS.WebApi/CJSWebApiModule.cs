@@ -2,6 +2,7 @@
 using Abp.MailKit;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using CXY.CJS.Application;
 using CXY.CJS.Configuration;
 using CXY.CJS.Web.Core;
 using Microsoft.AspNetCore.Hosting;

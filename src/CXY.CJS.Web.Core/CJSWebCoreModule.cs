@@ -2,6 +2,7 @@
 using Abp.AspNetCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
+using CXY.CJS.Application;
 using CXY.CJS.Configuration;
 using CXY.CJS.Core.Constant;
 using CXY.CJS.EntityFrameworkCore;

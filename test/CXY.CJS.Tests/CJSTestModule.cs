@@ -1,25 +1,21 @@
-using System;
-using System.Reflection;
 using Abp.Authorization;
 using Abp.AutoMapper;
-using Abp.Dependency;
-using Abp.EntityFrameworkCore;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.TestBase;
 using Castle.Core.Logging;
-using CXY.CJS.EntityFrameworkCore;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
-using CXY.CJS.Core.Config;
+using CXY.CJS.Application;
 using CXY.CJS.Core.Utils.Mail;
 using CXY.CJS.Core.Utils.SMS;
-using CXY.CJS.Tests.Extensions;
+using CXY.CJS.EntityFrameworkCore;
 using CXY.CJS.Tests.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
 
 namespace CXY.CJS.Tests
 {
