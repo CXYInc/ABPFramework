@@ -4,7 +4,7 @@ using CXY.CJS.Core.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 
-namespace CXY.CJS
+namespace CXY.CJS.Application
 {
     /// <summary>
     /// Derive your application services from this class.
