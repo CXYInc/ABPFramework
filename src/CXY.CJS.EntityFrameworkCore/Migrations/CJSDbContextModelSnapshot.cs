@@ -108,39 +108,56 @@ namespace CXY.CJS.Migrations
             modelBuilder.Entity("CXY.CJS.Model.BatchCar", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(32);
 
-                    b.Property<string>("CarCode");
+                    b.Property<string>("CarCode")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("CarNumber");
+                    b.Property<string>("CarNumber")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("CarType");
+                    b.Property<string>("CarType")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("CarTypeName");
+                    b.Property<string>("CarTypeName")
+                        .HasMaxLength(32);
 
-                    b.Property<DateTime>("CreationTime");
+                    b.Property<DateTime>("CreationTime")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("DriverLicense");
+                    b.Property<string>("DriverLicense")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("DriverName");
+                    b.Property<string>("DriverName")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("DriverPhone");
+                    b.Property<string>("DriverPhone")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("EngineNo");
+                    b.Property<string>("EngineNo")
+                        .HasMaxLength(32);
 
-                    b.Property<bool>("HaveLockRule");
+                    b.Property<bool>("HaveLockRule")
+                        .HasMaxLength(32);
 
-                    b.Property<bool>("IsChoose");
+                    b.Property<bool>("IsChoose")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("IsLock");
+                    b.Property<string>("IsLock")
+                        .HasMaxLength(32);
 
-                    b.Property<bool>("IsNeedSearch");
+                    b.Property<bool>("IsNeedSearch")
+                        .HasMaxLength(32);
 
-                    b.Property<bool>("PrivateCar");
+                    b.Property<bool>("PrivateCar")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("ViolationMsg");
+                    b.Property<string>("ViolationMsg")
+                        .HasMaxLength(32);
 
-                    b.Property<string>("WebSiteId");
+                    b.Property<string>("WebSiteId")
+                        .HasMaxLength(6);
 
                     b.HasKey("Id");
 
@@ -152,31 +169,31 @@ namespace CXY.CJS.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CarCount");
+                    b.Property<int>("CarCount");
 
                     b.Property<DateTime?>("CompleteTime");
 
                     b.Property<DateTime>("CreationTime");
 
-                    b.Property<long?>("CreatorUserId");
+                    b.Property<string>("CreatorUserId");
 
                     b.Property<string>("Customer");
 
                     b.Property<string>("CustomerId");
 
-                    b.Property<long?>("DeleterUserId");
+                    b.Property<string>("DeleterUserId");
 
                     b.Property<DateTime?>("DeletionTime");
 
-                    b.Property<string>("HadPriceCount");
+                    b.Property<int>("HadPriceCount");
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime");
 
-                    b.Property<long?>("LastModifierUserId");
+                    b.Property<string>("LastModifierUserId");
 
-                    b.Property<string>("NeedPriceCount");
+                    b.Property<int>("NeedPriceCount");
 
                     b.Property<string>("Proxy");
 
@@ -184,7 +201,7 @@ namespace CXY.CJS.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<string>("ViolationCount");
+                    b.Property<int>("ViolationCount");
 
                     b.Property<string>("WebSiteId");
 
