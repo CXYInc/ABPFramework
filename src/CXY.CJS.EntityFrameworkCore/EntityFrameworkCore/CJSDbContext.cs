@@ -30,7 +30,7 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public DbSet<UserWallet> UserWallets { get; set; }
 
-       
+
 
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -40,7 +40,11 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public DbSet<SmsSendRecord> SmsSendRecords { get; set; }
 
-        public DbSet<BatchCar> BatchCar { get; set; }
+        public DbSet<BatchInfo> BatchInfos { get; set; }
+
+        public DbSet<BatchCar> BatchCars { get; set; }
+
+        public DbSet<BatchAskPriceViolationAgent> BatchAskPriceViolationAgents { get; set; }
 
         #endregion
 

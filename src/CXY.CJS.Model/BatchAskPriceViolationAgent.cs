@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 
 namespace CXY.CJS.Model
 {
-    public  class BatchAskPriceViolationAgent
+    public  class BatchAskPriceViolationAgent:Entity<string>,IHasCreationTime
     {
         public string WebSiteId { get; set; }
-        public string Id { get; set; }
-        public DateTime CreateTime { get; set; }
         public string CarId { get; set; }
         public int State { get; set; }
         public DateTime ViolationTime { get; set; }
@@ -44,5 +44,6 @@ namespace CXY.CJS.Model
         public int? ViolationType { get; set; }
         public string Remarks { get; set; }
         public string ProxyRemarks { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }
