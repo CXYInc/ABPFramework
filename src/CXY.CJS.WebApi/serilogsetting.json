@@ -14,7 +14,14 @@
       },
       {
         "Name": "RollingFile",
-        "Args": { "pathFormat": "Logs\\ALL\\{Date}.log" }
+        "Args": {
+          "pathFormat": "Logs\\ALL\\{Date}.log", //日志保存路径
+          "fileSizeLimitBytes": 5242880, //单个日志文件大小
+          "retainedFileCountLimit": 10, //日志保留最大数量
+          //"formatter": "Serilog.Formatting.Json.JsonFormatter, Serilog", //日志格式化格式
+          "buffered": true, //是否以流的形式写文件
+          "shared": false //是否允许文件多进程共享(buffered:true时,不可共享)
+        }
       },
       {
         "Name": "Logger",

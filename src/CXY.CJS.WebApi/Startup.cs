@@ -21,7 +21,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using Serilog.Events;
+using Serilog.Sinks.RollingFile;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
@@ -137,7 +137,7 @@ namespace CXY.CJS.WebApi
                 //Serilog日志注入
                 var configBuilder = new LoggerConfiguration();
                 configBuilder = configBuilder.ReadFrom.Configuration(_appConfiguration);
-                options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.LogUsing(new SerilogFactory(configBuilder.CreateLogger())));
+                options.IocManager.IocContainer.AddFacility<LoggingFacility>(logger => logger.LogUsing(new SerilogFactory(configBuilder.CreateLogger())));
 
                 //解决属性依赖注入报错
                 var propInjector = options.IocManager.IocContainer.Kernel.ComponentModelBuilder
