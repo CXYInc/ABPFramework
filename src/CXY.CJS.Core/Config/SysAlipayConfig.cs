@@ -1,5 +1,8 @@
 ﻿namespace CXY.CJS.Core.Config
 {
+    /// <summary>
+    /// 支付宝支付配置
+    /// </summary>
     [ConfigModel]
     public class SysAlipayConfig
     {

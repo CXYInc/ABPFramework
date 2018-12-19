@@ -140,26 +140,27 @@ namespace CXY.CJS.WebApi
             {
                 //Configure Log4Net logging
                 //options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.LogUsing<ser>()().WithConfig("log4net.config"));
-                var configBuilder = new LoggerConfiguration() //Configure Serilog here!
-                    
-                        //.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.txt",
-                        //    outputTemplate:
-                        //    "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
-                        //.WriteTo.MSSqlServer(_appConfiguration["connectionString"], tableName)
-                        //.CreateLogger();;
-                    ;
+
+                //Configure Serilog
+                var configBuilder = new LoggerConfiguration();
+
+                //.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.txt",
+                //    outputTemplate:
+                //    "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
+                //.WriteTo.MSSqlServer(_appConfiguration["connectionString"], tableName)
+                //.CreateLogger();;
+
                 if (_env.IsDevelopment())
                 {
                     configBuilder = configBuilder.WriteTo.Console();
                 }
                 if (!_env.IsDevelopment())
                 {
-                    configBuilder= configBuilder.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.txt", 
+                    configBuilder= configBuilder.WriteTo.RollingFile("App_Data\\Logs\\log-{Date}.log", 
                         outputTemplate:"{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message} {Properties:j}{NewLine}{Exception}");
                 }
 
                 options.IocManager.IocContainer.AddFacility<LoggingFacility>(f => f.LogUsing(new SerilogFactory(configBuilder.CreateLogger())));
-
 
                 //解决属性依赖注入报错
                 var propInjector = options.IocManager.IocContainer.Kernel.ComponentModelBuilder
