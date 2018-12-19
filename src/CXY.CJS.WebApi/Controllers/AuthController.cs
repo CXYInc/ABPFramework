@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
+using Castle.Core.Logging;
 using CXY.CJS.Core.Config;
 using CXY.CJS.Core.Constant;
 using CXY.CJS.Core.Utils;
@@ -23,17 +24,19 @@ namespace CXY.CJS.WebApi.Controllers
         private readonly JwtTokenProvider _jwtTokenProvider;
         private readonly IRepository<Users, string> _repository;
         private readonly JwtBearerConfig _jwtBearerConfig;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="jwtTokenProvider"></param>
         /// <param name="repository"></param>
-        public AuthController(JwtBearerConfig jwtBearerConfig, JwtTokenProvider jwtTokenProvider, IRepository<Users, string> repository)
+        public AuthController(JwtBearerConfig jwtBearerConfig, JwtTokenProvider jwtTokenProvider, IRepository<Users, string> repository,ILogger logger)
         {
             _jwtBearerConfig = jwtBearerConfig;
             _jwtTokenProvider = jwtTokenProvider;
             _repository = repository;
+            _logger =logger;
         }
 
         /// <summary>
@@ -56,6 +59,8 @@ namespace CXY.CJS.WebApi.Controllers
         public async Task<ApiResult<LoginResult>> UserLogin([FromBody] UserLoginInfo loginInfo)
         {
             var result = new ApiResult<LoginResult>().Success();
+
+            _logger.Info("test");
 
             if (loginInfo == null)
             {

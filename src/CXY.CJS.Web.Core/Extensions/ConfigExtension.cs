@@ -13,8 +13,7 @@ namespace CXY.CJS.Web.Core.Extensions
         public static IServiceCollection AddConfigModel(this IServiceCollection services)
         {
             var types = AppDomain.CurrentDomain.GetAssemblies()
-                                .SelectMany(a => a.GetTypes()
-                                                  .Where(t => t.GetCustomAttributes(typeof(ConfigModelAttribute))!=null))
+                                .SelectMany(a => a.GetTypes().Where(t => t.GetCustomAttributes(typeof(ConfigModelAttribute)) != null))
                                 .ToArray();
 
             foreach (var type in types)
