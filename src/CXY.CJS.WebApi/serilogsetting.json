@@ -1,0 +1,131 @@
+{
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.File", "Serilog.Sinks.RollingFile", "Serilog.Sinks.Console", "Serilog.Filters.Expressions" ],
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console"
+      },
+      {
+        "Name": "RollingFile",
+        "Args": { "pathFormat": "Logs\\ALL\\{Date}.log" }
+      },
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "Filter": [
+              {
+                "Name": "ByIncludingOnly",
+                "Args": {
+                  "expression": "@Level = 'Debug'"
+                }
+              }
+            ],
+            "WriteTo": [
+              {
+                "Name": "RollingFile",
+                "Args": {
+                  "pathFormat": "Logs\\Debug\\{Date}.log",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "Filter": [
+              {
+                "Name": "ByIncludingOnly",
+                "Args": {
+                  "expression": "@Level = 'Information'"
+                }
+              }
+            ],
+            "WriteTo": [
+              {
+                "Name": "RollingFile",
+                "Args": {
+                  "pathFormat": "Logs\\Info\\{Date}.log",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "Filter": [
+              {
+                "Name": "ByIncludingOnly",
+                "Args": {
+                  "expression": "@Level = 'Error'"
+                }
+              }
+            ],
+            "WriteTo": [
+              {
+                "Name": "RollingFile",
+                "Args": {
+                  "pathFormat": "Logs\\Error\\{Date}.log",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Name": "Logger",
+        "Args": {
+          "configureLogger": {
+            "Filter": [
+              {
+                "Name": "ByIncludingOnly",
+                "Args": {
+                  "expression": "@Level = 'Warning'"
+                }
+              }
+            ],
+            "WriteTo": [
+              {
+                "Name": "RollingFile",
+                "Args": {
+                  "pathFormat": "Logs\\Warning\\{Date}.log",
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ]
+  }
+
+  //"Serilog": {
+  //  "Using": [ "Serilog.Sinks.File", "Serilog.Sinks.RollingFile", "Serilog.Sinks.Console", "Serilog.Filters.Expressions" ],
+  //  "MinimumLevel": "Debug",
+  //  "WriteTo": [
+  //    { "Name": "Console" },
+  //    {
+  //      "Name": "RollingFile",
+  //      "Args": { "pathFormat": "Logs\\Debug\\{Date}.log" }
+  //    }
+  //  ],
+  //  "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ]
+  //}
+}

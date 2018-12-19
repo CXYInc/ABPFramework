@@ -125,11 +125,14 @@ namespace CXY.CJS.Application
 
 
         [HttpPost("LoggerInfo")]
-        [Authorize]
+        [AllowAnonymous]
         public void LoggerInfo()
         {
             var exampleUser = new Users { Id = "1", RealName = "Adam", CreationTime = DateTime.Now };
             _logger.InfoFormat("Created {@User} on {Created}", exampleUser, DateTime.Now);
+            _logger.Debug("Debug");
+            _logger.Warn("Warn");
+            _logger.Error("Error");
         }
     }
 }
