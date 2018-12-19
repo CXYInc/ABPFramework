@@ -7,10 +7,12 @@ using Abp.EntityFrameworkCore;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.TestBase;
+using Castle.Core.Logging;
 using CXY.CJS.EntityFrameworkCore;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor.MsDependencyInjection;
 using CXY.CJS.Core.Config;
+using CXY.CJS.Core.Utils.Mail;
 using CXY.CJS.Core.Utils.SMS;
 using CXY.CJS.Tests.Extensions;
 using CXY.CJS.Tests.Services;
@@ -37,6 +39,8 @@ namespace CXY.CJS.Tests
 
             var services = new ServiceCollection()
                 .AddHttpClient()
+                .AddTransient<ISystemSmtpSender, TestSystemSmtpSender>()
+                .AddTransient<ILogger, ConsoleLogger>()
                 .AddSmsSender(new SmsSenderConfiguration
                 {
                     Url = "http://127.0.0.1/api/sendsms"
