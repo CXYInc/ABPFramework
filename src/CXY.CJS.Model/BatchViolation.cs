@@ -16,7 +16,7 @@ namespace CXY.CJS.Model
             CanProcess = 0;
         }
         public string WebSiteId { get; set; }
-        public string Id { get; set; }
+
         public string CarId { get; set; }
 
         /// <summary>

@@ -13,6 +13,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp2.0\CXY.CJS.Core.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591;1573</NoWarn>
+    <WarningsAsErrors>NU1605;CS0114</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\SourceFiles\*.json" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />

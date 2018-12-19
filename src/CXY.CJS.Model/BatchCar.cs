@@ -15,7 +15,7 @@ namespace CXY.CJS.Model
             IsNeedSearch = true;
             PrivateCar = false;
         }
-        public string Id { get; set; }
+      
         public string WebSiteId { get; set; }
         /// <summary>
         /// 车牌号

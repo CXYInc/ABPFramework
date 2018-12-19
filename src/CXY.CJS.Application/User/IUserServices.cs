@@ -69,7 +69,7 @@ namespace CXY.CJS.Application
         /// <summary>
         /// 授予或去除用户角色
         /// </summary>
-        /// <param name=""></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         Task<ApiResult> GrantOrRemoveUserRole(GrantOrRemoveUserRoleInput input);
     }
