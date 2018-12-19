@@ -29,6 +29,7 @@ namespace CXY.CJS.Tests.TestDatas
             InitUserWalletDatas();
 
             InitRoles();
+            InitBatchInfos();
 
             await Task.WhenAll(_actionTasks);
         }
@@ -76,6 +77,15 @@ namespace CXY.CJS.Tests.TestDatas
         private void AddTask(Task task)
         {
             _actionTasks.Add(task);
+        }
+
+
+        private void InitBatchInfos()
+        {
+            AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.NoCompleteBatchInfo));
+            AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.CompleteBatchInfo));
+            AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.WillBeDelBatchInfo));
+            
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CXY.CJS.Repository
 {
-    public interface IBatchInfoRepository : ICJSRepositoryBase<BatchInfo, string>
+    public interface IBatchInfoRepository : ICJSRepositoryBase<BatchInfo, string>,IQueryPageRepository<BatchInfo>
     {
         
     }

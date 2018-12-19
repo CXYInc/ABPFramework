@@ -1,18 +1,12 @@
-﻿using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
-using Abp.Timing;
-using System;
+﻿using System;
+using Abp.AutoMapper;
 
-namespace CXY.CJS.Model
+namespace CXY.CJS.Application.Dtos
 {
-    public class BatchInfo : Entity<string>
+    [AutoMapTo(typeof(Model.BatchInfo))]
+    public class BatchInfoListDto
     {
-        public BatchInfo()
-        {
-            CreationTime = Clock.Now;
-            IsDeleted = false;
-            Status = 0;
-        }
+        public string Id { get; set; }
         public string WebSiteId { get; set; }
 
         /// <summary>
@@ -56,11 +50,6 @@ namespace CXY.CJS.Model
         /// </summary>
         public DateTime? CompleteTime { get; set; }
         public DateTime CreationTime { get; set; }
-        public DateTime? LastModificationTime { get; set; }
-        public DateTime? DeletionTime { get; set; }
         public bool IsDeleted { get; set; }
-        public string CreatorUserId { get; set; }
-        public string LastModifierUserId { get; set; }
-        public string DeleterUserId { get; set; }
     }
 }

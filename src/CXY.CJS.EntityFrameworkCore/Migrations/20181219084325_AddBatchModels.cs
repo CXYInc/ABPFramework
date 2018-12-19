@@ -60,23 +60,23 @@ namespace CXY.CJS.Migrations
                 name: "BatchCars",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    WebSiteId = table.Column<string>(nullable: true),
-                    CarNumber = table.Column<string>(nullable: true),
-                    CarCode = table.Column<string>(nullable: true),
-                    EngineNo = table.Column<string>(nullable: true),
-                    PrivateCar = table.Column<bool>(nullable: false),
-                    CarType = table.Column<string>(nullable: true),
-                    CarTypeName = table.Column<string>(nullable: true),
-                    IsLock = table.Column<string>(nullable: true),
-                    DriverName = table.Column<string>(nullable: true),
-                    DriverPhone = table.Column<string>(nullable: true),
-                    DriverLicense = table.Column<string>(nullable: true),
-                    IsNeedSearch = table.Column<bool>(nullable: false),
-                    HaveLockRule = table.Column<bool>(nullable: false),
-                    IsChoose = table.Column<bool>(nullable: false),
-                    ViolationMsg = table.Column<string>(nullable: true),
-                    CreationTime = table.Column<DateTime>(nullable: false)
+                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    WebSiteId = table.Column<string>(maxLength: 6, nullable: true),
+                    CarNumber = table.Column<string>(maxLength: 32, nullable: true),
+                    CarCode = table.Column<string>(maxLength: 32, nullable: true),
+                    EngineNo = table.Column<string>(maxLength: 32, nullable: true),
+                    PrivateCar = table.Column<bool>(maxLength: 32, nullable: false),
+                    CarType = table.Column<string>(maxLength: 32, nullable: true),
+                    CarTypeName = table.Column<string>(maxLength: 32, nullable: true),
+                    IsLock = table.Column<string>(maxLength: 32, nullable: true),
+                    DriverName = table.Column<string>(maxLength: 32, nullable: true),
+                    DriverPhone = table.Column<string>(maxLength: 32, nullable: true),
+                    DriverLicense = table.Column<string>(maxLength: 32, nullable: true),
+                    IsNeedSearch = table.Column<bool>(maxLength: 32, nullable: false),
+                    HaveLockRule = table.Column<bool>(maxLength: 32, nullable: false),
+                    IsChoose = table.Column<bool>(maxLength: 32, nullable: false),
+                    ViolationMsg = table.Column<string>(maxLength: 32, nullable: true),
+                    CreationTime = table.Column<DateTime>(maxLength: 32, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,10 +89,10 @@ namespace CXY.CJS.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     WebSiteId = table.Column<string>(nullable: true),
-                    CarCount = table.Column<string>(nullable: true),
-                    ViolationCount = table.Column<string>(nullable: true),
-                    NeedPriceCount = table.Column<string>(nullable: true),
-                    HadPriceCount = table.Column<string>(nullable: true),
+                    CarCount = table.Column<int>(nullable: false),
+                    ViolationCount = table.Column<int>(nullable: false),
+                    NeedPriceCount = table.Column<int>(nullable: false),
+                    HadPriceCount = table.Column<int>(nullable: false),
                     CustomerId = table.Column<string>(nullable: true),
                     Customer = table.Column<string>(nullable: true),
                     Proxy = table.Column<string>(nullable: true),
@@ -103,9 +103,9 @@ namespace CXY.CJS.Migrations
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     DeletionTime = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    CreatorUserId = table.Column<long>(nullable: true),
-                    LastModifierUserId = table.Column<long>(nullable: true),
-                    DeleterUserId = table.Column<long>(nullable: true)
+                    CreatorUserId = table.Column<string>(nullable: true),
+                    LastModifierUserId = table.Column<string>(nullable: true),
+                    DeleterUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
