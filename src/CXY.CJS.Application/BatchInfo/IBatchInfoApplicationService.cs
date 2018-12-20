@@ -48,5 +48,12 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         Task<ApiResult> SaveBatchInfo(SaveBatchInfoInput input);
+
+        /// <summary>
+        /// 强制完成
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ApiResult> ForcedCompleted(string id);
     }
 }

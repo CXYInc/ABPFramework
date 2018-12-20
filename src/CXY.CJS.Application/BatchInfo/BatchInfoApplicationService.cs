@@ -214,6 +214,30 @@ namespace CXY.CJS.Application
             await _entityRepository.InsertAsync(entity);
             return new ApiResult().Success();
         }
+
+        /// <summary>
+        /// 强制完成
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ApiResult> ForcedCompleted(string id)
+        {
+            var batchInfo = await _entityRepository.FirstOrDefaultAsync(id);
+            if (batchInfo == null)
+            {
+                return ApiResult.DataNotFound();
+            }
+            //只有正在办理的才可以
+            if (batchInfo.Status != 2)
+            {
+                return new ApiResult().Error("当前批次状态不允许该操作");
+            }
+
+            // 强制完成
+            batchInfo.Status = 4;
+            await _entityRepository.UpdateAsync(batchInfo);
+            return new ApiResult().Success();
+        }
     }
 }
 

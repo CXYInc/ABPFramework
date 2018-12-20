@@ -38,7 +38,7 @@ namespace CXY.CJS.Tests
             var services = new ServiceCollection()
                 .AddHttpClient()
                 .AddConfigModel(typeof(ConfigModelAttribute).Assembly)
-                //.AddTransient<ISystemSmtpSender, TestSystemSmtpSender>()
+                .AddTransient<ISystemSmtpSender, TestSystemSmtpSender>()
                 .AddTransient<ILogger, ConsoleLogger>()
                 .AddSmsSender(new SmsSenderConfiguration
                 {
