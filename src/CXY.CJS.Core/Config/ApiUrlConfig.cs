@@ -7,6 +7,7 @@ namespace CXY.CJS.Core.Config
     /// <summary>
     /// Api地址
     /// </summary>
+    [ConfigModel]
     public class ApiUrlConfig
     {
         /// <summary>

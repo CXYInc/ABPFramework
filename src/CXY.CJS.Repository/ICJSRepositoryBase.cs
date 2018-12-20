@@ -19,6 +19,7 @@ namespace CXY.CJS.Repository
         Task<TEntity> InsertAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);
+        Task<TEntity> InsertOrUpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
 
         Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);

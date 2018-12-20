@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Castle.Core.Internal;
 using CXY.CJS.Core.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,11 +12,13 @@ namespace CXY.CJS.Web.Core.Extensions
 {
     public static class ConfigExtension
     {
-        public static IServiceCollection AddConfigModel(this IServiceCollection services)
+        public static IServiceCollection AddConfigModel(this IServiceCollection services, Assembly assembly)
         {
-            var types = AppDomain.CurrentDomain.GetAssemblies()
-                                .SelectMany(a => a.GetTypes().Where(t => t.GetCustomAttributes(typeof(ConfigModelAttribute)) != null))
-                                .ToArray();
+            //todo:区分重载
+
+            var types = assembly.GetTypes().Where(t =>t.GetAttribute<ConfigModelAttribute>()!=null)
+                .ToArray();
+
 
             foreach (var type in types)
             {
@@ -28,5 +32,7 @@ namespace CXY.CJS.Web.Core.Extensions
 
             return services;
         }
+
+
     }
 }

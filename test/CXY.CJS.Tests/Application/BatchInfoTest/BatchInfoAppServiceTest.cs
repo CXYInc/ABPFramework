@@ -62,5 +62,23 @@ namespace CXY.CJS.Tests.Application.BatchInfoTest
             Assert.Null(datas.Data.PageData.FirstOrDefault(i=>i.Id== BatchInfoDatas.WillBeDelBatchInfo.Id));
         }
 
+
+        public static readonly IEnumerable<object[]> GetBatchNoInput = new List<object[]>
+        {
+            new object[]{null},
+            new object[]{DateTime.Now}
+        };
+
+
+
+        [Theory]
+        [MemberData(nameof(GetBatchNoInput))]
+        public async Task GetBatchNo_When_Success(DateTime? time=null)
+        {
+            var result = await _service.GetBatchNo(time);
+           
+            Assert.NotEmpty(result.Data);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Dependency;
 using Abp.Json;
 using CXY.CJS.Core.HttpClient;
 
@@ -19,7 +20,7 @@ namespace CXY.CJS.Core.Utils.SMS
         Task<SendSmsResult> SendSmsAsync(string telephone, string pars, string templeteId, string moduleName);
     }
 
-    public class SmsSender : ISmsSender
+    public class SmsSender : ISmsSender,ITransientDependency
     {
         private readonly HttpClientHelper _httpClientHelper;
         private readonly SmsSenderConfiguration _configuration;

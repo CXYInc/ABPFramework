@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Abp.Application.Services;
@@ -33,5 +34,12 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         Task<ApiResult> Delete(string id);
 
+
+        /// <summary>
+        /// 获取批次号
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        Task<ApiResult<string>> GetBatchNo(DateTime? time=null);
     }
 }

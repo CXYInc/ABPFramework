@@ -13,6 +13,8 @@ using Abp.Specifications;
 using Castle.Core.Internal;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using CXY.CJS.Application.Dtos;
+using CXY.CJS.Core.Config;
+using CXY.CJS.Core.Extensions;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
@@ -27,15 +29,20 @@ namespace CXY.CJS.Application
     public class BatchInfoAppService : CJSAppServiceBase, IBatchInfoAppService
     {
         private readonly IBatchInfoRepository _entityRepository;
+        private readonly IDataSeedRepository _dataSeedRepository;
+        private readonly SiteConfig _webSiteConfig;
+        private readonly IAbpSessionExtension _session;
 
         /// <summary>
         /// 构造函数 
         ///</summary>
         public BatchInfoAppService(
-            IBatchInfoRepository entityRepository)
+            IBatchInfoRepository entityRepository, IDataSeedRepository dataSeedRepository, SiteConfig webSiteConfig, IAbpSessionExtension session)
         {
             _entityRepository = entityRepository;
-
+            _dataSeedRepository = dataSeedRepository;
+            _webSiteConfig = webSiteConfig;
+            _session = session;
         }
 
 
@@ -127,6 +134,57 @@ namespace CXY.CJS.Application
             entity.IsDeleted = true;
             await _entityRepository.UpdateAsync(entity);
             return  new ApiResult().Success();
+        }
+
+
+        /// <summary>
+        /// 获取批次号
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public async Task<ApiResult<string>> GetBatchNo(DateTime? time = null)
+        {
+            var timeStr = $"{DateTime.Now:yyyyMMdd}";
+            if (time != null & time.HasValue)
+            {
+                timeStr = $"{time.Value:yyyyMMdd}";
+            }
+            var id= $"{_session.WebSiteId}_{timeStr}";
+            var dataSeed = await _dataSeedRepository.FirstOrDefaultAsync(id);
+            var isNewDataSeed = false;
+            if (dataSeed == null)
+            {
+                isNewDataSeed = true;
+                dataSeed = new DataSeed
+                {
+                    Id = id,
+                    SeedIndex =1
+                };
+            }
+            var prefix = _webSiteConfig.WebSitePrefix;
+            var prefixs = prefix?.Split(';');
+            prefix = prefixs?.FirstOrDefault(x => x.Contains(_session.WebSiteId));
+            if (!prefix.IsNullOrEmpty())
+            {
+                prefix = prefix.Split(',').LastOrDefault();
+                prefix = prefix.IsNullOrEmpty() ? "BAP" : prefix;
+            }
+            else
+            {
+                prefix = "BAP";
+            }
+            var code = prefix + timeStr + dataSeed.SeedIndex.ToString().PadLeft(4, '0');//形如
+            dataSeed.SeedIndex += 1;
+           
+            if (isNewDataSeed)
+            {
+                await _dataSeedRepository.InsertAsync(dataSeed);
+            }
+            else
+            {
+                await _dataSeedRepository.UpdateAsync(dataSeed);
+            }
+            return ApiResult.Success(code);
         }
     }
 }
