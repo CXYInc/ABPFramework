@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace CXY.CJS.Web.Core.Extensions
+namespace CXY.CJS.Web.Core.Extensions.Swagger
 {
     /// <summary>
     /// Add enum value descriptions to Swagger
     /// </summary>
-    public class AddSwaggerEnumDescriptions : IDocumentFilter
+    public class EnumDescriptionDocumentFilter : IDocumentFilter
     {
         /// <summary>
         /// 

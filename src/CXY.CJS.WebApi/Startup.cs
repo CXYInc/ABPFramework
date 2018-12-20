@@ -11,7 +11,7 @@ using CXY.CJS.Core.Utils.Mail;
 using CXY.CJS.Core.Utils.SMS;
 using CXY.CJS.JwtAuthentication;
 using CXY.CJS.Web.Core;
-using CXY.CJS.Web.Core.Extensions;
+using CXY.CJS.Web.Core.Extensions.Swagger;
 using CXY.CJS.Web.Core.Mail;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -111,7 +111,8 @@ namespace CXY.CJS.WebApi
                     Type = "apiKey"
                 });
                 options.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> { { "Bearer", Enumerable.Empty<string>() } });
-                options.DocumentFilter<AddSwaggerEnumDescriptions>();
+                options.DocumentFilter<EnumDescriptionDocumentFilter>();
+                options.OperationFilter<FormFileOperationFilter>();
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "CXY.CJS.Application.xml");
                 options.IncludeXmlComments(xmlPath);

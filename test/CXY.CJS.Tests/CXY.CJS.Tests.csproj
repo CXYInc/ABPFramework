@@ -34,4 +34,12 @@
     <PackageReference Include="NSubstitute" Version="3.1.0" />
     <PackageReference Include="Microsoft.DotNet.InternalAbstractions" Version="1.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Source\test1.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Source\test2.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
