@@ -14,5 +14,7 @@
         /// 默认数据库连接名称
         /// </summary>
         public const string ConnectionStringName = "Default";
+
+        public const string RoutePrefix = "/api/services/app";
     }
 }

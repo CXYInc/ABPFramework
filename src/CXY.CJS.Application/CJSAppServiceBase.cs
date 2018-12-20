@@ -9,7 +9,7 @@ namespace CXY.CJS.Application
     /// <summary>
     /// Derive your application services from this class.
     /// </summary>
-    [Authorize]    
+    [Authorize]
     public abstract class CJSAppServiceBase : ApplicationService
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace CXY.CJS.Application
         {
             LocalizationSourceName = CJSConsts.LocalizationSourceName;
         }
-        
+
         protected IEnumerable<string> GetUserInfo()
         {
             return new string[] { AbpSession.UserId, AbpSession.UserName, AbpSession.WebSiteId };

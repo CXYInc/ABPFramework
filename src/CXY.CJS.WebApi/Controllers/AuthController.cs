@@ -31,12 +31,12 @@ namespace CXY.CJS.WebApi.Controllers
         /// </summary>
         /// <param name="jwtTokenProvider"></param>
         /// <param name="repository"></param>
-        public AuthController(JwtBearerConfig jwtBearerConfig, JwtTokenProvider jwtTokenProvider, IRepository<Users, string> repository,ILogger logger)
+        public AuthController(JwtBearerConfig jwtBearerConfig, JwtTokenProvider jwtTokenProvider, IRepository<Users, string> repository, ILogger logger)
         {
             _jwtBearerConfig = jwtBearerConfig;
             _jwtTokenProvider = jwtTokenProvider;
             _repository = repository;
-            _logger =logger;
+            _logger = logger;
         }
 
         /// <summary>
