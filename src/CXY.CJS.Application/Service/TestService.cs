@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services;
-using Abp.ObjectMapping;
+﻿using Abp.ObjectMapping;
 using Castle.Core.Logging;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Application.Service.Dtos;
@@ -15,13 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using Path = System.IO.Path;
 
 namespace CXY.CJS.Application
 {
