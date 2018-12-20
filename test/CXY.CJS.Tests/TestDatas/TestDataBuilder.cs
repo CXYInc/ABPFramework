@@ -83,6 +83,7 @@ namespace CXY.CJS.Tests.TestDatas
         private void InitBatchInfos()
         {
             AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.NoCompleteBatchInfo));
+            AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.ProcessingBatchInfo));
             AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.CompleteBatchInfo));
             AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.WillBeDelBatchInfo));
             

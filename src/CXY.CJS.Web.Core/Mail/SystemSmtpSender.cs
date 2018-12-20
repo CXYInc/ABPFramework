@@ -5,7 +5,7 @@ using CXY.CJS.Core.Utils.Mail;
 
 namespace CXY.CJS.Web.Core.Mail
 {
-    public class SystemSmtpSender : SmtpSender, ISystemSmtpSender
+    public class SystemSmtpSender : SmtpSender, ISystemSmtpSender,ITransientDependency
     {
         private SystemSmtpSenderConfiguration _configuration;
 

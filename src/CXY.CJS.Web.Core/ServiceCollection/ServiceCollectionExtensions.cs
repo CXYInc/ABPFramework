@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using System.Text;
+using CXY.CJS.Core.Config;
+using CXY.CJS.Web.Core.Extensions;
 
 namespace CXY.CJS.Web.Core
 {
@@ -17,7 +19,7 @@ namespace CXY.CJS.Web.Core
             //services.AddConfigModel();
 
             services.AddHttpClient();
-
+            services.AddConfigModel(typeof(ConfigModelAttribute).Assembly);
             services.AddMvc(config =>
             {
                 config.Filters.Add(new ApiErrorAttibute());
