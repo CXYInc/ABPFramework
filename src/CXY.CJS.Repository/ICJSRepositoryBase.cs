@@ -19,7 +19,21 @@ namespace CXY.CJS.Repository
         Task<TEntity> InsertAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);
-        Task<TEntity> InsertOrUpdateAsync(TEntity entity);
+
+        /// <summary>
+        /// 是否存在
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> IsExistedAsync(TPrimaryKey id);
+
+        /// <summary>
+        /// 是否存在
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> IsExistedAsync(Expression<Func<TEntity, bool>> predicate);
+
         Task DeleteAsync(TEntity entity);
 
         Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);

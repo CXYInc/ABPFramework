@@ -80,5 +80,19 @@ namespace CXY.CJS.Tests.Application.BatchInfoTest
             Assert.NotEmpty(result.Data);
         }
 
+        [Fact]
+        public async Task SaveBatchInfo_When_Found()
+        {
+           var result= await _service.SaveBatchInfo(new SaveBatchInfoInput
+            {
+                Id = Guid.NewGuid().ToString(),
+                Proxy = BatchInfoDatas.NoCompleteBatchInfo.Proxy,
+                ProxyUserId = BatchInfoDatas.NoCompleteBatchInfo.ProxyUserId,
+                Remark = ""
+            });
+            Assert.Equal(1,result.Code);
+        }
+        
+
     }
 }

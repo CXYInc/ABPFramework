@@ -11,6 +11,7 @@ namespace CXY.CJS.Tests.TestDatas
             CarCount = 1,
             CreationTime = DateTime.Now.AddDays(-1),
             Proxy = WebSiteDatas.SuperWebSite.WebSiteName,
+            ProxyUserId = WebSiteDatas.SuperWebSite.WebSiteMater,
             WebSiteId = WebSiteDatas.SuperWebSite.Id,
             Status = 0,
         };
@@ -21,6 +22,7 @@ namespace CXY.CJS.Tests.TestDatas
             CarCount = 1,
             CreationTime = DateTime.Now.AddDays(-1),
             Proxy = WebSiteDatas.SuperWebSite.WebSiteName,
+            ProxyUserId = WebSiteDatas.SuperWebSite.WebSiteMater,
             CompleteTime = DateTime.Now,
             WebSiteId = WebSiteDatas.SuperWebSite.Id,
             Status = 3,

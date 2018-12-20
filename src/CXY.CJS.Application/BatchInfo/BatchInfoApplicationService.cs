@@ -149,7 +149,7 @@ namespace CXY.CJS.Application
             {
                 timeStr = $"{time.Value:yyyyMMdd}";
             }
-            var id= $"{_session.WebSiteId}_{timeStr}";
+            var id = $"{_session.WebSiteId}_{timeStr}";
             var dataSeed = await _dataSeedRepository.FirstOrDefaultAsync(id);
             var isNewDataSeed = false;
             if (dataSeed == null)
@@ -158,7 +158,7 @@ namespace CXY.CJS.Application
                 dataSeed = new DataSeed
                 {
                     Id = id,
-                    SeedIndex =1
+                    SeedIndex = 1
                 };
             }
             var prefix = _webSiteConfig.WebSitePrefix;
@@ -175,7 +175,7 @@ namespace CXY.CJS.Application
             }
             var code = prefix + timeStr + dataSeed.SeedIndex.ToString().PadLeft(4, '0');//形如
             dataSeed.SeedIndex += 1;
-           
+
             if (isNewDataSeed)
             {
                 await _dataSeedRepository.InsertAsync(dataSeed);
@@ -185,6 +185,34 @@ namespace CXY.CJS.Application
                 await _dataSeedRepository.UpdateAsync(dataSeed);
             }
             return ApiResult.Success(code);
+        }
+
+        /// <summary>
+        /// 保存批次号
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ApiResult> SaveBatchInfo(SaveBatchInfoInput input)
+        {
+            if (await _entityRepository.IsExistedAsync(input.Id))
+            {
+                return new ApiResult().Error("批次已存在请重试");
+            }
+            var entity = new BatchInfo
+            {
+                WebSiteId = _session.WebSiteId,
+                Id = input.Id,
+                Remark = input.Remark,
+                ProxyUserId = input.ProxyUserId,
+                Proxy = input.Proxy,
+                CustomerId = _session.UserId,
+                Customer = _session.UserName,
+                Status = 0,
+                CreationTime = DateTime.Now,
+                CompleteTime = null
+            };
+            await _entityRepository.InsertAsync(entity);
+            return new ApiResult().Success();
         }
     }
 }

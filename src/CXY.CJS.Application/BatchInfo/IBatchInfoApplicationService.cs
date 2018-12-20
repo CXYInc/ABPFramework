@@ -41,5 +41,12 @@ namespace CXY.CJS.Application
         /// <param name="time"></param>
         /// <returns></returns>
         Task<ApiResult<string>> GetBatchNo(DateTime? time=null);
+
+        /// <summary>
+        /// 保存批次号
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ApiResult> SaveBatchInfo(SaveBatchInfoInput input);
     }
 }
