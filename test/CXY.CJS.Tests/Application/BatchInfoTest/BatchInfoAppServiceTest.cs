@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CXY.CJS.Application;
 using CXY.CJS.Application.Dtos;
+using CXY.CJS.Model;
 using CXY.CJS.Repository;
 using CXY.CJS.Tests.TestDatas;
 using Xunit;
@@ -59,8 +60,65 @@ namespace CXY.CJS.Tests.Application.BatchInfoTest
             {
                 Id = BatchInfoDatas.WillBeDelBatchInfo.Id
             });
-            Assert.Null(datas.Data.PageData.FirstOrDefault(i=>i.Id== BatchInfoDatas.WillBeDelBatchInfo.Id));
+            Assert.Null(datas.Data.PageData.FirstOrDefault(i => i.Id == BatchInfoDatas.WillBeDelBatchInfo.Id));
         }
+
+
+        public static readonly IEnumerable<object[]> GetBatchNoInput = new List<object[]>
+        {
+            new object[]{null},
+            new object[]{DateTime.Now}
+        };
+
+
+
+        [Theory]
+        [MemberData(nameof(GetBatchNoInput))]
+        public async Task GetBatchNo_When_Success(DateTime? time = null)
+        {
+            var result = await _service.GetBatchNo(time);
+
+            Assert.NotEmpty(result.Data);
+        }
+
+        [Fact]
+        public async Task SaveBatchInfo_When_Success()
+        {
+            var result = await _service.SaveBatchInfo(new SaveBatchInfoInput
+            {
+                Id = Guid.NewGuid().ToString(),
+                Proxy = BatchInfoDatas.NoCompleteBatchInfo.Proxy,
+                ProxyUserId = BatchInfoDatas.NoCompleteBatchInfo.ProxyUserId,
+                Remark = ""
+            });
+            Assert.Equal(1, result.Code);
+        }
+
+
+        public static  IEnumerable<object[]> ForcedCompletedInput = new List<object[]>
+        {
+            //new object[]{ Guid.NewGuid().ToString(), 0},
+            new object[]{ BatchInfoDatas.ProcessingBatchInfo.Id,1},
+            //new object[]{ BatchInfoDatas.NoCompleteBatchInfo.Id, 0},
+            //new object[]{ BatchInfoDatas.CompleteBatchInfo.Id,0},
+        };
+
+
+        [Fact]
+        public async Task ForcedCompleted_OnlyProcessing_Success()
+        {
+            var noExsitedReuslt = await _service.ForcedCompleted(Guid.NewGuid().ToString());
+            Assert.Equal(0, noExsitedReuslt.Code);
+
+            var notAllowResult = await _service.ForcedCompleted(BatchInfoDatas.NoCompleteBatchInfo.Id);
+            Assert.Equal(0, notAllowResult.Code);
+
+            var onlySuccessResult = await _service.ForcedCompleted(BatchInfoDatas.ProcessingBatchInfo.Id);
+            Assert.Equal(1, onlySuccessResult.Code);
+        }
+
+
+
 
     }
 }

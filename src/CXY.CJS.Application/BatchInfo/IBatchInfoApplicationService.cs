@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Abp.Application.Services;
@@ -25,6 +26,7 @@ namespace CXY.CJS.Application
         ///// 通过指定id获取BatchInfoListDto信息
         ///// </summary>
         //Task<BatchInfoListDto> GetById(EntityDto<string> input);
+        
 
         /// <summary>
         /// 删除批次
@@ -33,5 +35,26 @@ namespace CXY.CJS.Application
         /// <returns></returns>
         Task<ApiResult> Delete(string id);
 
+
+        /// <summary>
+        /// 获取批次号
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        Task<ApiResult<string>> GetBatchNo(DateTime? time=null);
+
+        /// <summary>
+        /// 保存批次号
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<ApiResult> SaveBatchInfo(SaveBatchInfoInput input);
+
+        /// <summary>
+        /// 强制完成
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ApiResult> ForcedCompleted(string id);
     }
 }

@@ -5,6 +5,13 @@ namespace CXY.CJS.Tests.Services
 {
     public class TestSystemSmtpSender : ISystemSmtpSender
     {
+        private SystemSmtpSenderConfiguration _configuration;
+
+        public TestSystemSmtpSender(SystemSmtpSenderConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public Task SendAsync(string to, string subject, string body, bool isBodyHtml = true)
         {
             return Task.CompletedTask;

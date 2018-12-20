@@ -16,6 +16,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
+using CXY.CJS.Core.Config;
+using CXY.CJS.Tests.Extensions;
 
 namespace CXY.CJS.Tests
 {
@@ -35,6 +37,7 @@ namespace CXY.CJS.Tests
 
             var services = new ServiceCollection()
                 .AddHttpClient()
+                .AddConfigModel(typeof(ConfigModelAttribute).Assembly)
                 .AddTransient<ISystemSmtpSender, TestSystemSmtpSender>()
                 .AddTransient<ILogger, ConsoleLogger>()
                 .AddSmsSender(new SmsSenderConfiguration

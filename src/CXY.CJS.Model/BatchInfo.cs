@@ -41,10 +41,16 @@ namespace CXY.CJS.Model
         public string Customer { get; set; }
 
         /// <summary>
-        /// 黄牛Id
+        /// 黄牛名字
         /// </summary>
         public string Proxy { get; set; }
+
+        /// <summary>
+        /// 黄牛Id
+        /// </summary>
         public string ProxyUserId { get; set; }
+
+        public string Remark { get; set; }
 
         /// <summary>
         /// 批次状态
