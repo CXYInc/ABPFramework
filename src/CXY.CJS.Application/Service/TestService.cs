@@ -14,6 +14,10 @@ using System.Collections.Generic;
 using Abp.Net.Mail;
 using Castle.Core.Logging;
 using CXY.CJS.Core.Utils.Mail;
+using Microsoft.AspNetCore.Http;
+using CXY.CJS.Core.NPOI;
+using System.Data;
+using System.Linq;
 
 namespace CXY.CJS.Application
 {
@@ -111,7 +115,7 @@ namespace CXY.CJS.Application
         [AllowAnonymous]
         public List<TestOutDto> EnumMapperTest()
         {
-          var list=  _testRepository.GetAll();
+            var list = _testRepository.GetAll();
 
             return _objectMapper.Map<List<TestOutDto>>(list);
         }
@@ -133,6 +137,19 @@ namespace CXY.CJS.Application
             _logger.Debug("Debug");
             _logger.Warn("Warn");
             _logger.Error("Error");
+        }
+
+        [HttpPost("UploadExcel")]
+        [AllowAnonymous]
+        public void UploadExcel(IFormFile[] file)
+        {
+            var ds = ImportExeclHelper.ReadExcel(file[0]);
+
+            var tempTable = ds.Tables["订单信息"];
+
+            var drs = tempTable.Rows.Cast<DataRow>().ToList();
+
+            //return drs;
         }
     }
 }

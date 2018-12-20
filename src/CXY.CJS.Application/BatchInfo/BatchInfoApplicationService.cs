@@ -96,7 +96,7 @@ namespace CXY.CJS.Application
                 where = where.And(i => input.Status.Contains(i.Status));
             }
 
-            var pageReuslt = await _entityRepository.QueryByWhereAsync<BatchInfoListDto>(input,null,where);
+            var pageReuslt = await _entityRepository.QueryByWhereAsync<BatchInfoListDto>(input, null, where);
             return pageReuslt.ToApiPageResult();
         }
 
@@ -121,19 +121,19 @@ namespace CXY.CJS.Application
         public async Task<ApiResult> Delete(string id)
         {
             var entity = await _entityRepository.FirstOrDefaultAsync(id);
-            if (entity==null)
+            if (entity == null)
             {
-                return  ApiResult.DataNotFound();
+                return ApiResult.DataNotFound();
             }
 
-            if (entity.Status==2)
+            if (entity.Status == 2)
             {
-                return  new ApiResult().Error("当前状态不允许删除");
+                return new ApiResult().Error("当前状态不允许删除");
             }
 
             entity.IsDeleted = true;
             await _entityRepository.UpdateAsync(entity);
-            return  new ApiResult().Success();
+            return new ApiResult().Success();
         }
 
 
