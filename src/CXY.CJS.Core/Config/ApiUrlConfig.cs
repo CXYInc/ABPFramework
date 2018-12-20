@@ -23,5 +23,7 @@ namespace CXY.CJS.Core.Config
         /// 违章查询接口地址
         /// </summary>
         public string QueryViolationApiUrl { get; set; }
+
+        public string QueryNewPriceApiUrl { get; set; }
     }
 }

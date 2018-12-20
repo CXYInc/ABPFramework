@@ -25,6 +25,7 @@ namespace CXY.CJS.Application
         ///// 通过指定id获取BatchInfoListDto信息
         ///// </summary>
         //Task<BatchInfoListDto> GetById(EntityDto<string> input);
+        
 
         /// <summary>
         /// 删除批次
