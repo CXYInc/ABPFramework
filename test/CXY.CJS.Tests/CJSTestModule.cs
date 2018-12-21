@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using CXY.CJS.Core.Config;
 using CXY.CJS.Tests.Extensions;
+using MediatR;
 
 namespace CXY.CJS.Tests
 {
@@ -37,6 +38,7 @@ namespace CXY.CJS.Tests
 
             var services = new ServiceCollection()
                 .AddHttpClient()
+                .AddTransient<IMediator, NoMediator>()
                 .AddConfigModel(typeof(ConfigModelAttribute).Assembly)
                 .AddTransient<ISystemSmtpSender, TestSystemSmtpSender>()
                 .AddTransient<ILogger, ConsoleLogger>()

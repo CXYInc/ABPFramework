@@ -11,6 +11,9 @@ namespace CXY.CJS.Core.Bus
 {
     public interface IBus
     {
+        Task Send(Command command,
+            CancellationToken cancellationToken = default(CancellationToken));
+
         Task<TResponse> Send<TResponse>(Command<TResponse> command,
             CancellationToken cancellationToken = default(CancellationToken));
 

@@ -6,6 +6,12 @@ using MediatR;
 
 namespace CXY.CJS.Core.Bus.Commands
 {
+    public interface ICommandHandler<TCommand> : IRequestHandler<TCommand>
+        where TCommand : Command
+    {
+
+    }
+
     public interface ICommandHandler<TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
         where TCommand : Command<TResponse>
     {

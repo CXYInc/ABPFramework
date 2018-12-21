@@ -54,5 +54,13 @@ namespace CXY.CJS.Tests.TestDatas
             Status = 1,
         };
 
+
+        public static  readonly  BatchInfo TestQuotePriceBatchInfo = new BatchInfo
+        {
+            Id = Guid.NewGuid().ToString(),
+            WebSiteId = WebSiteDatas.SuperWebSite.Id,
+            CreationTime = DateTime.Now,
+        };
+
     }
 }

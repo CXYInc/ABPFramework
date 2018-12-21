@@ -20,9 +20,9 @@ namespace CXY.CJS.Model
         public string CurrentBatchId { get; set; }
 
         /// <summary>
-        /// 报价ID
+        /// 违章Id
         /// </summary>
-        public string PriceId { get; set; }
+        public string ViolationId { get; set; }
 
         /// <summary>
         /// 车牌前缀
@@ -164,22 +164,18 @@ namespace CXY.CJS.Model
         /// 罚款修正Id
         /// </summary>
         public string ReviseId { get; set; }
-
         /// <summary>
         /// 价格来源地:车牌地/违章地
         /// </summary>
         public string PriceSource { get; set; }
-
         /// <summary>
         /// 违章原因
         /// </summary>
         public string ViolationReson { get; set; }
-
         /// <summary>
         /// 零售加价
         /// </summary>
         public decimal Difference { get; set; }
-
         /// <summary>
         /// 增值税
         /// </summary>
@@ -188,16 +184,43 @@ namespace CXY.CJS.Model
         /// 价格依据
         /// </summary>
         public string PriceBasis { get; set; }
-
+        /// <summary>
+        /// 驾驶证人
+        /// </summary>
+        public string DriverName { get; set; }
+        /// <summary>
+        /// 驾驶证手机号
+        /// </summary>
+        public string DriverPhone { get; set; }
+        /// <summary>
+        /// 驾驶证号
+        /// </summary>
+        public string DriverNo { get; set; }
+        /// <summary>
+        /// 跟单人
+        /// </summary>
+        public string TailUserId { get; set; }
+        public string TailUserName { get; set; }
+        /// <summary>
+        /// 价格来源
+        /// </summary>
+        public int PriceFrom { get; set; }
         /// <summary>
         /// 订单来源
         /// </summary>
         public int OrderSource { get; set; }
-
-
-        public string DriverName { get; set; }
-        public string DriverPhone { get; set; }
-        public string DriverNo { get; set; }
+        /// <summary>
+        /// 税率
+        /// </summary>
+        public decimal TaxRate { get; set; }
+        /// <summary>
+        /// 导入序号
+        /// </summary>
+        public int OrderByNo { get; set; }
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public int State { get; set; }
 
         /// <summary>
         /// 补款申请 0无需1需要2已补
@@ -219,37 +242,30 @@ namespace CXY.CJS.Model
         /// 已补充内容
         /// </summary>
         public string AlreadyMakeDataEnum { get; set; }
+
         /// <summary>
         /// 用户备注
         /// </summary>
         public string UserMemo { get; set; }
+        /// <summary>
+        /// 是否核销
+        /// </summary>
+        public int IsDestory { get; set; }
+
+        public string DestoryRemark { get; set; }
+
+        public string Apply { get; set; }
+
+        public string Applytime { get; set; }
+
+        public string PassId { get; set; }
+
+        public string PassMemo { get; set; }
 
         /// <summary>
-        /// 税率
+        /// 导出次数
         /// </summary>
-        public decimal TaxRate { get; set; }
-
-        /// <summary>
-        /// 价格来源
-        /// </summary>
-        public int PriceFrom { get; set; }
-
-        /// <summary>
-        /// 导入序号
-        /// </summary>
-        public int OrderByNo { get; set; }
-        /// <summary>
-        /// 跟单人
-        /// </summary>
-        public string TailUserId { get; set; }
-        public string TailUserName { get; set; }
-        /// <summary>
-        /// 违章Id
-        /// </summary>
-        public string ViolationId { get; set; }
-
-
-        public string Remark { get; set; }
+        public int ExportNum { get; set; }
         public string CreatorUserId { get; set; }
         public DateTime CreationTime { get; set; }
         public string LastModifierUserId { get; set; }
@@ -257,5 +273,6 @@ namespace CXY.CJS.Model
         public string DeleterUserId { get; set; }
         public DateTime? DeletionTime { get; set; }
         public bool IsDeleted { get; set; }
+        public string Remark { get; set; } 
     }
 }
