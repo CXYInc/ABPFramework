@@ -284,12 +284,12 @@ namespace CXY.CJS.Application
 
             if (input.MinWdye.HasValue)
             {
-                where = where.And(i => i.UserWallet.Wdye >= input.MinWdye);
+                where = where.And(i => i.UserWallet.Balance >= input.MinWdye);
             }
 
             if (input.MaxWdye.HasValue)
             {
-                where = where.And(i => i.UserWallet.Wdye <= input.MaxWdye);
+                where = where.And(i => i.UserWallet.Balance <= input.MaxWdye);
             }
             return where;
         }
