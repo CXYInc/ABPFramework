@@ -11,8 +11,12 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.AutoMapper;
+using CXY.CJS.Core.Bus;
+using CXY.CJS.Core.Extension;
 
 namespace CXY.CJS.Application
 {
@@ -23,13 +27,15 @@ namespace CXY.CJS.Application
         private readonly IRepository<BatchCar, string> _batchCarRepository;
         private readonly IRepository<BatchInfo, string> _batchInfoRepository;
         private readonly ICacheManager _cacheManager;
+        private readonly IBus _bus;
 
-        public PriceAppService(IOptionsSnapshot<ApiUrlConfig> apiConfig, HttpClientHelper httpClientHelper, ICacheManager cacheManager, IRepository<BatchCar, string> batchCarRepository, IRepository<BatchInfo, string> batchInfoRepository)
+        public PriceAppService(IOptionsSnapshot<ApiUrlConfig> apiConfig, HttpClientHelper httpClientHelper, ICacheManager cacheManager, IRepository<BatchCar, string> batchCarRepository, IRepository<BatchInfo, string> batchInfoRepository, IBus bus)
         {
             _apiConfig = apiConfig.Value;
             _httpClientHelper = httpClientHelper;
             _batchCarRepository = batchCarRepository;
             _batchInfoRepository = batchInfoRepository;
+            _bus = bus;
             _cacheManager = cacheManager;
         }
         [HttpPost]
@@ -78,7 +84,7 @@ namespace CXY.CJS.Application
             if (inputDto == null) return null;
 
             Hashtable postData = new Hashtable();
-            postData.Add("WebSiteId", AbpSession.WebSiteId);
+            postData.Add("WebSiteId", AbpSession.WebSiteId ?? inputDto.WebSiteId);
             postData.Add("UserId", inputDto.UserId);
             postData.Add("BatchAskPriceId", inputDto.BatchId); //批次号 
             postData.Add("CarId", inputDto.CarId);//批次车辆号 
@@ -125,19 +131,31 @@ namespace CXY.CJS.Application
             }
             var batchInfo = await _batchInfoRepository.GetAsync(input.BatchId);
             var carList = await _batchCarRepository.GetAllListAsync(o => o.WebSiteId == AbpSession.WebSiteId && o.BatchId == input.BatchId);
-
-            Hashtable data = new Hashtable
+            if (carList == null || carList.Count == 0)
             {
-                ["id"] = input.BatchId,
-                ["allCount"] = carList.Count,
-                ["completeCount"] = 0,
-                ["SearchSuccessCount"] = 0,
-                ["searchMessage"] = null,
-                ["successCount"] = 0
+                return ApiResult.DataNotFound();
+            }
+            // 缓存报价进度
+            var station = new QuotePriceStation
+            {
+                Id = input.BatchId,
+                AllCount = carList.Count,
+                CompleteCount = 0,
             };
-            await _cacheManager.GetCache(globalKey).SetAsync(globalKey, data);
+            await _cacheManager.GetCache(globalKey).SetAsync(globalKey, station);
 
+            // 后台处理
+            await Task.WhenAll(carList.Select(i =>
+            {
+                var priceRequest = batchInfo.MapTo<IndoorPriceInput>();
+                priceRequest.UserId = batchInfo.ProxyUserId;
+                priceRequest.WebSiteId = AbpSession.WebSiteId;
 
+                return _bus.Send(new IndoorPriceAndSaveCommand
+                {
+                    IndoorPrice = priceRequest
+                });
+            })).ConfigureAwait(false);
 
             return apiResult.Success();
         }

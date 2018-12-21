@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Abp.AutoMapper;
+using CXY.CJS.Model;
 
 namespace CXY.CJS.Application.Dtos
 {
+    [AutoMapTo(typeof(BatchInfo))]
     public class IndoorPriceInput
     {
-
+        public string WebSiteId { get; set; }
         public string BatchId { get; set; }
         public string UserId { get; set; }
 

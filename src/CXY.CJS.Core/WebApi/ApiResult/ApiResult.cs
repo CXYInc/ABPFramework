@@ -20,6 +20,8 @@
         /// Api响应消息
         /// </summary>
         public string Message { get; set; }
+
+        public bool IsSuccess => Code > 0;
     }
 
     /// <summary>
