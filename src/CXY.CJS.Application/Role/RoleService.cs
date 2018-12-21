@@ -18,7 +18,7 @@ namespace CXY.CJS.Application
     /// <summary>
     /// 角色服务
     /// </summary>
-    [AllowAnonymous]
+    [Authorize]
     public class RoleService : CJSAppServiceBase, IRoleService
     {
         private readonly IRoleRepository _roleRepository;
