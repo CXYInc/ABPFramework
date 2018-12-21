@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Abp.Domain.Entities;
+using System;
 
 namespace CXY.CJS.Model
 {
-    public  class UserScoreFlow
+    public class UserScoreFlow : Entity<string>
     {
         public string WebSiteId { get; set; }
         public string Jfid { get; set; }

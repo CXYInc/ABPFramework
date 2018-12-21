@@ -31,6 +31,7 @@ namespace CXY.CJS.Application
     public class BatchCarViolationService : CJSAppServiceBase, IBatchCarViolationService
     {
         private readonly IRepository<BatchCar, string> _entityRepository;
+        private readonly IRepository<BatchAskPriceViolationAgent, string> _violationRepository;
         private readonly IObjectMapper _objectMapper;
         private readonly ILogger _logger;
 
@@ -42,12 +43,14 @@ namespace CXY.CJS.Application
         /// <param name="entityRepository"></param>
         /// <param name="objectMapper"></param>
         /// <param name="logger"></param>
-        public BatchCarViolationService(IRepository<BatchCar, string> entityRepository, IObjectMapper objectMapper, ILogger logger, IUserServices userServices)
+        public BatchCarViolationService(IRepository<BatchCar, string> entityRepository, IObjectMapper objectMapper,
+            ILogger logger, IUserServices userServices, IRepository<BatchAskPriceViolationAgent, string> violationRepository)
         {
             _entityRepository = entityRepository;
             _objectMapper = objectMapper;
             _logger = logger;
             _userServices = userServices;
+            _violationRepository = violationRepository;
         }
 
         /// <summary>
@@ -224,6 +227,13 @@ namespace CXY.CJS.Application
 
             var t = _objectMapper.Map<List<BatchAskPriceViolationAgent>>(list);
 
+            t.ForEach(x =>
+            {
+                _violationRepository.Insert(x)
+                ;
+            });
+
+
             return new ApiResult<IList<ViolationErrorInfo>>().Success(errors);
         }
 
@@ -241,7 +251,9 @@ namespace CXY.CJS.Application
                 {
                     //查询代办人列表
                     var agentNames = batchTableModels.Where(x => !string.IsNullOrEmpty(x.代办方)).Select(x => x.代办方).ToList();
-                    var users = _userServices.GetUsersByKeys(agentNames, AbpSession.WebSiteId).Result;
+                    var users = new List<Users>();
+                    if (agentNames.Any())
+                        users = _userServices.GetUsersByKeys(agentNames, AbpSession.WebSiteId).Result;
                     var carTypeNames = EnumExtension.GetDescriptions<CarTypeEnum>();
                     #region 数据判断                  
                     foreach (var item in batchTableModels)
@@ -473,7 +485,7 @@ namespace CXY.CJS.Application
         /// 校验重复数据
         /// </summary>
         /// <param name="batchTableModelDtos"></param>
-        private void CheckRepeat(List<BatchTableModelDto> batchTableModelDtos)
+        private void CheckRepeat(List<BatchTableModelDto> batchTableModelDtos, string batchId)
         {
 
         }
