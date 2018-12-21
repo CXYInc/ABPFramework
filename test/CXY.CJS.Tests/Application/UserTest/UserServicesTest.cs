@@ -72,8 +72,8 @@ namespace CXY.CJS.Tests.Application.UserTest
                 Start = UserSysSettingDatas.SuperWebSiteLowerAgentSysSetting.ValidityDate.Value.AddYears(-1),
                 End = UserSysSettingDatas.SuperWebSiteLowerAgentSysSetting.ValidityDate.Value.AddDays(2),
                 Key = UserDatas.SuperWebSiteLowerAgent.LoginName,
-                MaxWdye = UserWalletDatas.SuperWebSiteLowerAgentUserWallet.Wdye,
-                MinWdye = UserWalletDatas.SuperWebSiteLowerAgentUserWallet.Wdye,
+                MaxWdye = UserWalletDatas.SuperWebSiteLowerAgentUserWallet.Balance,
+                MinWdye = UserWalletDatas.SuperWebSiteLowerAgentUserWallet.Balance,
                 PageSize = 10,
                 PageIndex = 1,
             });

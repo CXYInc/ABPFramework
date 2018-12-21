@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Abp.Domain.Entities;
 
 namespace CXY.CJS.Model
 {
-    public  class CarViolationDivision
+    public  class CarViolationDivision:Entity<string>
     {
         public string WebSiteId { get; set; }
-        public string Fcid { get; set; }
+        //public string Fcid { get; set; }
         public string ViolationId { get; set; }
         public string Fcuserid { get; set; }
         public decimal? Fc { get; set; }

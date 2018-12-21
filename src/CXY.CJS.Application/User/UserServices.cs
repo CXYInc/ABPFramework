@@ -58,7 +58,7 @@ namespace CXY.CJS.Application
         /// <param name="userEditInput"></param>
         /// <returns></returns>
         [HttpPost]
-     
+
         public async Task<ApiResult<string>> Create(CreateUserInput userEditInput)
         {
             var user = _objectMapper.Map<Users>(userEditInput);
@@ -130,7 +130,7 @@ namespace CXY.CJS.Application
                 return ApiResult.ValidationError<UserOutDto>();
             }
             var user = await _userRepository.FirstOrDefaultAsync(id);
-            if (user==null)
+            if (user == null)
             {
                 return ApiResult.DataNotFound<UserOutDto>();
             }
@@ -198,13 +198,13 @@ namespace CXY.CJS.Application
         public async Task<ApiResult> GrantOrRemoveUserRole(GrantOrRemoveUserRoleInput input)
         {
             var userTask = _userRepository.FirstOrDefaultAsync(input.UserId);
-            var roleTask =  _roleRepository.FirstOrDefaultAsync(input.RoleId);
+            var roleTask = _roleRepository.FirstOrDefaultAsync(input.RoleId);
             var userRoleTask =
                 _userRolerepository.FirstOrDefaultAsync(i => i.UserId == input.UserId && i.RoleId == input.RoleId);
 
             var (user, role, userRole) = await (userTask, roleTask, userRoleTask);
 
-            if (role==null)
+            if (role == null)
             {
                 return new ApiResult().Error("无法找到该角色！");
             }
@@ -215,26 +215,33 @@ namespace CXY.CJS.Application
             }
             if (input.IsGrant)
             {
-                if (userRole==null)
+                if (userRole == null)
                 {
                     await _userRolerepository.InsertAsync(new UserRole
                     {
                         CreationTime = DateTime.Now,
                         Id = Guid.NewGuid().ToString(),
                         UserId = input.UserId,
-                        RoleId =input.RoleId,
+                        RoleId = input.RoleId,
                         WebSiteId = user.WebSiteId
                     });
                 }
             }
             else
             {
-                if (userRole!=null)
+                if (userRole != null)
                 {
                     await _userRolerepository.DeleteAsync(userRole);
                 }
             }
             return new ApiResult().Success();
+        }
+
+        [NonAction]
+        public async Task<List<Users>> GetUsersByKeys(List<string> key, string websiteId)
+        {
+            return await _userRepository.GetAllListAsync(x => (key.Contains(x.Shortname) || key.Contains(x.LoginName))
+            && !x.IsDeleted && x.WebSiteId == websiteId);
         }
 
         #region 私有方法

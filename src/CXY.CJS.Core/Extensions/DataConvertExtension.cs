@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Abp.Extensions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
-namespace CXY.CJS.Core.Extension
+namespace CXY.CJS.Core.Extensions
 {
     /// <summary>
     /// 数据转换扩展
@@ -85,6 +86,33 @@ namespace CXY.CJS.Core.Extension
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// string转decimal
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static decimal? ToDecimal(this string obj, decimal? defaultValue = null)
+        {
+            if (obj.IsNullOrEmpty())
+                return defaultValue;
+
+            if (decimal.TryParse(obj, out decimal value))
+            {
+                return new decimal?(value);
+            }
+
+            return defaultValue;
+        }
+
+        public static int ToInt(this string obj, int defaultValue = 0)
+        {
+            if (obj.IsNullOrEmpty())
+                return defaultValue;
+
+            return Convert.ToInt32(obj);
         }
     }
 }

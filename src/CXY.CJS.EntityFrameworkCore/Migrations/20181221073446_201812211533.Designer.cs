@@ -4,14 +4,16 @@ using CXY.CJS.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CXY.CJS.Migrations
 {
     [DbContext(typeof(CJSDbContext))]
-    partial class CJSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181221073446_201812211533")]
+    partial class _201812211533
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,7 +150,7 @@ namespace CXY.CJS.Migrations
                     b.Property<bool>("IsChoose")
                         .HasMaxLength(32);
 
-                    b.Property<int>("IsLock")
+                    b.Property<string>("IsLock")
                         .HasMaxLength(32);
 
                     b.Property<bool>("IsNeedSearch")
@@ -214,32 +216,6 @@ namespace CXY.CJS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BatchInfos");
-                });
-
-            modelBuilder.Entity("CXY.CJS.Model.CarViolationDivision", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CalculationExpression");
-
-                    b.Property<decimal?>("Fc");
-
-                    b.Property<string>("Fctype");
-
-                    b.Property<string>("Fcuserid");
-
-                    b.Property<decimal?>("Gdlr");
-
-                    b.Property<int?>("ProfitType");
-
-                    b.Property<string>("ViolationId");
-
-                    b.Property<string>("WebSiteId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CarViolationDivisions");
                 });
 
             modelBuilder.Entity("CXY.CJS.Model.DataSeed", b =>
@@ -574,42 +550,6 @@ namespace CXY.CJS.Migrations
                     b.ToTable("UserScores");
                 });
 
-            modelBuilder.Entity("CXY.CJS.Model.UserScoreFlow", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime?>("Created");
-
-                    b.Property<string>("Dh");
-
-                    b.Property<int?>("FlowType");
-
-                    b.Property<string>("Fromuserid");
-
-                    b.Property<int?>("Fshjf");
-
-                    b.Property<int?>("Fsjf");
-
-                    b.Property<string>("Jfid");
-
-                    b.Property<string>("Jftx");
-
-                    b.Property<string>("Memo");
-
-                    b.Property<string>("Operator");
-
-                    b.Property<int>("PointsType");
-
-                    b.Property<int?>("State");
-
-                    b.Property<string>("WebSiteId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserScoreFlows");
-                });
-
             modelBuilder.Entity("CXY.CJS.Model.UserSysSetting", b =>
                 {
                     b.Property<string>("Id")
@@ -791,8 +731,6 @@ namespace CXY.CJS.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<decimal>("Balance");
-
                     b.Property<DateTime>("CreationTime");
 
                     b.Property<string>("CreatorUserId");
@@ -807,45 +745,15 @@ namespace CXY.CJS.Migrations
 
                     b.Property<string>("LastModifierUserId");
 
-                    b.Property<decimal>("OverdrftAmount");
+                    b.Property<decimal?>("Overdrftamount");
 
-                    b.Property<string>("UserId");
+                    b.Property<decimal?>("Wdye");
 
                     b.Property<string>("WebSiteId");
 
                     b.HasKey("Id");
 
                     b.ToTable("UserWallets");
-                });
-
-            modelBuilder.Entity("CXY.CJS.Model.UserWalletFlow", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<decimal>("AfterAmount");
-
-                    b.Property<decimal>("Amount");
-
-                    b.Property<string>("BillNo");
-
-                    b.Property<string>("CarNumber");
-
-                    b.Property<DateTime>("CreationTime");
-
-                    b.Property<string>("CreatorUserId");
-
-                    b.Property<int>("FlowType");
-
-                    b.Property<string>("Remark");
-
-                    b.Property<string>("TypeName");
-
-                    b.Property<string>("WebSiteId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserWalletFlows");
                 });
 
             modelBuilder.Entity("CXY.CJS.Model.WebSite", b =>

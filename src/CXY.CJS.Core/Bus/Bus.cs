@@ -16,6 +16,11 @@ namespace CXY.CJS.Core.Bus
             _mediator = mediator;
         }
 
+        public Task Send(Command command, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return _mediator.Send(command);
+        }
+
         public Task<TResponse> Send<TResponse>(Command<TResponse> command, CancellationToken cancellationToken = default(CancellationToken))
         {
             return _mediator.Send<TResponse>(command);

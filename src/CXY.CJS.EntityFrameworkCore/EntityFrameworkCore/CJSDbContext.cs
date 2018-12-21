@@ -47,6 +47,9 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public DbSet<BatchAskPriceViolationAgent> BatchAskPriceViolationAgents { get; set; }
 
+        public DbSet<CarViolationDivision> CarViolationDivisions { get; set; }
+
+
         public DbSet<DataSeed> DataSeeds { get; set; }
 
         #endregion

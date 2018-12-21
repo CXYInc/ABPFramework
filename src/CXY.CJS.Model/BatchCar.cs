@@ -37,7 +37,7 @@ namespace CXY.CJS.Model
         public bool PrivateCar { get; set; }
         public string CarType { get; set; }
         public string CarTypeName { get; set; }
-        public string IsLock { get; set; }
+        public int IsLock { get; set; }
         public string DriverName { get; set; }
         public string DriverPhone { get; set; }
         public string DriverLicense { get; set; }

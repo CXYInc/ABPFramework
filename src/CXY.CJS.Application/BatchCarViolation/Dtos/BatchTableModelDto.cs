@@ -34,6 +34,30 @@
 
         public string 代办成本 { get; set; }
 
+        /// <summary>
+        /// 客户ID
+        /// </summary>
+        public string AgentUserId { get; set; }
+
+        /// <summary>
+        /// 客户名称
+        /// </summary>
+        public string AgentUserName { get; set; }
+
+        /// <summary>
+        /// 站点ID
+        /// </summary>
+        public string WebSiteId { get; set; }
+
+        public string CreateUserId { get; set; }
+
+        public string CreateUserName { get; set; }
+
+        /// <summary>
+        /// 批次ID
+        /// </summary>
+        public string BatchId { get; set; }
+
         public string Uniquecode { get; set; }
 
         /// <summary>

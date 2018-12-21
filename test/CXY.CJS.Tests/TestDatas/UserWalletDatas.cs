@@ -8,7 +8,7 @@ namespace CXY.CJS.Tests.TestDatas
         public static readonly UserWallet SuperWebSiteLowerAgentUserWallet = new UserWallet
         {
             Id = UserDatas.SuperWebSiteLowerAgent.Id,
-            Wdye=100,
+            Balance=100,
         };
     }
 }
