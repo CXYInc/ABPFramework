@@ -5,6 +5,9 @@ using System;
 
 namespace CXY.CJS.Model
 {
+    /// <summary>
+    /// 角色菜单关系绑定表
+    /// </summary>
     public class RoleMenu : Entity<string>, IHasCreationTime
     {
         public string RoleId { get; set; }
