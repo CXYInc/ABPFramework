@@ -13,6 +13,7 @@ using CXY.CJS.Core.Extensions;
 using CXY.CJS.Core.NPOI;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
+using CXY.CJS.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,9 +31,9 @@ namespace CXY.CJS.Application
     [AllowAnonymous]
     public class BatchCarViolationService : CJSAppServiceBase, IBatchCarViolationService
     {
-        private readonly IRepository<BatchCar, string> _entityRepository;
-        private readonly IRepository<BatchAskPriceViolationAgent, string> _violationRepository;
-        private readonly IRepository<BatchInfo, string> _batchRepository;
+        private readonly IBatchCarRepository _batchCarRepository;
+        private readonly IBatchAskPriceViolationAgentRepository _violationRepository;
+        private readonly IBatchInfoRepository _batchRepository;
         private readonly IObjectMapper _objectMapper;
         private readonly ILogger _logger;
 
@@ -44,11 +45,10 @@ namespace CXY.CJS.Application
         /// <param name="entityRepository"></param>
         /// <param name="objectMapper"></param>
         /// <param name="logger"></param>
-        public BatchCarViolationService(IRepository<BatchCar, string> entityRepository, IObjectMapper objectMapper,
-            ILogger logger, IUserServices userServices, IRepository<BatchInfo, string> batchRepository,
-            IRepository<BatchAskPriceViolationAgent, string> violationRepository)
+        public BatchCarViolationService(IBatchCarRepository entityRepository, IUserServices userServices, IBatchInfoRepository batchRepository,
+            IBatchAskPriceViolationAgentRepository violationRepository, ILogger logger, IObjectMapper objectMapper)
         {
-            _entityRepository = entityRepository;
+            _batchCarRepository = entityRepository;
             _objectMapper = objectMapper;
             _logger = logger;
             _userServices = userServices;
@@ -65,7 +65,7 @@ namespace CXY.CJS.Application
         public async Task<PagedResultDto<BatchCarListDto>> GetPaged(GetBatchCarsInput input)
         {
 
-            var query = _entityRepository.GetAll();
+            var query = _batchCarRepository.GetAll();
             // TODO:根据传入的参数添加过滤条件
 
 
@@ -85,7 +85,7 @@ namespace CXY.CJS.Application
         [HttpPost]
         public async Task<BatchCarListDto> GetById(EntityDto<string> input)
         {
-            var entity = await _entityRepository.GetAsync(input.Id);
+            var entity = await _batchCarRepository.FirstOrDefaultAsync(x => x.Id == input.Id);
 
             return entity.MapTo<BatchCarListDto>();
         }
@@ -103,7 +103,7 @@ namespace CXY.CJS.Application
 
             if (!string.IsNullOrEmpty(input.Id))
             {
-                var entity = await _entityRepository.GetAsync(input.Id);
+                var entity = await _batchCarRepository.FirstOrDefaultAsync(x => x.Id == input.Id);
 
                 editDto = entity.MapTo<BatchCarEditDto>();
 
@@ -149,7 +149,7 @@ namespace CXY.CJS.Application
             var entity = input.MapTo<BatchCar>();
 
 
-            entity = await _entityRepository.InsertAsync(entity);
+            entity = await _batchCarRepository.InsertAsync(entity);
             return entity.MapTo<BatchCarEditDto>();
         }
 
@@ -161,11 +161,11 @@ namespace CXY.CJS.Application
         {
             //TODO:更新前的逻辑判断，是否允许更新
 
-            var entity = await _entityRepository.GetAsync(input.Id);
+            var entity = await _batchCarRepository.FirstOrDefaultAsync(x => x.Id == input.Id);
             input.MapTo(entity);
 
             // ObjectMapper.Map(input, entity);
-            await _entityRepository.UpdateAsync(entity);
+            await _batchCarRepository.UpdateAsync(entity);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace CXY.CJS.Application
         public async Task Delete(EntityDto<string> input)
         {
             //TODO:删除前的逻辑判断，是否允许删除
-            await _entityRepository.DeleteAsync(input.Id);
+            await _batchCarRepository.DeleteAsync(input.Id);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace CXY.CJS.Application
         public async Task BatchDelete(List<string> input)
         {
             // TODO:批量删除前的逻辑判断，是否允许删除
-            await _entityRepository.DeleteAsync(s => input.Contains(s.Id));
+            await _batchCarRepository.DeleteAsync(s => input.Contains(s.Id));
         }
 
         ///// <summary>
@@ -232,7 +232,7 @@ namespace CXY.CJS.Application
 
             var t = _objectMapper.Map<List<BatchAskPriceViolationAgent>>(list);
 
-            // t.ForEach(x => { _violationRepository.Insert(x); });
+            await InsertOrUpdateViolations(importViolationDto.BatchId, list);
 
             return new ApiResult<IList<ViolationErrorInfo>>().Success(errors);
         }
@@ -249,7 +249,9 @@ namespace CXY.CJS.Application
 
             var batchInfo = await _batchRepository.FirstOrDefaultAsync(x => x.Id == batchId);
 
-            var oldBatchCars = await _entityRepository.GetAllListAsync(x => x.BatchId == batchId);
+            if (batchId == null) return;
+
+            var oldBatchCars = await _batchCarRepository.GetAllListAsync(x => x.BatchId == batchId);
 
             var oldBatchViolations = await _violationRepository.GetAllListAsync(x => x.BatchId == batchId);
 
@@ -283,8 +285,11 @@ namespace CXY.CJS.Application
                 }
                 else
                 {
-                    _objectMapper.Map(item, oldCar);
-                    updateCarList.Add(oldCar);
+                    if (!updateCarList.Any(x => x.CarNumber == item.车牌号))
+                    {
+                        _objectMapper.Map(item, oldCar);
+                        updateCarList.Add(oldCar);
+                    }
                 }
 
                 var oldViolations = oldBatchViolations.Where(x => x.OrderByNo == item.序号.ToInt() && x.Uniquecode == item.Uniquecode).ToList();
@@ -368,43 +373,15 @@ namespace CXY.CJS.Application
                 batchInfo.CompleteTime = null;
             }
 
-            //写入数据
-            //using (var connection = (SqlConnection)WEI.Framework.Core.DataAccess.DbHelper.CreateConnection())
-            //{
-            //    SqlTransaction tran = null;
-            //    try
-            //    {
-            //        connection.Open();
-            //        tran = connection.BeginTransaction();
+            //车辆
+            await _batchCarRepository.BulkInsertAsync(addCarList);
+            await _batchCarRepository.BulkUpdateAsync(updateCarList);
 
-            //        //车辆
-            //        SqlBulkCopyHelper.BulkInsertData(addCarList, connection, tran);
-            //        SqlBulkCopyHelper.BulkUpdateData(updateCarList, BatchCarEntity.ColId, connection, tran);
+            //违章
+            await _violationRepository.BulkInsertAsync(addViolationList);
+            await _violationRepository.BulkUpdateAsync(updateViolationList);
 
-            //        //违章
-            //        SqlBulkCopyHelper.BulkInsertData(addViolationList, connection, tran);
-            //        SqlBulkCopyHelper.BulkUpdateData(updateViolationList, BatchAskPriceViolation_AgentEntity.ColId, connection, tran);
-
-            //        //批次列表
-            //        var batchList = new List<BatchInfoEntity> { oldBatchAskPriceEntity };
-            //        SqlBulkCopyHelper.BulkUpdateData(batchList, BatchInfoEntity.ColId, connection, tran);
-
-            //        tran.Commit();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        if (tran != null)
-            //            tran.Rollback();
-            //        throw ex;
-            //    }
-            //    finally
-            //    {
-            //        connection.Close();
-            //    }
-            //}
-
-
-            await Task.CompletedTask;
+            await _batchRepository.UpdateAsync(batchInfo);
         }
 
         private async Task<List<ViolationErrorInfo>> CheckError(List<BatchTableModelDto> batchTableModels)

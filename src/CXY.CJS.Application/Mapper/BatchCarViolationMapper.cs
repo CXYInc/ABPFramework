@@ -24,19 +24,25 @@ namespace CXY.CJS.Application.Mapper
 
         private void ViolationForMember(IMappingExpression<BatchTableModelDto, BatchAskPriceViolationAgent> mappingExpression)
         {
-            mappingExpression.ForMember(x => x.Id, map => map.ResolveUsing((s, d) =>
+            mappingExpression.ForMember(x => x.State, map => map.ResolveUsing((s, d) =>
             {
                 if (d.Id.IsNullOrWhiteSpace())
-                    return Guid.NewGuid().ToString("N");
-                return d.Id;
+                    return (int)ViolationStateEnum.WaitHandle;
+                return d.State;
             }))
+                .ForMember(x => x.Id, map => map.ResolveUsing((s, d) =>
+                {
+                    if (d.Id.IsNullOrWhiteSpace())
+                        return Guid.NewGuid().ToString("N");
+                    return d.Id;
+                }))
                 .ForMember(x => x.AgentPrice, map => map.MapFrom(x => x.代办成本.ToDecimal(0)))
                 .ForMember(x => x.AgentUserId, map => map.MapFrom(x => x.AgentUserId))
                 .ForMember(x => x.AgentUserName, map => map.MapFrom(x => x.AgentUserName))
                 .ForMember(x => x.Archive, map => map.MapFrom(x => x.文书号))
                 .ForMember(x => x.BatchId, map => map.ResolveUsing((s, d) =>
                 {
-                    if (d.Id.IsNullOrWhiteSpace())
+                    if (d.BatchId.IsNullOrWhiteSpace())
                         return s.BatchId;
                     return d.BatchId;
                 }))
@@ -63,20 +69,14 @@ namespace CXY.CJS.Application.Mapper
                     return CommonHelper.GetLocationId(x.违章城市);
                 }))
                 .ForMember(x => x.Location, map => map.MapFrom(x => x.违章地点))
-                .ForMember(x => x.LocationName, map => map.ResolveUsing(x => x.违章城市))
+                .ForMember(x => x.LocationName, map => map.MapFrom(x => x.违章城市))
                 .ForMember(x => x.OrderByNo, map => map.MapFrom(x => x.序号))
                 .ForMember(x => x.Reason, map => map.MapFrom(x => x.违章原因))
-                .ForMember(x => x.State, map => map.ResolveUsing((s, d) =>
-                            {
-                                if (d.Id.IsNullOrWhiteSpace())
-                                    return (int)ViolationStateEnum.WaitHandle;
-                                return d.State;
-                            }))
                 .ForMember(x => x.Status, map => map.UseValue((int)ViolationStatusEnum.CanProcess))
                 .ForMember(x => x.DataStatus, map => map.MapFrom(x => x.DataStatus))
                 .ForMember(x => x.WebSiteId, map => map.ResolveUsing((s, d) =>
                 {
-                    if (d.Id.IsNullOrWhiteSpace())
+                    if (d.WebSiteId.IsNullOrWhiteSpace())
                         return s.WebSiteId;
                     return d.WebSiteId;
                 }))
@@ -122,13 +122,13 @@ namespace CXY.CJS.Application.Mapper
                 .ForMember(x => x.BatchId, map => map.ResolveUsing((s, d) =>
                 {
                     if (d.BatchId.IsNullOrWhiteSpace())
-                        return Guid.NewGuid().ToString("N");
+                        return s.BatchId;
                     return d.Id;
                 }))
                 .ForMember(x => x.WebSiteId, map => map.ResolveUsing((s, d) =>
                 {
                     if (d.WebSiteId.IsNullOrWhiteSpace())
-                        return Guid.NewGuid().ToString("N");
+                        return s.WebSiteId;
                     return d.WebSiteId;
                 }))
                 .ForMember(x => x.CreationTime, map => map.ResolveUsing((s, d) =>

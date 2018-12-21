@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using EFCore.BulkExtensions;
 
 namespace CXY.CJS.EntityFrameworkCore
 {
@@ -32,6 +34,49 @@ namespace CXY.CJS.EntityFrameworkCore
             var count = await GetAll().Where(predicate).CountAsync();
             return count > 0;
         }
+
+        #region Bulk
+        public void BulkInsert<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            Context.BulkInsert(entities, bulkConfig, progress);
+        }
+
+        public void BulkInsertOrUpdate<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            Context.BulkInsertOrUpdate(entities, bulkConfig, progress);
+        }
+
+        public void BulkUpdate<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            Context.BulkUpdate(entities, bulkConfig, progress);
+        }
+
+        public void BulkDelete<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            Context.BulkDelete(entities, bulkConfig, progress);
+        }
+
+        // Async methods
+        public async Task BulkInsertAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            await Context.BulkInsertAsync(entities, bulkConfig, progress);
+        }
+
+        public async Task BulkInsertOrUpdateAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            await Context.BulkInsertOrUpdateAsync(entities, bulkConfig, progress);
+        }
+
+        public async Task BulkUpdateAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            await Context.BulkUpdateAsync(entities, bulkConfig, progress);
+        }
+
+        public async Task BulkDeleteAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        {
+            await Context.BulkDeleteAsync(entities, bulkConfig, progress);
+        }
+        #endregion
     }
 
     public class CJSRepositoryBase<TEntity> : CJSRepositoryBase<TEntity, int> where TEntity : class, IEntity<int>

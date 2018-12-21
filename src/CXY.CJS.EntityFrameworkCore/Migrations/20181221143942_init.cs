@@ -1,12 +1,151 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CXY.CJS.Migrations
+namespace CXY.CJS.EntityFrameworkCore.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "BatchAskPriceViolationAgents",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    BatchId = table.Column<string>(nullable: true),
+                    CarId = table.Column<string>(nullable: true),
+                    State = table.Column<int>(nullable: false),
+                    ViolationTime = table.Column<DateTime>(nullable: false),
+                    Archive = table.Column<string>(nullable: true),
+                    LocationId = table.Column<string>(nullable: true),
+                    LocationName = table.Column<string>(nullable: true),
+                    Location = table.Column<string>(nullable: true),
+                    Reason = table.Column<string>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
+                    Degree = table.Column<int>(nullable: false),
+                    Count = table.Column<decimal>(nullable: false),
+                    Latefine = table.Column<decimal>(nullable: false),
+                    Poundage = table.Column<decimal>(nullable: true),
+                    FirstPoundage = table.Column<decimal>(nullable: true),
+                    IsAskPrice = table.Column<bool>(nullable: false),
+                    Uniquecode = table.Column<string>(nullable: true),
+                    LastTimePoundage = table.Column<decimal>(nullable: true),
+                    Status = table.Column<int>(nullable: true),
+                    FavorablePriceInfo = table.Column<string>(nullable: true),
+                    OrderJsonSelectId = table.Column<string>(nullable: true),
+                    CanProcess = table.Column<int>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
+                    Vat = table.Column<decimal>(nullable: true),
+                    LockPoundage = table.Column<decimal>(nullable: true),
+                    CommonPoundage = table.Column<decimal>(nullable: true),
+                    Ddbjid = table.Column<string>(nullable: true),
+                    PriceFrom = table.Column<int>(nullable: true),
+                    OrderByNo = table.Column<int>(nullable: true),
+                    AgentUserId = table.Column<string>(nullable: true),
+                    AgentPrice = table.Column<decimal>(nullable: true),
+                    AgentUserName = table.Column<string>(nullable: true),
+                    CanprocessMsg = table.Column<string>(nullable: true),
+                    DataStatus = table.Column<int>(nullable: true),
+                    ViolationType = table.Column<int>(nullable: true),
+                    Remarks = table.Column<string>(nullable: true),
+                    ProxyRemarks = table.Column<string>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BatchAskPriceViolationAgents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BatchCars",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    BatchId = table.Column<string>(nullable: true),
+                    WebSiteId = table.Column<string>(maxLength: 6, nullable: true),
+                    CarNumber = table.Column<string>(maxLength: 32, nullable: true),
+                    CarCode = table.Column<string>(maxLength: 32, nullable: true),
+                    EngineNo = table.Column<string>(maxLength: 32, nullable: true),
+                    PrivateCar = table.Column<bool>(maxLength: 32, nullable: false),
+                    CarType = table.Column<string>(maxLength: 32, nullable: true),
+                    CarTypeName = table.Column<string>(maxLength: 32, nullable: true),
+                    IsLock = table.Column<int>(maxLength: 32, nullable: false),
+                    DriverName = table.Column<string>(maxLength: 32, nullable: true),
+                    DriverPhone = table.Column<string>(maxLength: 32, nullable: true),
+                    DriverLicense = table.Column<string>(maxLength: 32, nullable: true),
+                    IsNeedSearch = table.Column<bool>(maxLength: 32, nullable: false),
+                    HaveLockRule = table.Column<bool>(maxLength: 32, nullable: false),
+                    IsChoose = table.Column<bool>(maxLength: 32, nullable: false),
+                    ViolationMsg = table.Column<string>(maxLength: 32, nullable: true),
+                    CreationTime = table.Column<DateTime>(maxLength: 32, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BatchCars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BatchInfos",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    CarCount = table.Column<int>(nullable: false),
+                    ViolationCount = table.Column<int>(nullable: false),
+                    NeedPriceCount = table.Column<int>(nullable: false),
+                    HadPriceCount = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<string>(nullable: true),
+                    Customer = table.Column<string>(nullable: true),
+                    Proxy = table.Column<string>(nullable: true),
+                    ProxyUserId = table.Column<string>(nullable: true),
+                    Remark = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false),
+                    CompleteTime = table.Column<DateTime>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    LastModificationTime = table.Column<DateTime>(nullable: true),
+                    DeletionTime = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    CreatorUserId = table.Column<string>(nullable: true),
+                    LastModifierUserId = table.Column<string>(nullable: true),
+                    DeleterUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BatchInfos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CarViolationDivisions",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    ViolationId = table.Column<string>(nullable: true),
+                    Fcuserid = table.Column<string>(nullable: true),
+                    Fc = table.Column<decimal>(nullable: true),
+                    Gdlr = table.Column<decimal>(nullable: true),
+                    Fctype = table.Column<string>(nullable: true),
+                    CalculationExpression = table.Column<string>(nullable: true),
+                    ProfitType = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarViolationDivisions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DataSeeds",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    SeedIndex = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DataSeeds", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Menus",
                 columns: table => new
@@ -29,6 +168,29 @@ namespace CXY.CJS.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notices",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    NoticeType = table.Column<int>(nullable: false),
+                    NoticeTitle = table.Column<string>(nullable: true),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    FromUserId = table.Column<string>(nullable: true),
+                    NoticeContent = table.Column<string>(nullable: true),
+                    Staus = table.Column<int>(nullable: false),
+                    ValidityDate = table.Column<DateTime>(nullable: false),
+                    IsRead = table.Column<int>(nullable: true),
+                    FromUserName = table.Column<string>(nullable: true),
+                    Operator = table.Column<string>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notices", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,6 +227,28 @@ namespace CXY.CJS.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SmsSendRecords",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    Telephone = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    SendTime = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<bool>(nullable: false),
+                    Result = table.Column<string>(nullable: true),
+                    SmsType = table.Column<int>(nullable: false),
+                    ToUserId = table.Column<string>(nullable: true),
+                    Operator = table.Column<string>(nullable: true),
+                    BatchId = table.Column<string>(nullable: true),
+                    BatchTime = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SmsSendRecords", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,6 +340,30 @@ namespace CXY.CJS.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserScoreFlows",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    Jfid = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: true),
+                    Fsjf = table.Column<int>(nullable: true),
+                    Fshjf = table.Column<int>(nullable: true),
+                    Memo = table.Column<string>(nullable: true),
+                    Jftx = table.Column<string>(nullable: true),
+                    State = table.Column<int>(nullable: true),
+                    Fromuserid = table.Column<string>(nullable: true),
+                    Dh = table.Column<string>(nullable: true),
+                    PointsType = table.Column<int>(nullable: false),
+                    FlowType = table.Column<int>(nullable: true),
+                    Operator = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserScoreFlows", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -276,14 +484,35 @@ namespace CXY.CJS.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserWalletFlows",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    WebSiteId = table.Column<string>(nullable: true),
+                    FlowType = table.Column<int>(nullable: false),
+                    TypeName = table.Column<string>(nullable: true),
+                    Amount = table.Column<decimal>(nullable: false),
+                    AfterAmount = table.Column<decimal>(nullable: false),
+                    CarNumber = table.Column<string>(nullable: true),
+                    BillNo = table.Column<string>(nullable: true),
+                    Remark = table.Column<string>(nullable: true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserWalletFlows", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserWallets",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     WebSiteId = table.Column<string>(nullable: true),
-                    Userid = table.Column<string>(nullable: true),
-                    Wdye = table.Column<decimal>(nullable: true),
-                    Overdrftamount = table.Column<decimal>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: false),
+                    OverdrftAmount = table.Column<decimal>(nullable: false),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<string>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -405,13 +634,34 @@ namespace CXY.CJS.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BatchAskPriceViolationAgents");
+
+            migrationBuilder.DropTable(
+                name: "BatchCars");
+
+            migrationBuilder.DropTable(
+                name: "BatchInfos");
+
+            migrationBuilder.DropTable(
+                name: "CarViolationDivisions");
+
+            migrationBuilder.DropTable(
+                name: "DataSeeds");
+
+            migrationBuilder.DropTable(
                 name: "Menus");
+
+            migrationBuilder.DropTable(
+                name: "Notices");
 
             migrationBuilder.DropTable(
                 name: "RoleMenus");
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "SmsSendRecords");
 
             migrationBuilder.DropTable(
                 name: "Tests");
@@ -426,10 +676,16 @@ namespace CXY.CJS.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
+                name: "UserScoreFlows");
+
+            migrationBuilder.DropTable(
                 name: "UserScores");
 
             migrationBuilder.DropTable(
                 name: "UserSysSettings");
+
+            migrationBuilder.DropTable(
+                name: "UserWalletFlows");
 
             migrationBuilder.DropTable(
                 name: "UserWallets");

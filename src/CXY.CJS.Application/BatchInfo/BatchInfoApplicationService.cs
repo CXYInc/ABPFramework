@@ -19,7 +19,7 @@ namespace CXY.CJS.Application
     /// <summary>
     /// BatchInfo应用层服务的接口实现方法  
     ///</summary>
-    [Authorize]
+    [AllowAnonymous]
     public class BatchInfoAppService : CJSAppServiceBase, IBatchInfoAppService
     {
         private readonly IBatchInfoRepository _entityRepository;

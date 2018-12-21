@@ -1,17 +1,16 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using Abp.Domain.Repositories;
 using Abp.ObjectMapping;
 using CXY.CJS.Application.Dtos;
+using CXY.CJS.Core.Extensions;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
-using CXY.CJS.Repository.SeedWork;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Linq;
-using CXY.CJS.Core.Extensions;
 using System.Threading.Tasks;
-using Abp.Domain.Repositories;
-using Microsoft.AspNetCore.Authorization;
-using Abp.AutoMapper;
 
 namespace CXY.CJS.Application
 {
@@ -29,7 +28,7 @@ namespace CXY.CJS.Application
 
         private readonly IObjectMapper _objectMapper;
 
-        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper, IRepository<RoleMenu, string> roleMenuRepository, IUserRepository uerRepository, IRepository<UserRole, string> userRoleRepository, IRepository<Model.Menu, string> menuRepository)
+        public RoleService(IRoleRepository roleRepository, IObjectMapper objectMapper, IRepository<RoleMenu, string> roleMenuRepository, IUserRepository uerRepository, IRepository<UserRole, string> userRoleRepository, IRepository<Menu, string> menuRepository)
         {
             _roleRepository = roleRepository;
             _roleMenuRepository = roleMenuRepository;

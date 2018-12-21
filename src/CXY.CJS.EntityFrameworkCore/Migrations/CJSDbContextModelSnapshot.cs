@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CXY.CJS.Migrations
+namespace CXY.CJS.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(CJSDbContext))]
     partial class CJSDbContextModelSnapshot : ModelSnapshot
