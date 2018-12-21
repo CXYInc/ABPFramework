@@ -1,28 +1,25 @@
 ﻿using System;
-using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
-using Abp.Timing;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace CXY.CJS.Model
+namespace CXY.CJS.Application.Dtos
 {
-    /// <summary>
-    /// 用户钱包(余额)
-    /// </summary>
-    public class UserWallet : Entity<string>
+    public class UserWalletListDto
     {
+        [MaxLength(12, ErrorMessage = "WebSiteId超出最大长度")]
+        [MinLength(5, ErrorMessage = "WebSiteId小于最小长度")]
+        [Required(ErrorMessage = "WebSiteId不能为空")]
         public string WebSiteId { get; set; }
 
+        [Required(ErrorMessage = "UserId不能为空")]
         public string UserId { get; set; }
 
-        /// <summary>
-        /// 当前余额
-        /// </summary>
+        [Required]
         public decimal Balance { get; set; }
 
-        /// <summary>
-        /// 透支额度
-        /// </summary>
-        public decimal OverdrftAmount { get; set; }
+        [Required]
+        public decimal Overdrftamount { get; set; }
 
 
         public DateTime CreationTime { get; set; }
@@ -32,11 +29,5 @@ namespace CXY.CJS.Model
         public bool IsDeleted { get; set; }
         public DateTime? DeletionTime { get; set; }
         public string DeleterUserId { get; set; }
-
-        public UserWallet()
-        {
-            CreationTime = Clock.Now;
-            IsDeleted = false;
-        }
     }
 }

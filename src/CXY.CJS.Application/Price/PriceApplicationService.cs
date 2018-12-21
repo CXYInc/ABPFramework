@@ -137,7 +137,12 @@ namespace CXY.CJS.Application
             };
             await _cacheManager.GetCache(globalKey).SetAsync(globalKey, data);
 
+            if (carList == null)
+            {
+                return apiResult.Error("没有需要报价的车辆");
+            }
 
+            //TODO ：查报价 保存报价
 
             return apiResult.Success();
         }
