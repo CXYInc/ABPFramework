@@ -147,10 +147,9 @@ namespace CXY.CJS.Application
             // 后台处理
             await Task.WhenAll(carList.Select(i =>
             {
-                var priceRequest = batchInfo.MapTo<IndoorPriceInput>();
+                var priceRequest = i.MapTo<IndoorPriceInput>();
                 priceRequest.UserId = batchInfo.ProxyUserId;
                 priceRequest.WebSiteId = AbpSession.WebSiteId;
-
                 return _bus.Send(new IndoorPriceAndSaveCommand
                 {
                     IndoorPrice = priceRequest

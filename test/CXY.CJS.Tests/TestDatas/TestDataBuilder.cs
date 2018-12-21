@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CXY.CJS.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace CXY.CJS.Tests.TestDatas
 
             InitRoles();
             InitBatchInfos();
+            InitBatchCars();
 
             await Task.WhenAll(_actionTasks);
         }
@@ -86,7 +88,12 @@ namespace CXY.CJS.Tests.TestDatas
             AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.ProcessingBatchInfo));
             AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.CompleteBatchInfo));
             AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.WillBeDelBatchInfo));
-            
+            AddTask(_context.BatchInfos.AddAsync(BatchInfoDatas.TestQuotePriceBatchInfo));
+        }
+
+        private void InitBatchCars()
+        {
+            AddTask(_context.BatchCars.AddAsync(BatchCarDatas.TestQuotePriceBatchCarDatas));
         }
     }
 }

@@ -11,5 +11,7 @@ namespace CXY.CJS.Application
     public interface IPriceAppService : IApplicationService
     {
         Task<ApiResult<List<PriceResultOutput>>> IndoorPriceBatch(IndoorPriceInput inputDto);
+
+        Task<ApiResult> QuotePrice(PriceInput input);
     }
 }

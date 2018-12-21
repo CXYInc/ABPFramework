@@ -6,7 +6,6 @@ using CXY.CJS.Model;
 
 namespace CXY.CJS.Application.Dtos
 {
-    [AutoMapTo(typeof(BatchInfo))]
     public class IndoorPriceInput
     {
         public string WebSiteId { get; set; }
