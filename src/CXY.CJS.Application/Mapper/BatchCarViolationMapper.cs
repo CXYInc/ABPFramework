@@ -30,6 +30,12 @@ namespace CXY.CJS.Application.Mapper
                     return (int)ViolationStateEnum.WaitHandle;
                 return d.State;
             }))
+                .ForMember(x => x.CreationTime, map => map.ResolveUsing((s, d) =>
+                {
+                    if (d.Id.IsNullOrWhiteSpace())
+                        return DateTime.Now;
+                    return d.CreationTime;
+                }))
                 .ForMember(x => x.Id, map => map.ResolveUsing((s, d) =>
                 {
                     if (d.Id.IsNullOrWhiteSpace())
@@ -79,18 +85,23 @@ namespace CXY.CJS.Application.Mapper
                     if (d.WebSiteId.IsNullOrWhiteSpace())
                         return s.WebSiteId;
                     return d.WebSiteId;
-                }))
-                .ForMember(x => x.CreationTime, map => map.ResolveUsing(s => { return DateTime.Now; }));
+                }));
         }
 
         private void CarForMember(IMappingExpression<BatchTableModelDto, BatchCar> mappingExpression)
         {
-            mappingExpression.ForMember(x => x.Id, map => map.ResolveUsing((s, d) =>
-            {
-                if (d.Id.IsNullOrWhiteSpace())
-                    return Guid.NewGuid().ToString("N");
-                return d.Id;
-            }))
+            mappingExpression.ForMember(x => x.CreationTime, map => map.ResolveUsing((s, d) =>
+                {
+                    if (d.Id.IsNullOrWhiteSpace())
+                        return DateTime.Now;
+                    return d.CreationTime;
+                }))
+                .ForMember(x => x.Id, map => map.ResolveUsing((s, d) =>
+                {
+                    if (d.Id.IsNullOrWhiteSpace())
+                        return Guid.NewGuid().ToString("N");
+                    return d.Id;
+                }))
                 .ForMember(x => x.CarNumber, map => map.MapFrom(x => x.车牌号))
                 .ForMember(x => x.CarCode, map => map.MapFrom(x => x.车架号))
                 .ForMember(x => x.EngineNo, map => map.MapFrom(x => x.发动机号))
@@ -123,19 +134,13 @@ namespace CXY.CJS.Application.Mapper
                 {
                     if (d.BatchId.IsNullOrWhiteSpace())
                         return s.BatchId;
-                    return d.Id;
+                    return d.BatchId;
                 }))
                 .ForMember(x => x.WebSiteId, map => map.ResolveUsing((s, d) =>
                 {
                     if (d.WebSiteId.IsNullOrWhiteSpace())
                         return s.WebSiteId;
                     return d.WebSiteId;
-                }))
-                .ForMember(x => x.CreationTime, map => map.ResolveUsing((s, d) =>
-                {
-                    if (d.Id.IsNullOrWhiteSpace())
-                        return DateTime.Now;
-                    return d.CreationTime;
                 }));
         }
     }
