@@ -3,7 +3,7 @@ using Castle.Core.Logging;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Application.Service.Dtos;
 using CXY.CJS.Core.Enums;
-using CXY.CJS.Core.Extension;
+using CXY.CJS.Core.Extensions;
 using CXY.CJS.Core.NPOI;
 using CXY.CJS.Core.Utils.Mail;
 using CXY.CJS.Core.WebApi;

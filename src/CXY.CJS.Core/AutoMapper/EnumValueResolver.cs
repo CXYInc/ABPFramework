@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CXY.CJS.Core.Extension;
+using CXY.CJS.Core.Extensions;
 using System;
 
 namespace CXY.CJS.Core.AutoMapper
