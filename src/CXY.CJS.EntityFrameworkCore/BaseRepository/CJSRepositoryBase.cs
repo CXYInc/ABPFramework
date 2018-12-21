@@ -35,44 +35,44 @@ namespace CXY.CJS.EntityFrameworkCore
             return count > 0;
         }
 
-        #region Bulk
-        public void BulkInsert<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        #region 批量处理
+        public void BulkInsert(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             Context.BulkInsert(entities, bulkConfig, progress);
         }
 
-        public void BulkInsertOrUpdate<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        public void BulkInsertOrUpdate(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             Context.BulkInsertOrUpdate(entities, bulkConfig, progress);
         }
 
-        public void BulkUpdate<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        public void BulkUpdate(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             Context.BulkUpdate(entities, bulkConfig, progress);
         }
 
-        public void BulkDelete<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        public void BulkDelete(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             Context.BulkDelete(entities, bulkConfig, progress);
         }
 
         // Async methods
-        public async Task BulkInsertAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        public async Task BulkInsertAsync(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             await Context.BulkInsertAsync(entities, bulkConfig, progress);
         }
 
-        public async Task BulkInsertOrUpdateAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        public async Task BulkInsertOrUpdateAsync(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             await Context.BulkInsertOrUpdateAsync(entities, bulkConfig, progress);
         }
 
-        public async Task BulkUpdateAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        public async Task BulkUpdateAsync(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             await Context.BulkUpdateAsync(entities, bulkConfig, progress);
         }
 
-        public async Task BulkDeleteAsync<T>(IList<T> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null) where T : class
+        public async Task BulkDeleteAsync(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null)
         {
             await Context.BulkDeleteAsync(entities, bulkConfig, progress);
         }
