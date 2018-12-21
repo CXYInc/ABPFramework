@@ -5,9 +5,18 @@ using Abp.Domain.Entities.Auditing;
 
 namespace CXY.CJS.Model
 {
-    public  class BatchAskPriceViolationAgent:Entity<string>,IHasCreationTime
+    public class BatchAskPriceViolationAgent : Entity<string>, IHasCreationTime
     {
+        /// <summary>
+        /// 站点ID
+        /// </summary>
         public string WebSiteId { get; set; }
+
+        /// <summary>
+        /// 批次ID
+        /// </summary>
+        public string BatchId { get; set; }
+
         public string CarId { get; set; }
         public int State { get; set; }
         public DateTime ViolationTime { get; set; }

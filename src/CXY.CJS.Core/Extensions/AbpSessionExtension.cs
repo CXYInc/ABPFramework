@@ -4,7 +4,6 @@ using Abp.Runtime;
 using Abp.Runtime.Session;
 using CXY.CJS.Core.Constant;
 using System.Linq;
-using System.Security.Claims;
 
 namespace CXY.CJS.Core.Extensions
 {

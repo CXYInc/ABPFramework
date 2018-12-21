@@ -72,5 +72,7 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
         Task<ApiResult> GrantOrRemoveUserRole(GrantOrRemoveUserRoleInput input);
+
+        Task<List<Users>> GetUsersByKeys(List<string> key, string websiteId);
     }
 }

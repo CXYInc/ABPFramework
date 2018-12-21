@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Reflection;
 
-namespace CXY.CJS.Core.Extension
+namespace CXY.CJS.Core.Extensions
 {
     /// <summary>
     /// 枚举扩展
@@ -78,6 +80,65 @@ namespace CXY.CJS.Core.Extension
                 result = (T)Enum.ToObject(typeof(T), obj);
             }
             return new Tuple<T, bool>(result, success);
+        }
+
+        /// <summary>
+        /// 获取指定枚举全部描述
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static List<string> GetDescriptions<T>() where T : Enum
+        {
+            Type type = typeof(T);
+
+            if (!type.IsEnum) return null;
+
+            var result = new List<string>();
+
+            foreach (var enumValue in type.GetEnumValues())
+            {
+                var attributeName = Enum.GetName(type, enumValue);
+
+                var memInfo = type.GetMember(enumValue.ToString()).FirstOrDefault();
+                var attribute = memInfo.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault();
+
+                if (attribute != null)
+                    attributeName = ((DescriptionAttribute)attribute).Description;
+
+                result.Add(attributeName);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 根据描述获取枚举
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="desc"></param>
+        /// <returns></returns>
+        public static T GetEnumByDesc<T>(this string desc) where T : Enum
+        {
+            Type type = typeof(T);
+
+            if (!type.IsEnum) return default;
+
+            foreach (var enumValue in type.GetEnumValues())
+            {
+                var attributeName = Enum.GetName(type, enumValue);
+
+                var memInfo = type.GetMember(enumValue.ToString()).FirstOrDefault();
+                var attribute = memInfo.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault();
+
+                if (attribute != null)
+                    attributeName = ((DescriptionAttribute)attribute).Description;
+
+                if (attributeName.Equals(desc))
+
+                    return (T)enumValue;
+            }
+
+            return default;
         }
     }
 }

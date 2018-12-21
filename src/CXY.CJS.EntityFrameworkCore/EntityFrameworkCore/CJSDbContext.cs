@@ -25,11 +25,12 @@ namespace CXY.CJS.EntityFrameworkCore
 
         public DbSet<UserMarkupSetting> UserMarkupSettings { get; set; }
         public DbSet<UserScore> UserScores { get; set; }
+        public DbSet<UserScoreFlow> UserScoreFlows { get; set; }
 
         public DbSet<UserSysSetting> UserSysSettings { get; set; }
 
         public DbSet<UserWallet> UserWallets { get; set; }
-
+        public DbSet<UserWalletFlow> UserWalletFlows { get; set; }
 
 
         public DbSet<UserRole> UserRoles { get; set; }

@@ -5,6 +5,9 @@ using System;
 
 namespace CXY.CJS.Model
 {
+    /// <summary>
+    /// 用户角色绑定关系表
+    /// </summary>
     public class UserRole : Entity<string>, IHasCreationTime
     {
         public string WebSiteId { get; set; }
