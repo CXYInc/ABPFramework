@@ -22,7 +22,7 @@ namespace CXY.CJS.Application.Mapper
 
         private void ForMemberExpression(IMappingExpression<BatchTableModelDto, BatchAskPriceViolationAgent> mappingExpression)
         {
-            mappingExpression.ForMember(x => x.Id, map => map.UseValue(Guid.NewGuid().ToString("N")))
+            mappingExpression.ForMember(x => x.Id, map => map.ResolveUsing(s => { return Guid.NewGuid().ToString("N"); }))
                 .ForMember(x => x.AgentPrice, map => map.MapFrom(x => x.代办成本.ToDecimal(0)))
                 .ForMember(x => x.Archive, map => map.MapFrom(x => x.文书号))
                 .ForMember(x => x.BatchId, map => map.MapFrom(x => x.BatchId))
@@ -55,7 +55,7 @@ namespace CXY.CJS.Application.Mapper
                 .ForMember(x => x.State, map => map.UseValue((int)ViolationStateEnum.WaitHandle))
                 .ForMember(x => x.Status, map => map.UseValue((int)ViolationStatusEnum.CanProcess))
                 .ForMember(x => x.DataStatus, map => map.MapFrom(x => x.DataStatus))
-                .ForMember(x => x.WebSiteId, map => map.MapFrom(x=>x.WebSiteId))
+                .ForMember(x => x.WebSiteId, map => map.MapFrom(x => x.WebSiteId))
                 .ForMember(x => x.CreationTime, map => map.UseValue(DateTime.Now))
                 .ForMember(x => x.CreationTime, map => map.UseValue(DateTime.Now))
                 .ForMember(x => x.CreationTime, map => map.UseValue(DateTime.Now));
