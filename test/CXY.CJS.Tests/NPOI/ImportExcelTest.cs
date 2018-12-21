@@ -14,8 +14,8 @@ namespace CXY.CJS.Tests.NPOI
         {
             var path1 = Path.Combine("Source", "test1.xlsx");
             var path2 = Path.Combine("Source", "test2.xls");
-            var ds1 = ImportExeclHelper.ReadExcel(path1);
-            var ds2 = ImportExeclHelper.ReadExcel(path2);
+            var ds1 = NPOIExcelHelper.ReadExcel(path1);
+            var ds2 = NPOIExcelHelper.ReadExcel(path2);
 
            var tempTable = ds2.Tables["订单信息"];
         }

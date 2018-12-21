@@ -1,23 +1,20 @@
-﻿using System;
-using Abp.Application.Services;
-using Abp.ObjectMapping;
+﻿using Abp.ObjectMapping;
+using Castle.Core.Logging;
 using CXY.CJS.Application.Dtos;
-using CXY.CJS.Core.HttpClient;
-using CXY.CJS.Model;
-using CXY.CJS.Repository;
-using CXY.CJS.Core.WebApi;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using CXY.CJS.Application.Service.Dtos;
 using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.Extension;
-using System.Collections.Generic;
-using Abp.Net.Mail;
-using Castle.Core.Logging;
-using CXY.CJS.Core.Utils.Mail;
-using Microsoft.AspNetCore.Http;
 using CXY.CJS.Core.NPOI;
-using System.Data;
-using System.Linq;
+using CXY.CJS.Core.Utils.Mail;
+using CXY.CJS.Core.WebApi;
+using CXY.CJS.Model;
+using CXY.CJS.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace CXY.CJS.Application
 {
@@ -141,15 +138,39 @@ namespace CXY.CJS.Application
 
         [HttpPost("UploadExcel")]
         [AllowAnonymous]
-        public void UploadExcel(IFormFile[] file)
+        public IList<BatchTableModelDto> UploadExcel([FromForm] TestFile testFile)
         {
-            var ds = ImportExeclHelper.ReadExcel(file[0]);
+            var ds = NPOIExcelHelper.ReadExcel(testFile.File);
 
             var tempTable = ds.Tables["订单信息"];
 
-            var drs = tempTable.Rows.Cast<DataRow>().ToList();
+            var list = tempTable.ConvertToModel<BatchTableModelDto>();
 
-            //return drs;
+            var dt = list.ListToDataTable();
+
+            return list;
+        }
+
+        /// <summary>
+        ///  获取文件
+        /// </summary>
+        /// <returns>item1:文件流 item2:文件名 item3:文件类型</returns>
+        [NonAction]
+        public Tuple<Stream, string, string> CreateExcel()
+        {
+            var addrUrl = NPOIExcelHelper.ExportTest();
+
+            string fileExt = Path.GetExtension(addrUrl);
+
+            //获取文件的ContentType
+            var provider = new FileExtensionContentTypeProvider();
+            var contentType = provider.Mappings[fileExt];
+
+            addrUrl = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, addrUrl);
+
+            var stream = new FileStream(addrUrl, FileMode.Open);
+
+            return new Tuple<Stream, string, string>(stream, Path.GetFileName(addrUrl), contentType);
         }
     }
 }

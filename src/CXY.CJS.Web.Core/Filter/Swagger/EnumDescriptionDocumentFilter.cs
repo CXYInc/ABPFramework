@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace CXY.CJS.Web.Core.Extensions.Swagger
+namespace CXY.CJS.Web.Core.Filter.Swagger
 {
     /// <summary>
     /// Add enum value descriptions to Swagger

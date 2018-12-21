@@ -1,43 +1,46 @@
+using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using Abp.Domain.Repositories;
+using Abp.Linq.Extensions;
+using Abp.ObjectMapping;
+using CXY.CJS.Application.Dtos;
+using CXY.CJS.Core.Common;
+using CXY.CJS.Core.Constant;
+using CXY.CJS.Core.Extension;
+using CXY.CJS.Core.NPOI;
+using CXY.CJS.Core.WebApi;
+using CXY.CJS.Model;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Abp.AutoMapper;
-using Abp.Authorization;
-using Abp.Domain.Repositories;
-using Abp.Application.Services.Dto;
-using Abp.Linq.Extensions;
-using CXY.CJS.Application.Dtos;
-using CXY.CJS.Model;
-using Abp.ObjectMapping;
 
 namespace CXY.CJS.Application
 {
     /// <summary>
-    /// BatchCar应用层服务的接口实现方法  
-    ///</summary>
-    [AbpAuthorize]
+    /// 客服违章服务
+    /// </summary>
+    [Route(CJSConsts.RoutePrefix + "/BatchCarViolation/[action]")]
+    [AllowAnonymous]
     public class BatchCarViolationService : CJSAppServiceBase, IBatchCarViolationService
     {
         private readonly IRepository<BatchCar, string> _entityRepository;
         private readonly IObjectMapper _objectMapper;
 
-        public BatchCarViolationService(
-        IRepository<BatchCar, string> entityRepository,
-        IObjectMapper objectMapper
-        )
+        public BatchCarViolationService(IRepository<BatchCar, string> entityRepository, IObjectMapper objectMapper)
         {
             _entityRepository = entityRepository;
             _objectMapper = objectMapper;
         }
-
 
         /// <summary>
         /// 获取BatchCar的分页列表信息
         ///</summary>
         /// <param name="input"></param>
         /// <returns></returns>
-
+        [HttpPost]
         public async Task<PagedResultDto<BatchCarListDto>> GetPaged(GetBatchCarsInput input)
         {
 
@@ -55,11 +58,10 @@ namespace CXY.CJS.Application
             return new PagedResultDto<BatchCarListDto>(count, entityListDtos);
         }
 
-
         /// <summary>
         /// 通过指定id获取BatchCarListDto信息
         /// </summary>
-
+        [HttpPost]
         public async Task<BatchCarListDto> GetById(EntityDto<string> input)
         {
             var entity = await _entityRepository.GetAsync(input.Id);
@@ -72,7 +74,7 @@ namespace CXY.CJS.Application
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-
+        [HttpPost]
         public async Task<GetBatchCarForEditOutput> GetForEdit(BatchCarEditDto input)
         {
             var output = new GetBatchCarForEditOutput();
@@ -95,13 +97,12 @@ namespace CXY.CJS.Application
             return output;
         }
 
-
         /// <summary>
         /// 添加或者修改BatchCar的公共方法
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-
+        [HttpPost]
         public async Task CreateOrUpdate(CreateOrUpdateBatchCarInput input)
         {
 
@@ -115,11 +116,10 @@ namespace CXY.CJS.Application
             }
         }
 
-
         /// <summary>
         /// 新增BatchCar
         /// </summary>
-
+        [HttpPost]
         protected virtual async Task<BatchCarEditDto> Create(BatchCarEditDto input)
         {
             //TODO:新增前的逻辑判断，是否允许新增
@@ -135,7 +135,7 @@ namespace CXY.CJS.Application
         /// <summary>
         /// 编辑BatchCar
         /// </summary>
-
+        [HttpPost]
         protected virtual async Task Update(BatchCarEditDto input)
         {
             //TODO:更新前的逻辑判断，是否允许更新
@@ -147,32 +147,27 @@ namespace CXY.CJS.Application
             await _entityRepository.UpdateAsync(entity);
         }
 
-
-
         /// <summary>
         /// 删除BatchCar信息的方法
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-
+        [HttpPost]
         public async Task Delete(EntityDto<string> input)
         {
             //TODO:删除前的逻辑判断，是否允许删除
             await _entityRepository.DeleteAsync(input.Id);
         }
 
-
-
         /// <summary>
         /// 批量删除BatchCar的方法
         /// </summary>
-
+        [HttpPost]
         public async Task BatchDelete(List<string> input)
         {
             // TODO:批量删除前的逻辑判断，是否允许删除
             await _entityRepository.DeleteAsync(s => input.Contains(s.Id));
         }
-
 
         ///// <summary>
         ///// 导出BatchCar为excel表,等待开发。
@@ -186,6 +181,26 @@ namespace CXY.CJS.Application
         //	return _userListExcelExporter.ExportToFile(userListDtos);
         //}
 
+        #region 违章导入业务
+        /// <summary>
+        /// 违章导入接口
+        /// </summary>
+        /// <param name="importViolationDto">数据导入实体</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ApiResult<IList<BatchTableModelDto>> ImportViolations([FromForm]ImportViolationDto importViolationDto)
+        {
+            var ds = NPOIExcelHelper.ReadExcel(importViolationDto.File);
+
+            var tempTable = ds.Tables["订单信息"];
+
+            var list = tempTable.ConvertToModel<BatchTableModelDto>().ToList();
+
+            list.ForEach(x => x.Uniquecode = CommonHelper.GenerateViolationCode(x.车牌号, x.违章时间, x.违章原因));
+
+            return new ApiResult<IList<BatchTableModelDto>>().Success(list);
+        }
+        #endregion
     }
 }
 
