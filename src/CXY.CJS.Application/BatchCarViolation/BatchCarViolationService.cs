@@ -2,24 +2,31 @@ using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Extensions;
+using Abp.Json;
 using Abp.Linq.Extensions;
 using Abp.ObjectMapping;
 using Castle.Core.Logging;
 using CXY.CJS.Application.Dtos;
 using CXY.CJS.Core.Common;
+using CXY.CJS.Core.Config;
 using CXY.CJS.Core.Constant;
 using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.Extensions;
+using CXY.CJS.Core.HttpClient;
 using CXY.CJS.Core.NPOI;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
+using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CXY.CJS.Application
@@ -33,11 +40,12 @@ namespace CXY.CJS.Application
     {
         private readonly IBatchCarRepository _batchCarRepository;
         private readonly IBatchAskPriceViolationAgentRepository _violationRepository;
-        private readonly IBatchInfoRepository _batchRepository;
+        private readonly IBatchInfoRepository _batchInfoRepository;
         private readonly IObjectMapper _objectMapper;
         private readonly ILogger _logger;
-
         private readonly IUserServices _userServices;
+        private readonly ApiUrlConfig _apiUrlConfig;
+        private readonly HttpClientHelper _httpClientHelper;
 
         /// <summary>
         /// 构造函数
@@ -45,15 +53,18 @@ namespace CXY.CJS.Application
         /// <param name="entityRepository"></param>
         /// <param name="objectMapper"></param>
         /// <param name="logger"></param>
-        public BatchCarViolationService(IBatchCarRepository entityRepository, IUserServices userServices, IBatchInfoRepository batchRepository,
-            IBatchAskPriceViolationAgentRepository violationRepository, ILogger logger, IObjectMapper objectMapper)
+        public BatchCarViolationService(IBatchCarRepository batchCarRepository, IUserServices userServices, IBatchInfoRepository batchInfoRepository,
+            IBatchAskPriceViolationAgentRepository violationRepository, ILogger logger, IObjectMapper objectMapper,
+           IOptionsSnapshot<ApiUrlConfig> apiUrlConfig, HttpClientHelper httpClientHelper)
         {
-            _batchCarRepository = entityRepository;
+            _batchCarRepository = batchCarRepository;
             _objectMapper = objectMapper;
             _logger = logger;
             _userServices = userServices;
             _violationRepository = violationRepository;
-            _batchRepository = batchRepository;
+            _batchInfoRepository = batchInfoRepository;
+            _apiUrlConfig = apiUrlConfig.Value;
+            _httpClientHelper = httpClientHelper;
         }
 
         /// <summary>
@@ -209,13 +220,21 @@ namespace CXY.CJS.Application
         /// <param name="importViolationDto">数据导入实体</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ApiResult<IList<ViolationErrorInfo>>> ImportViolations([FromForm]ImportViolationDto importViolationDto)
+        public async Task<ApiResult<IList<BatchTableModelDto>>> ImportViolations([FromForm]ImportViolationDto importViolationDto)
         {
+            var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == importViolationDto.BatchId);
+
             var ds = NPOIExcelHelper.ReadExcel(importViolationDto.File);
 
             var dt = ds.Tables["订单信息"];
 
             var list = dt.ConvertToModel<BatchTableModelDto>().ToList();
+
+            var errors = await CheckError(list);
+
+            await QueryViolationInfo(list, batchInfo);
+
+            var repeats = await CheckRepeat(list, importViolationDto.BatchId);
 
             list.ForEach(x =>
             {
@@ -226,15 +245,9 @@ namespace CXY.CJS.Application
                 x.WebSiteId = AbpSession.WebSiteId;
             });
 
-            var errors = await CheckError(list);
-
-            var repeats = await CheckRepeat(list, importViolationDto.BatchId);
-
             var t = _objectMapper.Map<List<BatchAskPriceViolationAgent>>(list);
 
-            await InsertOrUpdateViolations(importViolationDto.BatchId, list);
-
-            return new ApiResult<IList<ViolationErrorInfo>>().Success(errors);
+            return new ApiResult<IList<BatchTableModelDto>>().Success(list);
         }
 
         /// <summary>
@@ -247,7 +260,7 @@ namespace CXY.CJS.Application
         {
             if (batchId.IsNullOrWhiteSpace()) return;
 
-            var batchInfo = await _batchRepository.FirstOrDefaultAsync(x => x.Id == batchId);
+            var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == batchId);
 
             if (batchId == null) return;
 
@@ -381,7 +394,7 @@ namespace CXY.CJS.Application
             await _violationRepository.BulkInsertAsync(addViolationList);
             await _violationRepository.BulkUpdateAsync(updateViolationList);
 
-            await _batchRepository.UpdateAsync(batchInfo);
+            await _batchInfoRepository.UpdateAsync(batchInfo);
         }
 
         private async Task<List<ViolationErrorInfo>> CheckError(List<BatchTableModelDto> batchTableModels)
@@ -628,7 +641,9 @@ namespace CXY.CJS.Application
         /// <summary>
         /// 校验重复数据
         /// </summary>
-        /// <param name="batchTableModelDtos"></param>
+        /// <param name="batchTableModels"></param>
+        /// <param name="batchId"></param>
+        /// <returns></returns>
         private async Task<List<string>> CheckRepeat(List<BatchTableModelDto> batchTableModels, string batchId)
         {
             var codeList = new List<string>();
@@ -688,6 +703,148 @@ namespace CXY.CJS.Application
             }
 
             return codeList;
+        }
+
+        /// <summary>
+        /// 查询车辆违章信息
+        /// </summary>
+        /// <param name="carInfo"></param>
+        /// <param name="batchTableModel"></param>
+        /// <param name="batchInfo"></param>
+        /// <returns></returns>
+        private async Task<List<BatchTableModelDto>> QueryViolationInfoByCarInfo(CarInfoDto carInfo, BatchTableModelDto batchTableModel, BatchInfo batchInfo)
+        {
+            try
+            {
+                //查询违章
+                object postData = new
+                {
+                    req_data = new
+                    {
+                        carNumber = carInfo.CarNumber,
+                        carCode = carInfo.CarCode,
+                        engineCode = carInfo.EngineNo,
+                        carType = ((int)carInfo.CarTypeName.GetEnumByDesc<CarTypeEnum>()).ToString().PadLeft(2, '0'),
+                        carTypeName = carInfo.CarTypeName,
+                        isUseHistory = 1,
+                        userId = "009020201501192329000000000002",
+                        provinceCode = "",
+                        enumCarNature = carInfo.PrivateCar,
+                        shortname = "有限公司",
+                        source = "PC",
+                        isCheckLock = 0
+                    }
+                };
+
+                string postDataStr = postData.ToJsonString();
+                string apiUrl = _apiUrlConfig.QueryViolationApiUrl;
+
+                var httpClientRequest = new HttpClientRequest
+                {
+                    DataEncoding = Encoding.GetEncoding("gb2312"),
+                    PostData = postDataStr,
+                    ContentType = "text/plain",
+                    Url = apiUrl
+                };
+
+                var httpClientResponse = await _httpClientHelper.PostStringAsync(httpClientRequest);
+
+                var jo = httpClientResponse.Data.FromJsonString<JObject>();
+
+                if (jo["code"].ToString() != "1")
+                {
+                    _logger.Error($"查询车辆违章信息出错, 参数【{postDataStr}】错误信息【{ httpClientResponse.Data}】");
+
+                    return new List<BatchTableModelDto>();
+                }
+
+                var datajo = jo["data"].ToJsonString().FromJsonString<JObject>();
+
+                var wzEntity = datajo["StatusObject"].ToString().FromJsonString<dynamic>();
+
+                //有违章数据，写进违章表
+                if (wzEntity.ErrorCode != "0")
+                {
+                    return null;
+                }
+                if (wzEntity.HasData == false || wzEntity.Record == null || wzEntity.Record.Count <= 0)
+                {
+                    return null;
+                }
+
+                var batchTableModels = new List<BatchTableModelDto>();
+
+                var Savebpvlist = new List<BatchAskPriceViolationAgent>();
+                var Updatebpvlist = new List<BatchAskPriceViolationAgent>();
+                foreach (dynamic temp in wzEntity.Record)
+                {
+                    var batchTableMode = new BatchTableModelDto
+                    {
+                        车牌号 = carInfo.CarNumber,
+                        车架号 = carInfo.CarCode,
+                        发动机号 = carInfo.EngineNo,
+                        车型名称 = carInfo.CarTypeName,
+                        车型代码 = ((int)carInfo.CarTypeName.GetEnumByDesc<CarTypeEnum>()).ToString().PadLeft(2, '0'),
+                        车辆性质 = carInfo.PrivateCar,
+                        违章时间 = temp.Time,
+                        文书号 = temp.Archive,
+                        违章城市 = temp.LocationName,
+                        违章地点 = temp.Location,
+                        违章原因 = temp.Reason,
+                        扣分 = temp.Degree,
+                        罚金 = temp.count,
+                        滞纳金 = temp.Latefine,
+                        违法代码 = temp.Code,
+                        是否挑单 = batchTableModel.是否挑单,
+                        是否超证 = batchTableModel.是否超证,
+                        手续费 = batchTableModel.手续费,
+                        违章城市代码 = temp.Locationid,
+                        Uniquecode = temp.UniqueCode
+                    };
+
+                    batchTableModels.Add(batchTableMode);
+                }
+                return batchTableModels;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"QueryViolationInfoByCarInfo:{ex.Message}");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 查询车辆违章信息
+        /// </summary>
+        /// <param name="batchTableModels"></param>
+        /// <param name="batchInfo"></param>
+        /// <returns></returns>
+        private async Task<List<BatchTableModelDto>> QueryViolationInfo(List<BatchTableModelDto> batchTableModels, BatchInfo batchInfo)
+        {
+            //找出模板中无违章信息车辆
+            var needQueryViolations = batchTableModels.Where(x => string.IsNullOrEmpty(x.违章时间) && string.IsNullOrEmpty(x.扣分))
+                .GroupBy(x => new { x.车牌号, x.车架号, x.发动机号, x.车辆性质, x.车型名称 })
+                .Select(x => new CarInfoDto { CarNumber = x.Key.车牌号, CarCode = x.Key.车架号, EngineNo = x.Key.发动机号, CarTypeName = x.Key.车型名称, PrivateCar = x.Key.车辆性质 }).ToList();
+
+            foreach (var needQueryViolation in needQueryViolations)
+            {
+                var batchTableModel = batchTableModels.Where(x => string.IsNullOrEmpty(x.违章时间) && string.IsNullOrEmpty(x.扣分) &&
+                x.车牌号 == needQueryViolation.CarNumber).FirstOrDefault();
+
+                var carViolationInfos = await QueryViolationInfoByCarInfo(needQueryViolation, batchTableModel, batchInfo);
+
+                carViolationInfos.ForEach(x =>
+                {
+                    x.代办方 = batchTableModel.代办方;
+                    x.代办成本 = batchTableModel.代办成本;
+                });
+
+                batchTableModels.Remove(batchTableModel);
+                if (carViolationInfos != null)
+                    batchTableModels.AddRange(carViolationInfos);
+            }
+
+            return batchTableModels;
         }
         #endregion
     }

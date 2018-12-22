@@ -57,7 +57,6 @@ namespace CXY.CJS.EntityFrameworkCore
         public CJSDbContext(DbContextOptions<CJSDbContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -67,6 +66,11 @@ namespace CXY.CJS.EntityFrameworkCore
             builder.ApplyConfiguration(new BatchCarConfiguration());
 
             base.OnModelCreating(builder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }

@@ -33,7 +33,6 @@ namespace CXY.CJS.Model
         /// </summary>
         public int HadPriceCount { get; set; }
 
-
         /// <summary>
         /// 客户Id
         /// </summary>
@@ -61,12 +60,19 @@ namespace CXY.CJS.Model
         /// 批次完成时间
         /// </summary>
         public DateTime? CompleteTime { get; set; }
+
         public DateTime CreationTime { get; set; }
+
         public DateTime? LastModificationTime { get; set; }
+
         public DateTime? DeletionTime { get; set; }
+
         public bool IsDeleted { get; set; }
+
         public string CreatorUserId { get; set; }
+
         public string LastModifierUserId { get; set; }
+
         public string DeleterUserId { get; set; }
     }
 }

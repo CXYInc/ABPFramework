@@ -1,4 +1,6 @@
-﻿namespace CXY.CJS.Core.WebApi
+﻿using Newtonsoft.Json;
+
+namespace CXY.CJS.Core.WebApi
 {
     /// <summary>
     /// api响应实体
@@ -21,6 +23,7 @@
         /// </summary>
         public string Message { get; set; }
 
+        [JsonIgnore]
         public bool IsSuccess => Code > 0;
     }
 
@@ -42,13 +45,13 @@
             return this;
         }
 
-        public static ApiResult<T> Success<T>(T data , string message = "") where T : class
+        public static ApiResult<T> Success<T>(T data, string message = "") where T : class
         {
             return new ApiResult<T>
             {
                 Code = 1,
                 Data = data,
-                Message =message
+                Message = message
             };
         }
 
@@ -85,7 +88,7 @@
 
         public static ApiResult DataNotFound()
         {
-            return  new ApiResult
+            return new ApiResult
             {
                 Code = 0,
                 Message = "未找到数据"

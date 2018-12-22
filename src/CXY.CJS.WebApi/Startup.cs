@@ -130,7 +130,7 @@ namespace CXY.CJS.WebApi
             //配置短信发送
             //services.AddSmsSender(_appConfiguration.GetSection("SmsSenderConfiguration").Get<SmsSenderConfiguration>());
 
-            //services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiUrlConfig"));
+            services.Configure<ApiUrlConfig>(_appConfiguration.GetSection("ApiUrlConfig"));
 
             // Configure Abp and Dependency Injection
             return services.AddAbp<CJSWebApiModule>(options =>

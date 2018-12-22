@@ -138,7 +138,7 @@ namespace CXY.CJS.Application
             postData.req_data.left2ProvinceID = ProvinceID;
             postData.req_data.scource = "PC";
 
-            var postDataStr = JsonConvert.SerializeObject(postData);
+            var postDataStr = postData.ToJsonString();
 
             var apiUrl = _apiConfig.QueryInputConditionApiUrl;
 
@@ -203,19 +203,22 @@ namespace CXY.CJS.Application
 
                 if (cp.Length >= 7)//去接口查
                 {
-                    Hashtable postData = new Hashtable();
-                    postData.Add("enginenolen", fdjhLen);
-                    postData.Add("userid", "009020201501192329000000000002");
-                    postData.Add("carcodelen", cjhLen);
-                    postData.Add("carType", cx);
-                    postData.Add("carnumber", cp);
-                    postData.Add("source", "PC");
-                    postData.Add("shortname", "有限公司");
-                    postData.Add("websiteid", "009020");
+                    var postData = new Hashtable
+                    {
+                        { "enginenolen", fdjhLen },
+                        { "userid", AbpSession.UserId },
+                        { "carcodelen", cjhLen },
+                        { "carType", cx },
+                        { "carnumber", cp },
+                        { "source", "PC" },
+                        { "shortname", AbpSession.UserName },
+                        { "websiteid", AbpSession.WebSiteId }
+                    };
 
-
-                    Hashtable req_data = new Hashtable();
-                    req_data.Add("req_data", postData);
+                    var req_data = new Hashtable
+                    {
+                        { "req_data", postData }
+                    };
                     string postDataStr = req_data.ToJsonString();
 
                     var apiUrl = _apiConfig.QueryCarCodeAndEngineCodeApiUrl;
