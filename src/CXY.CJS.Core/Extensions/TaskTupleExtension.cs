@@ -10,7 +10,7 @@ namespace CXY.CJS.Core.Extensions
     /// <summary>
     /// 异步任务组扩展
     /// </summary>
-    public static class TaskTupleExtensions
+    public static class TaskTupleExtension
     {
         #region (Task<T1>)
         /// <summary>

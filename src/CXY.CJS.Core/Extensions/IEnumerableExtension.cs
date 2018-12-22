@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CXY.CJS.Core.Extension
 {
-    public static class IEnumerableExtensions
+    public static class IEnumerableExtension
     {
 
         /// <summary>

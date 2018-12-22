@@ -21,15 +21,23 @@ namespace CXY.CJS.WebApi
                             .AddCommandLine(args)
                             .Build();
 
-            var app = config.GetValue<string>("App:ServerRootAddress");
+            var serverRootAddress = config.GetValue<string>("App:ServerRootAddress");
+            var maxRequestBodySize = config.GetValue<string>("App:MaxRequestBodySize");
 
             var urls = new string[] { "http://*:5000" };
-            urls = app.Split(",");
+            urls = serverRootAddress.Split(",");
 
             var builder = WebHost.CreateDefaultBuilder(args);
 
             builder.UseUrls(urls)
-                   .UseStartup<Startup>();
+                   .UseStartup<Startup>()
+                   .UseKestrel(options =>
+                   {
+                       if (!string.IsNullOrWhiteSpace(maxRequestBodySize) && long.TryParse(maxRequestBodySize, out long size))
+                       {
+                           options.Limits.MaxRequestBodySize = size;
+                       }
+                   });
 
             return builder;
         }

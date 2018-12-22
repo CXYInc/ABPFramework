@@ -14,16 +14,19 @@ using CXY.CJS.Core.Enums;
 using CXY.CJS.Core.Extensions;
 using CXY.CJS.Core.HttpClient;
 using CXY.CJS.Core.NPOI;
+using CXY.CJS.Core.Utils;
 using CXY.CJS.Core.WebApi;
 using CXY.CJS.Model;
 using CXY.CJS.Repository;
 using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Text;
@@ -44,6 +47,7 @@ namespace CXY.CJS.Application
         private readonly IObjectMapper _objectMapper;
         private readonly ILogger _logger;
         private readonly IUserServices _userServices;
+        private readonly IHostingEnvironment _env;
         private readonly ApiUrlConfig _apiUrlConfig;
         private readonly HttpClientHelper _httpClientHelper;
 
@@ -54,7 +58,7 @@ namespace CXY.CJS.Application
         /// <param name="objectMapper"></param>
         /// <param name="logger"></param>
         public BatchCarViolationService(IBatchCarRepository batchCarRepository, IUserServices userServices, IBatchInfoRepository batchInfoRepository,
-            IBatchAskPriceViolationAgentRepository violationRepository, ILogger logger, IObjectMapper objectMapper,
+            IBatchAskPriceViolationAgentRepository violationRepository, ILogger logger, IObjectMapper objectMapper, IHostingEnvironment env,
            IOptionsSnapshot<ApiUrlConfig> apiUrlConfig, HttpClientHelper httpClientHelper)
         {
             _batchCarRepository = batchCarRepository;
@@ -65,6 +69,7 @@ namespace CXY.CJS.Application
             _batchInfoRepository = batchInfoRepository;
             _apiUrlConfig = apiUrlConfig.Value;
             _httpClientHelper = httpClientHelper;
+            _env = env;
         }
 
         /// <summary>
@@ -222,32 +227,42 @@ namespace CXY.CJS.Application
         [HttpPost]
         public async Task<ApiResult<IList<BatchTableModelDto>>> ImportViolations([FromForm]ImportViolationDto importViolationDto)
         {
-            var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == importViolationDto.BatchId);
-
-            var ds = NPOIExcelHelper.ReadExcel(importViolationDto.File);
-
-            var dt = ds.Tables["订单信息"];
-
-            var list = dt.ConvertToModel<BatchTableModelDto>().ToList();
-
-            var errors = await CheckError(list);
-
-            await QueryViolationInfo(list, batchInfo);
-
-            var repeats = await CheckRepeat(list, importViolationDto.BatchId);
-
-            list.ForEach(x =>
+            try
             {
-                x.Uniquecode = CommonHelper.GenerateViolationCode(x.车牌号, x.违章时间, x.违章原因);
-                x.BatchId = importViolationDto.BatchId;
-                x.CreateUserId = AbpSession.UserId;
-                x.CreateUserName = AbpSession.UserName;
-                x.WebSiteId = AbpSession.WebSiteId;
-            });
+                var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == importViolationDto.BatchId);
 
-            var t = _objectMapper.Map<List<BatchAskPriceViolationAgent>>(list);
+                var ds = NPOIExcelHelper.ReadExcel(importViolationDto.File);
 
-            return new ApiResult<IList<BatchTableModelDto>>().Success(list);
+                var dt = ds.Tables["订单信息"];
+
+                var list = dt.ConvertToModel<BatchTableModelDto>().ToList();
+
+                var errors = await CheckError(list);
+
+                await QueryViolationInfo(list, batchInfo);
+
+                var repeats = await CheckRepeat(list, importViolationDto.BatchId);
+
+                list.ForEach(x =>
+                {
+                    x.Uniquecode = CommonHelper.GenerateViolationCode(x.车牌号, x.违章时间, x.违章原因);
+                    x.BatchId = importViolationDto.BatchId;
+                    x.CreateUserId = AbpSession.UserId;
+                    x.CreateUserName = AbpSession.UserName;
+                    x.WebSiteId = AbpSession.WebSiteId;
+                });
+
+                var fileName = $"{Guid.NewGuid().ToString("N")}{Path.GetExtension(importViolationDto.File.FileName)}";
+                var fullFilePath = Path.Combine(_env.WebRootPath, "UploadFiles", fileName);
+                await FileOperateHelper.SaveStreamToFileAsync(importViolationDto.File.OpenReadStream(), fullFilePath);
+
+                return new ApiResult<IList<BatchTableModelDto>>().Success(list);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error($"ImportViolations:{ex.Message}");
+                return new ApiResult<IList<BatchTableModelDto>>().Error("系统忙，请稍后重试！");
+            }
         }
 
         /// <summary>

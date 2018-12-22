@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace CXY.CJS.Core.Extension
 {
-    public static class AssemblyExtensions
+    public static class AssemblyExtension
     {
         public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly)
         {
