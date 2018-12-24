@@ -40,7 +40,7 @@ namespace CXY.CJS.Application
     /// 客服违章服务
     /// </summary>
     [Route(CJSConsts.RoutePrefix + "/BatchCarViolation/[action]")]
-    [AllowAnonymous]
+    [Authorize]
     public class BatchCarViolationService : CJSAppServiceBase, IBatchCarViolationService
     {
         private readonly IBatchCarRepository _batchCarRepository;
