@@ -3,6 +3,7 @@ using Abp.Domain.Repositories;
 using EFCore.BulkExtensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -23,6 +24,8 @@ namespace CXY.CJS.Repository
         /// <param name="id"></param>
         /// <returns></returns>
         Task<bool> IsExistedAsync(Expression<Func<TEntity, bool>> predicate);
+
+        IQueryable<TEntity> GetAllAsNoTracking();
 
         #region 批量处理
         void BulkDelete(IList<TEntity> entities, BulkConfig bulkConfig = null, Action<decimal> progress = null);

@@ -18,7 +18,7 @@ namespace CXY.CJS.EntityFrameworkCore
         {
         }
 
-        public override IQueryable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAllAsNoTracking()
         {
             return base.GetAll().AsNoTracking();
         }
