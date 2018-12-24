@@ -6,7 +6,7 @@ namespace CXY.CJS.Application.Dtos
     /// <summary>
     /// 违章导入业务实体
     /// </summary>
-    public class ImportViolationDto
+    public class ImportViolationInputDto
     {
         /// <summary>
         /// 批次ID
