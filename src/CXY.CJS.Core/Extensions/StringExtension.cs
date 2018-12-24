@@ -69,7 +69,7 @@ namespace CXY.CJS.Core.Extensions
                     return returnValue;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 0;
             }

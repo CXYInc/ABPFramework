@@ -22,10 +22,12 @@ using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -54,9 +56,15 @@ namespace CXY.CJS.Application
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="entityRepository"></param>
-        /// <param name="objectMapper"></param>
+        /// <param name="batchCarRepository"></param>
+        /// <param name="userServices"></param>
+        /// <param name="batchInfoRepository"></param>
+        /// <param name="violationRepository"></param>
         /// <param name="logger"></param>
+        /// <param name="objectMapper"></param>
+        /// <param name="env"></param>
+        /// <param name="apiUrlConfig"></param>
+        /// <param name="httpClientHelper"></param>
         public BatchCarViolationService(IBatchCarRepository batchCarRepository, IUserServices userServices, IBatchInfoRepository batchInfoRepository,
             IBatchAskPriceViolationAgentRepository violationRepository, ILogger logger, IObjectMapper objectMapper, IHostingEnvironment env,
            IOptionsSnapshot<ApiUrlConfig> apiUrlConfig, HttpClientHelper httpClientHelper)
@@ -80,16 +88,12 @@ namespace CXY.CJS.Application
         [HttpPost]
         public async Task<PagedResultDto<BatchCarListDto>> GetPaged(GetBatchCarsInput input)
         {
-
             var query = _batchCarRepository.GetAll();
-            // TODO:根据传入的参数添加过滤条件
 
-
-            var count = query.Count();
+            var count = await query.CountAsync();
 
             var entityList = query.OrderBy(input.Sorting).PageBy(input).ToList();
 
-            // var entityListDtos = ObjectMapper.Map<List<BatchCarListDto>>(entityList);
             var entityListDtos = entityList.MapTo<List<BatchCarListDto>>();
 
             return new PagedResultDto<BatchCarListDto>(count, entityListDtos);
@@ -222,39 +226,41 @@ namespace CXY.CJS.Application
         /// <summary>
         /// 违章导入接口
         /// </summary>
-        /// <param name="importViolationDto">数据导入实体</param>
+        /// <param name="input">数据导入实体</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ApiResult<IList<BatchTableModelDto>>> ImportViolations([FromForm]ImportViolationDto importViolationDto)
+        public async Task<ApiResult<IList<BatchTableModelDto>>> ImportViolations([FromForm]ImportViolationDto input)
         {
             try
             {
-                var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == importViolationDto.BatchId);
+                var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == input.BatchId);
 
-                var ds = NPOIExcelHelper.ReadExcel(importViolationDto.File);
+                if (batchInfo == null) return new ApiResult<IList<BatchTableModelDto>>().Error("批次信息不存在");
 
-                var dt = ds.Tables["订单信息"];
-
-                var list = dt.ConvertToModel<BatchTableModelDto>().ToList();
+                List<BatchTableModelDto> list;
+                using (var fs = input.File.OpenReadStream())
+                {
+                    list = GetExcelData(fs, input.File.FileName);
+                }
 
                 var errors = await CheckError(list);
 
                 await QueryViolationInfo(list, batchInfo);
 
-                var repeats = await CheckRepeat(list, importViolationDto.BatchId);
-
                 list.ForEach(x =>
                 {
                     x.Uniquecode = CommonHelper.GenerateViolationCode(x.车牌号, x.违章时间, x.违章原因);
-                    x.BatchId = importViolationDto.BatchId;
+                    x.BatchId = input.BatchId;
                     x.CreateUserId = AbpSession.UserId;
                     x.CreateUserName = AbpSession.UserName;
                     x.WebSiteId = AbpSession.WebSiteId;
                 });
 
-                var fileName = $"{Guid.NewGuid().ToString("N")}{Path.GetExtension(importViolationDto.File.FileName)}";
+                var repeats = await CheckRepeat(list, input.BatchId);
+
+                var fileName = $"{Guid.NewGuid().ToString("N")}{Path.GetExtension(input.File.FileName)}";
                 var fullFilePath = Path.Combine(_env.WebRootPath, "UploadFiles", fileName);
-                await FileOperateHelper.SaveStreamToFileAsync(importViolationDto.File.OpenReadStream(), fullFilePath);
+                await FileOperateHelper.SaveStreamToFileAsync(input.File.OpenReadStream(), fullFilePath);
 
                 return new ApiResult<IList<BatchTableModelDto>>().Success(list);
             }
@@ -263,6 +269,92 @@ namespace CXY.CJS.Application
                 _logger.Error($"ImportViolations:{ex.Message}");
                 return new ApiResult<IList<BatchTableModelDto>>().Error("系统忙，请稍后重试！");
             }
+        }
+
+        /// <summary>
+        /// 违章提交
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ApiResult> SubmitViolations(SubmitViolationInputDto input)
+        {
+            if (input == null || input.BatchId.IsNullOrWhiteSpace() || input.FilePath.IsNullOrWhiteSpace())
+            {
+                return new ApiResult().Error(MessageTipsConsts.ParamError);
+            }
+
+            var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == input.BatchId);
+            if (batchInfo == null) return new ApiResult().Error("批次信息不存在");
+
+            var fullFilePath = Path.Combine(_env.WebRootPath, "UploadFiles", input.FilePath);
+
+            List<BatchTableModelDto> list;
+            using (var fs = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+            {
+                list = GetExcelData(fs, input.FilePath);
+            }
+
+            var errors = await CheckError(list);
+
+            await QueryViolationInfo(list, batchInfo);
+
+            list.ForEach(x =>
+            {
+                x.Uniquecode = CommonHelper.GenerateViolationCode(x.车牌号, x.违章时间, x.违章原因);
+                x.BatchId = input.BatchId;
+                x.CreateUserId = AbpSession.UserId;
+                x.CreateUserName = AbpSession.UserName;
+                x.WebSiteId = AbpSession.WebSiteId;
+            });
+
+            var repeats = await CheckRepeat(list, input.BatchId);
+
+            await InsertOrUpdateViolations(input.BatchId, list);
+
+            return new ApiResult().Success();
+        }
+
+        private List<BatchTableModelDto> GetExcelData(Stream fileStream, string fileName)
+        {
+            List<BatchTableModelDto> list;
+            try
+            {
+                var ds = NPOIExcelHelper.ReadExcel(fileStream, fileName);
+
+                if (ds == null)
+                    throw new Exception("读取数据失败");
+
+                if (ds.Tables.Count <= 0)
+                    throw new Exception("Excel必须包含一个表");
+
+                var isHave = ds.Tables.Cast<DataTable>().Any(x => x.TableName == "订单信息");
+
+                if (!isHave)
+                    throw new Exception("Excel格式有误(请检查Sheet名称是否为“订单信息”)");
+
+                var dt = ds.Tables["订单信息"];
+                if (dt == null)
+                    throw new Exception("未读取到订单数据");
+
+                if (dt.Rows.Count < 1)
+                    throw new Exception("表必须包含数据");
+
+                list = dt.ConvertToModel<BatchTableModelDto>().ToList();
+
+                list.ForEach(x =>
+                {
+                    x.是否挑单 = x.是否挑单.IsNullOrEmpty() ? "是" : x.是否挑单;
+                    x.是否超证 = x.是否超证.IsNullOrEmpty() ? "否" : x.是否超证;
+                });
+
+            }
+            catch (Exception ex)
+            {
+                _logger.ErrorFormat("读取违章信息Excel异常【WriteError】,ex【{0}】，message【{1}】", ex, ex.Message);
+                throw ex;
+            }
+
+            return list;
         }
 
         /// <summary>
