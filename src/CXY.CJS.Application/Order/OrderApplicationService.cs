@@ -50,12 +50,14 @@ namespace CXY.CJS.Application
         /// <param name="input"></param>
         /// <returns></returns>
 
-        public async Task<ApiPageResult<OrderListDto>> GetPaged(GetOrdersInput input)
-        {
-            Expression<Func<Order, bool>> where = i => !i.IsDeleted && i.WebSiteId == AbpSession.WebSiteId;
-           
-            return pageReuslt.ToApiPageResult();
-        }
+        //public async Task<ApiPageResult<OrderListDto>> GetPaged(GetOrdersInput input)
+        //{
+        //    Expression<Func<Order, bool>> where = i => !i.IsDeleted && i.WebSiteId == AbpSession.WebSiteId;
+             
+
+        //    var pageReuslt = await _orderRepository.QueryByWhereAsync<BatchInfoListDto>(input, null, where);
+        //    return pageReuslt.ToApiPageResult();
+        //}
 
 
         /// <summary>

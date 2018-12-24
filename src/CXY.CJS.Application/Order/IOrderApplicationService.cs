@@ -33,7 +33,7 @@ namespace CXY.CJS.Application
 		///</summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<ApiPageResult<OrderListDto>> GetPaged(GetOrdersInput input);
+        //Task<ApiPageResult<OrderListDto>> GetPaged(GetOrdersInput input);
 
 
         /// <summary>
