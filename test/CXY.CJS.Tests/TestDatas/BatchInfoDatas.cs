@@ -58,6 +58,7 @@ namespace CXY.CJS.Tests.TestDatas
         public static  readonly  BatchInfo TestQuotePriceBatchInfo = new BatchInfo
         {
             Id = Guid.NewGuid().ToString(),
+            ProxyUserId = UserDatas.SuperWebSiteLowerAgent.Id,
             WebSiteId = WebSiteDatas.SuperWebSite.Id,
             CreationTime = DateTime.Now,
         };
