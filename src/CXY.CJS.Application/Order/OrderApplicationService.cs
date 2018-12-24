@@ -53,47 +53,7 @@ namespace CXY.CJS.Application
         public async Task<ApiPageResult<OrderListDto>> GetPaged(GetOrdersInput input)
         {
             Expression<Func<Order, bool>> where = i => !i.IsDeleted && i.WebSiteId == AbpSession.WebSiteId;
-            if (!input.Id.IsNullOrEmpty())
-            {
-                where = where.And(i => i.Id.Contains(input.Id));
-            }
-
-            if (!input.Proxy.IsNullOrEmpty())
-            {
-                where = where.And(i => i.Proxy.Contains(input.Proxy));
-            }
-
-            if (input.StartTime.HasValue)
-            {
-                switch (input.TimeEnum)
-                {
-                    case BatchInfosListInputTimeEnum.CreationTime:
-                        where = where.And(i => i.CreationTime >= input.StartTime);
-                        break;
-                    case BatchInfosListInputTimeEnum.CompleteTime:
-                        where = where.And(i => i.CompleteTime >= input.StartTime);
-                        break;
-                }
-            }
-            if (input.EndTimeTime.HasValue)
-            {
-                switch (input.TimeEnum)
-                {
-                    case BatchInfosListInputTimeEnum.CreationTime:
-                        where = where.And(i => i.CreationTime <= input.EndTimeTime);
-                        break;
-                    case BatchInfosListInputTimeEnum.CompleteTime:
-                        where = where.And(i => i.CompleteTime <= input.EndTimeTime);
-                        break;
-                }
-            }
-
-            if (!input.Status.IsNullOrEmpty())
-            {
-                where = where.And(i => input.Status.Contains(i.Status));
-            }
-
-            var pageReuslt = await _entityRepository.QueryByWhereAsync<BatchInfoListDto>(input, null, where);
+           
             return pageReuslt.ToApiPageResult();
         }
 
