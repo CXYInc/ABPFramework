@@ -229,13 +229,13 @@ namespace CXY.CJS.Application
         /// <param name="input">数据导入实体</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ApiResult<IList<BatchTableModelDto>>> ImportViolations([FromForm]ImportViolationDto input)
+        public async Task<ApiResult<ImportViolationOutputDto>> ImportViolations([FromForm]ImportViolationInputDto input)
         {
             try
             {
                 var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == input.BatchId);
 
-                if (batchInfo == null) return new ApiResult<IList<BatchTableModelDto>>().Error("批次信息不存在");
+                if (batchInfo == null) return new ApiResult<ImportViolationOutputDto>().Error("批次信息不存在");
 
                 List<BatchTableModelDto> list;
                 using (var fs = input.File.OpenReadStream())
@@ -262,12 +262,19 @@ namespace CXY.CJS.Application
                 var fullFilePath = Path.Combine(_env.WebRootPath, "UploadFiles", fileName);
                 await FileOperateHelper.SaveStreamToFileAsync(input.File.OpenReadStream(), fullFilePath);
 
-                return new ApiResult<IList<BatchTableModelDto>>().Success(list);
+                var result = new ImportViolationOutputDto
+                {
+                    SuccessList = list,
+                    ErrorList = errors,
+                    FilePath = fileName
+                };
+
+                return new ApiResult<ImportViolationOutputDto>().Success(result);
             }
             catch (Exception ex)
             {
                 _logger.Error($"ImportViolations:{ex.Message}");
-                return new ApiResult<IList<BatchTableModelDto>>().Error("系统忙，请稍后重试！");
+                return new ApiResult<ImportViolationOutputDto>().Error(MessageTipsConsts.SystemBusy);
             }
         }
 
@@ -283,34 +290,40 @@ namespace CXY.CJS.Application
                 return new ApiResult().Error(MessageTipsConsts.ParamError);
             }
 
-            var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == input.BatchId);
-            if (batchInfo == null) return new ApiResult().Error("批次信息不存在");
-
-            var fullFilePath = Path.Combine(_env.WebRootPath, "UploadFiles", input.FilePath);
-
-            List<BatchTableModelDto> list;
-            using (var fs = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+            try
             {
-                list = GetExcelData(fs, input.FilePath);
+                var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == input.BatchId);
+                if (batchInfo == null) return new ApiResult().Error("批次信息不存在");
+
+                var fullFilePath = Path.Combine(_env.WebRootPath, "UploadFiles", input.FilePath);
+
+                List<BatchTableModelDto> list;
+                using (var fs = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                {
+                    list = GetExcelData(fs, input.FilePath);
+                }
+
+                var errors = await CheckError(list);
+
+                await QueryViolationInfo(list, batchInfo);
+
+                list.ForEach(x =>
+                {
+                    x.Uniquecode = CommonHelper.GenerateViolationCode(x.车牌号, x.违章时间, x.违章原因);
+                    x.BatchId = input.BatchId;
+                    x.CreateUserId = AbpSession.UserId;
+                    x.CreateUserName = AbpSession.UserName;
+                    x.WebSiteId = AbpSession.WebSiteId;
+                });
+
+                var repeats = await CheckRepeat(list, input.BatchId);
+
+                await InsertOrUpdateViolations(input.BatchId, list);
             }
-
-            var errors = await CheckError(list);
-
-            await QueryViolationInfo(list, batchInfo);
-
-            list.ForEach(x =>
+            catch (Exception ex)
             {
-                x.Uniquecode = CommonHelper.GenerateViolationCode(x.车牌号, x.违章时间, x.违章原因);
-                x.BatchId = input.BatchId;
-                x.CreateUserId = AbpSession.UserId;
-                x.CreateUserName = AbpSession.UserName;
-                x.WebSiteId = AbpSession.WebSiteId;
-            });
-
-            var repeats = await CheckRepeat(list, input.BatchId);
-
-            await InsertOrUpdateViolations(input.BatchId, list);
-
+                _logger.Error($"保存违章信息出错，【Action】：SubmitViolations，【Excption】:{ex}");
+            }
             return new ApiResult().Success();
         }
 
@@ -367,141 +380,147 @@ namespace CXY.CJS.Application
         {
             if (batchId.IsNullOrWhiteSpace()) return;
 
-            var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == batchId);
-
-            if (batchId == null) return;
-
-            var oldBatchCars = await _batchCarRepository.GetAllListAsync(x => x.BatchId == batchId);
-
-            var oldBatchViolations = await _violationRepository.GetAllListAsync(x => x.BatchId == batchId);
-
-            //当前登录用户
-            //var user = SessionHelper.User;
-
-            var updateCarList = new List<BatchCar>();
-            var addCarList = new List<BatchCar>();
-
-            var updateViolationList = new List<BatchAskPriceViolationAgent>();
-            var addViolationList = new List<BatchAskPriceViolationAgent>();
-
-            //查询代办人列表
-            var agentNames = batchTableModels.Select(x => x.代办方).ToList();
-            //var users = GetUserInfoByKey(agentNames, SessionHelper.WebSite.WebSiteId);
-            var batchCanComplete = false;
-
-            foreach (var item in batchTableModels)
+            try
             {
-                if (item == null) continue;
-                var oldCar = oldBatchCars.FirstOrDefault(x => x.CarNumber == item.车牌号 && x.CarCode == item.车架号 && x.EngineNo == item.发动机号);
-                var newCar = addCarList.FirstOrDefault(x => x.CarNumber == item.车牌号 && x.CarCode == item.车架号 && x.EngineNo == item.发动机号);
+                var batchInfo = await _batchInfoRepository.FirstOrDefaultAsync(x => x.Id == batchId);
 
-                if (oldCar == null)
+                if (batchId == null) return;
+
+                var oldBatchCars = await _batchCarRepository.GetAllListAsync(x => x.BatchId == batchId);
+
+                var oldBatchViolations = await _violationRepository.GetAllListAsync(x => x.BatchId == batchId);
+
+                //当前登录用户
+                //var user = SessionHelper.User;
+
+                var updateCarList = new List<BatchCar>();
+                var addCarList = new List<BatchCar>();
+
+                var updateViolationList = new List<BatchAskPriceViolationAgent>();
+                var addViolationList = new List<BatchAskPriceViolationAgent>();
+
+                //查询代办人列表
+                var agentNames = batchTableModels.Select(x => x.代办方).ToList();
+                //var users = GetUserInfoByKey(agentNames, SessionHelper.WebSite.WebSiteId);
+                var batchCanComplete = false;
+
+                foreach (var item in batchTableModels)
                 {
-                    if (newCar == null)
+                    if (item == null) continue;
+                    var oldCar = oldBatchCars.FirstOrDefault(x => x.CarNumber == item.车牌号 && x.CarCode == item.车架号 && x.EngineNo == item.发动机号);
+                    var newCar = addCarList.FirstOrDefault(x => x.CarNumber == item.车牌号 && x.CarCode == item.车架号 && x.EngineNo == item.发动机号);
+
+                    if (oldCar == null)
                     {
-                        newCar = _objectMapper.Map<BatchCar>(item);
-                        addCarList.Add(newCar);
+                        if (newCar == null)
+                        {
+                            newCar = _objectMapper.Map<BatchCar>(item);
+                            addCarList.Add(newCar);
+                        }
                     }
-                }
-                else
-                {
-                    if (!updateCarList.Any(x => x.CarNumber == item.车牌号))
+                    else
                     {
-                        _objectMapper.Map(item, oldCar);
-                        updateCarList.Add(oldCar);
-                    }
-                }
-
-                var oldViolations = oldBatchViolations.Where(x => x.OrderByNo == item.序号.ToInt() && x.Uniquecode == item.Uniquecode).ToList();
-                BatchAskPriceViolationAgent newViolation = null;
-
-                if (oldViolations == null || !oldViolations.Any())
-                {
-                    newViolation = _objectMapper.Map<BatchAskPriceViolationAgent>(item);
-                    newViolation.CarId = oldCar == null ? newCar.Id : oldCar.Id;
-
-                    if (item.DataStatus == (int)ViolationDataStatusEnum.Normal || item.DataStatus == (int)ViolationDataStatusEnum.OtherBatchRepeat
-                        || item.DataStatus == (int)ViolationDataStatusEnum.ThisBatchRepeat)
-                    {
-                        batchCanComplete = true;
+                        if (!updateCarList.Any(x => x.CarNumber == item.车牌号))
+                        {
+                            _objectMapper.Map(item, oldCar);
+                            updateCarList.Add(oldCar);
+                        }
                     }
 
-                    //在客服导入违章的时候 如果违章代码是空的且罚金和扣分都是0的 自动补充违章代码6050
-                    if (newViolation.Code.IsNullOrWhiteSpace() && newViolation.Count == 0 && newViolation.Degree == 0)
+                    var oldViolations = oldBatchViolations.Where(x => x.OrderByNo == item.序号.ToInt() && x.Uniquecode == item.Uniquecode).ToList();
+                    BatchAskPriceViolationAgent newViolation = null;
+
+                    if (oldViolations == null || !oldViolations.Any())
                     {
-                        newViolation.Code = "6050";
-                    }
+                        newViolation = _objectMapper.Map<BatchAskPriceViolationAgent>(item);
+                        newViolation.CarId = oldCar == null ? newCar.Id : oldCar.Id;
 
-                    //价格来源
-                    if (newViolation.Poundage != 0 || !newViolation.AgentUserId.IsNullOrEmpty())
-                    {
-                        newViolation.PriceFrom = (int)PriceFromEnum.Person; //0系统,1人工
-                        newViolation.Poundage = Math.Round((decimal)newViolation.Poundage, 0, MidpointRounding.AwayFromZero); //人工报价金额-四舍五入
-                        newViolation.CanProcess = 1;
-                    }
-
-                    addViolationList.Add(newViolation);
-                }
-                else
-                {
-                    oldViolations = oldViolations.Where(x => (x.State == (int)ViolationStateEnum.WaitHandle || x.State == (int)ViolationStateEnum.Backed ||
-                    x.State == (int)ViolationStateEnum.ReSeted) && !updateViolationList.Any(y => y.OrderByNo == x.OrderByNo &&
-                    y.Uniquecode == x.Uniquecode)).ToList();
-
-                    oldViolations.ForEach(x =>
-                    {
-
-                        _objectMapper.Map(item, x);
-
-                        x.CarId = oldCar == null ? newCar.Id : oldCar.Id;
+                        if (item.DataStatus == (int)ViolationDataStatusEnum.Normal || item.DataStatus == (int)ViolationDataStatusEnum.OtherBatchRepeat
+                            || item.DataStatus == (int)ViolationDataStatusEnum.ThisBatchRepeat)
+                        {
+                            batchCanComplete = true;
+                        }
 
                         //在客服导入违章的时候 如果违章代码是空的且罚金和扣分都是0的 自动补充违章代码6050
-                        if (item.违法代码.IsNullOrWhiteSpace() && item.罚金.ToInt() == 0 && item.扣分.ToInt() == 0)
+                        if (newViolation.Code.IsNullOrWhiteSpace() && newViolation.Count == 0 && newViolation.Degree == 0)
                         {
-                            x.Code = "6050";
+                            newViolation.Code = "6050";
                         }
 
                         //价格来源
-                        if (item.手续费.ToDecimal(0) != 0 || !x.AgentUserId.IsNullOrEmpty())
+                        if (newViolation.Poundage != 0 || !newViolation.AgentUserId.IsNullOrEmpty())
                         {
-                            x.PriceFrom = (int)PriceFromEnum.Person; ; //0系统,1人工
-                            x.Poundage = Math.Round((decimal)item.手续费.ToDecimal(), MidpointRounding.AwayFromZero); //人工报价金额-四舍五入
-                            x.CanProcess = 1;
+                            newViolation.PriceFrom = (int)PriceFromEnum.Person; //0系统,1人工
+                            newViolation.Poundage = Math.Round((decimal)newViolation.Poundage, 0, MidpointRounding.AwayFromZero); //人工报价金额-四舍五入
+                            newViolation.CanProcess = 1;
                         }
-                        else
-                        {
-                            x.PriceFrom = (int)PriceFromEnum.System;
-                            x.Poundage = 0;
-                            x.CanProcess = 0;
-                        }
-                    });
 
-                    updateViolationList.AddRange(oldViolations);
+                        addViolationList.Add(newViolation);
+                    }
+                    else
+                    {
+                        oldViolations = oldViolations.Where(x => (x.State == (int)ViolationStateEnum.WaitHandle || x.State == (int)ViolationStateEnum.Backed ||
+                        x.State == (int)ViolationStateEnum.ReSeted) && !updateViolationList.Any(y => y.OrderByNo == x.OrderByNo &&
+                        y.Uniquecode == x.Uniquecode)).ToList();
+
+                        oldViolations.ForEach(x =>
+                        {
+
+                            _objectMapper.Map(item, x);
+
+                            x.CarId = oldCar == null ? newCar.Id : oldCar.Id;
+
+                            //在客服导入违章的时候 如果违章代码是空的且罚金和扣分都是0的 自动补充违章代码6050
+                            if (item.违法代码.IsNullOrWhiteSpace() && item.罚金.ToInt() == 0 && item.扣分.ToInt() == 0)
+                            {
+                                x.Code = "6050";
+                            }
+
+                            //价格来源
+                            if (item.手续费.ToDecimal(0) != 0 || !x.AgentUserId.IsNullOrEmpty())
+                            {
+                                x.PriceFrom = (int)PriceFromEnum.Person; ; //0系统,1人工
+                                x.Poundage = Math.Round((decimal)item.手续费.ToDecimal(), MidpointRounding.AwayFromZero); //人工报价金额-四舍五入
+                                x.CanProcess = 1;
+                            }
+                            else
+                            {
+                                x.PriceFrom = (int)PriceFromEnum.System;
+                                x.Poundage = 0;
+                                x.CanProcess = 0;
+                            }
+                        });
+
+                        updateViolationList.AddRange(oldViolations);
+                    }
                 }
+
+                batchInfo.CarCount += addCarList.Count;
+
+                batchInfo.ViolationCount += addViolationList.Count;
+
+                if (batchInfo.Status == 0)
+                    batchInfo.Status = (int)BatchStatusEnum.WaitHandle;
+
+                if (batchInfo.Status == (int)BatchStatusEnum.Completed && batchCanComplete)
+                {
+                    batchInfo.Status = (int)BatchStatusEnum.Handling;
+                    batchInfo.CompleteTime = null;
+                }
+
+                //车辆
+                await _batchCarRepository.BulkInsertAsync(addCarList);
+                await _batchCarRepository.BulkUpdateAsync(updateCarList);
+
+                //违章
+                await _violationRepository.BulkInsertAsync(addViolationList);
+                await _violationRepository.BulkUpdateAsync(updateViolationList);
+
+                await _batchInfoRepository.UpdateAsync(batchInfo);
             }
-
-            batchInfo.CarCount += addCarList.Count;
-
-            batchInfo.ViolationCount += addViolationList.Count;
-
-            if (batchInfo.Status == 0)
-                batchInfo.Status = (int)BatchStatusEnum.WaitHandle;
-
-            if (batchInfo.Status == (int)BatchStatusEnum.Completed && batchCanComplete)
+            catch (Exception)
             {
-                batchInfo.Status = (int)BatchStatusEnum.Handling;
-                batchInfo.CompleteTime = null;
             }
-
-            //车辆
-            await _batchCarRepository.BulkInsertAsync(addCarList);
-            await _batchCarRepository.BulkUpdateAsync(updateCarList);
-
-            //违章
-            await _violationRepository.BulkInsertAsync(addViolationList);
-            await _violationRepository.BulkUpdateAsync(updateViolationList);
-
-            await _batchInfoRepository.UpdateAsync(batchInfo);
         }
 
         private async Task<List<ViolationErrorInfo>> CheckError(List<BatchTableModelDto> batchTableModels)
@@ -942,6 +961,7 @@ namespace CXY.CJS.Application
 
                 carViolationInfos.ForEach(x =>
                 {
+                    x.序号 = batchTableModel.序号;
                     x.代办方 = batchTableModel.代办方;
                     x.代办成本 = batchTableModel.代办成本;
                 });
