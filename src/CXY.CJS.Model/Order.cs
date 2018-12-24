@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CXY.CJS.Model
 {
-    public class Orders : Entity<string>
+    public class Order : Entity<string>
     {
         public string WebSiteId { get; set; }
 
