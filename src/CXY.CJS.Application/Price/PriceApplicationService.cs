@@ -152,6 +152,7 @@ namespace CXY.CJS.Application
                 priceRequest.WebSiteId = AbpSession.WebSiteId;
                 return _bus.Send(new IndoorPriceAndSaveCommand
                 {
+                    GlobalKey= globalKey,
                     IndoorPrice = priceRequest
                 });
             })).ConfigureAwait(false);

@@ -5,9 +5,11 @@ using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Runtime.Caching;
 using Abp.Specifications;
+using Abp.Threading;
 using Castle.Core.Internal;
 using Castle.Core.Logging;
 using CXY.CJS.Application.Dtos;
@@ -22,6 +24,7 @@ using Nito.AsyncEx;
 
 namespace CXY.CJS.Application
 {
+  
     public class IndoorPriceCommandHandler :
         ICommandHandler<IndoorPriceAndSaveCommand, List<PriceResultOutput>>
     {
@@ -32,8 +35,9 @@ namespace CXY.CJS.Application
         private readonly IBatchAskPriceViolationAgentRepository _violationAgentRepository;
         private readonly IBatchCarRepository _batchCarRepository;
         private readonly ICarViolationDivisionRepository _carViolationDivisionRepository;
+        private readonly IUserSysSettingRepository _settingRepository;
 
-        public IndoorPriceCommandHandler(IPriceAppService priceAppService, ICacheManager cacheManager, ILogger logger, IBatchAskPriceViolationAgentRepository violationAgentRepository, IBatchCarRepository batchCarRepository, ICarViolationDivisionRepository carViolationDivisionRepository)
+        public IndoorPriceCommandHandler(IPriceAppService priceAppService, ICacheManager cacheManager, ILogger logger, IBatchAskPriceViolationAgentRepository violationAgentRepository, IBatchCarRepository batchCarRepository, ICarViolationDivisionRepository carViolationDivisionRepository, IUserSysSettingRepository settingRepository)
         {
             _priceAppService = priceAppService;
             _cacheManager = cacheManager;
@@ -41,39 +45,52 @@ namespace CXY.CJS.Application
             _violationAgentRepository = violationAgentRepository;
             _batchCarRepository = batchCarRepository;
             _carViolationDivisionRepository = carViolationDivisionRepository;
+            _settingRepository = settingRepository;
         }
 
-        public async Task<List<PriceResultOutput>> Handle(IndoorPriceAndSaveCommand request, CancellationToken cancellationToken)
+        [UnitOfWork]
+        public virtual async Task<List<PriceResultOutput>> Handle(IndoorPriceAndSaveCommand request, CancellationToken cancellationToken)
         {
+            // 获取报价结果
             var result = await _priceAppService.IndoorPriceBatch(request.IndoorPrice);
             if (result.IsSuccess)
             {
-
-                // 处理返回报价信息,写分成
-
-                // 更新报价缓存的状态
-                if (!request.GlobalKey.IsNullOrWhiteSpace())
+              
+                // 获取用户分成配置
+                var rateInfo = _settingRepository.GetAll().Where(i => i.Id == request.IndoorPrice.UserId).Select(i => new
                 {
-                    try
+                    i.Rate,
+                    i.RateType
+                }).FirstOrDefault();
+                if (rateInfo != null)
+                {
+                    // 处理返回报价信息,写分成
+                    await UpdateAskPriceViolationInfo(request.IndoorPrice.CarNumber, request.IndoorPrice.BatchId, rateInfo.Rate, rateInfo.RateType, result.Data);
+
+                    // 更新报价缓存的状态
+                    if (!request.GlobalKey.IsNullOrWhiteSpace())
                     {
-                        //等待3分钟
-                        _mut.WaitOne(TimeSpan.FromMinutes(3));
-                        var globalKey = request.GlobalKey;
-                        var cacheObject = await _cacheManager.GetCache(globalKey).GetOrDefaultAsync(globalKey);
-                        if (cacheObject != null)
+                        try
                         {
-                            QuotePriceStation station = (QuotePriceStation)cacheObject;
-                            station.CompleteCount = station.CompleteCount + 1;
-                            await _cacheManager.GetCache(globalKey).SetAsync(globalKey, station);
+                            //等待3分钟
+                            _mut.WaitOne(TimeSpan.FromMinutes(3));
+                            var globalKey = request.GlobalKey;
+                            var cacheObject = await _cacheManager.GetCache(globalKey).GetOrDefaultAsync(globalKey);
+                            if (cacheObject != null)
+                            {
+                                QuotePriceStation station = (QuotePriceStation)cacheObject;
+                                station.CompleteCount = station.CompleteCount + 1;
+                                await _cacheManager.GetCache(globalKey).SetAsync(globalKey, station);
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.ErrorFormat("Action:IndoorPriceAndSaveCommand-UpdateCacheObject,Request:{0},Exception{1}", request, ex);
-                    }
-                    finally
-                    {
-                        _mut.ReleaseMutex();
+                        catch (Exception ex)
+                        {
+                            _logger.ErrorFormat("Action:IndoorPriceAndSaveCommand-UpdateCacheObject,Request:{0},Exception{1}", request, ex);
+                        }
+                        finally
+                        {
+                            _mut.ReleaseMutex();
+                        }
                     }
                 }
                 return result.Data;
@@ -81,8 +98,18 @@ namespace CXY.CJS.Application
             return null;
         }
 
-        private async Task UpdateAskPriceViolationInfo(BatchCar carEntity, UserSysSetting userAttEntity,
-            List<PriceResultOutput> listPriceModel, string webSiteId)
+
+        /// <summary>
+        /// 处理返回报价信息,写分成
+        /// </summary>
+        /// <param name="carNumber"></param>
+        /// <param name="batchId"></param>
+        /// <param name="rate"></param>
+        /// <param name="rateType"></param>
+        /// <param name="listPriceModel"></param>
+        /// <returns></returns>
+        private async Task UpdateAskPriceViolationInfo(string carNumber, string batchId, decimal rate, int rateType,
+            List<PriceResultOutput> listPriceModel)
         {
             if (!listPriceModel.IsNullOrEmpty())
             {
@@ -92,7 +119,7 @@ namespace CXY.CJS.Application
                 {
 
                     var carIds = await _batchCarRepository.GetAll()
-                        .Where(i => i.CarNumber == carEntity.CarNumber && i.BatchId == carEntity.BatchId).Select(i => i.Id)
+                        .Where(i => i.CarNumber == carNumber && i.BatchId == batchId).Select(i => i.Id)
                         .ToDynamicListAsync<string>();
                     Expression<Func<BatchAskPriceViolationAgent, bool>> violationWhere = i =>
                         i.PriceFrom == 0 && uniqueCodes.Contains(i.Uniquecode);
@@ -106,15 +133,12 @@ namespace CXY.CJS.Application
                     if (!violations.IsNullOrEmpty())
                     {
                         //插入的新分成
-                        var batchPriceFcList = new List<CarViolationDivision>();
-                        //将被删除的旧分成
-                        var delBatchPriceFcList = new List<CarViolationDivision>();
+                        var newViolationDivisions = new List<CarViolationDivision>();
 
-                        //获取全部分成信息
-                        var fcList =
-                            await _carViolationDivisionRepository.GetAllListAsync(i =>
-                                violationIds.Contains(i.ViolationId));
-
+                        //获取已存在的分成
+                        var oldViolationDivisions = await _carViolationDivisionRepository.GetAllListAsync(i =>
+                            violationIds.Contains(i.ViolationId));
+                       
                         //处理数据
                         foreach (var item in violations)
                         {
@@ -128,11 +152,10 @@ namespace CXY.CJS.Application
                             if (priceModel.CanProcess == 1)
                             {
                                 #region 分成
-                                delBatchPriceFcList = fcList.Where(x => x.ViolationId == item.Id).ToList();
                                 //获取接口的分成保存到分成表中
                                 if (!priceModel.fcQuery.IsNullOrEmpty())
                                 {
-                                    batchPriceFcList = priceModel.fcQuery.Select(fcEntity =>
+                                    newViolationDivisions = priceModel.fcQuery.Select(fcEntity =>
                                         new CarViolationDivision
                                         {
                                             CalculationExpression = "",
@@ -151,8 +174,6 @@ namespace CXY.CJS.Application
                                 #region 计算最终价格
                                 //违章报价 =(成本)+手价+加价
                                 decimal violationPrice = priceModel.Poundage + priceModel.PlusPrice + priceModel.ParentPlusPrice;
-                                decimal rate = userAttEntity.Rate;
-                                int rateType = userAttEntity.RateType;
                                 if (rateType == 0)
                                     vat = Math.Round(violationPrice * rate / 100);
                                 else if (rateType == 1)
@@ -188,9 +209,13 @@ namespace CXY.CJS.Application
                             }
                         }
 
-                        await (Task.WhenAll(delBatchPriceFcList.Select(i => _carViolationDivisionRepository.DeleteAsync(i)))
-                            , Task.WhenAll(batchPriceFcList.Select(i => _carViolationDivisionRepository.InsertAsync(i)))
-                            , Task.WhenAll(violations.Select(i => _violationAgentRepository.UpdateAsync(i))));
+                        if (!oldViolationDivisions.IsNullOrEmpty())
+                        {
+                            await _carViolationDivisionRepository.BulkDeleteAsync(oldViolationDivisions);
+                        }
+                        await (
+                        _carViolationDivisionRepository.BulkInsertAsync(newViolationDivisions),
+                            _violationAgentRepository.BulkUpdateAsync(violations));
                     }
                 }
             }
